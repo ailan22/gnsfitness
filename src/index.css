@@ -1,0 +1,4 @@
+:root { font-family: Inter, 'Segoe UI', Arial, sans-serif; color: #f4f3ee; background: #10110f; font-synthesis: none; }
+body { margin: 0; }
+button, input, select, textarea { font: inherit; }
+* { box-sizing: border-box; }

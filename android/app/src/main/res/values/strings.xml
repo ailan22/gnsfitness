@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GNS FITNESS</string>
+    <string name="title_activity_main">GNS FITNESS</string>
+    <string name="package_name">uy.gnsfitness.app</string>
+    <string name="custom_url_scheme">uy.gnsfitness.app</string>
+</resources>

@@ -1,0 +1,67 @@
+# Repository root must be gns-recovery. Configure gns_public_backend first.
+# No automatic triggers or store publication. Start builds manually.
+workflows:
+  ios-check:
+    name: GNS iPhone - verificar compilacion
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    environment:
+      node: 24
+      xcode: latest
+      groups:
+        - gns_public_backend
+    scripts:
+      - name: Instalar dependencias
+        script: npm ci
+      - name: Validar configuracion publica
+        script: node scripts/check-ios-environment.mjs
+      - name: Verificar codigo
+        script: npm run lint
+      - name: Preparar iOS
+        script: |
+          set -e
+          npm run mobile:prepare
+          npx cap sync ios
+          node normalize-ios-paths.mjs
+      - name: Compilar sin firma en macOS
+        script: |
+          set -euo pipefail
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath build/ios-check CODE_SIGNING_ALLOWED=NO build | tee ios-build.log
+    artifacts:
+      - ios-build.log
+  ios-signed:
+    name: GNS iPhone - generar IPA firmado
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    environment:
+      node: 24
+      xcode: latest
+      groups:
+        - gns_public_backend
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: uy.gnsfitness.app
+    scripts:
+      - name: Instalar dependencias
+        script: npm ci
+      - name: Validar configuracion publica
+        script: node scripts/check-ios-environment.mjs
+      - name: Preparar iOS
+        script: |
+          set -e
+          npm run lint
+          npm run mobile:prepare
+          npx cap sync ios
+          node normalize-ios-paths.mjs
+      - name: Aplicar perfiles de la titular
+        script: xcode-project use-profiles
+      - name: Numerar compilacion
+        script: |
+          set -e
+          cd ios/App
+          agvtool new-version -all "$((BUILD_NUMBER + 1))"
+      - name: Generar archivo para TestFlight
+        script: xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log

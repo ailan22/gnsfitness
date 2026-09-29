@@ -1,0 +1,9 @@
+{
+  "appId": "uy.gnsfitness.app",
+  "appName": "GNS FITNESS",
+  "webDir": "dist-mobile",
+  "backgroundColor": "#18202b",
+  "server": {
+    "androidScheme": "https"
+  }
+}

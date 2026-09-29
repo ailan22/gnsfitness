@@ -1,0 +1,3 @@
+[functions.invite-student]
+verify_jwt = false
+# La función valida explícitamente el token mediante auth.getUser y exige rol admin.

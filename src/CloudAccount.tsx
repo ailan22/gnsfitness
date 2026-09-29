@@ -1,0 +1,202 @@
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
+import { createClient, type User } from '@supabase/supabase-js'
+import { observeAccount } from './observeAccount'
+import PasswordRecovery from './PasswordRecovery'
+import { biometricAvailability, nativePlatform, nativeSessionStorage } from './nativeBiometrics'
+
+const CloudMembers = lazy(() => import('./CloudMembers'))
+const CloudStudent = lazy(() => import('./CloudStudent'))
+const CloudDashboard = lazy(() => import('./CloudDashboard'))
+
+// Read only the callback kind before the SDK consumes the URL fragment.
+const callbackParameters = new URLSearchParams(window.location.hash.slice(1))
+const callbackFailed = callbackParameters.has('error') || callbackParameters.has('error_code')
+const recoveryRequested = window.location.pathname === '/reset-password' || ['recovery', 'invite'].includes(callbackParameters.get('type') ?? '') || callbackFailed
+const requestOnly = new URLSearchParams(window.location.search).get('request') === '1'
+
+const url = import.meta.env.VITE_SUPABASE_URL?.trim()
+const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim()
+const configured = Boolean(url && /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(url) && key &&
+  !/^(your|tu-|pega|sb_secret_|eyJ)/i.test(key))
+
+// Only the public browser key belongs in Vite environment variables.
+const sessionKey = configured ? `sb-${new URL(url!).hostname.split('.')[0]}-auth-token` : 'gns-auth'
+const nativeStorage = configured ? nativeSessionStorage(sessionKey) : undefined
+const client = configured ? createClient(url!, key!, { auth: { persistSession: true, autoRefreshToken: true,
+  ...(nativeStorage ? { storage: nativeStorage, storageKey: sessionKey, detectSessionInUrl: false } : {}),
+} }) : null
+
+export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalData }: {
+  onAccessChange?: (access: 'checking' | 'student' | 'admin' | 'other' | 'signed-out') => void
+  onExportLocal?: () => void
+  hasLocalData?: boolean
+}) {
+  const [user, setUser] = useState<User | null>(null)
+  const [role, setRole] = useState<string | null>(null)
+  const [visibleMembers, setVisibleMembers] = useState<number | null>(null)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [pending, setPending] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(Boolean(client))
+  const [dashboardRevision, setDashboardRevision] = useState(0)
+  const [recovering, setRecovering] = useState(recoveryRequested)
+  const [biometry, setBiometry] = useState({ available: false, label: 'biometría' })
+  const [biometricSaved, setBiometricSaved] = useState(Boolean(nativeStorage?.saved))
+  const [biometricEnabled, setBiometricEnabled] = useState(false)
+  const [biometricMessage, setBiometricMessage] = useState('')
+  const recoveryMode = useRef(recoveryRequested)
+  const listLoaded = useRef(false)
+  const roleLabel = useMemo(() => ({ admin: 'Administrador', trainer: 'Entrenador', student: 'Alumno' })[role || ''] || 'Sin rol asignado', [role])
+  const changeCount = useCallback((count: number) => {
+    setVisibleMembers(count)
+    if (listLoaded.current) setDashboardRevision(value => value + 1)
+    else listLoaded.current = true
+  }, [])
+
+  useEffect(() => {
+    if (!nativePlatform) return
+    let active = true
+    const check = () => { void biometricAvailability().then(value => { if (active) setBiometry(value) }) }
+    check()
+    window.addEventListener('focus', check)
+    return () => { active = false; window.removeEventListener('focus', check) }
+  }, [])
+
+  useEffect(() => {
+    if (!client) return
+    const clearAccount = () => {
+      setUser(null); setRole(null); setVisibleMembers(null)
+      listLoaded.current = false
+    }
+    return observeAccount(client, {
+      loading: () => {
+        clearAccount(); setLoading(true); setError('')
+        onAccessChange?.('checking')
+      },
+      signedOut: () => {
+        clearAccount(); setLoading(false)
+        setBiometricSaved(Boolean(nativeStorage?.saved)); setBiometricEnabled(false)
+        onAccessChange?.('signed-out')
+      },
+      recovery: () => {
+        recoveryMode.current = true; setRecovering(true)
+        window.history.replaceState(null, '', '/reset-password')
+      },
+      account: (account, nextRole) => {
+        setUser(account); setRole(nextRole); setLoading(false); setError('')
+        onAccessChange?.(recoveryMode.current ? 'other' : nextRole === 'student' ? 'student' : nextRole === 'admin' ? 'admin' : 'other')
+      },
+      error: message => {
+        clearAccount(); setLoading(false); setError(message)
+        onAccessChange?.('signed-out')
+      },
+    }, recoveryMode.current)
+  }, [onAccessChange])
+
+  async function signIn(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (!client || pending) return
+    setPending(true); setError('')
+    try {
+      // Explicit password login starts a new account context, never inherits
+      // another person's biometric enrollment on a shared phone.
+      if (nativeStorage) {
+        await nativeStorage.disable()
+        setBiometricSaved(false); setBiometricEnabled(false); setBiometricMessage('')
+      }
+      const { error: authError } = await client.auth.signInWithPassword({ email: email.trim(), password })
+      if (authError) setError(authError.code === 'email_not_confirmed'
+        ? 'Falta confirmar el correo de esta cuenta.'
+        : authError.code === 'invalid_credentials'
+          ? 'El correo o la contraseña no coinciden. Podés recuperar tu acceso con «Olvidé mi contraseña».'
+          : authError.status === 429
+            ? 'Demasiados intentos. Esperá unos minutos antes de volver a intentar.'
+            : 'No se pudo conectar o completar el ingreso. Intentá nuevamente en unos minutos.')
+    } catch { setError('No se pudo conectar. Revisá tu conexión e intentá nuevamente.') }
+    finally { setPassword(''); setPending(false) }
+  }
+
+  async function signOut() {
+    if (!client || pending) return
+    setPending(true); setError('')
+    try {
+      if (nativeStorage) await nativeStorage.disable()
+      setBiometricEnabled(false); setBiometricSaved(false); setBiometricMessage('')
+      const { error: authError } = await client.auth.signOut()
+      if (authError) setError('No se pudo cerrar la sesión. Intentá de nuevo.')
+    } catch { setError('No se pudo completar el cierre de sesión. Intentá de nuevo.') }
+    finally { setPending(false) }
+  }
+
+  async function toggleBiometrics() {
+    if (!nativeStorage || pending) return
+    setPending(true); setError(''); setBiometricMessage('')
+    try {
+      if (nativeStorage.enabled) {
+        await nativeStorage.disable()
+        setBiometricMessage('Acceso biométrico desactivado en este celular.')
+      } else {
+        const available = await biometricAvailability()
+        setBiometry(available)
+        if (!available.available) throw new Error('Unavailable')
+        await nativeStorage.enable()
+        setBiometricMessage('Acceso biométrico activado para esta cuenta en este celular.')
+      }
+    } catch { setError('No se pudo completar la activación o desactivación. Podés seguir usando tu contraseña.') }
+    finally {
+      setBiometricSaved(nativeStorage.saved); setBiometricEnabled(nativeStorage.enabled); setPending(false)
+    }
+  }
+
+  async function unlockBiometrics() {
+    if (!nativeStorage || !client || pending) return
+    setPending(true); setError('')
+    try {
+      const tokens = await nativeStorage.unlock()
+      // Refresh against the server even when the stored access token has not
+      // expired; observeAccount also checks getUser and the current role.
+      const { error: authError } = await client.auth.refreshSession({ refresh_token: tokens.refresh_token })
+      if (authError) throw authError
+      setBiometricEnabled(true)
+    } catch {
+      setError('No se pudo ingresar con biometría. Podés reintentar o usar tu correo y contraseña.')
+    } finally { setBiometricSaved(nativeStorage.saved); setPending(false) }
+  }
+
+  if (recovering && client) return <section className="card cloud-account cloud-portal" aria-label="Recuperación de acceso a GNS Fitness">
+    <PasswordRecovery client={client} authenticated={Boolean(user) && !requestOnly} checking={loading} invalidLink={callbackFailed}/>
+    {error && <p className="error" role="alert">{error}</p>}
+  </section>
+
+  return <section className={role === 'student' || !user ? 'card cloud-account cloud-portal' : role === 'admin' ? 'cloud-account cloud-admin-account' : 'card cloud-account'} aria-label="Acceso a GNS Fitness">
+    {role === 'student' || role === 'admin' ? null : !user ? <><img className="signin-logo" src="/gns-logo-transparent.png" alt="GNS Fitness" width="128" height="128"/><p className="eyebrow">TU ESPACIO · GNS FITNESS</p><h1>Entrá a tu espacio.</h1><p className="muted">Iniciá sesión con tu correo y contraseña para ver tu espacio personal.</p></> : <h2>Cuenta conectada</h2>}
+    {!configured ? <p className="notice">Para activar la conexión, configurá la URL del proyecto y su clave publicable en <code>.env.local</code>, siguiendo <code>cloud/README.md</code>.</p> : loading ? <p>Comprobando cuenta…</p> : !user ?
+      <form className="cloud-signin" onSubmit={signIn}>
+        {biometricSaved && <button type="button" disabled={pending} onClick={() => void unlockBiometrics()}>Ingresar con {biometry.label}</button>}
+        <label>Correo electrónico<input type="email" autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)}/></label>
+        <label>Contraseña<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)}/></label>
+        <button type="submit" disabled={pending}>{pending ? 'Ingresando…' : 'Iniciar sesión'}</button>
+        <a href="/reset-password?request=1">Olvidé mi contraseña</a>
+      </form> : <div>
+        <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>
+        {role === 'admin' && client ? <><CloudDashboard client={client} revision={dashboardRevision}/><p className="muted">Socios visibles en Supabase: {visibleMembers ?? 'Cargando…'}</p><CloudMembers client={client} onCountChange={changeCount}/>
+          {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</> : !role ? <p className="notice">Esta cuenta aún no tiene un rol asignado. Contactá al administrador.</p> : null}
+        {role === 'student' && client && <CloudStudent client={client} user={user}/>}
+        </Suspense>
+        {nativePlatform && <div className="biometric-settings">
+          <h3>Acceso rápido en este celular</h3>
+          <p className="muted">{biometricEnabled
+            ? 'Al volver a iniciar la app, podés ingresar con biometría. Cerrar sesión elimina este acceso guardado.'
+            : 'Activá el acceso biométrico después de ingresar con tu contraseña. Es opcional y solo se guarda en este celular.'}</p>
+          {(biometry.available || biometricEnabled) ? <button type="button" className="secondary" disabled={pending} onClick={() => void toggleBiometrics()}>
+            {biometricEnabled ? 'Desactivar acceso biométrico' : `Activar ${biometry.label}`}
+          </button> : <p className="muted">No hay biometría compatible configurada en este dispositivo. Podés seguir ingresando con contraseña.</p>}
+          {biometricMessage && <p role="status">{biometricMessage}</p>}
+        </div>}
+        {role !== 'student' && <footer className="account-details"><p><strong>Cuenta:</strong> {user.email}</p><p><strong>Rol:</strong> {roleLabel}</p></footer>}
+        <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()}>Cerrar sesión</button>
+      </div>}
+    {error && <p className="error" role="alert">{error}</p>}
+  </section>
+}

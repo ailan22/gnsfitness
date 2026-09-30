@@ -2,6 +2,10 @@
 
 Estado al 30/09/2026. **No enviada a revisión ni publicada en App Store.**
 
+Compilación 1.0 (6) cargada correctamente a App Store Connect, build Codemagic `6abd21c1083ff0a9a53abf1c`, entrega `0743920d-44d1-439a-8e86-037b264ef43c`. Esta carga precede a la corrección del correo público; generar otro binario cuando las páginas legales estén definitivas. El intento anterior repitió el número 2: corregido con `PROJECT_BUILD_NUMBER` para ambos flujos firmados.
+
+Capturas generadas en build `6abd190f083ff0a9a53abc45` (iPhone y iPad con datos ficticios). Pendientes de descargar, revisar visualmente y adjuntar. La sesión web de App Store Connect expiró: volver a ingresar para completar la ficha.
+
 ## Preparado
 
 - Face ID confirmado en el iPhone por el titular.
@@ -9,7 +13,7 @@ Estado al 30/09/2026. **No enviada a revisión ni publicada en App Store.**
 - Nuevo flujo manual `ios-app-store` con firma App Store y sin `testFlightInternalTestingOnly`. Sube el archivo a Apple pero no solicita revisión ni publica automáticamente.
 - Descripción, texto promocional y palabras clave redactados en `app-store-es.json`; guardados como borrador en App Store Connect. Publicación manual seleccionada y verificada.
 - Contacto público confirmado: gndevicciconde@gmail.com.
-- Páginas locales `public/privacidad.html` y `public/soporte.html`, accesibles también dentro del binario nativo. Aún pendientes de completar responsable y de desplegar en el sitio público.
+- Páginas locales `public/privacidad.html` y `public/soporte.html`, accesibles también dentro del binario nativo. Responsable incorporado: Geronimo Vicciconde. Pendientes de desplegar en el sitio público.
 - Solicitudes privadas de acceso, rectificación y eliminación desde la cuenta del alumno. Gestión manual de solicitudes en el resumen del administrador, protegida por MFA.
 - Migración 010 aplicada en producción. Verificado: RLS activado, lectura y ejecución anónimas denegadas. No se eliminaron cuentas ni registros reales.
 - Cuenta aislada de revisión `app-review@gnsfitness.invalid`, rol alumno, con socio y rutina ficticios. Inicio de sesión probado en el cliente local contra el servidor real. No accede a otros socios. Clave guardada fuera del repositorio, en `.private-ios/app-review.json` del espacio de trabajo.
@@ -18,11 +22,11 @@ Estado al 30/09/2026. **No enviada a revisión ni publicada en App Store.**
 
 ## Datos del titular pendientes
 
-- Países concretos de distribución (se solicitó «varios países»).
+- Países confirmados: Uruguay, Argentina, Brasil y México; sin incorporación automática de otros territorios.
 - Precio confirmado: descarga gratuita.
-- Nombre completo o razón social del responsable del tratamiento y copyright.
-- Teléfono y nombre de contacto para el equipo de revisión de Apple (no se publican en la ficha habitual).
-- Si se distribuye en la UE: declaración de comerciante y datos verificables correspondientes, según la actividad real.
+- Responsable y copyright confirmados: Geronimo Vicciconde.
+- Contacto de revisión confirmado: Geronimo Vicciconde, gndevicciconde@gmail.com, +598 97 961 526 (teléfono privado para Apple).
+- La distribución solicitada no incluye la UE.
 - Verificar cómo se atiende a menores y las autorizaciones necesarias; la clasificación por edad de Apple no sustituye el consentimiento ni las condiciones de los servicios.
 
 ## Antes de enviar

@@ -7,5 +7,19 @@
   "supportUrl": "https://still-disk-e7b3.gndevicciconde.workers.dev/soporte.html",
   "privacyPolicyUrl": "https://still-disk-e7b3.gndevicciconde.workers.dev/privacidad.html",
   "supportEmail": "gndevicciconde@gmail.com",
+  "dataController": "Geronimo Vicciconde",
+  "copyright": "2026 Geronimo Vicciconde",
+  "reviewContact": {
+    "firstName": "Geronimo",
+    "lastName": "Vicciconde",
+    "email": "gndevicciconde@gmail.com",
+    "phone": "+59897961526"
+  },
+  "distribution": {
+    "downloadPrice": 0,
+    "territories": ["URY", "ARG", "BRA", "MEX"],
+    "countries": ["Uruguay", "Argentina", "Brasil", "México"],
+    "includeFutureTerritories": false
+  },
   "reviewNotes": "GNS FITNESS is a companion app for gym members. Accounts are enabled by gym administration; there is no public self-registration or in-app checkout. The student account provided for review must contain fictional data only. Face ID is optional: sign in with email/password and enable it at the bottom of the account screen on a compatible device. Relaunching the app allows biometric unlock; explicitly signing out removes stored biometric access. Student privacy requests are available under 'Mi cuenta y mis datos'. Nutrition is an access request managed by gym administration, not an automated diet generator. Administrative health records require an administrator role and MFA. No HealthKit, advertising or tracking SDK is used."
 }

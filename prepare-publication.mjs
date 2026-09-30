@@ -2,6 +2,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import { fileURLToPath } from 'node:url'
+import { loadEnv } from 'vite'
+import { securityHeaders } from './scripts/security-headers.mjs'
 
 // Run after npm run build. Never copy project files or database exports.
 const project = path.dirname(fileURLToPath(import.meta.url))
@@ -31,7 +33,7 @@ for (const name of files) {
 }
 // Workers serves reset-password.html at /reset-password without rewriting to /.
 fs.copyFileSync(path.join(dist, 'index.html'), path.join(out, 'reset-password.html'))
-fs.writeFileSync(path.join(out, '_headers'), '/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  X-Frame-Options: DENY\n  X-Robots-Tag: noindex, nofollow\n')
+fs.writeFileSync(path.join(out, '_headers'), securityHeaders(process.env.VITE_SUPABASE_URL ?? loadEnv('production', project, 'VITE_').VITE_SUPABASE_URL))
 const manifest = files.map(name => ({ name, sha256: crypto.createHash('sha256').update(fs.readFileSync(path.join(out, name))).digest('hex') }))
 fs.writeFileSync(`${out}.manifest.json`, JSON.stringify(manifest, null, 2))
 console.log(JSON.stringify({ directory: out, files: files.length + 2 }))

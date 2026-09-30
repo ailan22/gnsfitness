@@ -2,6 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type
 import { createClient, type User } from '@supabase/supabase-js'
 import { observeAccount } from './observeAccount'
 import PasswordRecovery from './PasswordRecovery'
+import StaffMfa from './StaffMfa'
 import { biometricAvailability, nativePlatform, nativeSessionStorage } from './nativeBiometrics'
 
 const CloudMembers = lazy(() => import('./CloudMembers'))
@@ -33,6 +34,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
 }) {
   const [user, setUser] = useState<User | null>(null)
   const [role, setRole] = useState<string | null>(null)
+  const [staffVerified, setStaffVerified] = useState(false)
   const [visibleMembers, setVisibleMembers] = useState<number | null>(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -66,18 +68,16 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
   useEffect(() => {
     if (!client) return
     const clearAccount = () => {
-      setUser(null); setRole(null); setVisibleMembers(null)
+      setUser(null); setRole(null); setVisibleMembers(null); setStaffVerified(false)
       listLoaded.current = false
     }
     return observeAccount(client, {
       loading: () => {
         clearAccount(); setLoading(true); setError('')
-        onAccessChange?.('checking')
       },
       signedOut: () => {
         clearAccount(); setLoading(false)
         setBiometricSaved(Boolean(nativeStorage?.saved)); setBiometricEnabled(false)
-        onAccessChange?.('signed-out')
       },
       recovery: () => {
         recoveryMode.current = true; setRecovering(true)
@@ -85,14 +85,17 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
       },
       account: (account, nextRole) => {
         setUser(account); setRole(nextRole); setLoading(false); setError('')
-        onAccessChange?.(recoveryMode.current ? 'other' : nextRole === 'student' ? 'student' : nextRole === 'admin' ? 'admin' : 'other')
       },
       error: message => {
         clearAccount(); setLoading(false); setError(message)
-        onAccessChange?.('signed-out')
       },
     }, recoveryMode.current)
   }, [onAccessChange])
+
+  useEffect(() => {
+    onAccessChange?.(loading ? 'checking' : !user ? 'signed-out' : recovering ? 'other'
+      : role === 'student' ? 'student' : role === 'admin' && staffVerified ? 'admin' : 'other')
+  }, [loading, user, recovering, role, staffVerified, onAccessChange])
 
   async function signIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -180,8 +183,8 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         <a href="/reset-password?request=1">Olvidé mi contraseña</a>
       </form> : <div>
         <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>
-        {role === 'admin' && client ? <><CloudDashboard client={client} revision={dashboardRevision}/><p className="muted">Socios visibles en Supabase: {visibleMembers ?? 'Cargando…'}</p><CloudMembers client={client} onCountChange={changeCount}/>
-          {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</> : !role ? <p className="notice">Esta cuenta aún no tiene un rol asignado. Contactá al administrador.</p> : null}
+        {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudDashboard client={client} revision={dashboardRevision}/><p className="muted">Socios visibles en Supabase: {visibleMembers ?? 'Cargando…'}</p><CloudMembers client={client} onCountChange={changeCount}/>
+          {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</StaffMfa> : !role ? <p className="notice">Esta cuenta aún no tiene un rol asignado. Contactá al administrador.</p> : null}
         {role === 'student' && client && <CloudStudent client={client} user={user}/>}
         </Suspense>
         {nativePlatform && <div className="biometric-settings">

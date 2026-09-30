@@ -29,10 +29,24 @@ export async function handleInvite(req: Request): Promise<Response> {
     if (authError || !identity.user) return reply(401, { error: 'Sesión vencida.' })
     const { data: role, error: roleError } = await client.from('user_roles').select('role').eq('user_id', identity.user.id).maybeSingle()
     if (roleError || role?.role !== 'admin') return reply(403, { error: 'Solo el administrador puede habilitar accesos.' })
-    const raw = await req.text()
-    if (raw.length > 1024) return reply(400, { error: 'Solicitud inválida.' })
-    const body = JSON.parse(raw)
-    if (typeof body.member_id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.member_id)) return reply(400, { error: 'Socio inválido.' })
+    // Bound bytes while streaming, including requests without Content-Length.
+    const reader = req.body?.getReader()
+    if (!reader) return reply(400, { error: 'Solicitud inválida.' })
+    const buffer = new Uint8Array(1024)
+    let bytes = 0
+    try {
+      for (;;) {
+        const { value, done } = await reader.read()
+        if (done) break
+        bytes += value.byteLength
+        if (bytes > 1024) { await reader.cancel(); return reply(413, { error: 'Solicitud demasiado grande.' }) }
+        buffer.set(value, bytes - value.byteLength)
+      }
+    } finally { reader.releaseLock() }
+    let body
+    try { body = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(buffer.subarray(0, bytes))) }
+    catch { return reply(400, { error: 'Solicitud inválida.' }) }
+    if (!body || typeof body !== 'object' || typeof body.member_id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.member_id)) return reply(400, { error: 'Socio inválido.' })
     const { data: target, error: prepareError } = await client.rpc('prepare_student_access', { p_member_id: body.member_id })
     if (prepareError || !target) return reply(409, { error: prepareError?.code === 'P0001' ? prepareError.message : 'No se pudo verificar el socio. Revisá su correo y estado.' })
     const admin = createClient(url, service, { auth: { persistSession: false, autoRefreshToken: false } })

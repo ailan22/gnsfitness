@@ -9,9 +9,15 @@ function harness({role='admin',valid=true,existing=false,prepareFail=false,sendF
  const client={auth:{async getUser(){return {data:{user:valid?{id:'admin'}:null},error:null}}},from(){return {select(){return this},eq(){return this},async maybeSingle(){return {data:{role},error:null}}}},async rpc(name,args){calls.push({name,args});return name==='prepare_student_access'?{data:{email:'verified@example.test',user_id:existing?'existing':null},error:prepareFail?{code:'P0001',message:'Esperá un minuto'}:null}:{error:linkFail?{}:null}}}
  const admin={auth:{admin:{async inviteUserByEmail(email,opts){calls.push({name:'invite',email,opts});return {data:{user:{id:'new'}},error:sendFail?{}:null}}},async resetPasswordForEmail(email,opts){calls.push({name:'recover',email,opts});return {error:sendFail?{}:null}}}}
  const env={APP_URL:'https://app.example.test',SUPABASE_URL:'https://project.supabase.co',SUPABASE_ANON_KEY:'public',SUPABASE_SERVICE_ROLE_KEY:'service'}
- vm.runInNewContext(source,{exports,URL,Response,Request,Deno:{env:{get:k=>env[k]},serve(){}},require(){return {createClient:(_u,key)=>key==='service'?admin:client}}})
- return {calls,async run(origin='https://app.example.test'){return exports.handleInvite(new Request('https://project.supabase.co/functions/v1/invite-student',{method:'POST',headers:{origin,authorization:'Bearer token'},body:JSON.stringify({member_id:'00000000-0000-4000-8000-000000000010',email:'attacker@example.test',redirectTo:'https://attacker.test'})}))}}
+ vm.runInNewContext(source,{exports,URL,Response,Request,TextDecoder,Deno:{env:{get:k=>env[k]},serve(){}},require(){return {createClient:(_u,key)=>key==='service'?admin:client}}})
+ return {calls,async run(origin='https://app.example.test',body=JSON.stringify({member_id:'00000000-0000-4000-8000-000000000010',email:'attacker@example.test',redirectTo:'https://attacker.test'})){return exports.handleInvite(new Request('https://project.supabase.co/functions/v1/invite-student',{method:'POST',headers:{origin,authorization:'Bearer token'},body}))}}
 }
+
+test('malformed JSON, null and oversized byte payloads are rejected before any side effect',async()=>{
+ for(const [body,status] of [['{',400],['null',400],['[]',400],['x'.repeat(1025),413],['é'.repeat(600),413]]) {
+  const h=harness();assert.equal((await h.run(undefined,body)).status,status);assert.equal(h.calls.length,0)
+ }
+})
 test('invalid session and non-admin cannot send mail',async()=>{for(const config of [{valid:false},{role:'student'}]){const h=harness(config);assert.ok((await h.run()).status>=400);assert.equal(h.calls.length,0)}})
 test('foreign origin cannot invoke invitation',async()=>{const h=harness();assert.equal((await h.run('https://other.test')).status,403);assert.equal(h.calls.length,0)})
 test('native origins retain online administrator checks and public email callbacks',async()=>{

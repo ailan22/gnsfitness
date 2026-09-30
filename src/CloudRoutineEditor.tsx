@@ -106,7 +106,7 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
         <label>Nombre de la rutina *<input required maxLength={120} value={name} onChange={event => setName(event.target.value)}/></label>
         <label>Objetivo<input maxLength={4000} value={goal} onChange={event => setGoal(event.target.value)}/></label>
         <label>Nivel *<select required value={level} onChange={event => setLevel(event.target.value)}><option value="">Seleccionar</option><option>Principiante</option><option>Intermedio</option><option>Avanzado</option></select></label>
-        <label>Días por semana<select value={days} onChange={event => setDays(Number(event.target.value))}>{[1,2,3,4,5,6,7].map(n => <option key={n} value={n}>{n} {n === 1 ? 'día' : 'días'}</option>)}</select></label>
+        <label>Días por semana<select value={days} onChange={event => setDays(Number(event.target.value))}>{[...new Set([2,3,5,...(initial ? [initial.days_per_week] : [])])].sort((a,b) => a-b).map(n => <option key={n} value={n}>{n} {n === 1 ? 'día' : 'días'}</option>)}</select></label>
         <label>Semanas del programa *<input type="number" min="1" max="104" required value={weeks} onChange={event => setWeeks(Number(event.target.value))}/></label>
         <label>Semanas por bloque *<input type="number" min="1" max={weeks} required value={blockWeeks} onChange={event => setBlockWeeks(Number(event.target.value))}/></label>
       </div>

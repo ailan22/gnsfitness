@@ -1,3 +1,4 @@
+import { planCatalog } from './planCatalog'
 import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { createId, loadData, saveData, validateBackup, type Data, type Exercise, type Member, type Membership, type Payment, type Routine, type SessionComponent, type SessionExerciseResult, type TrainingSession } from './data'
 import { daysUntil, membershipEnd } from './membership'
@@ -8,7 +9,7 @@ import './Workspace.css'
 type Page = 'home' | 'members' | 'member' | 'student' | 'new-member' | 'edit-member' | 'routine' | 'new-routine' | 'edit-routine' | 'new-membership' | 'new-payment' | 'new-session'
 type PlanFilter = 'Todos' | 'Al día' | 'Por vencer' | 'Vencidos' | 'Sin plan'
 type PaymentFilter = 'Todos' | 'Con saldo pendiente' | 'Sin saldo pendiente'
-const plans = [{ name: 'Mensual', months: 1 }, { name: 'Trimestral', months: 3 }, { name: 'Semestral', months: 6 }, { name: 'Anual', months: 12 }]
+const plans = planCatalog
 const money = (amount: number) => new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU', maximumFractionDigits: 2 }).format(amount)
 const cents = (amount: number) => Math.round(amount * 100)
 const searchable = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es-UY')
@@ -129,7 +130,7 @@ function App() {
   const [exerciseForm, setExerciseForm] = useState(blankExercise)
   const [componentEditing, setComponentEditing] = useState<{ block: number; week: number; day: number; id: string | null } | null>(null)
   const [componentForm, setComponentForm] = useState({ title: '', details: '' })
-  const [membershipForm, setMembershipForm] = useState({ planName: 'Mensual', startsAt: todayLocal(), price: '' })
+  const [membershipForm, setMembershipForm] = useState({ planName: planCatalog[0].name, startsAt: todayLocal(), price: String(planCatalog[0].price) })
   const [paymentForm, setPaymentForm] = useState<{ paidAt: string; amount: string; method: Payment['method'] }>({ paidAt: todayLocal(), amount: '', method: 'Efectivo' })
   const [sessionForm, setSessionForm] = useState({ performedAt: todayLocal(), routineId: '', day: '', notes: '' })
   const [sessionResults, setSessionResults] = useState<SessionExerciseResult[]>([])
@@ -582,7 +583,7 @@ function App() {
         <p className="eyebrow">FICHA DEL SOCIO · {member.id.slice(0, 8).toUpperCase()}</p><div className="heading"><h1>{member.firstName} {member.lastName}</h1><div className="actions"><button className="secondary" onClick={() => setPage('student')}>Vista del alumno</button><button onClick={startEditMember}>Editar datos</button></div></div>
         <div className="grid"><section className="card"><h2>Datos personales</h2><p>Teléfono: {member.phone || 'Sin registrar'}</p><p>Correo: {member.email || 'Sin registrar'}</p><p>Nacimiento: {member.birthDate || 'Sin registrar'}{ageOn(member.birthDate) !== null ? ` · ${ageOn(member.birthDate)} años` : ''}</p><p>Fecha de alta: {member.joinedAt || 'Sin registrar'}</p><p>Contacto de emergencia: {member.emergencyContactName || 'Sin registrar'}</p><p>Teléfono de emergencia: {member.emergencyContactPhone || 'Sin registrar'}</p></section><section className="card"><h2>Estado del socio</h2><label>Estado<select value={member.status} onChange={e => commit({ ...data, members: data.members.map(item => item.id === member.id ? { ...item, status: e.target.value as Member['status'] } : item) })}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p></section></div>
         <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {member.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {member.limitations || 'Sin registrar'}</p><p>Entrenador asignado: {member.trainer || 'Sin registrar'}</p><p>Observaciones administrativas: {member.notes || 'Ninguna'}</p></section>
-        <div className="heading"><h2>Plan y pagos</h2><button onClick={() => { setMembershipForm({ planName: 'Mensual', startsAt: todayLocal(), price: '' }); setError(''); setPage('new-membership') }}>+ Asignar plan</button></div>
+        <div className="heading"><h2>Plan y pagos</h2><button onClick={() => { setMembershipForm({ planName: planCatalog[0].name, startsAt: todayLocal(), price: String(planCatalog[0].price) }); setError(''); setPage('new-membership') }}>+ Asignar plan</button></div>
         {!currentMembership ? <div className="card empty">Todavía no hay un plan asignado a este socio.</div> : <section className="card profile">
           <div className="heading"><h2>{currentMembership.planName}</h2><span className={`badge ${daysUntil(currentMembership.endsAt, todayLocal())! < 0 ? 'danger' : daysUntil(currentMembership.endsAt, todayLocal())! <= 10 ? 'warning' : ''}`}>{dueLabel(currentMembership.endsAt)}</span></div>
           <p>Período: {currentMembership.startsAt} al {currentMembership.endsAt}</p><p>Precio: {money(currentMembership.price)}</p>
@@ -613,7 +614,7 @@ function App() {
         </form>
       </>}
       {page === 'new-membership' && member && <><p className="eyebrow">PLAN · {member.firstName} {member.lastName}</p><h1>Asignar plan</h1><form className="card form" onSubmit={addMembership}>
-        <div className="grid"><label>Plan *<select value={membershipForm.planName} onChange={e => setMembershipForm({ ...membershipForm, planName: e.target.value })}>{plans.map(plan => <option key={plan.name}>{plan.name}</option>)}</select></label>
+        <div className="grid"><label>Plan *<select value={membershipForm.planName} onChange={e => setMembershipForm({ ...membershipForm, planName: e.target.value, price: String(planCatalog.find(plan => plan.name === e.target.value)!.price) })}>{plans.map(plan => <option key={plan.name}>{plan.name}</option>)}</select></label>
         <label>Fecha de inicio *<input type="date" required value={membershipForm.startsAt} onChange={e => setMembershipForm({ ...membershipForm, startsAt: e.target.value })}/></label>
         <label>Precio total (pesos uruguayos) *<input type="number" min="0.01" step="0.01" required value={membershipForm.price} onChange={e => setMembershipForm({ ...membershipForm, price: e.target.value })}/></label></div>
         <p className="muted">Vence el {membershipEnd(membershipForm.startsAt, plans.find(plan => plan.name === membershipForm.planName)?.months || 1) || '—'}. Crear un plan nuevo no registra un pago.</p>
@@ -630,7 +631,7 @@ function App() {
           <label>Nombre de la rutina *<input required value={routineForm.name} onChange={e => setRoutineForm({ ...routineForm, name: e.target.value })}/></label>
           <label>Objetivo<input value={routineForm.goal} onChange={e => setRoutineForm({ ...routineForm, goal: e.target.value })}/></label>
           <label>Nivel *<select required value={routineForm.level} onChange={e => setRoutineForm({ ...routineForm, level: e.target.value })}><option value="">Seleccionar</option><option>Principiante</option><option>Intermedio</option><option>Avanzado</option></select></label>
-          <label>Días por semana<select value={routineForm.days} onChange={e => setRoutineForm({ ...routineForm, days: Number(e.target.value) })}>{[1, 2, 3, 4, 5, 6, 7].map(n => <option key={n} value={n}>{n} {n === 1 ? 'día' : 'días'}</option>)}</select></label>
+          <label>Días por semana<select value={routineForm.days} onChange={e => setRoutineForm({ ...routineForm, days: Number(e.target.value) })}>{[...new Set([2, 3, 5, ...(page === 'edit-routine' ? [routineForm.days] : [])])].sort((a,b) => a-b).map(n => <option key={n} value={n}>{n} {n === 1 ? 'día' : 'días'}</option>)}</select></label>
           <label>Vueltas del programa *<input type="number" required min="1" max="104" step="1" value={routineForm.programRounds} onChange={e => setRoutineForm({ ...routineForm, programRounds: Number(e.target.value) })}/></label>
           <label>Vueltas por bloque *<input type="number" required min="1" max={routineForm.programRounds} step="1" value={routineForm.blockRounds} onChange={e => setRoutineForm({ ...routineForm, blockRounds: Number(e.target.value) })}/></label>
         </div>

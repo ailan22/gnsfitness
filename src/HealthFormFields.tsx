@@ -1,4 +1,6 @@
 import { healthFields, todayHealth, type HealthKind, type HealthDraft } from './healthRecords'
+import IntakeChoiceField from './IntakeChoiceField'
+import { intakeChoices } from './intakeChoices'
 export default function HealthFormFields({ kind, draft, onChange }: { kind: HealthKind; draft: HealthDraft; onChange: (draft: HealthDraft) => void }) {
   const groups = [...new Set(healthFields[kind].map(field => field.group))]
   return <div className="health-fields">
@@ -14,6 +16,8 @@ export default function HealthFormFields({ kind, draft, onChange }: { kind: Heal
         if (field.key === 'symptom_details' && draft.payload.symptoms !== 'Síntomas referidos' && !value) return null
         if (field.key === 'alert_details' && draft.payload.alerts !== 'Requiere derivación' && !value) return null
         const update = (next: string) => onChange({ ...draft, payload: { ...draft.payload, [field.key]: next } })
+        if (kind === 'training_intake' && intakeChoices[field.key]) return <IntakeChoiceField key={field.key} fieldKey={field.key} label={field.label} required={field.required} value={value} onChange={update}/>
+        if (kind === 'training_intake' && field.key === 'consent_notes') return <details key={field.key} className="health-wide"><summary>Agregar observaciones del consentimiento (si corresponde)</summary><label>{field.label}<textarea rows={2} maxLength={2000} value={value} onChange={e => update(e.target.value)}/></label></details>
         return <label key={field.key} className={field.type || field.options ? '' : 'health-wide'}>{field.label}{field.required ? ' *' : ''}
           {field.options ? <select required={field.required} value={value} onChange={e => update(e.target.value)}><option value="">Seleccionar…</option>{field.options.map(option => <option key={option}>{option}</option>)}</select>
             : field.type ? <input type={field.type === 'pain' ? 'number' : field.type} min={field.type === 'pain' ? 0 : undefined} max={field.type === 'pain' ? 10 : undefined} step={field.type === 'pain' ? 1 : undefined} maxLength={2000} required={field.required} value={value} onChange={e => update(e.target.value)}/>

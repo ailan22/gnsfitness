@@ -72,3 +72,9 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .member-health-sections { display: grid; gap: 16px; margin: 24px 0; }
 .member-health-sections .health-workspace { min-width: 0; }
 .physio-directory { margin-bottom: 24px; }
+
+.intake-choice { border: 0; padding: 0; margin: 0; min-width: 0; }
+.intake-choice legend { font-weight: 600; margin-bottom: 10px; }
+.intake-choice-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.intake-choice-options label { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid #51534a; border-radius: 8px; }
+.intake-choice-options input { width: 18px; height: 18px; flex: 0 0 18px; accent-color: #d3ac55; }

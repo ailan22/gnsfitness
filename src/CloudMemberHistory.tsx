@@ -1,3 +1,4 @@
+import { planCatalog } from './planCatalog'
 import { readAllPages } from './readAllPages'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
@@ -18,7 +19,7 @@ type ExercisePath = { source: 'exercisesByDay' | 'blockExercises' | 'weekExercis
 
 const money = (amount: number) => new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(amount)
 const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_000).toISOString().slice(0, 10)
-const planOptions = [{ name: 'Mensual', months: 1 }, { name: 'Trimestral', months: 3 }, { name: 'Semestral', months: 6 }, { name: 'Anual', months: 12 }]
+const planOptions = planCatalog
 const cents = (value: number) => Math.round(Number(value) * 100)
 const amountInCents = (input: string) => /^\d+(?:\.\d{1,2})?$/.test(input.trim()) ? cents(Number(input)) : NaN
 const dueLabel = (end: string) => { const days = daysUntil(end, today()); return days === null ? 'Fecha inválida' : days < 0 ? `Vencido hace ${-days} día${days === -1 ? '' : 's'}` : days === 0 ? 'Vence hoy' : days <= 10 ? `Vence en ${days} días` : 'Al día' }
@@ -76,7 +77,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   const [deletingSessionId, setDeletingSessionId] = useState<string | null>(null)
   const [deletingRoutineId, setDeletingRoutineId] = useState<string | null>(null)
   const [recording, setRecording] = useState<'suggested' | 'manual' | null>(null)
-  const [planForm, setPlanForm] = useState({ planName: 'Mensual', startsAt: today(), price: '', extras: [] as string[], details: '' })
+  const [planForm, setPlanForm] = useState({ planName: planCatalog[0].name, startsAt: today(), price: String(planCatalog[0].price), extras: [] as string[], details: '' })
   const [paymentForm, setPaymentForm] = useState({ paidAt: today(), amount: '', method: 'Efectivo' })
   useEffect(() => {
     let active = true
@@ -288,9 +289,9 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     </form></div>}
     {!error && !history && <p role="status">Cargando historial de Supabase…</p>}
     {history && <>
-      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving} onClick={() => { setActiveForm('plan'); setError(''); setMessage(''); setPlanForm({ planName: 'Mensual', startsAt: today(), price: '', extras: [], details: '' }) }}>+ Asignar plan</button></div>
+      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving} onClick={() => { setActiveForm('plan'); setError(''); setMessage(''); setPlanForm({ planName: planCatalog[0].name, startsAt: today(), price: String(planCatalog[0].price), extras: [], details: '' }) }}>+ Asignar plan</button></div>
       {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
-        <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => setPlanForm({ ...planForm, planName: event.target.value })}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
+        <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => setPlanForm({ ...planForm, planName: event.target.value, price: String(planCatalog.find(plan => plan.name === event.target.value)!.price) })}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
           <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => setPlanForm({ ...planForm, startsAt: event.target.value })}/></label>
           <label>Precio total (pesos uruguayos) *<input type="number" min="0.01" step="0.01" required value={planForm.price} onChange={event => setPlanForm({ ...planForm, price: event.target.value })}/></label></div>
         <fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra=><label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e=>setPlanForm({...planForm,extras:e.target.checked?[...planForm.extras,extra]:planForm.extras.filter(x=>x!==extra)})}/>+ {extra}</label>)}</fieldset><label>Qué incluye el plan y sus complementos<textarea maxLength={1000} value={planForm.details} onChange={e=>setPlanForm({...planForm,details:e.target.value})}/></label><p className="muted">El precio es el total acordado, incluidos los complementos. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>

@@ -10,3 +10,7 @@ Publicado y verificado el 30/09/2026: paquete publicaciones/gns-fitness-17907916
 
 
 Corrección solicitada: Anamnesis únicamente en ficha; Kinesiología general solo rehabilitaciones con última sesión En tratamiento o Reevaluación por episodio; Nutrición en sección propia. Build, lint y tres pruebas del filtro aprobados. Paquete pendiente de carga: publicaciones/gns-fitness-1790793809538 (19 archivos).
+
+Publicación de la corrección confirmada el 30/09/2026: versión Cloudflare 422d0fc0, paquete gns-fitness-1790793809538. Página pública sirve index-BkBRDxyv.js e index-CFQcLfu8.css. Fuente para iPhone guardada en commit 24c4f3e.
+
+Planes mensuales vigentes para nuevas asignaciones: 2 días 1750 UYU, 3 días 2100 UYU, 5 días 2600 UYU. Se conservan los planes y pagos anteriores. Anamnesis con opciones y detalles condicionales, compatible con registros anteriores. Build y lint aprobados; comprobados los tres precios y selección múltiple/detalles en vista aislada. Paquete listo para carga manual: publicaciones/gns-fitness-1790804997676 (19 archivos); Windows pendiente de despliegue. Guardar fuente para próxima versión iPhone, sin cambiar 1.0 (10) en revisión.

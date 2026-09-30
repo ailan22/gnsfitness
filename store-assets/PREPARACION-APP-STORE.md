@@ -31,6 +31,17 @@ Capturas generadas en build `6abd190f083ff0a9a53abc45` (iPhone y iPad con datos 
 
 ## Antes de enviar
 
+### Estado verificado el 30/09/2026
+
+- App Store Connect: guardados contacto de revisión, credenciales de la cuenta ficticia, copyright, subtítulo y categoría Salud y forma física.
+- Precio gratuito y disponibilidad únicamente en Uruguay, Argentina, Brasil y México guardados.
+- Cuestionario de edad guardado: clasificación calculada 16+; información médica o de tratamientos frecuente y temas de bienestar presentes.
+- Privacidad: borrador de diez tipos completo, todos para funcionalidad, vinculados a identidad y sin seguimiento. Incluye información de pago por el método registrado (no tarjetas ni credenciales bancarias). Todavía sin publicar y sin URL pública verificada.
+- Compilación 1.0 (7), commit 877ebeb, entregada a Apple sin errores. Codemagic: 6abd2edd083ff0a9a53ac2e1. Entrega: 52e937de-6bba-4f9e-8e6a-7b2b5929ccd9. Falta seleccionarla en la versión para revisión.
+- Carpeta web publicaciones/gns-fitness-1790783106241 desplegada: versión Cloudflare 4191dc0e. Verificadas públicamente privacidad.html y soporte.html, sin autenticación, con responsable y correo correctos. Ambos enlaces guardados en App Store Connect.
+- Compilación 7 seleccionada y guardada en la versión 1.0 de App Store Connect.
+- Pendientes: cargar web pública, comprobar URLs, descargar y revisar capturas nativas, adjuntarlas, confirmar derechos del contenido con el titular y revisar declaración de dispositivo médico. No se envió a revisión ni se publicó la app.
+
 1. Completar y revisar política con identidad del responsable, prácticas y retenciones reales. No afirmar que la app no recopila datos. Inventario en `PRIVACIDAD-APP-STORE.md`.
 2. Desplegar páginas y versión web actualizada; verificar URL pública de soporte y privacidad sin inicio de sesión.
 3. Generar y verificar nuevo binario de App Store con las páginas definitivas; seleccionar ese binario en la versión 1.0.

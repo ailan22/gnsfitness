@@ -1,4 +1,5 @@
 #root { min-height: 100vh; }
+.app { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
 .app { min-height: 100vh; background-color: #111510; background-image: radial-gradient(ellipse 40% 24% at 9% 12%, rgba(72, 111, 77, .12), transparent 78%), radial-gradient(ellipse 32% 35% at 92% 34%, rgba(63, 102, 70, .10), transparent 78%), radial-gradient(ellipse 45% 24% at 18% 71%, rgba(60, 96, 66, .10), transparent 80%), radial-gradient(ellipse 30% 28% at 78% 91%, rgba(69, 109, 75, .09), transparent 80%), radial-gradient(circle at 80% 0%, #252820 0, #111510 42%); background-attachment: fixed; color: #f4f3ee; }
 .topbar { min-height: 76px; padding: 18px max(24px, calc((100vw - 1100px)/2)); border-bottom: 1px solid #35352d; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-align: left; padding: 0; border: 0; background: none; color: #d3ac55; font-size: 23px; font-weight: 900; letter-spacing: .08em; cursor: pointer; }

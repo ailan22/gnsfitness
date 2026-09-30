@@ -8,7 +8,7 @@ Estado al 30/09/2026. **No enviada a revisión ni publicada en App Store.**
 - Versión instalada anteriormente: 1.0 (2), TestFlight interno. No se puede presentar esa compilación para distribución pública.
 - Nuevo flujo manual `ios-app-store` con firma App Store y sin `testFlightInternalTestingOnly`. Sube el archivo a Apple pero no solicita revisión ni publica automáticamente.
 - Descripción, texto promocional y palabras clave redactados en `app-store-es.json`; guardados como borrador en App Store Connect. Publicación manual seleccionada y verificada.
-- Contacto público confirmado: nicolasvicciconde@gmail.com.
+- Contacto público confirmado: gndevicciconde@gmail.com.
 - Páginas locales `public/privacidad.html` y `public/soporte.html`, accesibles también dentro del binario nativo. Aún pendientes de completar responsable y de desplegar en el sitio público.
 - Solicitudes privadas de acceso, rectificación y eliminación desde la cuenta del alumno. Gestión manual de solicitudes en el resumen del administrador, protegida por MFA.
 - Migración 010 aplicada en producción. Verificado: RLS activado, lectura y ejecución anónimas denegadas. No se eliminaron cuentas ni registros reales.
@@ -19,7 +19,7 @@ Estado al 30/09/2026. **No enviada a revisión ni publicada en App Store.**
 ## Datos del titular pendientes
 
 - Países concretos de distribución (se solicitó «varios países»).
-- Confirmación del precio de descarga.
+- Precio confirmado: descarga gratuita.
 - Nombre completo o razón social del responsable del tratamiento y copyright.
 - Teléfono y nombre de contacto para el equipo de revisión de Apple (no se publican en la ficha habitual).
 - Si se distribuye en la UE: declaración de comerciante y datos verificables correspondientes, según la actividad real.

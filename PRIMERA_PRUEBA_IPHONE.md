@@ -1,7 +1,9 @@
 # Primera prueba de GNS FITNESS en iPhone
 
 ## Estado
-El proyecto contiene Face ID opcional, logo y ajustes de interfaz. No se ha compilado con Xcode ni probado Face ID en un iPhone. La compra de Apple Developer está confirmada; la inscripción sigue pendiente según la última pantalla de la titular.
+Actualizado el 30/09/2026. Apple Developer activo. Identificador uy.gnsfitness.app registrado bajo el equipo Q99LHQ6N4W. App Store Connect: GNS FITNESS, ID 6817642980, versión 1.0. Codemagic conectado con la integración GNS Codemagic (rol Gestor de apps). Compilación anterior sin firma pasó en macOS. Face ID sigue pendiente de prueba en iPhone real.
+
+Incluye progreso del alumno y solicitudes de Nutrición con aprobación administrativa, además de planes con Kinesiología/Nutrición. Migración 009 aplicada y permisos comprobados. Web publicada: versión c20d31b8.
 
 ## Preparación en la nube
 1. Crear/conectar una cuenta GitHub y un repositorio privado. La raíz del repositorio debe ser el contenido de gns-recovery. Preparar una exportación revisada: no subir toda la carpeta de trabajo, respaldos, exportaciones de bases de datos, .env.local, node_modules o claves de firma.
@@ -10,7 +12,7 @@ El proyecto contiene Face ID opcional, logo y ajustes de interfaz. No se ha comp
 4. Ejecutar manualmente ios-check: instala dependencias, valida configuración, verifica lint, compila recursos web, sincroniza únicamente iOS y ejecuta Xcode sin firma. No genera una app instalable. Resolver allí cualquier error nativo antes de continuar.
 5. Una vez activada Apple Developer, registrar uy.gnsfitness.app y crear la app GNS FITNESS en App Store Connect bajo la cuenta personal. Confirmar disponibilidad del identificador. Configurar certificado Apple Distribution y perfil App Store para ese identificador en Codemagic con credenciales gestionadas por la titular.
 6. Ejecutar ios-signed para generar el IPA. Usa BUILD_NUMBER + 1; si se migra de servicio o se reinicia el contador, garantizar que el nuevo número supere los ya subidos a Apple.
-7. Subir el IPA firmado mediante la integración de App Store Connect de Codemagic después de configurarla. El YAML actual NO sube ni publica nada. Completar declaraciones que Apple solicite, información de prueba y acceso de TestFlight; instalar TestFlight en el iPhone y aceptar la invitación de prueba.
+7. Subir el IPA firmado mediante la integración de App Store Connect de Codemagic después de configurarla. El flujo ios-signed sube la compilación a App Store Connect para TestFlight interno; no envía a revisión pública ni a revisión beta externa. Completar declaraciones que Apple solicite, información de prueba y acceso de TestFlight; instalar TestFlight en el iPhone y aceptar la invitación de prueba.
 
 El ZIP GNS-iPhone-FaceID-20260929-172338.zip es una copia anterior del proyecto con recursos precompilados. No contiene esta configuración CI ni sustituye el repositorio de fuentes para futuras actualizaciones.
 

@@ -1,5 +1,5 @@
 # Repository root must be gns-recovery. Configure gns_public_backend first.
-# No automatic triggers or store publication. Start builds manually.
+# Builds start manually. ios-signed uploads for internal TestFlight only.
 workflows:
   ios-check:
     name: GNS iPhone - verificar compilacion
@@ -30,7 +30,9 @@ workflows:
     artifacts:
       - ios-build.log
   ios-signed:
-    name: GNS iPhone - generar IPA firmado
+    name: GNS iPhone - TestFlight interno
+    integrations:
+      app_store_connect: GNS Codemagic
     instance_type: mac_mini_m2
     max_build_duration: 45
     environment:
@@ -54,7 +56,8 @@ workflows:
           npx cap sync ios
           node normalize-ios-paths.mjs
       - name: Aplicar perfiles de la titular
-        script: xcode-project use-profiles
+        script: |
+          xcode-project use-profiles --custom-export-options='{"testFlightInternalTestingOnly": true}'
       - name: Numerar compilacion
         script: |
           set -e
@@ -65,3 +68,9 @@ workflows:
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
+
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: false
+        submit_to_app_store: false

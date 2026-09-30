@@ -1,3 +1,4 @@
+import { StudentWellbeing } from './StudentWellbeing'
 import { readAllPages } from './readAllPages'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import type { SupabaseClient, User } from '@supabase/supabase-js'
@@ -10,6 +11,8 @@ type History = { member: Member; routines: CloudRoutine[]; sessions: CloudSessio
 const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_000).toISOString().slice(0, 10)
 
 export default function CloudStudent({ client, user }: { client: SupabaseClient; user: User }) {
+  const [section, setSection] = useState<'training'|'progress'|'nutrition'>('training')
+  const [wellbeingDirty, setWellbeingDirty] = useState(false)
   const [history, setHistory] = useState<History | null>(null)
   const [loading, setLoading] = useState(true)
   const [revision, setRevision] = useState(0)
@@ -161,6 +164,9 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       <p className="muted">Acá tenés tu rutina y la guía para entrenar. {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}
+      <nav className="student-section-nav" aria-label="Secciones del alumno">{([['training','Mi entrenamiento'],['progress','Mi progreso'],['nutrition','Nutrición']] as const).map(([id,label])=><button key={id} className={section===id?'':'secondary'} aria-current={section===id?'page':undefined} onClick={()=>{if(id===section)return;if(wellbeingDirty&&!window.confirm('Hay un dato sin guardar. ¿Descartarlo y cambiar de sección?'))return;setWellbeingDirty(false);setSection(id)}}>{label}</button>)}</nav>
+      {section!=='training'&&<StudentWellbeing key={section} client={client} memberId={history.member.id} section={section} onDirtyChange={setWellbeingDirty}/>}
+      <div hidden={section!=='training'}>
       {!routine || !progress ? <div className="card empty">Todavía no tenés una rutina asignada. Consultá con tu entrenador.</div> : <>
         <section ref={todayCard} className="card student-today">
           <p className="eyebrow">MI ENTRENAMIENTO DE HOY</p>
@@ -236,6 +242,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           </>}
         </section>
       </>}
+      </div>
     </>}
   </section>
 }

@@ -9,7 +9,7 @@ import { trainingProgress, type CloudRoutine, type CloudSession } from './cloudT
 
 type RoutinePlan = CloudRoutine['plan']
 type RoutineRow = CloudRoutine
-type MembershipRow = { id: string; plan_name: string; starts_at: string; ends_at: string; price: number; months: number }
+type MembershipRow = { id: string; plan_name: string; starts_at: string; ends_at: string; price: number; months: number; service_extras: string[]; service_details: string }
 type PaymentRow = { id: string; membership_id: string; paid_at: string; amount: number; method: string }
 type SessionRow = CloudSession
 type ReviewRow = { session_id: string; trainer_name: string; trainer_user_id: string | null; notes: string; reviewed_at: string }
@@ -76,7 +76,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   const [deletingSessionId, setDeletingSessionId] = useState<string | null>(null)
   const [deletingRoutineId, setDeletingRoutineId] = useState<string | null>(null)
   const [recording, setRecording] = useState<'suggested' | 'manual' | null>(null)
-  const [planForm, setPlanForm] = useState({ planName: 'Mensual', startsAt: today(), price: '' })
+  const [planForm, setPlanForm] = useState({ planName: 'Mensual', startsAt: today(), price: '', extras: [] as string[], details: '' })
   const [paymentForm, setPaymentForm] = useState({ paidAt: today(), amount: '', method: 'Efectivo' })
   useEffect(() => {
     let active = true
@@ -84,7 +84,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
       setHistory(null); setError(''); setEditing(null)
       const [routines, memberships, payments, sessions, reviews] = await Promise.all([
         readAllPages((from, to) => client.from('routines').select('id,name,goal,level,days_per_week,program_rounds,block_rounds,plan', { count: 'exact' }).eq('member_id', memberId).order('created_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
-        readAllPages((from, to) => client.from('memberships').select('id,plan_name,months,starts_at,ends_at,price', { count: 'exact' }).eq('member_id', memberId).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
+        readAllPages((from, to) => client.from('memberships').select('id,plan_name,months,starts_at,ends_at,price,service_extras,service_details', { count: 'exact' }).eq('member_id', memberId).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
         readAllPages((from, to) => client.from('payments').select('id,membership_id,paid_at,amount,method', { count: 'exact' }).eq('member_id', memberId).order('paid_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
         readAllPages((from, to) => client.from('sessions').select('id,performed_at,routine_id,routine_name,day,block,week,notes,results,created_at', { count: 'exact' }).eq('member_id', memberId).order('performed_at', { ascending: false }).order('created_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
         readAllPages((from, to) => client.from('session_reviews').select('session_id,trainer_name,trainer_user_id,notes,reviewed_at', { count: 'exact' }).eq('member_id', memberId).order('session_id', { ascending: true }).range(from, to)),
@@ -209,7 +209,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     }
     setSaving(true); setError(''); setMessage('')
     const { error: writeError } = await client.from('memberships').insert({ id: crypto.randomUUID(), member_id: memberId,
-      plan_name: selectedPlan.name, months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 })
+      plan_name: [selectedPlan.name,...planForm.extras].join(' + '), service_extras: planForm.extras, service_details: planForm.details.trim(), months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 })
     setSaving(false)
     if (writeError) { setError('No se pudo guardar el plan en Supabase. Revisá la conexión y los permisos.'); return }
     setActiveForm(null); setMessage('Plan guardado en Supabase. No se registró ningún pago.'); setRevision(value => value + 1)
@@ -288,17 +288,18 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     </form></div>}
     {!error && !history && <p role="status">Cargando historial de Supabase…</p>}
     {history && <>
-      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving} onClick={() => { setActiveForm('plan'); setError(''); setMessage(''); setPlanForm({ planName: 'Mensual', startsAt: today(), price: '' }) }}>+ Asignar plan</button></div>
-      {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}>
+      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving} onClick={() => { setActiveForm('plan'); setError(''); setMessage(''); setPlanForm({ planName: 'Mensual', startsAt: today(), price: '', extras: [], details: '' }) }}>+ Asignar plan</button></div>
+      {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
         <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => setPlanForm({ ...planForm, planName: event.target.value })}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
           <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => setPlanForm({ ...planForm, startsAt: event.target.value })}/></label>
           <label>Precio total (pesos uruguayos) *<input type="number" min="0.01" step="0.01" required value={planForm.price} onChange={event => setPlanForm({ ...planForm, price: event.target.value })}/></label></div>
+        <fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra=><label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e=>setPlanForm({...planForm,extras:e.target.checked?[...planForm.extras,extra]:planForm.extras.filter(x=>x!==extra)})}/>+ {extra}</label>)}</fieldset><label>Qué incluye el plan y sus complementos<textarea maxLength={1000} value={planForm.details} onChange={e=>setPlanForm({...planForm,details:e.target.value})}/></label><p className="muted">El precio es el total acordado, incluidos los complementos. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>
         <p className="muted">Vence el {endsAt ? readableDate(endsAt) : '—'}. Crear un plan nuevo no registra un pago.</p>
         <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar plan'}</button><button type="button" className="secondary" disabled={saving} onClick={() => { setActiveForm(null); setError('') }}>Cancelar</button></div>
-      </form>}
+      </fieldset></form>}
       {!currentPlan ? <div className="card empty">Todavía no hay un plan asignado a este socio.</div> : <section className="card profile">
         <div className="heading"><h2>{currentPlan.plan_name}</h2><span className={`badge ${daysUntil(currentPlan.ends_at, today())! < 0 ? 'danger' : daysUntil(currentPlan.ends_at, today())! <= 10 ? 'warning' : ''}`}>{dueLabel(currentPlan.ends_at)}</span></div>
-        <p>Período: {readableDate(currentPlan.starts_at)} al {readableDate(currentPlan.ends_at)}</p><p>Precio: {money(currentPlan.price)}</p>
+        {currentPlan.service_details&&<p>{currentPlan.service_details}</p>}<p>Período: {readableDate(currentPlan.starts_at)} al {readableDate(currentPlan.ends_at)}</p><p>Precio: {money(currentPlan.price)}</p>
         <p>Pagado: {money(received / 100)} · Saldo pendiente: <strong>{money(pending / 100)}</strong></p>
         {pending > 0 && activeForm !== 'payment' && <button type="button" disabled={saving} onClick={() => { setPaymentRequestId(crypto.randomUUID()); setActiveForm('payment'); setPaymentForm({ paidAt: today(), amount: '', method: 'Efectivo' }); setError(''); setMessage('') }}>+ Registrar pago</button>}
         {activeForm === 'payment' && <form className="form cloud-payment-form" onSubmit={event => void savePayment(event)}>

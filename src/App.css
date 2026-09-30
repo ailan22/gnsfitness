@@ -209,3 +209,13 @@ textarea { min-height: 90px; resize: vertical; }
 .student-plan-details > summary { cursor: pointer; color: #d3ac55; font-size: 20px; font-weight: 700; padding: 16px 0; }
 .student-plan-details[open] > summary { margin-bottom: 24px; }
 @media (max-width: 550px) { .exercise-check { flex-wrap: wrap; } .exercise-check strong { flex: 1; } .exercise-check span { flex-basis: 100%; margin-left: 34px; } }
+
+.student-section-nav { display:flex; flex-wrap:wrap; gap:10px; margin:28px 0; border-bottom:1px solid #45463c; padding-bottom:22px; }
+.wellbeing-chart { margin:24px 0; }
+.wellbeing-chart svg { display:block; width:100%; max-height:200px; }
+.wellbeing-history { list-style:none; padding:0; display:grid; gap:10px; }
+.wellbeing-history li,.service-request { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.service-request { border-top:1px solid #45463c; padding:20px 0; }
+.service-notifications { margin-bottom:32px; }
+.plan-extras { border:1px solid #51534a; border-radius:9px; padding:16px; }
+.plan-extras label { margin:14px 0; }

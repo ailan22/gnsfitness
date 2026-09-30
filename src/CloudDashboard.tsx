@@ -67,9 +67,9 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
   const monthlyIncome = (snapshot?.payments ?? []).filter(item => item.paid_at.startsWith(month)).reduce((sum, item) => sum + cents(item.amount), 0)
 
   return <section className="cloud-dashboard" aria-label="Indicadores del gimnasio">
-    <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Todo en perspectiva.</h1></div>
+    <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Panel de administración.</h1></div>
       <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar indicadores</button></div>
-    <p className="muted">El pulso de tu gimnasio: personas, actividad y próximos vencimientos.</p>
+    <p className="muted">Socios, pagos y vencimientos.</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
     {snapshot && <><div className="stats dashboard-primary">

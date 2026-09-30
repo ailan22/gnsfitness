@@ -11,6 +11,8 @@ export default function HealthFormFields({ kind, draft, onChange }: { kind: Heal
     {groups.map((group, index) => <fieldset key={group} className="health-group"><legend><span>{String(index + 1).padStart(2, '0')}</span> {group}</legend>
       <div className="health-field-grid">{healthFields[kind].filter(field => field.group === group).map(field => {
         const value = draft.payload[field.key] ?? ''
+        if (field.key === 'symptom_details' && draft.payload.symptoms !== 'Síntomas referidos' && !value) return null
+        if (field.key === 'alert_details' && draft.payload.alerts !== 'Requiere derivación' && !value) return null
         const update = (next: string) => onChange({ ...draft, payload: { ...draft.payload, [field.key]: next } })
         return <label key={field.key} className={field.type || field.options ? '' : 'health-wide'}>{field.label}{field.required ? ' *' : ''}
           {field.options ? <select required={field.required} value={value} onChange={e => update(e.target.value)}><option value="">Seleccionar…</option>{field.options.map(option => <option key={option}>{option}</option>)}</select>

@@ -26,3 +26,7 @@ workspace-preview.html y tests/preview/workspace.jsx son herramientas locales co
 La estructura documental se orientó por la [política de documentación de World Physiotherapy](https://world.physio/sites/default/files/2024-01/PS-2023-Documentation.pdf): valoración, plan, intervención, respuesta, autoría y consentimiento. Es un formulario propio, no un cuestionario clínico validado. El profesional responsable debe revisar su adecuación a su práctica.
 
 Continúa pendiente la solución de copias de seguridad de la base de datos del plan gratuito, ya identificada en la revisión de seguridad. El repositorio conserva código y migraciones, no constituye un respaldo de los datos de socios ni de salud. Definir retención y procedimientos de rectificación/expurgo según las obligaciones aplicables antes de ampliar el uso clínico.
+
+## Ajuste visual solicitado
+Se recupera el tema original oscuro y dorado de App.css. Navegación superior por sectores, sin barra lateral ni textos decorativos. Anamnesis y kinesiología conservan permisos y datos; detalles de síntomas y derivación se muestran cuando corresponden o contienen información previa. Compilación, lint de componentes y revisión visual de escritorio y móvil aprobados. Paquete: gns-fitness-1790744545866.
+

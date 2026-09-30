@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "GNS FITNESS",
+  "short_name": "GNS FITNESS",
+  "description": "Rutinas, alumnos y gestión del gimnasio. Energía, salud, bienestar y vitalidad.",
+  "lang": "es-UY",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#10110f",
+  "theme_color": "#18202b",
+  "icons": [
+    { "src": "/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

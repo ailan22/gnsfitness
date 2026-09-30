@@ -22,7 +22,7 @@ function collect(relative) {
   } else entries.push(relative)
 }
 for (const folder of folders) collect(folder)
-entries.push(...files, ...['favicon.png', 'gns-logo-transparent.png', 'icons.svg'].map(f => `public/${f}`))
+entries.push(...files, ...['favicon.png', 'gns-logo-transparent.png', 'icons.svg', 'manifest.webmanifest', 'app-icon-192.png', 'app-icon-512.png'].map(f => `public/${f}`))
 // Fail without printing matched values. Keys are supplied separately in CI.
 for (const file of entries) {
   if (!/\.(png|jpg|jpeg|jar)$/i.test(file)) {

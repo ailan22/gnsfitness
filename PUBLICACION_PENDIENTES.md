@@ -1,4 +1,14 @@
-# GNS FITNESS — preparación de publicación, 29/09/2026
+# GNS FITNESS — preparación de publicación, 30/09/2026
+
+## Actualización del 30/09/2026
+
+- Web publicada con progreso del alumno, solicitudes de Nutrición y aprobación administrativa, complementos de planes Kinesiología/Nutrición, sin planes familiares. Versión Cloudflare c20d31b8. Migración 009 aplicada y pruebas de aislamiento/permisos aprobadas.
+- Apple Developer activo; GNS FITNESS creada en App Store Connect (6817642980), identificador uy.gnsfitness.app y equipo Q99LHQ6N4W. Certificado de distribución y perfil App Store configurados en Codemagic. Compilación firmada exitosa: 6abcb0fb083ff0a9a53a9db1. IPA 1.0 (2) procesado por Apple y **En pruebas**, asignado al grupo interno GNS · Prueba personal, únicamente con el titular. No se envió a revisión pública.
+- La compilación anterior sin firma pasó en macOS. Face ID y los demás recorridos móviles todavía requieren prueba en iPhone real.
+- CORS nativo de invite-student ya está desplegado: comprobación OPTIONS desde capacitor://localhost devolvió 204 y el origen correcto. Entrega SMTP a destinatarios externos aún requiere comprobación.
+- Los APK/AAB locales enumerados abajo son anteriores a estas últimas funciones; deben recompilarse antes de distribuir una nueva versión Android.
+
+Los apartados siguientes conservan el registro de preparación del 29/09; el estado actualizado de iPhone está en PRIMERA_PRUEBA_IPHONE.md.
 
 ## Archivos preparados
 

@@ -3,6 +3,7 @@ import { createId, loadData, saveData, validateBackup, type Data, type Exercise,
 import { daysUntil, membershipEnd } from './membership'
 import CloudAccount from './CloudAccount'
 import './App.css'
+import './Workspace.css'
 
 type Page = 'home' | 'members' | 'member' | 'student' | 'new-member' | 'edit-member' | 'routine' | 'new-routine' | 'edit-routine' | 'new-membership' | 'new-payment' | 'new-session'
 type PlanFilter = 'Todos' | 'Al día' | 'Por vencer' | 'Vencidos' | 'Sin plan'
@@ -492,7 +493,7 @@ function App() {
       setMessage(`Respaldo restaurado: ${restored.members.length} socios, ${restored.memberships.length} planes, ${restored.payments.length} pagos y ${restored.sessions.length} entrenamientos.`)
     }
   }
-  return <div className="app">
+  return <div className={`app ${cloudConfigured && access === 'admin' ? 'app-admin' : ''}`}>
     <header className="topbar"><button className="brand" onClick={() => { if (access === 'admin') setPage(page === 'student' ? 'member' : 'home') }}>
       {access === 'admin' && <img className="brand-logo" src="/gns-logo-transparent.png" alt="" width="48" height="48"/>}
       <span className="brand-copy"><span className="brand-title">GNS <span>FITNESS</span></span>

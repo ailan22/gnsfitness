@@ -1,9 +1,11 @@
 import StudentAccess from './StudentAccess'
 import { readAllPages } from './readAllPages'
-import { useCallback, useEffect, useState, type FormEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import CloudMemberHistory from './CloudMemberHistory'
 import { daysUntil } from './membership'
+import HealthFormFields from './HealthFormFields'
+import { blankHealthDraft, validateHealthDraft, sameHealthContent, type HealthDraft } from './healthRecords'
 
 type CloudMember = {
   id: string
@@ -32,9 +34,12 @@ const blank = (): MemberForm => ({ first_name: '', last_name: '', phone: '', ema
   joined_at: today(), status: 'Activo', welcome_form: 'Te damos la bienvenida', emergency_contact_name: '', emergency_contact_phone: '',
   goal: '', limitations: '', trainer_name: '', notes: '' })
 
-export default function CloudMembers({ client, onCountChange }: {
+export default function CloudMembers({ client, onCountChange, initialNew = false, onDirtyChange, onOpenHealth }: {
   client: SupabaseClient
   onCountChange: (count: number) => void
+  initialNew?: boolean
+  onDirtyChange?: (dirty: boolean) => void
+  onOpenHealth?: (memberId: string, mode: 'intake' | 'physio') => void
 }) {
   const [members, setMembers] = useState<CloudMember[]>([])
   const [memberships, setMemberships] = useState<MembershipSummary[]>([])
@@ -42,7 +47,12 @@ export default function CloudMembers({ client, onCountChange }: {
   const [notes, setNotes] = useState<Record<string, string>>({})
   const [form, setForm] = useState<MemberForm>(blank)
   const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(initialNew)
+  const [intake, setIntake] = useState<HealthDraft | null>(null)
+  const [dirty, setDirty] = useState(false)
+  const intakeId = useRef(crypto.randomUUID())
+  const newMemberId = useRef(crypto.randomUUID())
+  const saveBusy = useRef(false)
   const [historyId, setHistoryId] = useState<string | null>(null)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('Todos')
@@ -54,6 +64,13 @@ export default function CloudMembers({ client, onCountChange }: {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(0)
+  useEffect(() => { onDirtyChange?.(dirty); return () => onDirtyChange?.(false) }, [dirty, onDirtyChange])
+  useEffect(() => {
+    if (!dirty) return
+    const warn = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = '' }
+    window.addEventListener('beforeunload', warn)
+    return () => window.removeEventListener('beforeunload', warn)
+  }, [dirty])
 
   const refresh = useCallback(async () => {
     setLoading(true)
@@ -83,40 +100,61 @@ export default function CloudMembers({ client, onCountChange }: {
   }, [refresh])
 
   function edit(member: CloudMember) {
+    setIntake(null); setDirty(false); intakeId.current = crypto.randomUUID()
     setForm({ ...member, notes: notes[member.id] || '' })
     setSelectedId(member.id)
     setOpen(true)
     setError(''); setMessage('')
   }
   function update<K extends keyof MemberForm>(field: K, value: MemberForm[K]) {
+    setDirty(true)
     setForm(previous => ({ ...previous, [field]: value }))
   }
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (saving) return
+    if (saveBusy.current) return
     if (!form.first_name.trim() || !form.last_name.trim() || !form.joined_at || form.joined_at > today() ||
       (form.birth_date && (form.birth_date > today() || form.birth_date > form.joined_at))) {
       setError('Revisá el nombre, apellido y las fechas.'); return
     }
+    if (intake) { const invalid = validateHealthDraft('training_intake', intake); if (invalid) { setError(invalid); return } }
+    saveBusy.current = true
     setSaving(true); setError(''); setMessage('')
-    const id = selectedId || crypto.randomUUID()
+    try {
+    const id = selectedId || newMemberId.current
     const { notes: administrativeNotes, ...values } = form
     const row: CloudMember = { ...values, id, first_name: values.first_name.trim(), last_name: values.last_name.trim(),
       email: values.email.trim(), birth_date: values.birth_date || null }
     const result = selectedId ? await client.from('members').update(row).eq('id', id).select('id').single() :
       await client.from('members').insert(row).select('id').single()
     if (result.error) {
-      setError('No se pudo guardar el socio en Supabase. Revisá los datos y los permisos.'); setSaving(false); return
+      // A lost insert response may have saved the person. Never retry with a new ID.
+      const existing = !selectedId && await client.from('members').select('id').eq('id', id).maybeSingle()
+      if (!existing || existing.error || !existing.data) { setError('No se pudo guardar la ficha. Revisá los datos y reintentá.'); return }
+      const retry = await client.from('members').update(row).eq('id', id).select('id').single()
+      if (retry.error) { setError('La ficha existe, pero no se pudo confirmar su actualización. Reintentá.'); return }
     }
+    setSelectedId(id)
     const notesResult = await client.from('member_admin_notes').upsert({ member_id: id, notes: administrativeNotes })
-    setSaving(false)
     if (notesResult.error) {
       setError('El socio se guardó, pero sus observaciones no. Copiá las observaciones antes de salir y volvé a guardar.'); return
     }
+    if (intake) {
+      const clinicalRow = { id: intakeId.current, member_id: id, kind: 'training_intake', ...intake }
+      const health = await client.from('health_records').insert(clinicalRow).select('id').single()
+      if (health.error) {
+        const existing = await client.from('health_records').select('*').eq('id', intakeId.current).maybeSingle()
+        if (existing.error || !existing.data) { setError('La ficha personal quedó guardada, pero la anamnesis no pudo confirmarse. Conservamos lo escrito: reintentá guardar. No se creará otro socio.'); return }
+        if (!sameHealthContent(existing.data, clinicalRow)) { setError('La anamnesis del primer intento sí quedó guardada. Los cambios posteriores deben registrarse como rectificación desde su historial. Conservá lo nuevo antes de cancelar.'); return }
+      }
+    }
+    setIntake(null); setDirty(false)
     setOpen(false); setSelectedId(null); setForm(blank())
     setHistoryId(id)
-    setMessage('Ficha guardada en Supabase.')
+    setMessage('Ficha guardada correctamente.')
     await refresh()
+    } catch { setError('No se pudo confirmar el guardado. Conservamos los datos para que puedas reintentar.') }
+    finally { setSaving(false); saveBusy.current = false }
   }
 
   async function changeStatus(member: CloudMember, status: CloudMember['status']) {
@@ -157,14 +195,14 @@ export default function CloudMembers({ client, onCountChange }: {
   const currentPage = Math.min(page, lastPage)
   const pageMembers = visibleMembers.slice(currentPage * 50, (currentPage + 1) * 50)
 
-  return <section className="cloud-members" id="socios-supabase" aria-label="Socios en Supabase">
-    {selected || open ? <button type="button" className="back" onClick={() => { setHistoryId(null); setOpen(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
+  return <section className="cloud-members" id="socios-supabase" aria-label="Personas y socios">
+    {selected || open ? <button type="button" className="back" disabled={saving} onClick={() => { if (dirty && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); setOpen(false); setIntake(null); setDirty(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
     {message && <p role="status">{message}</p>}
     {error && <p className="error" role="alert">{error}</p>}
     {!selected && !open && <>
-      <div className="heading"><div><p className="eyebrow">ADMINISTRACIÓN · SUPABASE</p><h2>Socios</h2></div>
-        <button type="button" onClick={() => { setOpen(true); setSelectedId(null); setForm(blank()); setError(''); setMessage('') }}>+ Nuevo socio</button></div>
-      <p className="muted">Fichas guardadas en Supabase. Los datos antiguos de este navegador se pueden descargar desde «Respaldo de la demostración anterior» al final de la página.</p>
+      <div className="heading"><div><p className="eyebrow">PERSONAS · FICHAS Y ENTRENAMIENTO</p><h2>Socios</h2></div>
+        <button type="button" onClick={() => { setOpen(true); setSelectedId(null); setForm(blank()); setIntake(null); setDirty(false); newMemberId.current = crypto.randomUUID(); intakeId.current = crypto.randomUUID(); setError(''); setMessage('') }}>+ Nuevo socio</button></div>
+      <p className="muted">Consultá cada ficha, administrá planes y rutinas o registrá una nueva persona.</p>
       <div className="cloud-filters"><label>Buscar socio<input type="search" placeholder="Nombre, teléfono, correo o ID" value={search} onChange={event => { setSearch(event.target.value); setPage(0) }}/></label>
         <label>Estado<select value={statusFilter} onChange={event => { setStatusFilter(event.target.value); setPage(0) }}>{['Todos', 'Activo', 'Inactivo', 'Pausado', 'Baja'].map(status => <option key={status}>{status}</option>)}</select></label>
         <label>Plan<select value={planFilter} onChange={event => { setPlanFilter(event.target.value as PlanFilter); setPage(0) }}>{(['Todos', 'Al día', 'Por vencer', 'Vencidos', 'Sin plan'] as const).map(option => <option key={option}>{option}</option>)}</select></label>
@@ -189,17 +227,18 @@ export default function CloudMembers({ client, onCountChange }: {
       </nav>}
     </>}
     {selected && !open && <>
-      <p className="eyebrow">FICHA DEL SOCIO · SUPABASE · {selected.id.slice(0, 8).toUpperCase()}</p>
+      <p className="eyebrow">FICHA PERSONAL · {selected.id.slice(0, 8).toUpperCase()}</p>
       <div className="heading"><h2>{selected.first_name} {selected.last_name}</h2><button type="button" onClick={() => edit(selected)}>Editar datos</button></div>
       <div className="grid cloud-profile-grid"><section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Nacimiento: {selected.birth_date || 'Sin registrar'}</p><p>Fecha de alta: {selected.joined_at || 'Sin registrar'}</p><p>Saludo en su portal: {selected.welcome_form}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Teléfono de emergencia: {selected.emergency_contact_phone || 'Sin registrar'}</p></section>
         <section className="card"><h2>Estado del socio</h2><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p></section></div>
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p><p>Entrenador asignado: {selected.trainer_name || 'Sin registrar'}</p><p>Observaciones administrativas: {notes[selected.id] || 'Ninguna'}</p></section>
       <StudentAccess key={selected.id + selected.email} client={client} member={selected} />
+      {onOpenHealth && <section className="card member-health-links"><div><p className="eyebrow">ATENCIÓN PERSONAL</p><h2>Salud y seguimiento</h2><p className="muted">Registros privados, vinculados a esta persona.</p></div><div className="actions"><button type="button" className="secondary" onClick={() => onOpenHealth(selected.id, 'intake')}>Anamnesis inicial de salud y entrenamiento</button><button type="button" className="secondary" onClick={() => onOpenHealth(selected.id, 'physio')}>Kinesiología</button></div></section>}
       <CloudMemberHistory client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
         onChanged={() => onCountChange(members.length)} onClose={() => { setHistoryId(null); void refresh() }}/>
     </>}
-    {open && <><p className="eyebrow">ADMINISTRACIÓN · SUPABASE</p><h2>{selectedId ? 'Editar datos del socio' : 'Nuevo socio'}</h2><form className="card form cloud-member-form" onSubmit={event => void save(event)}>
+    {open && <><p className="eyebrow">PERSONAS · FICHAS Y ENTRENAMIENTO</p><h2>{selectedId ? 'Editar datos del socio' : 'Nuevo socio'}</h2><form className="card form cloud-member-form" onInvalidCapture={event => { const detail = (event.target as HTMLElement).closest('details'); if (detail) detail.open = true }} onSubmit={event => void save(event)}><fieldset className="plain-fieldset member-form-fields" disabled={saving}>
       <div className="grid">
         <label>Nombre *<input required value={form.first_name} onChange={event => update('first_name', event.target.value)}/></label>
         <label>Apellido *<input required value={form.last_name} onChange={event => update('last_name', event.target.value)}/></label>
@@ -220,8 +259,15 @@ export default function CloudMembers({ client, onCountChange }: {
       <label>Objetivo<input value={form.goal} onChange={event => update('goal', event.target.value)}/></label>
       <label>Limitaciones o cuidados<textarea value={form.limitations} onChange={event => update('limitations', event.target.value)}/></label>
       <label>Observaciones administrativas<textarea value={form.notes} onChange={event => update('notes', event.target.value)}/></label>
-      <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar en Supabase'}</button>
-        <button type="button" className="secondary" disabled={saving} onClick={() => { setOpen(false); setError('') }}>Cancelar</button></div>
-    </form></>}
+      <details className="intake-accordion"><summary><span><strong>Anamnesis inicial de salud y entrenamiento</strong><small>Opcional al registrar · acceso privado</small></span></summary>
+        <p className="muted">Podés completarla ahora o agregarla después desde la ficha. Se guardará como un registro nuevo, sin reemplazar anamnesis anteriores.</p>
+        {!intake ? <button type="button" className="secondary" onClick={() => { setIntake(blankHealthDraft()); setDirty(true); intakeId.current = crypto.randomUUID() }}>Completar anamnesis ahora</button> : <>
+          <HealthFormFields kind="training_intake" draft={intake} onChange={next => { setIntake(next); setDirty(true) }}/>
+          <button type="button" className="text-button" onClick={() => { if (window.confirm('¿Descartar esta anamnesis sin guardar y dejarla para después?')) setIntake(null) }}>Dejar la anamnesis para después</button>
+        </>}
+      </details>
+      <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : intake ? 'Guardar ficha y anamnesis' : 'Guardar ficha'}</button>
+        <button type="button" className="secondary" disabled={saving} onClick={() => { if (!dirty || window.confirm('¿Descartar los cambios sin guardar?')) { setOpen(false); setIntake(null); setDirty(false); setError('') } }}>Cancelar</button></div>
+    </fieldset></form></>}
   </section>
 }

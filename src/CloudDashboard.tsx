@@ -14,7 +14,7 @@ const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_00
 const money = (value: number) => new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(value)
 const cents = (value: number) => Math.round(Number(value) * 100)
 
-export default function CloudDashboard({ client, revision }: { client: SupabaseClient; revision: number }) {
+export default function CloudDashboard({ client, revision, onOpenMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: () => void }) {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
@@ -67,24 +67,24 @@ export default function CloudDashboard({ client, revision }: { client: SupabaseC
   const monthlyIncome = (snapshot?.payments ?? []).filter(item => item.paid_at.startsWith(month)).reduce((sum, item) => sum + cents(item.amount), 0)
 
   return <section className="cloud-dashboard" aria-label="Indicadores del gimnasio">
-    <div className="heading"><div><p className="eyebrow">GESTIÓN DEL GIMNASIO · DATOS EN SUPABASE</p><h1>Tu espacio de trabajo.</h1></div>
+    <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Todo en perspectiva.</h1></div>
       <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar indicadores</button></div>
-    <p className="muted">Socios, vencimientos, pagos y entrenamientos registrados en la base de datos.</p>
+    <p className="muted">El pulso de tu gimnasio: personas, actividad y próximos vencimientos.</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
-    {snapshot && <><div className="stats">
-      <div className="card"><span>Socios registrados</span><strong>{snapshot.members.length}</strong></div>
-      <div className="card"><span>Socios activos</span><strong>{snapshot.members.filter(member => member.status === 'Activo').length}</strong></div>
+    {snapshot && <><div className="stats dashboard-primary">
+      <div className="card"><span>Socios activos</span><strong>{snapshot.members.filter(member => member.status === 'Activo').length}</strong><small>{snapshot.members.length} personas registradas</small></div>
+      <div className="card"><span>Ingresos del mes</span><strong className="amount">{money(monthlyIncome / 100)}</strong><small>Pagos registrados este mes</small></div>
+      <div className="card"><span>Planes vencidos</span><strong className="red">{expired}</strong><small>{expiring} {expiring === 1 ? 'vence' : 'vencen'} en los próximos 10 días</small></div>
+      <div className="card"><span>Saldo pendiente</span><strong className="amount">{money(pending / 100)}</strong><small>{debtors} {debtors === 1 ? 'persona' : 'personas'} con saldo</small></div>
+    </div>
+    <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
       <div className="card"><span>Altas del mes</span><strong>{snapshot.members.filter(member => member.joined_at.startsWith(month)).length}</strong></div>
       <div className="card"><span>Bajas registradas</span><strong>{snapshot.members.filter(member => member.status === 'Baja').length}</strong></div>
-      <div className="card"><span>Planes vencidos</span><strong className="red">{expired}</strong></div>
-      <div className="card"><span>Por vencer (10 días)</span><strong className="yellow">{expiring}</strong></div>
-      <div className="card"><span>Ingresos del mes</span><strong className="amount">{money(monthlyIncome / 100)}</strong></div>
       <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.payments.reduce((sum, item) => sum + cents(item.amount), 0) / 100)}</strong></div>
-      <div className="card"><span>Saldo pendiente · {debtors} socio{debtors === 1 ? '' : 's'}</span><strong className="amount">{money(pending / 100)}</strong></div>
       <div className="card"><span>Rutinas creadas</span><strong>{snapshot.routines.length}</strong></div>
       <div className="card"><span>Entrenamientos del mes</span><strong>{snapshot.sessions.filter(item => item.performed_at.startsWith(month)).length}</strong></div>
-    </div>
+    </div></details>
     <div className="dashboard-details">
       <section className="card" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>
         <p className="muted">Plan más reciente de cada socio.</p>
@@ -102,6 +102,6 @@ export default function CloudDashboard({ client, revision }: { client: SupabaseC
             <strong>{money(balance / 100)}</strong></li>)}
         </ul>}
       </section>
-    </div><a className="dashboard-members-link" href="#socios-supabase">Ver socios y fichas →</a></>}
+    </div><button type="button" className="text-button dashboard-members-link" onClick={onOpenMembers}>Ver personas y fichas →</button></>}
   </section>
 }

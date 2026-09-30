@@ -1,0 +1,145 @@
+/* Administrative workspace. The member portal and desktop logo keep their identity. */
+.app-admin { background: #f3f4ef; color: #233c34; background-image: none; }
+.app-admin .topbar { background: #142c25; padding: 16px max(24px, calc((100vw - 1440px)/2)); border-bottom: 1px solid #334b41; }
+.app-admin .content { max-width: 1488px; padding: 32px 24px 64px; }
+.admin-workspace { display: grid; grid-template-columns: 232px minmax(0,1fr); gap: 36px; align-items: start; }
+.workspace-sidebar { background: #19372e; color: #eef4ee; padding: 28px 14px 20px; border-radius: 18px; position: sticky; top: 24px; }
+.sidebar-caption { font-size: 10px; letter-spacing: .14em; margin: 0 14px 22px; color: #b2c5b7; }
+.workspace-nav { display: flex; width: 100%; align-items: center; gap: 12px; text-align: left; background: transparent; border: 1px solid transparent; color: #c2d1c8; border-radius: 10px; padding: 15px 12px; margin: 5px 0; }
+.workspace-nav svg { flex-shrink: 0; }
+.workspace-nav strong { display: block; font-size: 14px; font-weight: 600; }
+.workspace-nav small { display: block; font-size: 11px; font-weight: 400; margin-top: 5px; color: #c2d1c8; }
+.workspace-nav.active { background: #355347; color: #fff; border-color: #566b57; }
+.workspace-nav.active svg { color: #e3c47c; }
+.sidebar-note { margin: 34px 12px 0; border-top: 1px solid #4a6354; padding-top: 20px; color: #d1ddcf; font-size: 12px; }
+.sidebar-note p { color: #b2c5b7; font-size: 11px; }
+.secure-dot { display: inline-block; width: 6px; height: 6px; background: #b1d4a5; border-radius: 50%; margin-right: 6px; }
+.workspace-main { min-width: 0; }
+.app-admin h1 { font-size: clamp(28px, 3.1vw, 42px); letter-spacing: -.04em; font-weight: 650; line-height: 1.15; }
+.app-admin h2 { font-size: 21px; letter-spacing: -.02em; color: #233c34; }
+.app-admin h3, .app-admin h4, .app-admin h5 { color: #315247; }
+.app-admin .eyebrow { color: #64735c; font-size: 10px; letter-spacing: .16em; }
+.app-admin .muted, .app-admin label { color: #52645b; }
+.app-admin button:not(.workspace-nav):not(.brand) { background: #234c3c; border-color: #234c3c; color: #fff; font-size: 13px; border-radius: 8px; min-height: 40px; }
+.app-admin button.secondary, .app-admin .restore-button { background: #fff; color: #254e3d; border-color: #a9b7a7; }
+.app-admin button.text-button, .app-admin button.back { background: transparent; border: 0; color: #28503e; padding: 3px 0; text-decoration: underline; text-underline-offset: 3px; }
+.app-admin button:disabled { opacity: .55; cursor: not-allowed; }
+.app-admin :is(button,input,select,textarea,summary):focus-visible { outline: 3px solid #937222; outline-offset: 3px; }
+.app-admin .card { background: #fff; border: 1px solid #dce2d8; border-radius: 14px; box-shadow: 0 3px 12px #16352604; padding: 24px; }
+.app-admin .stats { gap: 14px; }
+.app-admin .dashboard-primary { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.app-admin .stats .card { padding: 22px 18px; }
+.app-admin .stats .card span { color: #59695e; font-size: 12px; }
+.app-admin .stats .card strong { color: #204b3a; font-size: 38px; font-weight: 650; letter-spacing: -.04em; }
+.app-admin .stats .card strong.amount { font-size: clamp(19px, 2vw, 29px); white-space: nowrap; }
+.app-admin .stats .card strong.red { color: #a04538; }
+.app-admin .stats .card small { display: block; margin-top: 10px; color: #647166; font-size: 11px; line-height: 1.5; }
+.additional-metrics { margin: 0 0 26px; font-size: 13px; }
+.additional-metrics > summary { cursor: pointer; color: #4b6355; padding: 5px 0; }
+.app-admin .dashboard-details { margin-top: 24px; }
+.app-admin .dashboard-details h2 { font-size: 17px; }
+.app-admin .dashboard-details .muted { font-size: 12px; }
+.app-admin .dashboard-breakdown li { border-color: #e5e9e1; font-size: 13px; padding: 15px 0; }
+.app-admin .dashboard-breakdown li > strong { color: #284c3b; }
+.app-admin .dashboard-breakdown small { color: #627366; }
+.workspace-shortcuts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.app-admin .workspace-shortcuts > button { background: #e8ede3; border-color: #d5decc; color: #264637; text-align: left; display: grid; grid-template-columns: 35px 1fr; column-gap: 12px; }
+.workspace-shortcuts span { grid-row: span 2; font-size: 19px; color: #789073; }
+.workspace-shortcuts strong { font-size: 14px; }
+.workspace-shortcuts small { font-weight: 400; margin-top: 7px; }
+.app-admin .cloud-members { margin: 0; padding: 0; border: 0; }
+.app-admin .cloud-filters { grid-template-columns: minmax(160px, 2fr) repeat(3, minmax(105px,1fr)); gap: 12px; background: #e9ede5; padding: 18px; border-radius: 12px; }
+.app-admin .cloud-filters > button { justify-self: start; }
+.app-admin input, .app-admin select, .app-admin textarea { background: #fcfdfa; color: #213d31; border-color: #b9c5b4; font-size: 14px; line-height: 1.5; border-radius: 7px; }
+.app-admin textarea { min-height: 90px; }
+.app-admin input::placeholder, .app-admin textarea::placeholder { color: #758272; }
+.app-admin label { font-size: 13px; font-weight: 500; }
+.app-admin label small { font-weight: 400; line-height: 1.5; }
+.app-admin .list-item { background: #fff !important; border-color: #dce2d8 !important; color: #233c34 !important; box-shadow: none; padding: 18px 22px; }
+.app-admin .list-item:hover { border-color: #829a7a !important; background: #fbfcf8 !important; filter: none; }
+.app-admin .list-item small { color: #637163; }
+.app-admin .balance-due { color: #805816 !important; }
+.app-admin .status { color: #476347; }
+.app-admin .badge { color: #44644e; border-color: #d1ddcb; background: #f0f5eb; font-size: 11px; }
+.app-admin .badge.warning { color: #795019; background: #fcf4df; border-color: #e9d7a9; }
+.app-admin .badge.danger { color: #973e35; background: #fff0eb; border-color: #e6c6be; }
+.app-admin .notice { background: #f8f2e4; color: #675022; border-left-color: #b68c3c; font-size: 13px; }
+.app-admin .error { background: #fff0eb; color: #8e3329; border: 1px solid #e6bab1; }
+.app-admin .empty { color: #627365; }
+.app-admin .cloud-history-item, .app-admin .routine-day, .app-admin .day, .app-admin .editor-week, .app-admin .session-components { border-color: #d9e0d3; }
+.app-admin .cloud-history-item summary, .app-admin .editor-block > summary, .app-admin .cloud-routine-editor .editor-week > summary { color: #325943; }
+.app-admin .session-guidance, .app-admin .session-review { background: #eef3e9; color: #35513b; border-color: #b6c7a7; }
+.app-admin .session-component p, .app-admin .session-exercise small { color: #586f58; }
+.app-admin .overlay { z-index: 20; }
+.app-admin .modal { color: #233c34; }
+.app-admin .delete-action { color: #9e352b !important; }
+.app-admin .account-details, .app-admin .biometric-settings, .app-admin .local-archive { border-color: #d0d9c9; font-size: 12px; color: #65735f; margin-left: 268px; }
+.app-admin .cloud-signout { margin-left: 268px; }
+.plain-fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.member-form-fields { display: grid; gap: 22px; }
+.app-admin .cloud-member-form { max-width: none; }
+.intake-accordion { border: 1px solid #bfceb4; border-radius: 10px; padding: 18px; background: #f8faf5; }
+.intake-accordion > summary { cursor: pointer; color: #2f5039; font-size: 15px; }
+.intake-accordion > summary > span { display: inline; }
+.intake-accordion > summary small { display: block; margin: 7px 0 0 19px; font-size: 11px; font-weight: 400; color: #617157; }
+.intake-accordion[open] > summary { margin-bottom: 24px; }
+.privacy-badge { border: 1px solid #cdd8c4; padding: 8px 12px; border-radius: 100px; font-size: 11px; color: #536d43; background: #ebf1e6; }
+.health-person-picker .grid { margin: 0; }
+.health-person-picker p { margin-bottom: 0; font-size: 12px; }
+.workspace-empty { text-align: center; padding: 68px 22px; color: #61735d; }
+.workspace-empty > span { display: block; color: #7d9470; font-size: 38px; margin-bottom: 18px; }
+.workspace-empty p { max-width: 430px; margin: 0 auto; font-size: 14px; }
+.health-person-heading { margin-top: 30px; }
+.health-person-heading p { margin-bottom: 0; font-size: 12px; }
+.clinical-form { margin: 24px 0 36px; }
+.health-fields > .muted { font-size: 12px; margin-top: 24px; }
+.health-group { border: 0; border-top: 1px solid #d8e2d0; padding: 22px 0 8px; margin: 28px 0 0; min-width: 0; }
+.health-group legend { font-size: 17px; font-weight: 600; padding: 0 14px 0 0; }
+.health-group legend span { color: #7d9070; font-size: 12px; margin-right: 10px; }
+.health-field-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 18px; }
+.health-wide { grid-column: 1 / -1; }
+.health-private { font-size: 11px; line-height: 1.6; color: #64745d; border-top: 1px solid #dde5d6; padding-top: 20px; margin-top: 24px; }
+.form-save-bar { display: flex; gap: 16px; justify-content: space-between; align-items: center; margin-top: 22px; font-size: 12px; }
+.clinical-timeline { display: grid; gap: 14px; margin-bottom: 24px; }
+.clinical-record summary { display: flex; gap: 16px; align-items: center; cursor: pointer; list-style: none; }
+.clinical-record summary::before { content: '▸'; color: #617653; }
+.clinical-record[open] summary::before { content: '▾'; }
+.clinical-record summary > span:first-of-type { flex: 1; }
+.clinical-record summary strong { font-size: 14px; }
+.clinical-record summary small { display: block; margin-top: 8px; color: #65765d; font-size: 12px; }
+.clinical-record summary::-webkit-details-marker { display: none; }
+.clinical-readout { margin: 22px 0; }
+.clinical-readout > div { padding: 15px 0; border-top: 1px solid #e3e9dc; }
+.clinical-readout dt { color: #647559; font-size: 12px; font-weight: 600; }
+.clinical-readout dd { margin: 7px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.6; }
+.success-message { background: #e8f2e1; color: #315729; border: 1px solid #c3d7b5; border-radius: 8px; padding: 16px; }
+.member-health-links { margin: 26px 0; }
+@media (max-width: 1150px) {
+  .admin-workspace { grid-template-columns: 195px minmax(0,1fr); gap: 24px; }
+  .app-admin .dashboard-primary, .app-admin .cloud-filters { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .app-admin .account-details, .app-admin .biometric-settings, .app-admin .local-archive, .app-admin .cloud-signout { margin-left: 219px; }
+}
+@media (max-width: 800px) {
+  .admin-workspace { grid-template-columns: minmax(0,1fr); gap: 26px; }
+  .workspace-sidebar { position: static; padding: 8px; border-radius: 12px; }
+  .workspace-sidebar nav { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; }
+  .workspace-nav { flex-direction: column; text-align: center; gap: 8px; padding: 10px 3px; margin: 0; }
+  .workspace-nav strong { font-size: 11px; }
+  .workspace-nav small, .sidebar-caption, .sidebar-note { display: none; }
+  .app-admin .content { padding: 18px 16px 50px; }
+  .app-admin .account-details, .app-admin .biometric-settings, .app-admin .local-archive, .app-admin .cloud-signout { margin-left: 0; }
+}
+@media (max-width: 550px) {
+  .app-admin .card { padding: 19px; }
+  .app-admin .stats .card { padding: 17px 13px; }
+  .app-admin .dashboard-primary { gap: 10px; }
+  .app-admin .stats .card strong { font-size: 32px; }
+  .app-admin .stats .card strong.amount { font-size: 19px; }
+  .health-field-grid, .workspace-shortcuts, .app-admin .cloud-filters { grid-template-columns: minmax(0,1fr); }
+  .clinical-record summary { flex-wrap: wrap; gap: 10px; }
+  .clinical-record summary > span:first-of-type { flex-basis: 80%; }
+  .clinical-record summary .badge { margin-left: 18px; }
+  .form-save-bar { flex-wrap: wrap; }
+  .intake-accordion { padding: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

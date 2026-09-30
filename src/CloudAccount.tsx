@@ -1,13 +1,12 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { createClient, type User } from '@supabase/supabase-js'
 import { observeAccount } from './observeAccount'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
 import { biometricAvailability, nativePlatform, nativeSessionStorage } from './nativeBiometrics'
 
-const CloudMembers = lazy(() => import('./CloudMembers'))
+const CloudAdmin = lazy(() => import('./CloudAdmin'))
 const CloudStudent = lazy(() => import('./CloudStudent'))
-const CloudDashboard = lazy(() => import('./CloudDashboard'))
 
 // Read only the callback kind before the SDK consumes the URL fragment.
 const callbackParameters = new URLSearchParams(window.location.hash.slice(1))
@@ -35,26 +34,18 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
   const [user, setUser] = useState<User | null>(null)
   const [role, setRole] = useState<string | null>(null)
   const [staffVerified, setStaffVerified] = useState(false)
-  const [visibleMembers, setVisibleMembers] = useState<number | null>(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(Boolean(client))
-  const [dashboardRevision, setDashboardRevision] = useState(0)
   const [recovering, setRecovering] = useState(recoveryRequested)
   const [biometry, setBiometry] = useState({ available: false, label: 'biometría' })
   const [biometricSaved, setBiometricSaved] = useState(Boolean(nativeStorage?.saved))
   const [biometricEnabled, setBiometricEnabled] = useState(false)
   const [biometricMessage, setBiometricMessage] = useState('')
   const recoveryMode = useRef(recoveryRequested)
-  const listLoaded = useRef(false)
   const roleLabel = useMemo(() => ({ admin: 'Administrador', trainer: 'Entrenador', student: 'Alumno' })[role || ''] || 'Sin rol asignado', [role])
-  const changeCount = useCallback((count: number) => {
-    setVisibleMembers(count)
-    if (listLoaded.current) setDashboardRevision(value => value + 1)
-    else listLoaded.current = true
-  }, [])
 
   useEffect(() => {
     if (!nativePlatform) return
@@ -68,8 +59,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
   useEffect(() => {
     if (!client) return
     const clearAccount = () => {
-      setUser(null); setRole(null); setVisibleMembers(null); setStaffVerified(false)
-      listLoaded.current = false
+      setUser(null); setRole(null); setStaffVerified(false)
     }
     return observeAccount(client, {
       loading: () => {
@@ -183,7 +173,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         <a href="/reset-password?request=1">Olvidé mi contraseña</a>
       </form> : <div>
         <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>
-        {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudDashboard client={client} revision={dashboardRevision}/><p className="muted">Socios visibles en Supabase: {visibleMembers ?? 'Cargando…'}</p><CloudMembers client={client} onCountChange={changeCount}/>
+        {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudAdmin client={client}/>
           {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</StaffMfa> : !role ? <p className="notice">Esta cuenta aún no tiene un rol asignado. Contactá al administrador.</p> : null}
         {role === 'student' && client && <CloudStudent client={client} user={user}/>}
         </Suspense>

@@ -1,0 +1,255 @@
+{
+  "title": "Aprendé a alimentarte",
+  "subtitle": "Guía práctica de alimentación y entrenamiento",
+  "edition": "GNS FITNESS · Septiembre de 2026",
+  "intro": "Una guía completa para empezar desde cero: aprender a combinar alimentos, organizar comidas y acompañar el entrenamiento. No necesitás comer perfecto ni comprar productos especiales. Elegí un cambio, practicalo y sumá el siguiente.",
+  "scope": "Material educativo para personas adultas sanas. No es un plan personalizado ni una prescripción clínica. Embarazo, menores de edad, diabetes, enfermedad renal, alergias, síntomas digestivos persistentes o antecedentes de trastornos alimentarios requieren adaptación con un profesional de nutrición habilitado.",
+  "sections": [
+    {
+      "id": "bases",
+      "title": "1. Entendé qué aporta cada alimento",
+      "visual": "food",
+      "lead": "Los alimentos cumplen funciones diferentes y se complementan. Una comida puede ser sencilla y estar bien armada.",
+      "items": [
+        "Carbohidratos: aportan energía. Ejemplos: arroz, avena, pan, pasta, papa, boniato, frutas y legumbres. No hace falta eliminarlos para alimentarse mejor.",
+        "Proteínas: participan en el mantenimiento y reparación de tejidos. Alterná huevos, pescado, pollo, carnes magras, lácteos, tofu y legumbres. No dependas de un único alimento.",
+        "Grasas: forman parte de una alimentación suficiente. Incluí aceite, palta, semillas o frutos secos según preferencias y tolerancia.",
+        "Fibra y micronutrientes: verduras, frutas, legumbres y granos integrales aportan fibra, vitaminas y minerales. Aumentá la fibra gradualmente si no estás acostumbrado.",
+        "El conjunto importa: priorizá variedad y alimentos poco procesados; reducí la frecuencia de bebidas azucaradas y productos con mucho sodio, azúcar o grasas saturadas."
+      ],
+      "practice": "Ejercicio: mirá tu próxima comida. Identificá una fuente de energía, una de proteína y una fruta o verdura. Si falta algo, pensá qué opción accesible podés sumar.",
+      "sources": [
+        "who",
+        "msp"
+      ]
+    },
+    {
+      "id": "plato",
+      "title": "2. Armá tu plato paso a paso",
+      "visual": "plate",
+      "lead": "Usá esta imagen como una referencia de composición, no como una cantidad obligatoria ni un límite de comida.",
+      "items": [
+        "La mitad: verduras y frutas. En almuerzo o cena podés usar principalmente verduras y acompañar con fruta. Variá colores, texturas y preparaciones.",
+        "Un cuarto: una fuente de proteína, como huevo, pollo, pescado, tofu o legumbres.",
+        "Un cuarto: cereales preferentemente integrales. En esta adaptación práctica también podés usar papa o boniato como fuente de energía.",
+        "Completá con agua y una cantidad de aceite, semillas o palta que se ajuste a tu comida. Las legumbres aportan proteína y carbohidratos: no pertenecen exclusivamente a un solo grupo.",
+        "Las proporciones también sirven para un guiso, una vianda o un salteado. Con más entrenamiento podés necesitar más energía; el plato no debe dejarte con hambre persistente o sin recuperación."
+      ],
+      "practice": "Tres ejemplos propios: pollo + arroz + ensalada; lentejas + arroz + verduras salteadas; tortilla de huevo + boniato + tomate y zanahoria. Ajustá cantidades a tus necesidades.",
+      "sources": [
+        "plate"
+      ]
+    },
+    {
+      "id": "porciones",
+      "title": "3. Elegí cantidades que puedas sostener",
+      "visual": "none",
+      "lead": "No existe una porción ni una cantidad de calorías que sirva para todos. El tamaño corporal, la actividad, la salud y el apetito cambian las necesidades.",
+      "items": [
+        "Empezá con comidas regulares que encajen en tus horarios. Las colaciones son una herramienta si tenés hambre o hay muchas horas entre comidas; no son obligatorias.",
+        "Observá cómo te sentís: hambre entre comidas, saciedad cómoda, energía y recuperación. Si terminás siempre con mucha hambre, revisá si la comida es suficiente y completa.",
+        "Para ganar masa muscular hace falta entrenamiento adecuado y alimentación suficiente. No alcanza con agregar proteína a una dieta escasa.",
+        "Si buscás reducir grasa, evitá recortes extremos o compensar comidas con castigos de ejercicio. Pedí un ajuste individual que permita entrenar, recuperarte y conservar una buena relación con la comida.",
+        "La balanza no resume tu progreso. Anotá energía, desempeño, regularidad y cómo te queda la ropa si te resulta útil. No hace falta pesarse todos los días."
+      ],
+      "practice": "Durante una semana registrá solo tres cosas: horario de las comidas, energía durante el entrenamiento y hambre al terminar el día. Usalo para conversar con el profesional, no para juzgarte.",
+      "sources": [
+        "who",
+        "ais"
+      ]
+    },
+    {
+      "id": "pre",
+      "title": "4. Qué comer antes de entrenar",
+      "visual": "timing",
+      "lead": "Buscá llegar con energía y comodidad digestiva. Probá lo que te funciona en sesiones habituales, no el día de una competencia.",
+      "items": [
+        "Entre 2 y 4 horas antes: suele tolerarse una comida principal. Ejemplos propios: arroz con pollo y verduras cocidas; pasta con huevo y tomate; sándwich con relleno proteico y fruta.",
+        "Alrededor de 1 hora antes: si necesitás comer, elegí una colación más pequeña y fácil de digerir, principalmente con carbohidratos. Ejemplos: banana madura, tostada o yogur con fruta si lo tolerás.",
+        "Si te sentís pesado, reducí la cantidad y alejá de la sesión las comidas muy grasas, muy abundantes o con mucha fibra. No hace falta evitar esos alimentos durante todo el día.",
+        "Tomá líquido de a poco antes de empezar. No intentes resolver toda la hidratación tomando mucho de golpe justo antes.",
+        "Si entrenás muy temprano, podés probar una colación pequeña y desayunar después. Si aparecen mareos o malestar, detené la actividad y revisá la situación con un profesional."
+      ],
+      "practice": "Elegí dos colaciones que ya conozcas y llevá una si tu jornada es larga. No estrenes suplementos ni comidas que te caen mal para intentar rendir más.",
+      "sources": [
+        "pre"
+      ]
+    },
+    {
+      "id": "post",
+      "title": "5. Qué comer después de entrenar",
+      "visual": "recovery",
+      "lead": "Pensá en tres tareas: recuperar líquido, reponer energía y aportar proteína. La urgencia depende de la sesión y de cuándo volvés a entrenar.",
+      "items": [
+        "Si pronto vas a almorzar o cenar, esa comida puede cubrir la recuperación. Si falta mucho, una colación puede ayudarte a llegar con menos hambre.",
+        "Combiná carbohidratos y proteína: yogur con avena y fruta; sándwich de huevo; arroz con pollo; o lentejas con cereal y verduras. Son ejemplos, no porciones equivalentes.",
+        "Si tenés otra sesión exigente en pocas horas, la recuperación necesita más planificación. Coordiná horarios y cantidades con un nutricionista deportivo.",
+        "No dependas de un batido ni de una supuesta ventana de pocos minutos. La comida habitual puede aportar los nutrientes necesarios; el resto del día también cuenta.",
+        "Si al terminar no tenés apetito, probá una opción pequeña tolerable y completá más tarde. Evitá pasar muchas horas sin comer si la sesión te dejó agotado."
+      ],
+      "practice": "Dejá elegida tu comida de recuperación antes de salir: una vianda completa o una colación que puedas conservar en frío cuando corresponda.",
+      "sources": [
+        "recovery"
+      ]
+    },
+    {
+      "id": "ideas",
+      "title": "6. Diez desayunos y meriendas",
+      "visual": "food",
+      "lead": "Combinaciones originales para variar. Ajustá cantidades, alergias y tolerancia; no tienen las mismas calorías ni aportan la misma cantidad de proteína.",
+      "items": [
+        "1. Yogur natural + avena + banana o fruta de estación.",
+        "2. Pan integral + huevo revuelto + tomate.",
+        "3. Leche o bebida de soja fortificada + avena cocida + manzana.",
+        "4. Tostada + ricota + pera.",
+        "5. Sándwich de pollo cocido + zanahoria rallada.",
+        "6. Yogur natural + fruta + un agregado de frutos secos.",
+        "7. Pan + hummus + tomate, acompañado de fruta.",
+        "8. Omelette de verduras + pan.",
+        "9. Licuado de leche o bebida de soja fortificada con banana y avena. Ajustá textura y cantidad a tu tolerancia.",
+        "10. Tostada + pasta de maní sin azúcar agregada + yogur natural o alternativa de soja con proteína."
+      ],
+      "practice": "Elegí tres combinaciones y repetilas durante la semana. Para una colación muy cercana al entrenamiento, simplificá y evitá cantidades grandes de grasa o fibra si te provocan molestias.",
+      "sources": [
+        "pre"
+      ]
+    },
+    {
+      "id": "cocina",
+      "title": "7. Variá sin complicarte",
+      "visual": "none",
+      "lead": "La variedad puede surgir de cambiar un ingrediente o una preparación. No necesitás un menú nuevo cada día.",
+      "items": [
+        "Bowl rápido: combiná arroz ya cocido, lentejas, zanahoria, tomate y un aderezo sencillo de aceite y limón. Guardá los ingredientes perecederos en frío.",
+        "Pollo de dos maneras: una vez con verduras al horno y boniato; otra, desmenuzado en sándwich con ensalada. Cociná bien el pollo y mantené separados los utensilios que tocaron carne cruda.",
+        "Atún como opción ocasional: mezclalo con porotos, tomate y arroz, o usalo como relleno de sándwich. Alterná con otras proteínas; no hace falta comer atún diariamente.",
+        "Salsa de yogur: yogur natural sin azúcar + limón + hierbas. Usala como acompañamiento de verduras o una comida, no como sustituto de todo el plato.",
+        "Compra práctica: elegí dos proteínas, dos bases de energía, varias verduras y frutas de estación. Tener opciones congeladas o en conserva facilita resolver una comida."
+      ],
+      "practice": "El perfil de Instagram aportó ideas temáticas de variedad, atún y pollo. Estas combinaciones son propias; no se copiaron sus recetas completas ni sus imágenes.",
+      "sources": [
+        "instagram1",
+        "instagram2",
+        "msp"
+      ]
+    },
+    {
+      "id": "compras",
+      "title": "8. Compras, etiquetas e hidratación",
+      "visual": "none",
+      "lead": "Una compra organizada suele ser más útil que buscar alimentos de moda.",
+      "items": [
+        "Compará productos de la misma categoría por 100 g o 100 ml. Después mirá cuánto consumís: una porción del envase no siempre coincide con tu porción.",
+        "Revisá ingredientes, sodio, azúcares y grasas saturadas. Los octógonos de advertencia ayudan a reconocer excesos; una frase como 'fitness' no garantiza una mejor composición.",
+        "No todas las bebidas vegetales reemplazan nutricionalmente a la leche. Revisá proteína y fortificación; elegí una alternativa adecuada con asesoramiento si excluís grupos completos.",
+        "Agua como bebida habitual. Tenela disponible durante el entrenamiento y ajustá según sed, calor, duración y sudoración. No hay un número de litros válido para todos y no conviene forzarse a beber en exceso.",
+        "Las bebidas deportivas pueden tener utilidad en esfuerzos prolongados o situaciones específicas; no son necesarias por el solo hecho de ir al gimnasio. Los suplementos requieren una razón concreta, no una promesa publicitaria."
+      ],
+      "practice": "Compará dos yogures o dos panes de precio parecido. Anotá cuál encaja mejor por composición, presupuesto y gusto. Una alimentación sostenible también debe ser accesible.",
+      "sources": [
+        "msp",
+        "who",
+        "ais",
+        "sportsdrink"
+      ]
+    },
+    {
+      "id": "organizacion",
+      "title": "9. Organizá una semana realista",
+      "visual": "none",
+      "lead": "Preparar una base te permite improvisar con menos esfuerzo. Planificá para tu rutina, no para una semana ideal.",
+      "items": [
+        "Paso 1: revisá los días de entrenamiento y elegí dos almuerzos, dos cenas y tres desayunos que puedas repetir.",
+        "Paso 2: cociná una base de cereal o legumbres, una proteína y verduras. Guardá cada preparación identificada con su fecha.",
+        "Paso 3: refrigerá pronto en recipientes poco profundos. No dejes perecederos a temperatura ambiente más de 2 horas, o 1 hora con calor superior a 32 °C.",
+        "Mantené la heladera a 4 °C o menos. Como regla general, usá las sobras refrigeradas en 3 a 4 días o congelalas antes. Seguí indicaciones más estrictas del producto; no uses el olor como única prueba de seguridad.",
+        "Para transportar yogur, carnes o comidas cocidas, usá una conservadora con frío. Recalentá las sobras hasta 74 °C en el centro cuando corresponda; no alcanza con que estén apenas tibias."
+      ],
+      "practice": "Ejemplo de día: desayuno de yogur, avena y fruta; almuerzo completo; banana antes de entrenar si hace falta; cena con proteína, arroz y verduras. Es una estructura orientativa, no un menú obligatorio ni una dieta calculada.",
+      "sources": [
+        "foodsafe",
+        "usda"
+      ]
+    },
+    {
+      "id": "inicio",
+      "title": "10. Tu plan de acción",
+      "visual": "none",
+      "lead": "Elegí un hábito pequeño y concreto. Evaluá lo que te ayuda a sentirte y entrenar mejor.",
+      "items": [
+        "Esta semana: agregar verduras a una comida, organizar una colación o llevar agua. Elegí solo uno para empezar.",
+        "Revisión: ¿lo pude sostener?, ¿tuve energía?, ¿llegué con hambre extrema?, ¿qué me resultó práctico? Ajustá sin buscar perfección.",
+        "No hay alimentos mágicos para quemar grasa ni obligación de comer siempre pollo. Una publicación de redes puede inspirar una receta, pero no define tus necesidades.",
+        "Consultá si aparecen cansancio persistente, mareos, cambios menstruales, lesiones repetidas, pérdida de peso involuntaria o miedo intenso a comer. No se resuelven simplemente reduciendo más las porciones.",
+        "Llevá a la consulta: horarios, preferencias, presupuesto, entrenamiento, medicación y síntomas relevantes. Así se puede adaptar la alimentación de forma responsable."
+      ],
+      "practice": "Mi primer cambio será: __________. Lo voy a facilitar con: __________. Lo revisaré el: __________. La constancia se construye con decisiones que puedas repetir.",
+      "sources": [
+        "energy",
+        "who"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "msp",
+      "name": "Ministerio de Salud Pública de Uruguay · Guía alimentaria",
+      "url": "https://www.gub.uy/ministerio-salud-publica/comunicacion/publicaciones/guia-alimentaria-para-poblacion-uruguaya"
+    },
+    {
+      "id": "who",
+      "name": "OMS · Alimentación saludable",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"
+    },
+    {
+      "id": "plate",
+      "name": "Health Canada · Cómo armar el plato",
+      "url": "https://www.canada.ca/en/health-canada/services/food-guide/eating-support/cooking/make-healthy-meals-plate.html"
+    },
+    {
+      "id": "pre",
+      "name": "Sports Dietitians Australia · Alimentación antes del ejercicio",
+      "url": "https://www.sportsdietitians.com.au/factsheets/pre-exercise-fuelling/"
+    },
+    {
+      "id": "recovery",
+      "name": "Sports Dietitians Australia · Recuperación",
+      "url": "https://www.sportsdietitians.com.au/wp-content/uploads/2015/04/120628-Recovery_SD-version.pdf"
+    },
+    {
+      "id": "ais",
+      "name": "Australian Institute of Sport · Nutrición",
+      "url": "https://www.ais.gov.au/nutrition"
+    },
+    {
+      "id": "sportsdrink",
+      "name": "Australian Institute of Sport · Bebidas deportivas",
+      "url": "https://www.ausport.gov.au/ais/nutrition/supplements/group_a/sports-foods2/sports-drink"
+    },
+    {
+      "id": "foodsafe",
+      "name": "FoodSafety.gov · Conservación de sobras",
+      "url": "https://www.foodsafety.gov/blog/10-smart-tips-keep-your-restaurant-leftovers-safe"
+    },
+    {
+      "id": "usda",
+      "name": "USDA · Sobras y seguridad alimentaria",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety"
+    },
+    {
+      "id": "instagram1",
+      "name": "Referencia temática: BioMuscleLapNutricion · Atún y variedad",
+      "url": "https://www.instagram.com/biomusclelapnutricion/p/DdfBLWJgbjP/"
+    },
+    {
+      "id": "instagram2",
+      "name": "Referencia temática: BioMuscleLapNutricion · Preparaciones con pollo",
+      "url": "https://www.instagram.com/biomusclelapnutricion/p/Dd4g_IsATdc/"
+    },
+    {
+      "id": "energy",
+      "name": "Australian Institute of Sport · Disponibilidad de energía",
+      "url": "https://www.ausport.gov.au/coaching/community/education/coaching-women-and-girls/resources/relative-energy-deficiency-in-sport"
+    }
+  ]
+}

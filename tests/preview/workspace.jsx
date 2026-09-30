@@ -22,6 +22,7 @@ if (storeScreen) {
   tables.members[0].trainer_name = 'Equipo GNS'
   tables.member_progress = [70,69.5,69,68.5].map((value,i)=>({id:`progress-${i}`,member_id:tables.members[0].id,metric:'weight',value,measured_on:`2026-09-${String(1+i*7).padStart(2,'0')}`}))
 }
+if(studentMode && new URLSearchParams(location.search).has('nutrition-enabled')) tables.service_requests.push({id:'enabled-demo',member_id:tables.members[0].id,service:'nutrition',status:'enabled',created_at:new Date().toISOString()});
 const previewUser = {id:'demo-student'}
 if(studentMode) { tables.members[0].user_id=previewUser.id; tables.routines.push({id:'routine',member_id:tables.members[0].id,name:'Programa de prueba',level:'Inicial',days_per_week:2,program_rounds:4,block_rounds:2,plan:{exercisesByDay:{1:[{id:'squat',name:'Sentadilla',sets:'3',reps:'10',rir:'2',rest:'90 segundos',load:'',notes:''}],2:[{id:'squat',name:'Sentadilla',sets:'3',reps:'10',rir:'2',rest:'90 segundos',load:'',notes:''}]}}}); tables.sessions.push({id:'previous',member_id:tables.members[0].id,routine_id:'routine',routine_name:'Programa de prueba',performed_at:'2026-09-01',created_at:'2026-09-01T12:00:00Z',day:1,block:1,week:1,notes:'',results:[{exerciseId:'squat',name:'Sentadilla',sets:'3',reps:'10',load:'20 kg',rir:'2'}]}); }
 if(!studentMode) tables.service_requests.push({id:'request-demo',member_id:tables.members[0].id,service:'nutrition',status:'pending',created_at:new Date().toISOString()});

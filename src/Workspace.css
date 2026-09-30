@@ -78,3 +78,8 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .intake-choice-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-bottom: 12px; }
 .intake-choice-options label { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid #51534a; border-radius: 8px; }
 .intake-choice-options input { width: 18px; height: 18px; flex: 0 0 18px; accent-color: #d3ac55; }
+
+.member-compact { border: 1px solid var(--border, #494338); border-radius: 12px; padding: 14px 18px; margin: 12px 0; }
+.member-compact > summary { cursor: pointer; color: var(--gold, #dfb568); font-weight: 600; }
+.member-compact[open] > summary { margin-bottom: 14px; }
+.member-compact > label { max-width: 260px; }

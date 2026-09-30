@@ -1,6 +1,6 @@
 import { planCatalog } from './planCatalog'
 import { readAllPages } from './readAllPages'
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { Exercise } from './data'
 import { daysUntil, membershipEnd, parseDay } from './membership'
@@ -55,8 +55,8 @@ function RoutinePlanning({ plan, onEdit }: { plan: RoutinePlan; onEdit: (item: E
   </details>
 }
 
-export default function CloudMemberHistory({ client, memberId, memberName, assignedTrainer, memberOptions, onClose, onChanged }: {
-  client: SupabaseClient; memberId: string; memberName: string; assignedTrainer: string; memberOptions: { id: string; name: string }[]; onClose: () => void; onChanged: () => void
+export default function CloudMemberHistory({ client, memberId, memberName, assignedTrainer, memberOptions, onClose, onChanged, children }: {
+  client: SupabaseClient; memberId: string; memberName: string; assignedTrainer: string; memberOptions: { id: string; name: string }[]; onClose: () => void; onChanged: () => void; children?: ReactNode
 }) {
   const [history, setHistory] = useState<History | null>(null)
   const [error, setError] = useState('')
@@ -294,13 +294,13 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
         <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => setPlanForm({ ...planForm, planName: event.target.value, price: String(planCatalog.find(plan => plan.name === event.target.value)!.price) })}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
           <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => setPlanForm({ ...planForm, startsAt: event.target.value })}/></label>
           <label>Precio total (pesos uruguayos) *<input type="number" min="0.01" step="0.01" required value={planForm.price} onChange={event => setPlanForm({ ...planForm, price: event.target.value })}/></label></div>
-        <fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra=><label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e=>setPlanForm({...planForm,extras:e.target.checked?[...planForm.extras,extra]:planForm.extras.filter(x=>x!==extra)})}/>+ {extra}</label>)}</fieldset><label>Qué incluye el plan y sus complementos<textarea maxLength={1000} value={planForm.details} onChange={e=>setPlanForm({...planForm,details:e.target.value})}/></label><p className="muted">El precio es el total acordado, incluidos los complementos. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>
+        <p className="muted">Importe base calculado por la duración completa, sin descuento. Podés ajustar el total si acordás complementos.</p><fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra=><label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e=>setPlanForm({...planForm,extras:e.target.checked?[...planForm.extras,extra]:planForm.extras.filter(x=>x!==extra)})}/>+ {extra}</label>)}</fieldset><label>Qué incluye el plan y sus complementos<textarea maxLength={1000} value={planForm.details} onChange={e=>setPlanForm({...planForm,details:e.target.value})}/></label><p className="muted">El precio es el total acordado, incluidos los complementos. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>
         <p className="muted">Vence el {endsAt ? readableDate(endsAt) : '—'}. Crear un plan nuevo no registra un pago.</p>
         <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar plan'}</button><button type="button" className="secondary" disabled={saving} onClick={() => { setActiveForm(null); setError('') }}>Cancelar</button></div>
       </fieldset></form>}
       {!currentPlan ? <div className="card empty">Todavía no hay un plan asignado a este socio.</div> : <section className="card profile">
         <div className="heading"><h2>{currentPlan.plan_name}</h2><span className={`badge ${daysUntil(currentPlan.ends_at, today())! < 0 ? 'danger' : daysUntil(currentPlan.ends_at, today())! <= 10 ? 'warning' : ''}`}>{dueLabel(currentPlan.ends_at)}</span></div>
-        {currentPlan.service_details&&<p>{currentPlan.service_details}</p>}<p>Período: {readableDate(currentPlan.starts_at)} al {readableDate(currentPlan.ends_at)}</p><p>Precio: {money(currentPlan.price)}</p>
+        {currentPlan.service_details&&<p>{currentPlan.service_details}</p>}<p>Duración: {currentPlan.months} {currentPlan.months === 1 ? 'mes' : 'meses'} · Inicio: {readableDate(currentPlan.starts_at)} · Vencimiento: {readableDate(currentPlan.ends_at)}</p><p>Precio: {money(currentPlan.price)}</p>
         <p>Pagado: {money(received / 100)} · Saldo pendiente: <strong>{money(pending / 100)}</strong></p>
         {pending > 0 && activeForm !== 'payment' && <button type="button" disabled={saving} onClick={() => { setPaymentRequestId(crypto.randomUUID()); setActiveForm('payment'); setPaymentForm({ paidAt: today(), amount: '', method: 'Efectivo' }); setError(''); setMessage('') }}>+ Registrar pago</button>}
         {activeForm === 'payment' && <form className="form cloud-payment-form" onSubmit={event => void savePayment(event)}>
@@ -315,6 +315,9 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
         <h3>Pagos de este plan</h3>{history.payments.filter(payment => payment.membership_id === currentPlan.id).length === 0 ? <p className="muted">Todavía no hay pagos registrados.</p> : history.payments.filter(payment => payment.membership_id === currentPlan.id).map(payment => <p key={payment.id}>{readableDate(payment.paid_at)} · {payment.method} · {money(payment.amount)}</p>)}
       </section>}
       {history.memberships.length > 1 && <section className="card profile"><h2>Planes anteriores</h2>{history.memberships.slice(1).map(plan => <p key={plan.id}>{plan.plan_name}: {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)} · {money(plan.price)} · pagado {money(history.payments.filter(payment => payment.membership_id === plan.id).reduce((total, payment) => total + Number(payment.amount), 0))}</p>)}</section>}
+    </>}
+    {children}
+    {history && <>
       <div className="heading session-heading"><h2>Entrenamiento y rutinas</h2><button type="button" onClick={() => { setRoutineEditor('new'); setRecording(null); setError(''); setMessage('') }}>+ Crear rutina</button></div>
       {history.routines.length > 0 && memberOptions.some(item => item.id !== memberId) && <form className="card copy-routine" onSubmit={event => void copyToMember(event)}>
         <h3>Copiar rutina a otro socio</h3><p className="muted">Se crea una rutina independiente para el socio elegido. La original queda en esta ficha.</p>

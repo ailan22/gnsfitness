@@ -35,7 +35,7 @@ await exportLogo(path.join(assets, 'AppIcon.appiconset/AppIcon-512@2x.png'), 102
 for (const name of ['splash-2732x2732.png', 'splash-2732x2732-1.png', 'splash-2732x2732-2.png']) {
   await exportLogo(path.join(assets, 'Splash.imageset', name), 2732, 2732, 600)
 }
-await exportLogo(path.join(root, 'public/favicon.png'), 64, 64, 52)
+await exportLogo(path.join(root, 'public/favicon.png'), 64, 64, 64, true)
 await exportLogo(path.join(root, 'store-assets/icon-1024.png'), 1024, 1024, 780)
 await exportLogo(path.join(root, 'store-assets/icon-512.png'), 512, 512, 390)
 console.log('Approved GNS logo exported for Android, iOS and store icons.')

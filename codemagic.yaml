@@ -84,7 +84,8 @@ workflows:
         script: |
           set -e
           cd ios/App
-          agvtool new-version -all "$((BUILD_NUMBER + 1))"
+            : "${PROJECT_BUILD_NUMBER:?Missing global project build number}"
+            agvtool new-version -all "$((PROJECT_BUILD_NUMBER + 1))"
       - name: Generar archivo para TestFlight
         script: xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
     artifacts:
@@ -131,7 +132,8 @@ workflows:
         script: |
           set -e
           cd ios/App
-          agvtool new-version -all "$((BUILD_NUMBER + 1))"
+            : "${PROJECT_BUILD_NUMBER:?Missing global project build number}"
+            agvtool new-version -all "$((PROJECT_BUILD_NUMBER + 1))"
       - name: Generar archivo para App Store
         script: xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
     artifacts:

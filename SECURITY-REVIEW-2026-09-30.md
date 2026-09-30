@@ -1,9 +1,6 @@
 # Revisión de seguridad de GNS FITNESS — 30/09/2026
 
-Estado: correcciones implementadas y probadas localmente. La activación en la
-base de datos y el despliegue de la función de invitaciones requieren una sesión
-en el panel de Supabase. No considerar esta revisión una certificación ni una
-prueba de penetración de toda la infraestructura.
+Estado: correcciones implementadas, probadas y publicadas en la web, Supabase y la función de invitaciones. El dueño todavía debe configurar su segundo factor. No considerar esta revisión una certificación ni una prueba de penetración de toda la infraestructura. Permanecen pendientes los respaldos y las comprobaciones con cuentas reales.
 
 ## Cambios
 
@@ -14,8 +11,8 @@ prueba de penetración de toda la infraestructura.
 - Administradores y entrenadores deben tener un JWT verificado por Supabase con
   AAL2. El rol se consulta en la tabla protegida, nunca en metadata editable por
   el usuario. Los permisos por alumno y entrenador asignado se conservan.
-- Pantalla administrativa con configuración TOTP y verificación del código. El
-  servidor debe aplicar 007: ocultar pantallas por sí solo no protege los datos.
+- Pantalla administrativa con configuración TOTP y verificación del código. La
+  migración 007 ya está aplicada: la comprobación también ocurre en el servidor.
   El QR y la clave de configuración solo se mantienen en memoria; no se registran.
 - Historial privado de altas, cambios y bajas: actor, entidad, identificador,
   operación y fecha. No contiene copias de nombres, notas de salud ni credenciales.
@@ -40,32 +37,23 @@ administradores sin MFA, operaciones legítimas con MFA, prohibición de TRUNCAT
 historial no manipulable y repetición segura de la migración. También se prueban
 solicitudes de invitación malformadas y control de la pantalla MFA ante errores.
 
-## Activación pendiente en Supabase
+## Activación realizada y comprobación en línea
 
-1. Revisar `cloud/VERIFICAR_SEGURIDAD.sql` en el proyecto correcto. Confirmar que
-   no existen otras políticas permisivas o RPC con privilegios que el código
-   local no incluya. Guardar esquema/configuración y contar con un respaldo
-   recuperable antes de cambios en producción.
-2. Publicar la aplicación compatible con MFA y comprobar el acceso del dueño.
-   El dueño configura su autenticador personalmente: no compartir QR ni clave.
-3. Aplicar 007 después de 001–006 y volver a ejecutar la inspección. Probar una
-   cuenta de alumno y una de administrador, con y sin segundo factor. No
-   desactivar RLS ni reducir permisos para resolver un problema de ingreso.
-4. Desplegar `supabase/functions/invite-student/index.ts` con su configuración
-   actual de validación de sesión propia. Nunca incluir la clave de servicio en
-   Vite, GitHub, capturas o registros.
-5. Comprobar política de contraseña mínima de 12 caracteres EN EL SERVIDOR,
-   confirmación de correo, cambios de correo seguros, límites de solicitudes y
-   bloqueo de contraseñas filtradas si el plan lo permite. El mínimo del formulario
-   no basta. Revisar si deben deshabilitarse registros públicos; las cuentas sin
-   rol no deben poder leer datos aunque el registro siga habilitado.
-6. Revisar Site URL y lista de redirects exactos de recuperación, SMTP propio,
-   MFA para las cuentas de Supabase/GitHub/Cloudflare/Apple y accesos de terceros.
-   No se verificaron estas configuraciones por falta de sesión en Supabase.
-7. Confirmar copias de seguridad, retención y restauración de prueba en un
-   entorno separado. Los UUID del historial también requieren retención definida.
-   Revisar copias locales/exportaciones en la PC: no se eliminaron archivos del
-   usuario. Usar cifrado y bloqueo del equipo; acceso mínimo a los respaldos.
+- Web publicada en Cloudflare: versión 395a1580, archivo principal index-B3WZXl5L.js. Inicio de sesión visible y sin errores JavaScript. Las cabeceras están incluidas en la publicación; no se verificó por separado cada cabecera HTTP recibida por el cliente.
+- Inspección de permisos, políticas y funciones de Supabase antes y después de aplicar 007_security.sql. Resultado: ocho tablas con RLS, sin SELECT anónimo ni TRUNCATE/TRIGGER para authenticated; ambas funciones de autorización exigen AAL2. Historial privado existente y ocho triggers activos. Evidencias locales: security-live-before.txt y security-live-after.txt.
+- invite-student desplegada: el panel mostró actualización reciente y el código nuevo. Se conserva la validación de sesión propia (legacy JWT OFF). La sesión del panel expiró al concluir; no se enviaron invitaciones reales.
+- Contraseña mínima de 12 caracteres y cambio seguro de contraseña guardados. Confirmación de correo y cambio seguro de correo ya estaban activos. Registro público deshabilitado; inicio anónimo y vinculación manual apagados. TOTP habilitado. Se mantienen las sesiones persistentes y límites existentes.
+- Site URL de la app comprobada. Recuperación restringida a la URL exacta de la app y http://localhost:5173/reset-password de desarrollo, sin comodines.
+- 97 pruebas distintas aprobadas: suite previa de 91 y seis pruebas nuevas de MFA/cabeceras. El subconjunto de 13 pruebas de MFA/invitaciones/cabeceras pasó. Compilación, lint y revisión de espacios de Git aprobados.
+
+## Pendientes que requieren seguimiento
+
+1. El dueño debe instalar un autenticador y completar personalmente el QR/código en GNS FITNESS. No compartir QR, clave ni códigos por chat. Probar después ingreso de administrador y alumno real, cierre de sesión y recuperación. No se ha confirmado todavía ese recorrido con cuentas reales.
+2. **Respaldos:** Database Backups confirma que el plan Free no incluye copias de proyecto. No hay respaldo recuperable verificado. Elegir un plan con copias programadas o un proceso de exportación cifrada independiente; probar restauración en un entorno separado antes de considerar resuelta la continuidad. No se contrató ningún plan ni se modificaron datos de alumnos.
+3. Revisar SMTP propio y entrega/recuperación de correos. No se realizó envío a terceros durante esta revisión. El bloqueo de contraseñas filtradas requiere un plan compatible y permanece desactivado.
+4. Configurar/verificar MFA en Supabase, GitHub, Cloudflare y Apple; revisar colaboradores e integraciones. Estas cuentas tienen acceso privilegiado independiente del segundo factor de GNS FITNESS.
+5. Definir retención de datos e historial, responsables y acceso a respaldos. Los UUID del historial también son datos a proteger. Revisar exportaciones locales, cifrado y bloqueo de la PC; no se eliminaron archivos del usuario.
+6. Recompilar y probar versiones Android/iOS con la pantalla MFA actual. La app instalada en Windows usa la publicación web. Face ID en un iPhone real sigue pendiente de validación; no equivale al segundo factor del administrador.
 
 Los alumnos pausados o de baja conservan el comportamiento anterior de consulta
 de su propia ficha; el registro de entrenamiento exige estado Activo. Si dar de

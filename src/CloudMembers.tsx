@@ -1,3 +1,4 @@
+import MemberHealthSections from './MemberHealthSections'
 import StudentAccess from './StudentAccess'
 import { readAllPages } from './readAllPages'
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
@@ -34,12 +35,12 @@ const blank = (): MemberForm => ({ first_name: '', last_name: '', phone: '', ema
   joined_at: today(), status: 'Activo', welcome_form: 'Te damos la bienvenida', emergency_contact_name: '', emergency_contact_phone: '',
   goal: '', limitations: '', trainer_name: '', notes: '' })
 
-export default function CloudMembers({ client, onCountChange, initialNew = false, onDirtyChange, onOpenHealth }: {
+export default function CloudMembers({ client, onCountChange, initialNew = false, initialMemberId = null, onDirtyChange }: {
   client: SupabaseClient
   onCountChange: (count: number) => void
   initialNew?: boolean
   onDirtyChange?: (dirty: boolean) => void
-  onOpenHealth?: (memberId: string, mode: 'intake' | 'physio') => void
+  initialMemberId?: string | null
 }) {
   const [members, setMembers] = useState<CloudMember[]>([])
   const [memberships, setMemberships] = useState<MembershipSummary[]>([])
@@ -50,10 +51,11 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const [open, setOpen] = useState(initialNew)
   const [intake, setIntake] = useState<HealthDraft | null>(null)
   const [dirty, setDirty] = useState(false)
+  const [healthDirty, setHealthDirty] = useState(false)
   const intakeId = useRef(crypto.randomUUID())
   const newMemberId = useRef(crypto.randomUUID())
   const saveBusy = useRef(false)
-  const [historyId, setHistoryId] = useState<string | null>(null)
+  const [historyId, setHistoryId] = useState<string | null>(initialMemberId)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('Todos')
   const [planFilter, setPlanFilter] = useState<PlanFilter>('Todos')
@@ -64,7 +66,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(0)
-  useEffect(() => { onDirtyChange?.(dirty); return () => onDirtyChange?.(false) }, [dirty, onDirtyChange])
+  useEffect(() => { onDirtyChange?.(dirty || healthDirty); return () => onDirtyChange?.(false) }, [dirty, healthDirty, onDirtyChange])
   useEffect(() => {
     if (!dirty) return
     const warn = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = '' }
@@ -100,6 +102,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   }, [refresh])
 
   function edit(member: CloudMember) {
+    if (healthDirty && !window.confirm('¿Descartar los cambios de salud sin guardar?')) return
     setIntake(null); setDirty(false); intakeId.current = crypto.randomUUID()
     setForm({ ...member, notes: notes[member.id] || '' })
     setSelectedId(member.id)
@@ -196,7 +199,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const pageMembers = visibleMembers.slice(currentPage * 50, (currentPage + 1) * 50)
 
   return <section className="cloud-members" id="socios-supabase" aria-label="Personas y socios">
-    {selected || open ? <button type="button" className="back" disabled={saving} onClick={() => { if (dirty && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); setOpen(false); setIntake(null); setDirty(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
+    {selected || open ? <button type="button" className="back" disabled={saving} onClick={() => { if ((dirty || healthDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); setOpen(false); setIntake(null); setDirty(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
     {message && <p role="status">{message}</p>}
     {error && <p className="error" role="alert">{error}</p>}
     {!selected && !open && <>
@@ -233,10 +236,10 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
         <section className="card"><h2>Estado del socio</h2><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p></section></div>
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p><p>Entrenador asignado: {selected.trainer_name || 'Sin registrar'}</p><p>Observaciones administrativas: {notes[selected.id] || 'Ninguna'}</p></section>
       <StudentAccess key={selected.id + selected.email} client={client} member={selected} />
-      {onOpenHealth && <section className="card member-health-links"><div><p className="eyebrow">ATENCIÓN PERSONAL</p><h2>Salud y seguimiento</h2><p className="muted">Registros privados, vinculados a esta persona.</p></div><div className="actions"><button type="button" className="secondary" onClick={() => onOpenHealth(selected.id, 'intake')}>Anamnesis inicial de salud y entrenamiento</button><button type="button" className="secondary" onClick={() => onOpenHealth(selected.id, 'physio')}>Kinesiología</button></div></section>}
+      <MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/>
       <CloudMemberHistory client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
-        onChanged={() => onCountChange(members.length)} onClose={() => { setHistoryId(null); void refresh() }}/>
+        onChanged={() => onCountChange(members.length)} onClose={() => { if (healthDirty && !window.confirm('¿Descartar los cambios de salud sin guardar?')) return; setHistoryId(null); void refresh() }}/>
     </>}
     {open && <><p className="eyebrow">PERSONAS · FICHAS Y ENTRENAMIENTO</p><h2>{selectedId ? 'Editar datos del socio' : 'Nuevo socio'}</h2><form className="card form cloud-member-form" onInvalidCapture={event => { const detail = (event.target as HTMLElement).closest('details'); if (detail) detail.open = true }} onSubmit={event => void save(event)}><fieldset className="plain-fieldset member-form-fields" disabled={saving}>
       <div className="grid">
@@ -271,3 +274,5 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     </fieldset></form></>}
   </section>
 }
+
+

@@ -15,6 +15,7 @@ const tables = {
   memberships:[{id:'00000000-0000-4000-8000-000000000010',member_id:'00000000-0000-4000-8000-000000000001',plan_name:'Mensual',starts_at:date,ends_at:date,price:2100}],
   privacy_requests:[],member_progress:[],service_requests:[],payments:[],routines:[],sessions:[],session_reviews:[],member_admin_notes:[],health_records:[],
 }
+tables.health_records.push({ id:'physio-demo', member_id:tables.members[0].id, kind:'physio_assessment', occurred_on:date, created_at:new Date().toISOString(), professional:'Profesional de prueba', registration:'', correction_of:null, correction_reason:'', episode_id:null, payload:{region:'Rodilla derecha', reason:'Evaluación ficticia para comprobar la ficha'} });
 const studentMode = new URLSearchParams(location.search).has('student')
 const storeScreen = new URLSearchParams(location.search).get('store')
 if (storeScreen) {
@@ -49,3 +50,4 @@ if (storeScreen && storeScreen !== 'training') {
   },100)
   setTimeout(()=>clearInterval(timer),10000)
 }
+

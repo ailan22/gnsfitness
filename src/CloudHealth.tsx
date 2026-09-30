@@ -7,8 +7,8 @@ import { healthFields, healthTitles, sameHealthContent, type HealthKind, type He
 
 type Person = { id: string; first_name: string; last_name: string; birth_date: string | null }
 const displayDate = (value: string) => value.slice(0, 10).split('-').reverse().join('/')
-export default function CloudHealth({ client, mode, initialMemberId = '', onDirtyChange, onNewPerson }: {
-  client: SupabaseClient; mode: 'intake' | 'physio'; initialMemberId?: string; onDirtyChange: (dirty: boolean) => void; onNewPerson: () => void
+export default function CloudHealth({ client, mode, initialMemberId = '', onDirtyChange, onNewPerson, embedded = false }: {
+  client: SupabaseClient; mode: 'intake' | 'physio'; initialMemberId?: string; onDirtyChange: (dirty: boolean) => void; onNewPerson?: () => void; embedded?: boolean
 }) {
   const [people, setPeople] = useState<Person[]>([])
   const [memberId, setMemberId] = useState(initialMemberId)
@@ -102,14 +102,14 @@ export default function CloudHealth({ client, mode, initialMemberId = '', onDirt
   const query = search.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
   const matches = people.filter(item => `${item.first_name} ${item.last_name}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(query))
   return <section className="health-workspace" aria-label={mode === 'intake' ? 'Anamnesis inicial de salud y entrenamiento' : 'Kinesiología'}>
-    <div className="heading"><div><p className="eyebrow">ATENCIÓN PERSONAL · ACCESO PRIVADO</p><h1>{mode === 'intake' ? 'Salud y entrenamiento' : 'Kinesiología'}</h1><p className="muted">{mode === 'intake' ? 'Una evaluación inicial clara para acompañar cada objetivo.' : 'Evaluación, atención y evolución en un mismo lugar.'}</p></div><span className="privacy-badge">Solo administrador</span></div>
-    <div className="card health-person-picker"><div className="grid"><label>Buscar persona<input type="search" placeholder="Nombre o apellido" value={search} onChange={e => setSearch(e.target.value)} disabled={saving}/></label>
+    {!embedded && <div className="heading"><div><p className="eyebrow">ATENCIÓN PERSONAL · ACCESO PRIVADO</p><h1>{mode === 'intake' ? 'Salud y entrenamiento' : 'Kinesiología'}</h1><p className="muted">{mode === 'intake' ? 'Una evaluación inicial clara para acompañar cada objetivo.' : 'Evaluación, atención y evolución en un mismo lugar.'}</p></div><span className="privacy-badge">Solo administrador</span></div>}
+    {!embedded && <div className="card health-person-picker"><div className="grid"><label>Buscar persona<input type="search" placeholder="Nombre o apellido" value={search} onChange={e => setSearch(e.target.value)} disabled={saving}/></label>
       <label>Ficha de la persona<select value={memberId} disabled={saving || peopleLoading} onChange={e => {
         if (!discard()) return
         setMemberId(e.target.value); setDraft(null); setDirty(false); setMessage(''); setPage(0)
       }}><option value="">{peopleLoading ? 'Cargando personas…' : 'Seleccionar una persona…'}</option>{people.filter(item => matches.includes(item) || item.id === memberId).map(item => <option key={item.id} value={item.id}>{item.last_name}, {item.first_name}{item.birth_date ? ` · ${displayDate(item.birth_date)}` : ''} · {item.id.slice(0, 6)}</option>)}</select></label></div>
       <p className="muted">Usá la ficha existente, incluso si la persona no tiene un plan del gimnasio. <button className="text-button" type="button" onClick={onNewPerson} disabled={saving}>Registrar persona</button></p>
-    </div>
+    </div>}
     {error && <div className="error" role="alert">{error} <button className="secondary" type="button" disabled={saving} onClick={() => setRevision(value => value + 1)}>Reintentar carga</button></div>}
     {message && <p role="status" className="success-message">{message}</p>}
     {!memberId ? <div className="workspace-empty"><span aria-hidden="true">＋</span><h2>Primero, elegí una persona</h2><p>Sus registros se mostrarán aquí. No se comparten con alumnos ni entrenadores.</p></div> : <>

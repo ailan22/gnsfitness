@@ -68,3 +68,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
  .form-save-bar { flex-wrap: wrap; }
  .intake-accordion { padding: 14px; }
 }
+
+.member-health-sections { display: grid; gap: 16px; margin: 24px 0; }
+.member-health-sections .health-workspace { min-width: 0; }
+.physio-directory { margin-bottom: 24px; }

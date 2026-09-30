@@ -1,3 +1,4 @@
+import PhysioDirectory from './PhysioDirectory'
 import { ServiceNotifications } from './StudentWellbeing'
 import AccountPrivacy from './AccountPrivacy'
 import { lazy, Suspense, useCallback, useState } from 'react'
@@ -18,7 +19,7 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
   const [dirty, setDirty] = useState(false)
   const [memberId, setMemberId] = useState('')
   const [newPerson, setNewPerson] = useState(false)
-  const countChanged = useCallback(() => { setRevision(value => value + 1); setDirty(false) }, [])
+  const countChanged = useCallback(() => { setRevision(value => value + 1) }, [])
   function navigate(next: Section, person = '', create = false) {
     if (dirty && !window.confirm('Hay información sin guardar. ¿Querés descartarla y cambiar de sección?')) return
     setDirty(false); setMemberId(person); setNewPerson(create); setSection(next)
@@ -29,10 +30,12 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.path}/></svg><span><strong>{item.title}</strong></span>
     </button>)}</nav></aside>
     <div className="workspace-main" onInputCapture={event => { if ((event.target as HTMLElement).closest('form')) setDirty(true) }}><Suspense fallback={<p role="status">Cargando sección…</p>}>
-      {section === 'overview' && <><ServiceNotifications client={client}/><CloudDashboard client={client} revision={revision} onOpenMembers={() => navigate('people')}/><div className="workspace-shortcuts"><button type="button" className="card" onClick={() => navigate('people', '', true)}><strong>Registrar una persona</strong><small>Datos básicos y anamnesis opcional →</small></button><button type="button" className="card" onClick={() => navigate('physio')}><strong>Atender en kinesiología</strong><small>Evaluación inicial y registro de sesión →</small></button></div></>}
-      {section === 'people' && <CloudMembers client={client} onCountChange={countChanged} initialNew={newPerson} onDirtyChange={setDirty} onOpenHealth={(id, mode) => navigate(mode, id)}/>}
+      {section === 'overview' && <><ServiceNotifications client={client}/><CloudDashboard client={client} revision={revision} onOpenMembers={() => navigate('people')}/><div className="workspace-shortcuts"><button type="button" className="card" onClick={() => navigate('people', '', true)}><strong>Registrar una persona</strong><small>Datos básicos y anamnesis opcional →</small></button><button type="button" className="card" onClick={() => navigate('physio')}><strong>Kinesiología</strong><small>Ver personas atendidas y sus fichas →</small></button></div></>}
+      {section === 'people' && <CloudMembers client={client} onCountChange={countChanged} initialNew={newPerson} initialMemberId={memberId || null} onDirtyChange={setDirty}/>}
+      {section === 'physio' && <PhysioDirectory client={client} onOpen={id => navigate('people', id)}/>} 
       {(section === 'intake' || section === 'physio') && <CloudHealth key={`${section}:${memberId}`} client={client} mode={section === 'intake' ? 'intake' : 'physio'} initialMemberId={memberId} onDirtyChange={setDirty} onNewPerson={() => navigate('people', '', true)}/>}
       {section === 'overview' && <AccountPrivacy client={client} admin/>}
     </Suspense></div>
   </div>
 }
+

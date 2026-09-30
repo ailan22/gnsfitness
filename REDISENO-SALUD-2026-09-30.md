@@ -30,3 +30,7 @@ Continúa pendiente la solución de copias de seguridad de la base de datos del 
 ## Ajuste visual solicitado
 Se recupera el tema original oscuro y dorado de App.css. Navegación superior por sectores, sin barra lateral ni textos decorativos. Anamnesis y kinesiología conservan permisos y datos; detalles de síntomas y derivación se muestran cuando corresponden o contienen información previa. Compilación, lint de componentes y revisión visual de escritorio y móvil aprobados. Paquete: gns-fitness-1790744545866.
 
+
+## Panel del alumno
+Entrenamiento de hoy con inicio/continuación, casillas y contador en curso, último resultado del mismo ejercicio y rutina, planificación completa desplegable. No se copian cargas previas como valores realizados. Casillas y borradores viven en memoria; deben guardarse antes de cerrar/recargar. Se advierte al cancelar y salir. La sesión sigue usando la función RPC existente con control de orden e idempotencia. Dos pruebas de referencia histórica, compilación y lint aprobados. Flujo local ficticio: inicio, carga, marcado, guardado y avance de semana comprobados; revisión visual móvil. Paquete gns-fitness-1790745805260.
+

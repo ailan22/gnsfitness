@@ -195,3 +195,17 @@ textarea { min-height: 90px; resize: vertical; }
 
 .biometric-settings { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #806939; }
 .biometric-settings h3 { margin-bottom: .5rem; }
+
+/* Student session tools keep the original palette. */
+.student-start { margin: 24px 0; }
+.student-last-result { display: block; color: #c9c5b8; line-height: 1.6; margin-top: 10px; }
+.student-check-progress { color: #e2bd66; margin: 20px 0 8px; }
+.student-progress-bar { width: 100%; height: 10px; accent-color: #d3ac55; }
+.exercise-check { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.exercise-check input { width: 22px; height: 22px; flex: none; accent-color: #d3ac55; }
+.exercise-check span { color: #aba99d; font-size: 12px; margin-left: auto; }
+.exercise-checked { border-left: 3px solid #d3ac55; padding-left: 14px; }
+.student-plan-details { margin: 32px 0; }
+.student-plan-details > summary { cursor: pointer; color: #d3ac55; font-size: 20px; font-weight: 700; padding: 16px 0; }
+.student-plan-details[open] > summary { margin-bottom: 24px; }
+@media (max-width: 550px) { .exercise-check { flex-wrap: wrap; } .exercise-check strong { flex: 1; } .exercise-check span { flex-basis: 100%; margin-left: 34px; } }

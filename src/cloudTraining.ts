@@ -62,3 +62,14 @@ export function trainingProgress(routine: CloudRoutine, routines: CloudRoutine[]
   const week = Math.min(Math.max(1, completed - (block - 1) * routine.block_rounds + 1), routine.program_rounds - (block - 1) * routine.block_rounds)
   return { nextDay, completed, finished, block, week, last }
 }
+
+// Exact exercise identity avoids suggesting loads from a different movement or routine.
+export function lastExerciseResult(sessions: CloudSession[], routineId: string, exercise: Exercise, currentDate: string) {
+  const matching = sessions.filter(session => session.routine_id === routineId && session.performed_at <= currentDate)
+    .sort((a,b) => b.performed_at.localeCompare(a.performed_at) || b.created_at.localeCompare(a.created_at) || b.id.localeCompare(a.id))
+  for (const session of matching) {
+    const result = session.results?.find(result => result.exerciseId === exercise.id && result.name.trim().toLowerCase() === exercise.name.trim().toLowerCase() && [result.sets, result.reps, result.load, result.rir].some(value => value?.trim()))
+    if (result) return { result, date: session.performed_at }
+  }
+  return null
+}

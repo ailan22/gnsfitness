@@ -9,7 +9,7 @@ import { securityHeaders } from './scripts/security-headers.mjs'
 const project = path.dirname(fileURLToPath(import.meta.url))
 const dist = path.join(project, 'dist')
 const out = path.join(project, '..', 'publicaciones', `gns-fitness-${Date.now()}`)
-const files = ['index.html', 'favicon.png', 'gns-logo-transparent.png', 'icons.svg', 'manifest.webmanifest', 'app-icon-transparent-192.png', 'app-icon-transparent-512.png']
+const files = ['index.html', 'favicon.png', 'gns-logo-transparent.png', 'icons.svg', 'manifest.webmanifest', 'app-icon-transparent-192.png', 'app-icon-transparent-512.png', 'privacidad.html', 'soporte.html', 'legal.css']
 for (const name of fs.readdirSync(path.join(dist, 'assets'))) {
   if (!/\.(js|css|svg|png|woff2?)$/.test(name)) throw Error('Unexpected build asset')
   files.push(`assets/${name}`)

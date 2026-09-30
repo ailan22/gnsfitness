@@ -1,4 +1,5 @@
 import { ServiceNotifications } from './StudentWellbeing'
+import AccountPrivacy from './AccountPrivacy'
 import { lazy, Suspense, useCallback, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import CloudDashboard from './CloudDashboard'
@@ -31,6 +32,7 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
       {section === 'overview' && <><ServiceNotifications client={client}/><CloudDashboard client={client} revision={revision} onOpenMembers={() => navigate('people')}/><div className="workspace-shortcuts"><button type="button" className="card" onClick={() => navigate('people', '', true)}><strong>Registrar una persona</strong><small>Datos básicos y anamnesis opcional →</small></button><button type="button" className="card" onClick={() => navigate('physio')}><strong>Atender en kinesiología</strong><small>Evaluación inicial y registro de sesión →</small></button></div></>}
       {section === 'people' && <CloudMembers client={client} onCountChange={countChanged} initialNew={newPerson} onDirtyChange={setDirty} onOpenHealth={(id, mode) => navigate(mode, id)}/>}
       {(section === 'intake' || section === 'physio') && <CloudHealth key={`${section}:${memberId}`} client={client} mode={section === 'intake' ? 'intake' : 'physio'} initialMemberId={memberId} onDirtyChange={setDirty} onNewPerson={() => navigate('people', '', true)}/>}
+      {section === 'overview' && <AccountPrivacy client={client} admin/>}
     </Suspense></div>
   </div>
 }

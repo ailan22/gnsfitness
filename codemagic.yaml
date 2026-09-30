@@ -1,6 +1,28 @@
 # Repository root must be gns-recovery. Configure gns_public_backend first.
-# Builds start manually. ios-signed uploads for internal TestFlight only.
+# Builds start manually. ios-signed remains internal; ios-app-store prepares public distribution.
 workflows:
+  ios-store-screenshots:
+    name: GNS - capturas App Store con datos ficticios
+    instance_type: mac_mini_m2
+    max_build_duration: 30
+    environment:
+      node: 24
+      xcode: latest
+    scripts:
+      - name: Instalar dependencias
+        script: npm ci
+      - name: Preparar interfaz con datos ficticios
+        script: |
+          set -e
+          node scripts/prepare-store-screenshots.mjs
+          npx cap sync ios
+          node normalize-ios-paths.mjs
+      - name: Compilar para simulador
+        script: xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build/store-screenshots CODE_SIGNING_ALLOWED=NO build
+      - name: Capturar iPhone y iPad
+        script: node scripts/capture-ios-screenshots.mjs
+    artifacts:
+      - store-screenshots/*.png
   ios-check:
     name: GNS iPhone - verificar compilacion
     instance_type: mac_mini_m2
@@ -69,6 +91,52 @@ workflows:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
 
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: false
+        submit_to_app_store: false
+  ios-app-store:
+    name: GNS iPhone - preparar App Store
+    integrations:
+      app_store_connect: GNS Codemagic
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    environment:
+      node: 24
+      xcode: latest
+      groups:
+        - gns_public_backend
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: uy.gnsfitness.app
+    scripts:
+      - name: Instalar dependencias
+        script: npm ci
+      - name: Validar configuracion y privacidad
+        script: |
+          set -e
+          node scripts/check-ios-environment.mjs
+          npm run lint
+          node --test tests/biometric-session.test.mjs tests/privacy-requests.test.mjs tests/student-services.test.mjs
+      - name: Preparar version de distribucion
+        script: |
+          set -e
+          npm run mobile:prepare
+          npx cap sync ios
+          node normalize-ios-paths.mjs
+      - name: Aplicar firma para App Store
+        script: xcode-project use-profiles
+      - name: Numerar compilacion
+        script: |
+          set -e
+          cd ios/App
+          agvtool new-version -all "$((BUILD_NUMBER + 1))"
+      - name: Generar archivo para App Store
+        script: xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
     publishing:
       app_store_connect:
         auth: integration

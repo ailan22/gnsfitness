@@ -13,9 +13,14 @@ const tables = {
     {id:'00000000-0000-4000-8000-000000000002',first_name:'Mateo',last_name:'Demostración',birth_date:'1988-03-20',joined_at:date,status:'Activo',email:'mateo@example.test',phone:'',trainer_name:'',goal:'',welcome_form:'Bienvenido'},
   ],
   memberships:[{id:'00000000-0000-4000-8000-000000000010',member_id:'00000000-0000-4000-8000-000000000001',plan_name:'Mensual',starts_at:date,ends_at:date,price:2100}],
-  member_progress:[],service_requests:[],payments:[],routines:[],sessions:[],session_reviews:[],member_admin_notes:[],health_records:[],
+  privacy_requests:[],member_progress:[],service_requests:[],payments:[],routines:[],sessions:[],session_reviews:[],member_admin_notes:[],health_records:[],
 }
 const studentMode = new URLSearchParams(location.search).has('student')
+const storeScreen = new URLSearchParams(location.search).get('store')
+if (storeScreen) {
+  tables.members[0].trainer_name = 'Equipo GNS'
+  tables.member_progress = [70,69.5,69,68.5].map((value,i)=>({id:`progress-${i}`,member_id:tables.members[0].id,metric:'weight',value,measured_on:`2026-09-${String(1+i*7).padStart(2,'0')}`}))
+}
 const previewUser = {id:'demo-student'}
 if(studentMode) { tables.members[0].user_id=previewUser.id; tables.routines.push({id:'routine',member_id:tables.members[0].id,name:'Programa de prueba',level:'Inicial',days_per_week:2,program_rounds:4,block_rounds:2,plan:{exercisesByDay:{1:[{id:'squat',name:'Sentadilla',sets:'3',reps:'10',rir:'2',rest:'90 segundos',load:'',notes:''}],2:[{id:'squat',name:'Sentadilla',sets:'3',reps:'10',rir:'2',rest:'90 segundos',load:'',notes:''}]}}}); tables.sessions.push({id:'previous',member_id:tables.members[0].id,routine_id:'routine',routine_name:'Programa de prueba',performed_at:'2026-09-01',created_at:'2026-09-01T12:00:00Z',day:1,block:1,week:1,notes:'',results:[{exerciseId:'squat',name:'Sentadilla',sets:'3',reps:'10',load:'20 kg',rir:'2'}]}); }
 if(!studentMode) tables.service_requests.push({id:'request-demo',member_id:tables.members[0].id,service:'nutrition',status:'pending',created_at:new Date().toISOString()});
@@ -34,4 +39,13 @@ const client = {async rpc(_name,args){if(_name==='request_nutrition_access'){tab
   }; return query
 }}
 const mobile = new URLSearchParams(location.search).has('mobile')
-createRoot(document.getElementById('root')).render(mobile ? <iframe title="Vista móvil" src={studentMode ? "/workspace-preview.html?student=1" : "/workspace-preview.html"} style={{width:390,height:844,border:0}}/> : <div className={studentMode ? "app" : "app app-admin"}><header className="topbar"><div className="brand"><img className="brand-logo" src="/gns-logo-transparent.png" alt=""/><span className="brand-copy"><span className="brand-title">GNS <span>FITNESS</span></span><span className="brand-motto">ENERGÍA · SALUD · BIENESTAR · VITALIDAD</span></span></div><span className="tag">Vista de prueba · datos ficticios</span></header><main className="content">{studentMode ? <CloudStudent client={client} user={previewUser}/> : <CloudAdmin client={client}/>}</main></div>)
+const student = <CloudStudent client={client} user={previewUser}/>
+createRoot(document.getElementById('root')).render(mobile ? <iframe title="Vista móvil" src={studentMode ? "/workspace-preview.html?student=1" : "/workspace-preview.html"} style={{width:390,height:844,border:0}}/> : <div className={studentMode ? "app" : "app app-admin"}><header className="topbar"><div className="brand">{!storeScreen && <img className="brand-logo" src="/gns-logo-transparent.png" alt=""/>}<span className="brand-copy"><span className="brand-title">GNS <span>FITNESS</span></span><span className="brand-motto">ENERGÍA · SALUD · BIENESTAR · VITALIDAD</span></span></div><span className="tag">{storeScreen ? 'Portal del alumno' : 'Vista de prueba · datos ficticios'}</span></header><main className="content">{studentMode ? storeScreen ? <div className="cloud-entry"><section className="card cloud-account cloud-portal">{student}</section></div> : student : <CloudAdmin client={client}/>}</main></div>)
+if (storeScreen && storeScreen !== 'training') {
+  const timer = setInterval(() => {
+    const label = storeScreen === 'progress' ? 'Mi progreso' : 'Nutrición'
+    const button = [...document.querySelectorAll('.student-section-nav button')].find(b=>b.textContent===label)
+    if (button) { button.click(); clearInterval(timer) }
+  },100)
+  setTimeout(()=>clearInterval(timer),10000)
+}

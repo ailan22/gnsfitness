@@ -3,6 +3,7 @@ import { createClient, type User } from '@supabase/supabase-js'
 import { observeAccount } from './observeAccount'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
+import AccountPrivacy from './AccountPrivacy'
 import { biometricAvailability, nativePlatform, nativeSessionStorage } from './nativeBiometrics'
 
 const CloudAdmin = lazy(() => import('./CloudAdmin'))
@@ -188,8 +189,10 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
           {biometricMessage && <p role="status">{biometricMessage}</p>}
         </div>}
         {role !== 'student' && <footer className="account-details"><p><strong>Cuenta:</strong> {user.email}</p><p><strong>Rol:</strong> {roleLabel}</p></footer>}
+        {client && role === 'student' && <AccountPrivacy client={client}/>}
         <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()}>Cerrar sesión</button>
       </div>}
     {error && <p className="error" role="alert">{error}</p>}
+    <nav className="account-legal" aria-label="Privacidad y ayuda"><a href="/privacidad.html">Privacidad</a><a href="/soporte.html">Ayuda y soporte</a></nav>
   </section>
 }

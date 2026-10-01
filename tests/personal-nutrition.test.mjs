@@ -15,6 +15,18 @@ test('energy estimates use explicit adult inputs and never apply automatic calor
  assert.equal(api.estimateMacros({...a,kcal:'2000',protein:'100',fat:'60'}).carbs,265)
  assert.equal(api.estimateMacros({...a,kcal:'500',protein:'100',fat:'60'}),null)
 })
+test('automatic macros populate maintenance goals and reject unsupported inputs',()=>{
+ const a={...api.emptyAssessment(),age:'30',weight:'70',height:'175',sex:'male',activity:'1.55'}
+ const r=api.calculateNutrition(a)
+ assert.equal(r.kcal,2556);assert.equal(r.protein,112);assert.equal(r.fat,85);assert.equal(r.carbs,336)
+ assert.ok(Math.abs(4*r.protein+9*r.fat+4*r.carbs-r.kcal)<=2)
+ assert.equal(api.calculateNutrition({...a,energyAdjustment:'-10'}).kcal,2300)
+ assert.equal(api.calculateNutrition({...a,energyAdjustment:'10',proteinRate:'2',fatPercent:'25'}).protein,140)
+ for(const change of [{energyAdjustment:'-50'},{proteinRate:'0'},{fatPercent:'90'}])assert.equal(api.calculateNutrition({...a,...change}),null)
+ for(const change of [{age:'17'},{special:true},{activity:''},{weight:'NaN'},{age:''},{sex:''}])assert.equal(api.calculateNutrition({...a,...change}),null)
+ assert.equal(api.calculateNutrition({...a,weight:'300',height:'120',age:'100',activity:'1.2',sex:'female'}),null)
+})
+
 test('private nutrition drafts, reviewed publication, cross-student isolation, MFA, backup and withdrawal',async()=>{
  const db=new PGlite();try{
  await db.exec(`create role authenticated;create role anon;create schema auth;create table auth.users(id uuid primary key,email text);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql stable as $$select jsonb_build_object('aal',current_setting('request.jwt.claim.aal',true))$$;grant usage on schema auth to authenticated,anon;alter default privileges in schema public grant all on tables to anon,authenticated;`)

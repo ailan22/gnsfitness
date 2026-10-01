@@ -1,3 +1,5 @@
+import PlanSessionSchedule from './PlanSessionSchedule'
+import { NUTRITION_PRICE, PHYSIO_SESSION_PRICE, planTotal, summarizeServiceDates, type PlanServiceConfig } from './planServices'
 import { planCatalog } from './planCatalog'
 import { readAllPages } from './readAllPages'
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
@@ -10,7 +12,7 @@ import { trainingProgress, type CloudRoutine, type CloudSession } from './cloudT
 
 type RoutinePlan = CloudRoutine['plan']
 type RoutineRow = CloudRoutine
-type MembershipRow = { id: string; plan_name: string; starts_at: string; ends_at: string; price: number; months: number; service_extras: string[]; service_details: string }
+type MembershipRow = { id: string; plan_name: string; starts_at: string; ends_at: string; price: number; months: number; service_extras: string[]; service_details: string; service_config: PlanServiceConfig | null }
 type PaymentRow = { id: string; membership_id: string; paid_at: string; amount: number; method: string }
 type SessionRow = CloudSession
 type ReviewRow = { session_id: string; trainer_name: string; trainer_user_id: string | null; notes: string; reviewed_at: string }
@@ -77,7 +79,8 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   const [deletingSessionId, setDeletingSessionId] = useState<string | null>(null)
   const [deletingRoutineId, setDeletingRoutineId] = useState<string | null>(null)
   const [recording, setRecording] = useState<'suggested' | 'manual' | null>(null)
-  const [planForm, setPlanForm] = useState({ planName: planCatalog[0].name, startsAt: today(), price: String(planCatalog[0].price), extras: [] as string[], details: '' })
+  const [planForm, setPlanForm] = useState({ planName: planCatalog[0].name, startsAt: today(), extras: [] as string[], details: '' })
+  const [physioDates, setPhysioDates] = useState<string[]>([])
   const [paymentForm, setPaymentForm] = useState({ paidAt: today(), amount: '', method: 'Efectivo' })
   useEffect(() => {
     let active = true
@@ -85,7 +88,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
       setHistory(null); setError(''); setEditing(null)
       const [routines, memberships, payments, sessions, reviews] = await Promise.all([
         readAllPages((from, to) => client.from('routines').select('id,name,goal,level,days_per_week,program_rounds,block_rounds,plan', { count: 'exact' }).eq('member_id', memberId).order('created_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
-        readAllPages((from, to) => client.from('memberships').select('id,plan_name,months,starts_at,ends_at,price,service_extras,service_details', { count: 'exact' }).eq('member_id', memberId).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
+        readAllPages((from, to) => client.from('memberships').select('id,plan_name,months,starts_at,ends_at,price,service_extras,service_details,service_config', { count: 'exact' }).eq('member_id', memberId).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
         readAllPages((from, to) => client.from('payments').select('id,membership_id,paid_at,amount,method', { count: 'exact' }).eq('member_id', memberId).order('paid_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
         readAllPages((from, to) => client.from('sessions').select('id,performed_at,routine_id,routine_name,day,block,week,notes,results,created_at', { count: 'exact' }).eq('member_id', memberId).order('performed_at', { ascending: false }).order('created_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
         readAllPages((from, to) => client.from('session_reviews').select('session_id,trainer_name,trainer_user_id,notes,reviewed_at', { count: 'exact' }).eq('member_id', memberId).order('session_id', { ascending: true }).range(from, to)),
@@ -107,6 +110,15 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   const pending = currentPlan ? Math.max(0, cents(currentPlan.price) - received) : 0
   const selectedPlan = planOptions.find(option => option.name === planForm.planName)
   const endsAt = membershipEnd(planForm.startsAt, selectedPlan?.months ?? 1)
+  const hasNutrition = planForm.extras.includes('Nutrición')
+  const hasPhysio = planForm.extras.includes('Kinesiología')
+  const totalPlanPrice = planTotal(selectedPlan?.price ?? 0, selectedPlan?.months ?? 1, hasNutrition, hasPhysio ? physioDates : [])
+  function changePlan(planName: string, startsAt: string) {
+    setPlanForm(current => ({ ...current, planName, startsAt }))
+    const end = membershipEnd(startsAt, planCatalog.find(p => p.name === planName)?.months ?? 1)
+    setPhysioDates(current => current.filter(d => end && d >= startsAt && d <= end))
+  }
+
   const currentRoutine = history?.routines[0]
   const progress = currentRoutine && history ? trainingProgress(currentRoutine, history.routines, history.sessions, today()) : null
 
@@ -203,17 +215,19 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
 
   async function savePlan(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const price = amountInCents(planForm.price)
+    const price = cents(totalPlanPrice)
     if (saving) return
     if (!selectedPlan || !endsAt || !Number.isSafeInteger(price) || price <= 0 || price > 999999999999) {
-      setError('Revisá el plan, la fecha y el precio. Escribí hasta dos decimales usando punto.'); return
+      setError('Revisá el plan y la fecha de inicio para calcular el importe.'); return
     }
+    if (hasPhysio && (!physioDates.length || physioDates.some(d => !parseDay(d) || d < planForm.startsAt || d > endsAt))) { setError('Seleccioná las fechas de Kinesiología dentro de la vigencia del plan.'); return }
     setSaving(true); setError(''); setMessage('')
     const { error: writeError } = await client.from('memberships').insert({ id: crypto.randomUUID(), member_id: memberId,
-      plan_name: [selectedPlan.name,...planForm.extras].join(' + '), service_extras: planForm.extras, service_details: planForm.details.trim(), months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 })
+      plan_name: [selectedPlan.name,...planForm.extras].join(' + '), service_extras: planForm.extras, service_details: planForm.details.trim(), service_config: { version: 1, nutritionMonthly: NUTRITION_PRICE, nutritionMonths: hasNutrition ? selectedPlan.months : 0, physioSessionPrice: PHYSIO_SESSION_PRICE, physioDates: hasPhysio ? physioDates : [] }, months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 })
     setSaving(false)
     if (writeError) { setError('No se pudo guardar el plan en Supabase. Revisá la conexión y los permisos.'); return }
     setActiveForm(null); setMessage('Plan guardado en Supabase. No se registró ningún pago.'); setRevision(value => value + 1)
+    onChanged()
   }
 
   async function savePayment(event: FormEvent<HTMLFormElement>) {
@@ -289,18 +303,30 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     </form></div>}
     {!error && !history && <p role="status">Cargando historial de Supabase…</p>}
     {history && <>
-      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving} onClick={() => { setActiveForm('plan'); setError(''); setMessage(''); setPlanForm({ planName: planCatalog[0].name, startsAt: today(), price: String(planCatalog[0].price), extras: [], details: '' }) }}>+ Asignar plan</button></div>
+      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving} onClick={() => { setActiveForm('plan'); setPhysioDates([]); setError(''); setMessage(''); setPlanForm({ planName: planCatalog[0].name, startsAt: today(), extras: [], details: '' }) }}>+ Asignar plan</button></div>
       {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
-        <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => setPlanForm({ ...planForm, planName: event.target.value, price: String(planCatalog.find(plan => plan.name === event.target.value)!.price) })}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
-          <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => setPlanForm({ ...planForm, startsAt: event.target.value })}/></label>
-          <label>Precio total (pesos uruguayos) *<input type="number" min="0.01" step="0.01" required value={planForm.price} onChange={event => setPlanForm({ ...planForm, price: event.target.value })}/></label></div>
-        <p className="muted">Importe base calculado por la duración completa, sin descuento. Podés ajustar el total si acordás complementos.</p><fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra=><label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e=>setPlanForm({...planForm,extras:e.target.checked?[...planForm.extras,extra]:planForm.extras.filter(x=>x!==extra)})}/>+ {extra}</label>)}</fieldset><label>Qué incluye el plan y sus complementos<textarea maxLength={1000} value={planForm.details} onChange={e=>setPlanForm({...planForm,details:e.target.value})}/></label><p className="muted">El precio es el total acordado, incluidos los complementos. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>
+        <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => changePlan(event.target.value, planForm.startsAt)}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
+          <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => changePlan(planForm.planName, event.target.value)}/></label>
+          <label>Total del plan (UYU)<input readOnly value={money(totalPlanPrice)} aria-label="Total del plan (UYU)"/></label></div>
+        <fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra => <label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e => setPlanForm({...planForm, extras: e.target.checked ? [...planForm.extras, extra] : planForm.extras.filter(x => x !== extra)})}/>+ {extra} · {extra === 'Nutrición' ? '$3.000 por mes' : '$650 por sesión'}</label>)}</fieldset>
+        {hasPhysio && endsAt && <PlanSessionSchedule start={planForm.startsAt} end={endsAt} dates={physioDates} onChange={setPhysioDates}/>}
+        <section className="plan-cost-summary" aria-label="Desglose del precio" aria-live="polite"><h3>Resumen del importe</h3>
+          <p>Cuota del gimnasio · {selectedPlan?.months} mes(es): <strong>{money(selectedPlan?.price ?? 0)}</strong></p>
+          {hasNutrition && <p>Nutrición · {money(NUTRITION_PRICE)} × {selectedPlan?.months} mes(es): <strong>{money(NUTRITION_PRICE * (selectedPlan?.months ?? 1))}</strong></p>}
+          {hasPhysio && <p>Kinesiología · {physioDates.length} sesión(es) × {money(PHYSIO_SESSION_PRICE)}: <strong>{money(physioDates.length * PHYSIO_SESSION_PRICE)}</strong></p>}
+          <p className="plan-grand-total">Total por la duración contratada: <strong>{money(totalPlanPrice)}</strong></p>
+        </section>
+        <label>Detalle adicional del plan (opcional)<textarea rows={2} maxLength={1000} value={planForm.details} onChange={e => setPlanForm({...planForm, details:e.target.value})}/></label>
+        <p className="muted">Nutrición se suma por cada mes contratado. Kinesiología se suma por las fechas elegidas. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>
         <p className="muted">Vence el {endsAt ? readableDate(endsAt) : '—'}. Crear un plan nuevo no registra un pago.</p>
         <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar plan'}</button><button type="button" className="secondary" disabled={saving} onClick={() => { setActiveForm(null); setError('') }}>Cancelar</button></div>
       </fieldset></form>}
       {!currentPlan ? <div className="card empty">Todavía no hay un plan asignado a este socio.</div> : <section className="card profile">
         <div className="heading"><h2>{currentPlan.plan_name}</h2><span className={`badge ${daysUntil(currentPlan.ends_at, today())! < 0 ? 'danger' : daysUntil(currentPlan.ends_at, today())! <= 10 ? 'warning' : ''}`}>{dueLabel(currentPlan.ends_at)}</span></div>
-        {currentPlan.service_details&&<p>{currentPlan.service_details}</p>}<p>Duración: {currentPlan.months} {currentPlan.months === 1 ? 'mes' : 'meses'} · Inicio: {readableDate(currentPlan.starts_at)} · Vencimiento: {readableDate(currentPlan.ends_at)}</p><p>Precio: {money(currentPlan.price)}</p>
+        {currentPlan.service_details&&<p>{currentPlan.service_details}</p>}{currentPlan.service_config?.version === 1 && <details className="member-compact"><summary>Complementos y sesiones contratadas</summary>
+          {currentPlan.service_config.nutritionMonths > 0 && <p>Nutrición: {currentPlan.service_config.nutritionMonths} mes(es) × {money(currentPlan.service_config.nutritionMonthly)}</p>}
+          {currentPlan.service_config.physioDates.length > 0 && <><p>Kinesiología: {currentPlan.service_config.physioDates.length} sesión(es) × {money(currentPlan.service_config.physioSessionPrice)}</p><p>Fechas: {summarizeServiceDates(currentPlan.service_config.physioDates)}</p></>}
+        </details>}<p>Duración: {currentPlan.months} {currentPlan.months === 1 ? 'mes' : 'meses'} · Inicio: {readableDate(currentPlan.starts_at)} · Vencimiento: {readableDate(currentPlan.ends_at)}</p><p>Precio: {money(currentPlan.price)}</p>
         <p>Pagado: {money(received / 100)} · Saldo pendiente: <strong>{money(pending / 100)}</strong></p>
         {pending > 0 && activeForm !== 'payment' && <button type="button" disabled={saving} onClick={() => { setPaymentRequestId(crypto.randomUUID()); setActiveForm('payment'); setPaymentForm({ paidAt: today(), amount: '', method: 'Efectivo' }); setError(''); setMessage('') }}>+ Registrar pago</button>}
         {activeForm === 'payment' && <form className="form cloud-payment-form" onSubmit={event => void savePayment(event)}>

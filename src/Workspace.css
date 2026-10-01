@@ -92,3 +92,12 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .nutrition-chapter li { margin:12px 0; line-height:1.65; }
 .nutrition-guide a { color:#e1bd77; overflow-wrap:anywhere; }
 .nutrition-practice { border-left:3px solid #c8a15e; padding:12px 16px; margin:18px 0; background:#ffffff06; }
+.schedule-options { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 20px; }
+.schedule-options label, .schedule-calendar label { display:flex; align-items:center; gap:8px; padding:10px; border:1px solid #565247; border-radius:9px; margin:0; }
+.schedule-options input, .schedule-calendar input { width:18px; height:18px; flex:none; accent-color:#d3ac55; }
+.schedule-calendar { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:7px; margin:16px 0; }
+.plan-cost-summary { padding:20px; border:1px solid #a48249; border-radius:12px; background:#d3ac5509; }
+.plan-cost-summary p { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.plan-grand-total { border-top:1px solid #685639; padding-top:16px; color:#edcb84; font-size:1.1rem; }
+.service-reminders { margin-bottom:24px; border-left:3px solid #d3ac55; }
+@media(max-width:550px) { .schedule-calendar { grid-template-columns:repeat(4,minmax(0,1fr)); } }

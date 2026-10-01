@@ -2,9 +2,10 @@ import { readAllPages } from './readAllPages'
 import { useCallback, useEffect, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { daysUntil } from './membership'
+import { scheduledForDay, type PlanServiceConfig } from './planServices'
 
 type Member = { id: string; first_name: string; last_name: string; status: string; joined_at: string }
-type Plan = { id: string; member_id: string; plan_name: string; starts_at: string; ends_at: string; price: number }
+type Plan = { id: string; member_id: string; plan_name: string; starts_at: string; ends_at: string; price: number; service_config: PlanServiceConfig | null }
 type Payment = { membership_id: string; paid_at: string; amount: number }
 type Routine = { id: string }
 type Session = { id: string; performed_at: string }
@@ -14,16 +15,17 @@ const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_00
 const money = (value: number) => new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(value)
 const cents = (value: number) => Math.round(Number(value) * 100)
 
-export default function CloudDashboard({ client, revision, onOpenMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: () => void }) {
+export default function CloudDashboard({ client, revision, onOpenMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: (memberId?: string) => void }) {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
   const [refreshCount, setRefreshCount] = useState(0)
+  const [date, setDate] = useState(today)
   const refresh = useCallback(async () => {
     setLoading(true)
     const [members, plans, payments, routines, sessions] = await Promise.all([
       readAllPages((from, to) => client.from('members').select('id,first_name,last_name,status,joined_at', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
-      readAllPages((from, to) => client.from('memberships').select('id,member_id,plan_name,starts_at,ends_at,price', { count: 'exact' }).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
+      readAllPages((from, to) => client.from('memberships').select('id,member_id,plan_name,starts_at,ends_at,price,service_config', { count: 'exact' }).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
       readAllPages((from, to) => client.from('payments').select('membership_id,paid_at,amount', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
       readAllPages((from, to) => client.from('routines').select('id', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
       readAllPages((from, to) => client.from('sessions').select('id,performed_at', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
@@ -40,12 +42,12 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
 
   useEffect(() => {
     const timer = setTimeout(() => { void refresh() }, 0)
-    const whenReturning = () => { if (document.visibilityState === 'visible') void refresh() }
+    const whenReturning = () => { if (document.visibilityState === 'visible') { setDate(today()); void refresh() } }
+    const reminderTimer = setInterval(whenReturning, 60_000)
     window.addEventListener('focus', whenReturning)
-    return () => { clearTimeout(timer); window.removeEventListener('focus', whenReturning) }
+    return () => { clearTimeout(timer); clearInterval(reminderTimer); window.removeEventListener('focus', whenReturning) }
   }, [refresh, revision, refreshCount])
 
-  const date = today()
   const month = date.slice(0, 7)
   const currentPlans = new Map<string, Plan>()
   for (const plan of snapshot?.plans ?? []) if (!currentPlans.has(plan.member_id)) currentPlans.set(plan.member_id, plan)
@@ -65,6 +67,11 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
     return balance > 0 ? [{ member, plan, balance }] : []
   }).sort((a, b) => b.balance - a.balance || a.member.last_name.localeCompare(b.member.last_name, 'es'))
   const monthlyIncome = (snapshot?.payments ?? []).filter(item => item.paid_at.startsWith(month)).reduce((sum, item) => sum + cents(item.amount), 0)
+  const todaySessions = (snapshot?.members ?? []).flatMap(member => {
+    if (member.status !== 'Activo') return []
+    const plans = (snapshot?.plans ?? []).filter(plan => plan.member_id === member.id && plan.starts_at <= date && plan.ends_at >= date && scheduledForDay(plan.service_config, date))
+    return plans.length ? [{ member, count: plans.length }] : []
+  })
 
   return <section className="cloud-dashboard" aria-label="Indicadores del gimnasio">
     <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Panel de administración.</h1></div>
@@ -72,7 +79,10 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
     <p className="muted">Socios, pagos y vencimientos.</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
-    {snapshot && <><div className="stats dashboard-primary">
+    {snapshot && <>{todaySessions.length > 0 && <section className="card service-reminders" aria-label="Recordatorios de Kinesiología"><h2>Kinesiología hoy · {date.split('-').reverse().join('/')}</h2>
+      {todaySessions.length ? <ul className="dashboard-breakdown">{todaySessions.map(({member,count}) => <li key={member.id}><span><strong>{member.first_name} {member.last_name}</strong><small>{count} sesión(es) programada(s)</small></span><button type="button" className="secondary" onClick={() => onOpenMembers?.(member.id)}>Ver ficha</button></li>)}</ul> : <p className="muted">No hay sesiones programadas para hoy.</p>}
+      <p className="muted">Recordatorios dentro de la app, según las fechas guardadas en los planes. Se actualizan al abrir el panel y mientras permanece visible.</p>
+    </section>}<div className="stats dashboard-primary">
       <div className="card"><span>Socios activos</span><strong>{snapshot.members.filter(member => member.status === 'Activo').length}</strong><small>{snapshot.members.length} personas registradas</small></div>
       <div className="card"><span>Ingresos del mes</span><strong className="amount">{money(monthlyIncome / 100)}</strong><small>Pagos registrados este mes</small></div>
       <div className="card"><span>Planes vencidos</span><strong className="red">{expired}</strong><small>{expiring} {expiring === 1 ? 'vence' : 'vencen'} en los próximos 10 días</small></div>
@@ -102,6 +112,6 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
             <strong>{money(balance / 100)}</strong></li>)}
         </ul>}
       </section>
-    </div><button type="button" className="text-button dashboard-members-link" onClick={onOpenMembers}>Ver personas y fichas →</button></>}
+    </div><button type="button" className="text-button dashboard-members-link" onClick={() => onOpenMembers?.()}>Ver personas y fichas →</button></>}
   </section>
 }

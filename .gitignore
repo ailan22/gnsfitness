@@ -24,14 +24,7 @@ dist-mobile
 *.sln
 *.sw?
 
-# Local credentials and signing material
-.env
-.env.*
-!.env.example
-*.p12
-*.p8
-*.pem
-*.key
-*.jks
-*.keystore
-*.mobileprovision
+# Private backup outputs
+*.gnsfull
+*.gnsbackup
+__pycache__/

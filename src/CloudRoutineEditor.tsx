@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
+import { confirmedInsert } from './confirmedInsert'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { Exercise } from './data'
 import { plannedExercises, plannedGuidance, plannedComponents, type CloudPlan, type CloudRoutine } from './cloudTraining'
@@ -17,6 +18,8 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
   const [blockWeeks, setBlockWeeks] = useState(initial?.block_rounds ?? 4)
   const [plan, setPlan] = useState<CloudPlan>(() => structuredClone(initial?.plan ?? cleanPlan()))
   const [saving, setSaving] = useState(false)
+  const saveBusy = useRef(false)
+  const [requestId] = useState(() => crypto.randomUUID())
   const [error, setError] = useState('')
   const [editing, setEditing] = useState<{ block: number; week: number; day: number; exercise: Exercise } | null>(null)
 
@@ -87,16 +90,20 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
         }
       }
     }
+    if (saveBusy.current) return
+    saveBusy.current = true
     setSaving(true); setError('')
+    try {
     const row = { name: name.trim(), goal: goal.trim(), level, days_per_week: days, program_rounds: weeks, block_rounds: blockWeeks, plan: trimmed }
-    const result = initial
-      ? await client.from('routines').update(row).eq('id', initial.id).eq('member_id', memberId)
+    if (initial) {
+    const result = await client.from('routines').update(row).eq('id', initial.id).eq('member_id', memberId)
         .eq('plan', JSON.stringify(initial.plan)).select('id').maybeSingle()
-      : await client.from('routines').insert({ ...row, id: crypto.randomUUID(), member_id: memberId }).select('id').maybeSingle()
-    setSaving(false)
     if (result.error) { setError('No se pudo guardar la rutina. Revisá la conexión y los permisos.'); return }
     if (!result.data) { setError('La rutina cambió en otra sesión. Cerrá la ficha y volvé a abrirla antes de editar.'); return }
+    } else await confirmedInsert(client, 'routines', { ...row, id: requestId, member_id: memberId })
     onSaved()
+    } catch (error) { setError(error instanceof Error ? error.message : 'No se pudo confirmar el guardado. Conservamos el formulario.') }
+    finally { saveBusy.current = false; setSaving(false) }
   }
   return <section className="card form cloud-routine-editor">
     <div className="heading"><h2>{initial ? 'Editar rutina' : 'Crear rutina'}</h2><button className="secondary" type="button" disabled={saving} onClick={onCancel}>Cancelar</button></div>

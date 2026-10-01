@@ -1,4 +1,5 @@
 import NutritionGuide from './NutritionGuide'
+import BackupPanel from './BackupPanel'
 import PhysioDirectory from './PhysioDirectory'
 import { ServiceNotifications } from './StudentWellbeing'
 import AccountPrivacy from './AccountPrivacy'
@@ -35,7 +36,7 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
       {section === 'people' && <CloudMembers client={client} onCountChange={countChanged} initialNew={newPerson} initialMemberId={memberId || null} onDirtyChange={setDirty}/>}
       {section === 'physio' && <PhysioDirectory client={client} onOpen={id => navigate('people', id)}/>} 
       {section === 'nutrition' && <><ServiceNotifications client={client}/><NutritionGuide/></>}
-      {section === 'overview' && <AccountPrivacy client={client} admin/>}
+      {section === 'overview' && <><AccountPrivacy client={client} admin/><BackupPanel client={client}/></>}
     </Suspense></div>
   </div>
 }

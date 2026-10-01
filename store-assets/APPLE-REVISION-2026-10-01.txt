@@ -1,0 +1,54 @@
+GNS FITNESS — Respuesta a la solicitud 2.1 de Apple
+Estado: BORRADOR. No enviado. Completar y contrastar con la compilación enviada.
+
+LECTURA DEL MENSAJE
+Apple solicita información por tratarse de un desarrollador con poco historial de revisión. Las recomendaciones bajo “Prevent Common Issues” no son hallazgos de seguridad específicos. Se debe responder al equipo y copiar la información en App Review Information / Notes.
+
+VIDEO EN IPHONE REAL
+1. Actualizar iOS y comprobar qué versión/compilación de GNS FITNESS está instalada en TestFlight. Grabar la misma compilación que revisará Apple; una vista web nueva no sustituye esa prueba.
+2. Usar una cuenta exclusiva de demostración con persona, rutinas y registros ficticios. No grabar fichas reales, contraseñas visibles, códigos de doble factor, QR ni notificaciones personales. Activar No molestar.
+3. Iniciar Grabación de pantalla desde el Centro de control. Empezar en la pantalla de inicio y abrir GNS FITNESS desde su icono.
+4. Mostrar el ingreso y el recorrido habitual del alumno: entrenamiento asignado, detalle de ejercicios, registro de un entrenamiento ficticio e historial. Mostrar únicamente las funciones presentes en esa compilación.
+5. Mostrar Nutrición y cómo se solicita/habilita el acceso, si está disponible en esa versión. Explicar qué está incluido en el servicio presencial y si existe contenido digital que se venda por separado. No afirmar que no hay contenido pago sin verificarlo.
+6. Mostrar “Mi cuenta y mis datos” y el procedimiento de eliminación. Actualmente la app tramita una solicitud administrativa; no describirlo como borrado instantáneo. Si esa pantalla no aparece en la compilación enviada, identificar la diferencia antes de responder.
+7. Mostrar Cerrar sesión. Si Apple debe revisar administración, grabar otro recorrido con una cuenta de demostración aislada: socios ficticios, plan y pagos, rutina y ficha de salud ficticia. No conceder administración sobre la base real a los revisores ni quitar el doble factor.
+8. Detener grabación, revisar que no haya datos sensibles y guardar el archivo. Anotar modelo de iPhone, versión de iOS, versión/compilación y fecha. Adjuntar a App Store Connect o facilitar un enlace accesible al revisor.
+
+RESPUESTA EN INGLÉS — COMPLETAR ANTES DE ENVIAR
+Hello App Review Team,
+
+Thank you for requesting additional information regarding GNS FITNESS.
+
+1. Demonstration on a physical device
+[Attach the recording or insert its accessible link. State iPhone model, iOS version, app version/build and recording date. Describe the flows actually demonstrated.]
+
+2. Purpose and audience
+GNS FITNESS is a companion app for members of the GNS FITNESS gym. It lets members consult their assigned training program and their own training history and membership information. Gym administration manages member records and assigned services. Member information is private; this is not a public social network.
+[Confirm the exact features present in the submitted build, who can become a member, and whether all intended users are customers of this gym. This may affect the appropriate distribution method.]
+
+3. Setup and review access
+Member access is provisioned by gym administration rather than unrestricted public registration. Please use the dedicated demonstration account supplied in the App Review sign-in fields.
+[Provide verified instructions and credentials through the appropriate private fields. Confirm that the account can access all relevant screens without relying on a code sent to the owner. Any administrator demonstration must use an isolated environment containing fictitious records and retain security controls.]
+Account deletion is initiated within the app through the personal-data section and processed by administration; the interface explains the timeframe. This is a deletion request, not immediate automated deletion.
+[Confirm this flow in the submitted build and assess any required change against Apple's account-deletion guidance before submission.]
+
+4. External services
+Supabase provides authentication and the application database. Cloudflare hosts the web application and public support/privacy pages. Codemagic and GitHub are used for development and build delivery. Capacitor provides the native iOS wrapper; device biometrics use the operating system's authentication mechanism. GNS FITNESS does not receive Face ID biometric templates.
+[Verify the complete SDK/service inventory of the submitted build. Explain any digital paid features and any payment providers, if applicable; the free download alone does not settle in-app-purchase requirements.]
+
+5. Regions
+The requested storefronts are Uruguay, Argentina, Brazil and Mexico.
+[Confirm whether all features and content are consistent across these regions. Distinguish storefront availability from the location where in-person services are provided.]
+
+6. Ownership and professional services
+The responsible person is Geronimo Vicciconde. Support contact: gndevicciconde@gmail.com. The owner has stated that he created and authorizes use of the app's branding and material.
+[List any third-party material and its applicable authorization. If regulated professional services are provided, attach the relevant professional credentials; do not invent credentials or claim medical authorization.]
+
+Please let us know if further information is needed to complete the review.
+
+PENDIENTES PARA CERRAR LA RESPUESTA
+- Grabación real y versión/compilación confirmadas.
+- Cuenta de prueba comprobada y entorno aislado si se requiere revisión administrativa.
+- Confirmar alcance regional, servicios pagos y credenciales profesionales aplicables.
+- Comprobar eliminación de cuenta en la compilación enviada.
+- Autorización expresa para enviar la respuesta final; este documento no se ha enviado.

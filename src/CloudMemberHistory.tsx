@@ -1,4 +1,5 @@
 import PlanSessionSchedule from './PlanSessionSchedule'
+import { confirmedInsert } from './confirmedInsert'
 import { NUTRITION_PRICE, PHYSIO_SESSION_PRICE, planTotal, summarizeServiceDates, type PlanServiceConfig } from './planServices'
 import { planCatalog } from './planCatalog'
 import { readAllPages } from './readAllPages'
@@ -69,6 +70,8 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   const [message, setMessage] = useState('')
   const [revision, setRevision] = useState(0)
   const paymentBusy = useRef(false)
+  const planBusy = useRef(false)
+  const planRequestId = useRef(crypto.randomUUID())
   const [paymentRequestId, setPaymentRequestId] = useState(() => crypto.randomUUID())
   const [activeForm, setActiveForm] = useState<'plan' | 'payment' | null>(null)
   const [routineEditor, setRoutineEditor] = useState<RoutineRow | 'new' | null>(null)
@@ -216,18 +219,20 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   async function savePlan(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const price = cents(totalPlanPrice)
-    if (saving) return
+    if (saving || planBusy.current) return
     if (!selectedPlan || !endsAt || !Number.isSafeInteger(price) || price <= 0 || price > 999999999999) {
       setError('Revisá el plan y la fecha de inicio para calcular el importe.'); return
     }
     if (hasPhysio && (!physioDates.length || physioDates.some(d => !parseDay(d) || d < planForm.startsAt || d > endsAt))) { setError('Seleccioná las fechas de Kinesiología dentro de la vigencia del plan.'); return }
+    planBusy.current = true
     setSaving(true); setError(''); setMessage('')
-    const { error: writeError } = await client.from('memberships').insert({ id: crypto.randomUUID(), member_id: memberId,
+    try {
+    await confirmedInsert(client, 'memberships', { id: planRequestId.current, member_id: memberId,
       plan_name: [selectedPlan.name,...planForm.extras].join(' + '), service_extras: planForm.extras, service_details: planForm.details.trim(), service_config: { version: 1, nutritionMonthly: NUTRITION_PRICE, nutritionMonths: hasNutrition ? selectedPlan.months : 0, physioSessionPrice: PHYSIO_SESSION_PRICE, physioDates: hasPhysio ? physioDates : [] }, months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 })
-    setSaving(false)
-    if (writeError) { setError('No se pudo guardar el plan en Supabase. Revisá la conexión y los permisos.'); return }
     setActiveForm(null); setMessage('Plan guardado en Supabase. No se registró ningún pago.'); setRevision(value => value + 1)
     onChanged()
+    } catch (error) { setError(error instanceof Error ? error.message : 'No se pudo confirmar el guardado. Conservamos el formulario.') }
+    finally { planBusy.current = false; setSaving(false) }
   }
 
   async function savePayment(event: FormEvent<HTMLFormElement>) {
@@ -303,7 +308,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     </form></div>}
     {!error && !history && <p role="status">Cargando historial de Supabase…</p>}
     {history && <>
-      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving} onClick={() => { setActiveForm('plan'); setPhysioDates([]); setError(''); setMessage(''); setPlanForm({ planName: planCatalog[0].name, startsAt: today(), extras: [], details: '' }) }}>+ Asignar plan</button></div>
+      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving || activeForm === 'plan'} onClick={() => { planRequestId.current = crypto.randomUUID(); setActiveForm('plan'); setPhysioDates([]); setError(''); setMessage(''); setPlanForm({ planName: planCatalog[0].name, startsAt: today(), extras: [], details: '' }) }}>+ Asignar plan</button></div>
       {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
         <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => changePlan(event.target.value, planForm.startsAt)}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
           <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => changePlan(planForm.planName, event.target.value)}/></label>

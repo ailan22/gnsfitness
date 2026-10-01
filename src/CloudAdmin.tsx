@@ -1,3 +1,4 @@
+import PlanNotifications from './PlanNotifications'
 import NutritionGuide from './NutritionGuide'
 import AdminRecipeLibrary from './AdminRecipeLibrary'
 import PersonalNutrition from './PersonalNutrition'
@@ -30,7 +31,7 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
   return <div className="admin-workspace">
-    <aside className="workspace-sidebar"><nav aria-label="Secciones de gestión">{sections.map(item => <button key={item.id} type="button" className={section === item.id ? 'workspace-nav active' : 'workspace-nav'} aria-current={section === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}>
+    <PlanNotifications client={client} revision={revision} onOpen={id => navigate('people', id)}/><aside className="workspace-sidebar"><nav aria-label="Secciones de gestión">{sections.map(item => <button key={item.id} type="button" className={section === item.id ? 'workspace-nav active' : 'workspace-nav'} aria-current={section === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.path}/></svg><span><strong>{item.title}</strong></span>
     </button>)}</nav></aside>
     <div className="workspace-main" onInputCapture={event => { if ((event.target as HTMLElement).closest('form')) setDirty(true) }}><Suspense fallback={<p role="status">Cargando sección…</p>}>

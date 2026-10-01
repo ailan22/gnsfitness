@@ -149,5 +149,24 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   .cloud-student input, .cloud-student select, .cloud-student textarea { font-size: 16px; }
 }
 .nutrition-diet-editor { min-height:300px; line-height:1.6; }
+.content:has(.cloud-student), .content:has(.admin-workspace) { width:100%; max-width:none; }
+.cloud-entry .cloud-portal:has(.cloud-student), .cloud-entry .cloud-portal:has(.admin-workspace) { width:100%; max-width:none; }
+.plan-notification-corner { display:flex; justify-content:flex-end; position:relative; margin-bottom:12px; }
+.plan-notifications > summary { cursor:pointer; color:#edcb84; padding:10px 12px; border:1px solid #62533b; border-radius:12px; }
+.plan-notification-list { position:absolute; top:100%; right:0; z-index:20; width:min(380px, calc(100vw - 32px)); max-height:65vh; overflow:auto; padding:16px; border:1px solid #62533b; border-radius:12px; background:#191c16; box-shadow:0 12px 30px #0008; }
+.plan-notification-list article { padding:12px 0; border-bottom:1px solid #494338; }
+.plan-notification-list article p { margin:8px 0; }
+.plan-notification-list > small { display:block; margin-top:14px; }
+.routine-heading { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; }
+.routine-record-menu { margin-left:auto; max-width:100%; text-align:right; }
+.routine-record-menu > summary, .exercise-results > summary { cursor:pointer; color:#edcb84; padding:10px 0; }
+.routine-record-menu > button { margin-top:8px; }
+.exercise-results > summary { text-align:right; }
+.exercise-results .student-result-fields { margin-top:12px; }
+@media(max-width:650px) {
+ .content:has(.cloud-student), .content:has(.admin-workspace) { padding-left:max(4px, env(safe-area-inset-left)); padding-right:max(4px, env(safe-area-inset-right)); }
+ .cloud-entry .cloud-portal:has(.cloud-student), .cloud-entry .cloud-portal:has(.admin-workspace) { padding:4px; border:0; }
+ .cloud-student .student-record, .cloud-student .student-today { padding:10px 6px; }
+}
 .nutrition-plan-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; margin-block:1rem; }
 

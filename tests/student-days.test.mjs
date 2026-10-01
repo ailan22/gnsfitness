@@ -14,6 +14,7 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
   const exports = {}
   vm.runInNewContext(compile('CloudStudent.tsx'), { exports, window: { confirm: () => true }, crypto: { randomUUID: () => 'request-id' },
     require(name) {
+      if (name === './PlanNotifications') return { default: () => null }
       if (name === './StudentWellbeing') return { StudentWellbeing: () => null }
       if (name === './cloudTraining') return training
       if (name === './readAllPages') return {}

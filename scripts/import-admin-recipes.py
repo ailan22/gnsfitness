@@ -14,7 +14,10 @@ root = Path(__file__).resolve().parents[1]
 out = root / 'public/nutricion'
 categories = {'DESAYUNOS': 'Desayunos', 'ALMUERZOS': 'Almuerzos', 'MERIENDAS': 'Meriendas', 'CENAS': 'Cenas', 'POSTRES': 'Postres'}
 
-for kind, filename, expected in [('recetas', sys.argv[1], 200), ('dulces', sys.argv[2], 70)]:
+sources = [('recetas', sys.argv[1], 200)]
+if len(sys.argv) > 2:
+    sources.append(('dulces', sys.argv[2], 70))
+for kind, filename, expected in sources:
     source = Path(filename)
     reader = PdfReader(source)
     assert len(reader.pages) == expected
@@ -37,7 +40,8 @@ for kind, filename, expected in [('recetas', sys.argv[1], 200), ('dulces', sys.a
             photo.thumbnail((1000, 1000))
             name = f'{kind}-{index + 1:03}.webp'
             photo.save(out / name, 'WEBP', quality=84)
-            item = {'id': f'{kind}-{index + 1:03}', 'title': title, 'details': lines[meta], 'image': '/nutricion/' + name,
+            image_version = hashlib.sha256((out / name).read_bytes()).hexdigest()[:12]
+            item = {'id': f'{kind}-{index + 1:03}', 'title': title, 'details': lines[meta], 'image': '/nutricion/' + name + '?v=' + image_version,
                     'ingredients': ' '.join(lines[ingredients + 1:method]), 'method': ' '.join(lines[method + 1:nutrition]),
                     'nutrition': lines[nutrition + 1:], 'page': index + 1}
             assert all(item[key] for key in ['title', 'ingredients', 'method', 'nutrition'])

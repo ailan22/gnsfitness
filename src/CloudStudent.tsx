@@ -1,3 +1,4 @@
+import PlanNotifications from './PlanNotifications'
 import { StudentWellbeing } from './StudentWellbeing'
 import { readAllPages } from './readAllPages'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
@@ -168,7 +169,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   return <section className="cloud-student" aria-label="Portal del alumno">
     <div className="student-brand"><img src="/gns-logo-transparent.png" alt="GNS Fitness" width="100" height="100"/><p className="eyebrow">TU ESPACIO · GNS FITNESS</p></div>
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
-      <h1>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
+      <PlanNotifications client={client} memberId={history.member.id}/><h1>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
       <p className="muted">Acá tenés tu rutina y la guía para entrenar. {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}
@@ -179,7 +180,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       <div>
       {!routine || !progress ? <div className="card empty">Todavía no tenés una rutina asignada. Consultá con tu entrenador.</div> : <>
         <section ref={todayCard} className="card student-today">
-          <p className="eyebrow">MI ENTRENAMIENTO DE HOY</p>
+          <div className="routine-heading"><p className="eyebrow">MI ENTRENAMIENTO DE HOY</p>{!progress.finished && <details className="routine-record-menu"><summary aria-label="Desplegar registro de kilos y RIR">Registrar kilos y RIR</summary><button type="button" disabled={!exercises.length || history.member.status !== 'Activo'} onClick={() => recording ? recordForm.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) : begin()}>{recording ? 'Continuar registro' : 'Abrir registro del entrenamiento'}</button></details>}</div>
           <h2>{progress.finished ? 'Programa completado' : `Día ${progress.nextDay}`}</h2>
           {!progress.finished && <p className="student-welcome">{history.member.welcome_form === 'Te damos la bienvenida' ? '¡Hoy es un buen día para entrenar!' : `¡${history.member.welcome_form} a tu día de entrenamiento!`} Te toca el Día {progress.nextDay}. Seguí la guía y anotá tus resultados mientras entrenás.</p>}
           <p>{routine.name} · {routine.level} · {routine.days_per_week} días por semana</p>
@@ -191,7 +192,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             {exercises.length ? !recording && <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={item.id}>
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}
               <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
-              <button type="button" className="secondary exercise-record-button" disabled={history.member.status !== 'Activo'} onClick={() => begin(item.id)}>Registrar kilos y RIR</button>
+              
             </div>)}</div> : <p>Este día no tiene ejercicios cargados. Consultá con tu entrenador.</p>}
             {guidance && <div className="session-guidance"><strong>Indicaciones para este día</strong><p>{guidance}</p></div>}
             {components.map(item => <div className="session-guidance" key={item.id}><strong>{item.title}</strong><p>{item.details}</p></div>)}
@@ -210,8 +211,8 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           <label>Fecha del entrenamiento<input type="date" required max={today()} value={performedAt} onChange={event => setPerformedAt(event.target.value)}/></label>
           {exercises.map(item => <div className={`session-exercise ${checked.includes(item.id) ? 'exercise-checked' : ''}`} key={item.id} id={`exercise-${item.id}`}><label className="exercise-check"><input type="checkbox" checked={checked.includes(item.id)} onChange={event => setChecked(current => event.target.checked ? [...current, item.id] : current.filter(id => id !== item.id))}/><strong>{item.name}</strong><span>{checked.includes(item.id) ? 'Completado' : 'Marcar al terminar'}</span></label><small>Planificado: {item.sets || '—'} series · {item.reps || '—'} repeticiones · Carga {item.load || '—'} · RIR {item.rir || '—'}</small>
             <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
-            <div className="grid student-result-fields">{(['load', 'rir'] as const).map(field => <label key={field}>{field === 'load' ? 'Kilos utilizados' : 'RIR real'}
-              <input type="number" min="0" max={field === 'rir' ? 10 : undefined} step={field === 'load' ? 'any' : '1'} inputMode={field === 'load' ? 'decimal' : 'numeric'} placeholder={field === 'load' ? 'Ej.: 22,5' : 'Ej.: 2'} value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => setResults(current => current.map(result => result.exerciseId === item.id ? { ...result, [field]: event.target.value } : result))}/></label>)}</div>
+            <details className="exercise-results"><summary>Registrar kilos y RIR</summary><div className="grid student-result-fields">{(['load', 'rir'] as const).map(field => <label key={field}>{field === 'load' ? 'Kilos utilizados' : 'RIR real'}
+              <input type="number" min="0" max={field === 'rir' ? 10 : undefined} step={field === 'load' ? 'any' : '1'} inputMode={field === 'load' ? 'decimal' : 'numeric'} placeholder={field === 'load' ? 'Ej.: 22,5' : 'Ej.: 2'} value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => setResults(current => current.map(result => result.exerciseId === item.id ? { ...result, [field]: event.target.value } : result))}/></label>)}</div></details>
           </div>)}
           <label>Comentario del entrenamiento (opcional)<textarea rows={2} maxLength={4000} value={notes} onChange={event => setNotes(event.target.value)}/></label>
           <button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar y completar día'}</button>

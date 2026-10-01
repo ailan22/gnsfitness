@@ -1,3 +1,4 @@
+import AdditionalPhysioSessions from './AdditionalPhysioSessions'
 import PlanSessionSchedule from './PlanSessionSchedule'
 import { confirmedInsert } from './confirmedInsert'
 import { NUTRITION_PRICE, PHYSIO_SESSION_PRICE, planTotal, summarizeServiceDates, type PlanServiceConfig } from './planServices'
@@ -321,7 +322,6 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
           {hasPhysio && <p>Kinesiología · {physioDates.length} sesión(es) × {money(PHYSIO_SESSION_PRICE)}: <strong>{money(physioDates.length * PHYSIO_SESSION_PRICE)}</strong></p>}
           <p className="plan-grand-total">Total por la duración contratada: <strong>{money(totalPlanPrice)}</strong></p>
         </section>
-        <label>Detalle adicional del plan (opcional)<textarea rows={2} maxLength={1000} value={planForm.details} onChange={e => setPlanForm({...planForm, details:e.target.value})}/></label>
         <p className="muted">Nutrición se suma por cada mes contratado. Kinesiología se suma por las fechas elegidas. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>
         <p className="muted">Vence el {endsAt ? readableDate(endsAt) : '—'}. Crear un plan nuevo no registra un pago.</p>
         <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar plan'}</button><button type="button" className="secondary" disabled={saving} onClick={() => { setActiveForm(null); setError('') }}>Cancelar</button></div>
@@ -343,7 +343,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
           <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar pago'}</button><button type="button" className="secondary" disabled={saving} onClick={() => { setActiveForm(null); setError('') }}>Cancelar</button></div>
                   </fieldset>
         </form>}
-        <h3>Pagos de este plan</h3>{history.payments.filter(payment => payment.membership_id === currentPlan.id).length === 0 ? <p className="muted">Todavía no hay pagos registrados.</p> : history.payments.filter(payment => payment.membership_id === currentPlan.id).map(payment => <p key={payment.id}>{readableDate(payment.paid_at)} · {payment.method} · {money(payment.amount)}</p>)}
+        <AdditionalPhysioSessions key={currentPlan.id} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Sesiones adicionales guardadas. Se actualizó el total y el saldo del plan.'); setRevision(value => value + 1); onChanged() }}/><h3>Pagos de este plan</h3>{history.payments.filter(payment => payment.membership_id === currentPlan.id).length === 0 ? <p className="muted">Todavía no hay pagos registrados.</p> : history.payments.filter(payment => payment.membership_id === currentPlan.id).map(payment => <p key={payment.id}>{readableDate(payment.paid_at)} · {payment.method} · {money(payment.amount)}</p>)}
       </section>}
       {history.memberships.length > 1 && <section className="card profile"><h2>Planes anteriores</h2>{history.memberships.slice(1).map(plan => <p key={plan.id}>{plan.plan_name}: {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)} · {money(plan.price)} · pagado {money(history.payments.filter(payment => payment.membership_id === plan.id).reduce((total, payment) => total + Number(payment.amount), 0))}</p>)}</section>}
     </>}

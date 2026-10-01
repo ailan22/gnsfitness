@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { serviceDates, summarizeServiceDates } from './planServices'
 
-export default function PlanSessionSchedule({ start, end, dates, onChange }: { start: string; end: string; dates: string[]; onChange: (dates: string[]) => void }) {
+export default function PlanSessionSchedule({ start, end, dates, onChange, lockedDates = [] }: { start: string; end: string; dates: string[]; lockedDates?: string[]; onChange: (dates: string[]) => void }) {
   const [month, setMonth] = useState(start.slice(0, 7))
   const [weekdays, setWeekdays] = useState<number[]>([])
   const [weeks, setWeeks] = useState([1, 2, 3, 4, 5])
@@ -14,9 +14,9 @@ export default function PlanSessionSchedule({ start, end, dates, onChange }: { s
     <fieldset className="plain-fieldset"><legend>Semanas del mes</legend><p className="muted">1: días 1–7 · 2: 8–14 · 3: 15–21 · 4: 22–28 · 5: 29–31.</p><div className="schedule-options">{[1,2,3,4,5].map(n => <label key={n}><input type="checkbox" checked={weeks.includes(n)} onChange={() => setWeeks(toggle(weeks, n))}/>Semana {n}</label>)}</div></fieldset>
     <button type="button" className="secondary" disabled={!weekdays.length || !weeks.length} onClick={() => onChange([...new Set([...dates, ...serviceDates(activeMonth, weekdays, start, end, weeks)])].sort())}>Agregar fechas de este mes</button>
     <p>Podés marcar o desmarcar cada fecha. Cada fecha cuenta como una sesión de $650.</p>
-    <div className="schedule-calendar">{days.map(date => <label key={date}><input type="checkbox" checked={dates.includes(date)} onChange={() => onChange(dates.includes(date) ? dates.filter(d => d !== date) : [...dates, date].sort())}/>{date.slice(8)}</label>)}</div>
+    <div className="schedule-calendar">{days.map(date => <label key={date}><input type="checkbox" disabled={lockedDates.includes(date)} checked={dates.includes(date) || lockedDates.includes(date)} onChange={() => onChange(dates.includes(date) ? dates.filter(d => d !== date) : [...dates, date].sort())}/>{date.slice(8)}</label>)}</div>
     <p className="muted">Fechas seleccionadas: {summarizeServiceDates(dates) || 'Ninguna'}</p>
     {dates.length > 0 && <button type="button" className="text-button" onClick={() => onChange([])}>Quitar todas las fechas</button>}
-    <p className="muted">Al guardar, estas sesiones aparecerán como recordatorios en el panel administrativo el día correspondiente. No se envían mensajes al alumno.</p>
+    <p className="muted">Al guardar, estas sesiones aparecerán en Avisos desde dos días antes y hasta el día de la sesión.</p>
   </details>
 }

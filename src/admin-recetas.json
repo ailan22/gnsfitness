@@ -1,7 +1,7 @@
 {
   "source": {
-    "file": "GNS_Guia_200_Recetas.pdf",
-    "sha256": "17eaf7e2a0394e3ee4fccc589165f779e905e35eabf2ed5bbf3e7f95bb921814",
+    "file": "GNS_Guia_200_Recetas1.pdf",
+    "sha256": "6fb7158385fae73d68ca3375f541a09c733b43822d0a7b76baef96e8638c82f0",
     "pages": 200
   },
   "sections": [
@@ -13,7 +13,7 @@
           "id": "recetas-001",
           "title": "Tostadas francesas con durazno",
           "details": "01 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-001.webp",
+          "image": "/nutricion/recetas-001.webp?v=0c48a3a209c1",
           "ingredients": "70 g de pan integral; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 40 g de leche semidescremada; 100 g de yogur natural sin azúcar, bajo en grasa; 150 g de durazno sin carozo; 10 g de nueces; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Batí los huevos con la leche y canela. Pasá el pan por la mezcla y cociná en sartén aceitada a fuego medio, 2-3 minutos por lado, hasta que el huevo quede completamente cocido. Serví con yogur, durazno en gajos y frutos secos.",
           "nutrition": [
@@ -28,7 +28,7 @@
           "id": "recetas-002",
           "title": "Avena horneada de manzana y canela",
           "details": "02 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-002.webp",
+          "image": "/nutricion/recetas-002.webp?v=4ac5a6e02115",
           "ingredients": "40 g de avena seca; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 60 g de leche semidescremada; 180 g de manzana; 10 g de nueces; 100 g de yogur natural sin azúcar, bajo en grasa; 5 g de aceite de oliva. Canela y ¼ cucharadita de polvo de hornear.",
           "method": "Mezclá avena, huevo, leche, media manzana rallada, canela y polvo de hornear. Colocá en un molde pequeño aceitado, sumá nueces y horneá a 180 °C durante 20-25 minutos, hasta que el centro esté cocido. Serví con yogur y el resto de la manzana.",
           "nutrition": [
@@ -41,16 +41,16 @@
         },
         {
           "id": "recetas-003",
-          "title": "Waffle salado con huevos y palta",
-          "details": "03 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-003.webp",
-          "ingredients": "40 g de harina integral; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 50 g de leche semidescremada; 5 g de aceite de oliva; 50 g de palta sin piel ni carozo; 100 g de tomate. ½ cucharadita de polvo de hornear y perejil.",
-          "method": "Mezclá harina, un huevo, leche, polvo de hornear y aceite. Cociná en wafflera según el equipo, hasta que esté firme y dorado; también podés hacer pequeños panqueques en sartén. Cubrí con el otro huevo bien cocido, palta, tomate y perejil.",
+          "title": "Tortitas de avena con huevo y palta",
+          "details": "03 / 50 · Rinde 1 porción · 15 minutos",
+          "image": "/nutricion/recetas-003.webp?v=b1f7d4b09df4",
+          "ingredients": "40 g de avena seca; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 50 g de leche semidescremada; 5 g de aceite de oliva; 50 g de palta sin piel ni carozo; 100 g de tomate.",
+          "method": "Mezclá avena molida con un huevo y la leche. Usá la mitad del aceite para cocinar dos tortitas en sartén, 2-3 minutos por lado. Cociná el otro huevo con el aceite restante hasta que cuaje. Serví las tortitas con palta, tomate y el huevo.",
           "nutrition": [
-            "Energía: 445 kcal · Proteínas: 21.4 g · Carbohidratos: 40.5 g",
-            "Grasas: 24.0 g · Fibra: 8.8 g",
-            "Calcio: 293 mg · Hierro: 4.0 mg · Magnesio: 99 mg",
-            "Potasio: 833 mg · Sodio: 333 mg · Vitamina C: 19 mg"
+            "Energía: 465 kcal · Proteínas: 22.8 g · Carbohidratos: 37.8 g",
+            "Grasas: 25.8 g · Fibra: 8.8 g",
+            "Calcio: 154 mg · Hierro: 4.2 mg · Magnesio: 114 mg",
+            "Potasio: 859 mg · Sodio: 175 mg · Vitamina C: 19 mg"
           ],
           "page": 3
         },
@@ -58,7 +58,7 @@
           "id": "recetas-004",
           "title": "Wrap de huevos espinaca y tomate",
           "details": "04 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-004.webp",
+          "image": "/nutricion/recetas-004.webp?v=f9b8612b3606",
           "ingredients": "50 g de tortilla integral; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 30 g de espinaca; 60 g de tomate; 20 g de mozzarella parcialmente descremada; 5 g de aceite de oliva; 150 g de naranja pelada. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Salteá espinaca y tomate con el aceite. Agregá los huevos batidos y cociná hasta que cuajen por completo. Rellená la tortilla con los huevos y el queso, doblá y calentá brevemente en sartén. Serví la naranja como acompañamiento.",
           "nutrition": [
@@ -73,7 +73,7 @@
           "id": "recetas-005",
           "title": "Avena de la noche con frutos rojos",
           "details": "05 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-005.webp",
+          "image": "/nutricion/recetas-005.webp?v=984e5f906256",
           "ingredients": "40 g de avena seca; 170 g de yogur natural sin azúcar, bajo en grasa; 60 g de leche semidescremada; 75 g de frutos rojos (mitad frutilla, mitad arándano); 10 g de almendras. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá avena, yogur, leche y canela en un frasco. Tapá y dejá en la heladera al menos 4 horas, idealmente toda la noche. Por la mañana agregá los frutos rojos y las almendras picadas.",
           "nutrition": [
@@ -86,9 +86,9 @@
         },
         {
           "id": "recetas-006",
-          "title": "Crepes de ricota y naranja",
+          "title": "Panqueques de ricota y naranja",
           "details": "06 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-006.webp",
+          "image": "/nutricion/recetas-006.webp?v=e99861556eed",
           "ingredients": "40 g de harina integral; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de leche semidescremada; 80 g de ricota parcialmente descremada; 150 g de naranja pelada; 10 g de nueces; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Batí harina, huevo y leche. Cociná dos crepes finos en sartén ligeramente aceitada, por ambos lados. Rellená con ricota y ralladura de naranja bien lavada. Serví con los gajos de naranja y nueces.",
           "nutrition": [
@@ -103,7 +103,7 @@
           "id": "recetas-007",
           "title": "Muffins de huevo y verduras",
           "details": "07 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-007.webp",
+          "image": "/nutricion/recetas-007.webp?v=209d6ede38a6",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 30 g de espinaca; 40 g de morrón rojo; 20 g de mozzarella parcialmente descremada; 5 g de aceite de oliva; 60 g de pan integral. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Picá las verduras y saltealas brevemente. Mezclá con huevos batidos y queso. Repartí en moldes individuales aceitados y horneá a 180 °C durante 15-20 minutos, hasta que el centro cuaje. Serví con las tostadas.",
           "nutrition": [
@@ -116,39 +116,39 @@
         },
         {
           "id": "recetas-008",
-          "title": "Tostadas con hummus y huevo",
-          "details": "08 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-008.webp",
-          "ingredients": "70 g de pan integral; 60 g de garbanzos cocidos sin sal; 5 g de tahini; 3 g de aceite de oliva; 75 g de huevo sin cáscara (50 g ≈ 1 unidad); 60 g de tomate; 10 g de jugo de limón. Hierbas y especias indicadas en la preparación, a gusto.",
-          "method": "Tostá el pan y untá el hummus. Cortá los huevos duros y el tomate en rodajas. Distribuí sobre las tostadas y terminá con perejil y pimentón. Si preparás el huevo antes, mantenelo refrigerado.",
+          "title": "Tostadas de ricota, pera y nueces",
+          "details": "08 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-008.webp?v=c890b543e399",
+          "ingredients": "70 g de pan integral; 100 g de ricota parcialmente descremada; 150 g de pera; 15 g de nueces. Canela, a gusto.",
+          "method": "Tostá el pan. Batí la ricota con canela y untala sobre las tostadas. Agregá la pera en láminas y las nueces picadas. Serví enseguida.",
           "nutrition": [
-            "Energía: 450 kcal · Proteínas: 24.9 g · Carbohidratos: 51.0 g",
-            "Grasas: 17.0 g · Fibra: 10.0 g",
-            "Calcio: 212 mg · Hierro: 5.4 mg · Magnesio: 102 mg",
-            "Potasio: 629 mg · Sodio: 438 mg · Vitamina C: 13 mg"
+            "Energía: 500 kcal · Proteínas: 22.9 g · Carbohidratos: 59.9 g",
+            "Grasas: 20.4 g · Fibra: 9.9 g",
+            "Calcio: 413 mg · Hierro: 2.9 mg · Magnesio: 102 mg",
+            "Potasio: 543 mg · Sodio: 419 mg · Vitamina C: 7 mg"
           ],
           "page": 8
         },
         {
           "id": "recetas-009",
-          "title": "Quesadilla de porotos y queso",
-          "details": "09 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-009.webp",
-          "ingredients": "50 g de tortilla integral; 85 g de porotos negros cocidos sin sal; 40 g de mozzarella parcialmente descremada; 60 g de tomate; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
-          "method": "Pisá parcialmente los porotos y condimentá con comino. Distribuí porotos y queso sobre media tortilla y doblá. Calentá en sartén aceitada 2-3 minutos por lado, hasta que el queso se funda. Serví con tomate.",
+          "title": "Waffles de yogur y frutillas",
+          "details": "09 / 50 · Rinde 2 porciones · 20 minutos",
+          "image": "/nutricion/recetas-009.webp?v=cf1e0fd0566d",
+          "ingredients": "80 g de avena seca; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 160 g de yogur natural sin azúcar, bajo en grasa; 60 g de leche semidescremada; 6 g de aceite de oliva; 240 g de frutillas. 1 cucharadita de polvo de hornear y vainilla sin azúcar.",
+          "method": "Procesá la avena hasta hacer harina y mezclá con huevos, 100 g de yogur, leche y polvo de hornear. Aceitá la wafflera con el aceite medido. Cociná la mezcla en tandas 4-6 minutos, hasta que cuaje y dore. Repartí entre dos platos con el yogur restante y las frutillas.",
           "nutrition": [
-            "Energía: 425 kcal · Proteínas: 22.6 g · Carbohidratos: 46.5 g",
-            "Grasas: 16.8 g · Fibra: 13.0 g",
-            "Calcio: 464 mg · Hierro: 3.4 mg · Magnesio: 118 mg",
-            "Potasio: 609 mg · Sodio: 560 mg · Vitamina C: 8 mg"
+            "Energía: 360 kcal · Proteínas: 19.0 g · Carbohidratos: 43.6 g",
+            "Grasas: 12.7 g · Fibra: 6.6 g",
+            "Calcio: 399 mg · Hierro: 3.6 mg · Magnesio: 110 mg",
+            "Potasio: 654 mg · Sodio: 301 mg · Vitamina C: 71 mg"
           ],
           "page": 9
         },
         {
           "id": "recetas-010",
-          "title": "Sándwich caprese con huevo",
+          "title": "Tostado de queso, tomate y huevo",
           "details": "10 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-010.webp",
+          "image": "/nutricion/recetas-010.webp?v=da21448bdb17",
           "ingredients": "70 g de pan integral; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 40 g de mozzarella parcialmente descremada; 60 g de tomate; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cortá huevo, tomate y mozzarella en rodajas. Armá el sándwich con albahaca y aceite. Podés servirlo fresco o tostarlo en sartén tapada hasta que el queso se ablande.",
           "nutrition": [
@@ -163,7 +163,7 @@
           "id": "recetas-011",
           "title": "Yogur con chía y mango",
           "details": "11 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-011.webp",
+          "image": "/nutricion/recetas-011.webp?v=e9b8e2fc3bd0",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 12 g de semillas de chía; 30 g de avena seca; 100 g de mango sin piel ni carozo; 40 g de leche semidescremada. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá yogur, chía, avena y agua o leche. Dejá hidratar en la heladera al menos 30 minutos. Agregá el mango en cubos al servir. Si lo dejás preparado desde la noche anterior, mantenelo tapado y refrigerado.",
           "nutrition": [
@@ -176,16 +176,16 @@
         },
         {
           "id": "recetas-012",
-          "title": "Tortilla de papa y cebolla",
-          "details": "12 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-012.webp",
-          "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 150 g de papa cocida; 40 g de cebolla; 5 g de aceite de oliva; 100 g de tomate. Hierbas y especias indicadas en la preparación, a gusto.",
-          "method": "Cociná la papa en agua hasta que esté tierna y cortala en rodajas. Rehogá la cebolla, mezclá con la papa y huevos batidos. Cociná tapado a fuego bajo hasta cuajar por completo; volteá con cuidado. Serví con tomate y perejil.",
+          "title": "Muffins de manzana y pasas",
+          "details": "12 / 50 · Rinde 4 porciones · 35 minutos",
+          "image": "/nutricion/recetas-012.webp?v=dc54b223b18c",
+          "ingredients": "140 g de harina integral; 200 g de manzana; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 120 g de yogur natural sin azúcar, bajo en grasa; 40 g de pasas de uva; 15 g de aceite de oliva. 1 cucharadita de polvo de hornear y canela.",
+          "method": "Mezclá huevos, yogur y aceite. Agregá manzana rallada, harina, pasas, canela y polvo de hornear. Repartí en ocho moldes de silicona y horneá a 180 °C durante 20-25 minutos. Dejá enfriar. Una porción son dos muffins.",
           "nutrition": [
-            "Energía: 350 kcal · Proteínas: 16.7 g · Carbohidratos: 38.5 g",
-            "Grasas: 14.9 g · Fibra: 4.6 g",
-            "Calcio: 83 mg · Hierro: 2.6 mg · Magnesio: 60 mg",
-            "Potasio: 1002 mg · Sodio: 155 mg · Vitamina C: 36 mg"
+            "Energía: 265 kcal · Proteínas: 9.8 g · Carbohidratos: 42.6 g",
+            "Grasas: 7.6 g · Fibra: 5.4 g",
+            "Calcio: 164 mg · Hierro: 2.1 mg · Magnesio: 63 mg",
+            "Potasio: 360 mg · Sodio: 139 mg · Vitamina C: 3 mg"
           ],
           "page": 12
         },
@@ -193,7 +193,7 @@
           "id": "recetas-013",
           "title": "Panqueques de cottage y limón",
           "details": "13 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-013.webp",
+          "image": "/nutricion/recetas-013.webp?v=27b5ba16c7bd",
           "ingredients": "100 g de queso cottage (2% de grasa); 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 35 g de avena seca; 30 g de leche semidescremada; 3 g de aceite de oliva; 100 g de arándanos; 10 g de jugo de limón. Ralladura de limón bien lavado y vainilla.",
           "method": "Procesá cottage, huevo, avena, leche y ralladura de limón. Cociná tres panqueques en sartén aceitada, a fuego medio, 2-3 minutos por lado hasta que estén firmes y cocidos. Serví con arándanos.",
           "nutrition": [
@@ -208,7 +208,7 @@
           "id": "recetas-014",
           "title": "Tostón de boniato con huevo y palta",
           "details": "14 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-014.webp",
+          "image": "/nutricion/recetas-014.webp?v=af2cdff2bff9",
           "ingredients": "180 g de boniato cocido; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 40 g de palta sin piel ni carozo; 80 g de tomate; 5 g de aceite de oliva. Pimentón y perejil.",
           "method": "Cortá el boniato en láminas de 1 cm. Pincelá con aceite y horneá a 200 °C 20 minutos, hasta que esté tierno. Cociná los huevos en sartén hasta cuajar. Serví sobre el boniato con palta y tomate.",
           "nutrition": [
@@ -221,16 +221,16 @@
         },
         {
           "id": "recetas-015",
-          "title": "Arepa de maíz con ricota y espinaca",
-          "details": "15 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-015.webp",
-          "ingredients": "50 g de polenta seca / harina de maíz; 80 g de ricota parcialmente descremada; 40 g de espinaca; 5 g de aceite de oliva. Usá harina de maíz precocida para arepas; comino y pimienta. Se usa harina de maíz integral como equivalente nutricional.",
-          "method": "Mezclá harina de maíz precocida con 70 ml de agua; reposá 5 minutos. Formá una arepa y cociná en sartén aceitada 5-6 minutos por lado. Salteá la espinaca, mezclá con ricota y rellená la arepa abierta.",
+          "title": "Tostadas de queso y manzana tibia",
+          "details": "15 / 50 · Rinde 1 porción · 15 minutos",
+          "image": "/nutricion/recetas-015.webp?v=ac3dad42e43d",
+          "ingredients": "70 g de pan integral; 60 g de queso untable bajo en grasa; 180 g de manzana; 15 g de almendras. 30 ml de agua y canela, a gusto.",
+          "method": "Cortá la manzana en láminas y cociná en sartén con 30 ml de agua y canela durante 5-7 minutos. Tostá el pan y untá con queso. Agregá la manzana tibia y las almendras picadas.",
           "nutrition": [
-            "Energía: 345 kcal · Proteínas: 14.3 g · Carbohidratos: 44.0 g",
-            "Grasas: 13.3 g · Fibra: 4.5 g",
-            "Calcio: 260 mg · Hierro: 3.2 mg · Magnesio: 107 mg",
-            "Potasio: 467 mg · Sodio: 128 mg · Vitamina C: 11 mg"
+            "Energía: 480 kcal · Proteínas: 17.1 g · Carbohidratos: 62.0 g",
+            "Grasas: 20.2 g · Fibra: 10.4 g",
+            "Calcio: 253 mg · Hierro: 2.6 mg · Magnesio: 107 mg",
+            "Potasio: 629 mg · Sodio: 511 mg · Vitamina C: 8 mg"
           ],
           "page": 15
         },
@@ -238,7 +238,7 @@
           "id": "recetas-016",
           "title": "Avena tiramisú sin alcohol",
           "details": "16 / 50 · Rinde 1 porción · 10 min + 4 h de frío",
-          "image": "/nutricion/recetas-016.webp",
+          "image": "/nutricion/recetas-016.webp?v=10d8b083e96c",
           "ingredients": "40 g de avena seca; 180 g de yogur natural sin azúcar, bajo en grasa; 50 g de leche semidescremada; 5 g de cacao amargo sin azúcar; 80 g de banana sin piel. Café descafeinado y vainilla.",
           "method": "Mezclá avena y leche con 30 ml de café descafeinado frío. Refrigerá 4 horas. Agregá yogur y banana pisada; espolvoreá cacao. Mantené con frío hasta servir.",
           "nutrition": [
@@ -253,7 +253,7 @@
           "id": "recetas-017",
           "title": "Porridge de cacao, pera y maní",
           "details": "17 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-017.webp",
+          "image": "/nutricion/recetas-017.webp?v=f0fdb8fd60aa",
           "ingredients": "45 g de avena seca; 200 g de leche semidescremada; 150 g de pera; 6 g de cacao amargo sin azúcar; 12 g de pasta de maní sin azúcar ni sal. Canela.",
           "method": "Cociná avena y leche a fuego bajo 5-7 minutos, revolviendo. Agregá cacao y media pera rallada. Serví con el resto de la pera en cubos y la pasta de maní.",
           "nutrition": [
@@ -266,31 +266,31 @@
         },
         {
           "id": "recetas-018",
-          "title": "Huevos turcos con yogur y tostada",
-          "details": "18 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-018.webp",
-          "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 120 g de yogur natural sin azúcar, bajo en grasa; 70 g de pan integral; 5 g de aceite de oliva; 2 g de ajo. Pimentón y eneldo.",
-          "method": "Mezclá yogur y ajo rallado. Cociná los huevos en agua o sartén hasta que clara y yema cuajen. Colocalos sobre el yogur y agregá aceite con pimentón. Serví con tostadas.",
+          "title": "Huevos revueltos con ricota y tostadas",
+          "details": "18 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-018.webp?v=78cca4289d44",
+          "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 60 g de ricota parcialmente descremada; 70 g de pan integral; 4 g de aceite de oliva; 150 g de naranja pelada.",
+          "method": "Batí los huevos. Calentá el aceite en sartén y agregá los huevos; revolvé a fuego suave hasta que estén cocidos. Incorporá la ricota y mezclá. Serví con pan tostado y naranja pelada.",
           "nutrition": [
-            "Energía: 440 kcal · Proteínas: 27.7 g · Carbohidratos: 39.7 g",
-            "Grasas: 18.8 g · Fibra: 4.2 g",
-            "Calcio: 392 mg · Hierro: 3.6 mg · Magnesio: 85 mg",
-            "Potasio: 605 mg · Sodio: 545 mg · Vitamina C: 2 mg"
+            "Energía: 510 kcal · Proteínas: 29.5 g · Carbohidratos: 51.3 g",
+            "Grasas: 20.9 g · Fibra: 7.8 g",
+            "Calcio: 392 mg · Hierro: 3.9 mg · Magnesio: 88 mg",
+            "Potasio: 662 mg · Sodio: 520 mg · Vitamina C: 80 mg"
           ],
           "page": 18
         },
         {
           "id": "recetas-019",
-          "title": "Bagel integral de salmón y pepino",
-          "details": "19 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-019.webp",
-          "ingredients": "80 g de pan integral; 80 g de salmón crudo; 30 g de queso untable bajo en grasa; 70 g de pepino; 10 g de jugo de limón. Eneldo y pimienta.",
-          "method": "Cociná el salmón en sartén o al horno hasta que esté hecho. Abrí el pan integral redondo, tostalo y untá queso. Agregá salmón desmenuzado, pepino y limón.",
+          "title": "Pan integral con ricota y frutos rojos",
+          "details": "19 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-019.webp?v=789f3defed99",
+          "ingredients": "80 g de pan integral; 100 g de ricota parcialmente descremada; 120 g de frutos rojos (mitad frutilla, mitad arándano); 10 g de almendras. Vainilla sin azúcar, a gusto.",
+          "method": "Tostá suavemente el pan integral. Batí la ricota con vainilla y untala sobre el pan. Agregá frutos rojos y almendras picadas. Serví enseguida.",
           "nutrition": [
-            "Energía: 445 kcal · Proteínas: 29.1 g · Carbohidratos: 39.4 g",
-            "Grasas: 18.6 g · Fibra: 5.2 g",
-            "Calcio: 192 mg · Hierro: 2.5 mg · Magnesio: 94 mg",
-            "Potasio: 681 mg · Sodio: 508 mg · Vitamina C: 9 mg"
+            "Energía: 450 kcal · Proteínas: 24.3 g · Carbohidratos: 54.8 g",
+            "Grasas: 16.1 g · Fibra: 8.7 g",
+            "Calcio: 441 mg · Hierro: 3.2 mg · Magnesio: 113 mg",
+            "Potasio: 540 mg · Sodio: 464 mg · Vitamina C: 41 mg"
           ],
           "page": 19
         },
@@ -298,7 +298,7 @@
           "id": "recetas-020",
           "title": "Tostadas de cottage y durazno tibio",
           "details": "20 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-020.webp",
+          "image": "/nutricion/recetas-020.webp?v=c555b4cd472c",
           "ingredients": "70 g de pan integral; 120 g de queso cottage (2% de grasa); 150 g de durazno sin carozo; 12 g de almendras. Canela.",
           "method": "Cortá el durazno y doralo 3-4 minutos en sartén antiadherente. Tostá el pan, distribuí cottage y durazno. Terminá con almendras picadas.",
           "nutrition": [
@@ -313,7 +313,7 @@
           "id": "recetas-021",
           "title": "Omelette de champiñones y ricota",
           "details": "21 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-021.webp",
+          "image": "/nutricion/recetas-021.webp?v=dce440920317",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de champiñones; 60 g de ricota parcialmente descremada; 5 g de aceite de oliva; 60 g de pan integral. Perejil y pimienta.",
           "method": "Salteá los champiñones con aceite. Verté los huevos batidos y cociná a fuego bajo hasta cuajar. Añadí ricota, doblá y serví con pan.",
           "nutrition": [
@@ -328,7 +328,7 @@
           "id": "recetas-022",
           "title": "Bowl de quinoa, manzana y canela",
           "details": "22 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-022.webp",
+          "image": "/nutricion/recetas-022.webp?v=b92f5400ec29",
           "ingredients": "120 g de quinoa cocida; 150 g de yogur natural sin azúcar, bajo en grasa; 150 g de manzana; 15 g de nueces. Canela y vainilla.",
           "method": "Calentá la quinoa cocida con dos cucharadas de agua y canela. Dejá entibiar. Serví con yogur, manzana en cubos y nueces.",
           "nutrition": [
@@ -341,31 +341,31 @@
         },
         {
           "id": "recetas-023",
-          "title": "Panqueque de garbanzos con tomate",
-          "details": "23 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-023.webp",
-          "ingredients": "50 g de harina de garbanzos; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 120 g de tomate; 60 g de queso cottage (2% de grasa); 5 g de aceite de oliva. Orégano.",
-          "method": "Mezclá harina de garbanzos, huevo y 70 ml de agua. Cociná en sartén aceitada 3-4 minutos por lado hasta que el centro esté cocido. Agregá cottage y tomate al servir.",
+          "title": "Panqueques de manzana y canela",
+          "details": "23 / 50 · Rinde 1 porción · 15 minutos",
+          "image": "/nutricion/recetas-023.webp?v=79ca3c6b3da6",
+          "ingredients": "150 g de manzana; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 45 g de avena seca; 60 g de leche semidescremada; 4 g de aceite de oliva; 100 g de yogur natural sin azúcar, bajo en grasa. Canela, a gusto.",
+          "method": "Rallá la manzana. Mezclá con huevos, avena molida, leche y canela. Calentá una sartén con el aceite medido. Formá panqueques pequeños y cociná 2-3 minutos por lado, hasta que el centro esté cocido. Serví con yogur.",
           "nutrition": [
-            "Energía: 380 kcal · Proteínas: 24.8 g · Carbohidratos: 36.8 g",
-            "Grasas: 14.7 g · Fibra: 6.8 g",
-            "Calcio: 129 mg · Hierro: 3.7 mg · Magnesio: 108 mg",
-            "Potasio: 851 mg · Sodio: 294 mg · Vitamina C: 16 mg"
+            "Energía: 525 kcal · Proteínas: 27.8 g · Carbohidratos: 61.2 g",
+            "Grasas: 19.6 g · Fibra: 8.4 g",
+            "Calcio: 344 mg · Hierro: 4.2 mg · Magnesio: 123 mg",
+            "Potasio: 810 mg · Sodio: 243 mg · Vitamina C: 8 mg"
           ],
           "page": 23
         },
         {
           "id": "recetas-024",
-          "title": "Sándwich de huevo, pepinillo y cottage",
-          "details": "24 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-024.webp",
-          "ingredients": "70 g de pan integral; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 70 g de queso cottage (2% de grasa); 30 g de pepinillos en conserva escurridos; 30 g de lechuga. Eneldo y pimienta.",
-          "method": "Herví los huevos 10-12 minutos, enfriá y picá. Mezclá con cottage y pepinillos escurridos. Rellená el pan con esa mezcla y lechuga.",
+          "title": "Tostado de queso y tomate",
+          "details": "24 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-024.webp?v=1528a9c414b6",
+          "ingredients": "70 g de pan integral; 40 g de mozzarella parcialmente descremada; 100 g de tomate; 150 g de yogur natural sin azúcar, bajo en grasa.",
+          "method": "Armá un sándwich con el pan, la mozzarella y el tomate en rodajas finas. Tostá en sartén seca, tapado, 2-3 minutos por lado hasta fundir el queso. Serví con el yogur natural.",
           "nutrition": [
-            "Energía: 385 kcal · Proteínas: 29.1 g · Carbohidratos: 35.7 g",
-            "Grasas: 13.7 g · Fibra: 5.1 g",
-            "Calcio: 273 mg · Hierro: 3.9 mg · Magnesio: 77 mg",
-            "Potasio: 512 mg · Sodio: 921 mg · Vitamina C: 2 mg"
+            "Energía: 390 kcal · Proteínas: 27.2 g · Carbohidratos: 45.5 g",
+            "Grasas: 11.3 g · Fibra: 5.4 g",
+            "Calcio: 710 mg · Hierro: 2.2 mg · Magnesio: 98 mg",
+            "Potasio: 799 mg · Sodio: 676 mg · Vitamina C: 15 mg"
           ],
           "page": 24
         },
@@ -373,7 +373,7 @@
           "id": "recetas-025",
           "title": "Avena al horno de banana y cacao",
           "details": "25 / 50 · Rinde 2 porciones · 10 min + 25 de horno",
-          "image": "/nutricion/recetas-025.webp",
+          "image": "/nutricion/recetas-025.webp?v=7e86f14aa7f3",
           "ingredients": "90 g de avena seca; 220 g de banana sin piel; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 160 g de leche semidescremada; 12 g de cacao amargo sin azúcar; 6 g de aceite de oliva. 1 cucharadita de polvo de hornear y vainilla.",
           "method": "Pisá la banana y mezclá con huevo, leche, avena y cacao. Repartí en dos moldes aceitados y horneá a 180 °C 25 minutos, hasta que el centro esté firme.",
           "nutrition": [
@@ -386,16 +386,16 @@
         },
         {
           "id": "recetas-026",
-          "title": "Wrap de atún y palta",
-          "details": "26 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-026.webp",
-          "ingredients": "50 g de tortilla integral; 80 g de atún al natural escurrido; 50 g de palta sin piel ni carozo; 80 g de tomate; 10 g de jugo de limón. Perejil.",
-          "method": "Escurrí el atún y mezclá con palta pisada y limón. Distribuí en la tortilla, agregá tomate y enrollá. Serví al momento o guardá refrigerado.",
+          "title": "Wrap dulce de banana y ricota",
+          "details": "26 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-026.webp?v=f9742e56ceee",
+          "ingredients": "50 g de tortilla integral; 100 g de ricota parcialmente descremada; 120 g de banana sin piel; 15 g de pasta de maní sin azúcar ni sal. Canela, a gusto.",
+          "method": "Untá la tortilla con ricota y pasta de maní. Agregá banana en rodajas y una pizca de canela. Cerrá los extremos y enrollá. Dorá en una sartén seca 1-2 minutos por lado y cortá al medio.",
           "nutrition": [
-            "Energía: 320 kcal · Proteínas: 22.2 g · Carbohidratos: 31.0 g",
-            "Grasas: 13.2 g · Fibra: 9.2 g",
-            "Calcio: 150 mg · Hierro: 3.1 mg · Magnesio: 85 mg",
-            "Potasio: 717 mg · Sodio: 514 mg · Vitamina C: 20 mg"
+            "Energía: 490 kcal · Proteínas: 20.9 g · Carbohidratos: 58.8 g",
+            "Grasas: 20.9 g · Fibra: 8.8 g",
+            "Calcio: 407 mg · Hierro: 2.3 mg · Magnesio: 115 mg",
+            "Potasio: 769 mg · Sodio: 411 mg · Vitamina C: 10 mg"
           ],
           "page": 26
         },
@@ -403,7 +403,7 @@
           "id": "recetas-027",
           "title": "Bowl de yogur, ananá y coco",
           "details": "27 / 50 · Rinde 1 porción · 8 min",
-          "image": "/nutricion/recetas-027.webp",
+          "image": "/nutricion/recetas-027.webp?v=07389f85bcd7",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 150 g de ananá pelado; 40 g de avena seca; 8 g de coco seco sin azúcar; 10 g de almendras. Vainilla.",
           "method": "Cortá el ananá en cubos. Serví el yogur con avena, fruta, coco y almendras. Dejá reposar 10 minutos si preferís una avena más blanda.",
           "nutrition": [
@@ -416,16 +416,16 @@
         },
         {
           "id": "recetas-028",
-          "title": "Tostadas de porotos blancos y romero",
-          "details": "28 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-028.webp",
-          "ingredients": "70 g de pan integral; 130 g de porotos blancos cocidos sin sal; 100 g de tomate; 5 g de aceite de oliva; 10 g de jugo de limón; 2 g de ajo. Romero picado.",
-          "method": "Procesá porotos con limón, ajo, aceite y una cucharada de agua. Tostá el pan y untá la crema. Serví con tomate en cubos.",
+          "title": "Vasito de avena, limón y arándanos",
+          "details": "28 / 50 · Rinde 1 porción · 10 minutos + 8 horas de frío",
+          "image": "/nutricion/recetas-028.webp?v=929d5fc53345",
+          "ingredients": "40 g de avena seca; 180 g de yogur natural sin azúcar, bajo en grasa; 60 g de leche semidescremada; 100 g de arándanos; 10 g de jugo de limón; 10 g de almendras. Ralladura de limón, a gusto.",
+          "method": "Mezclá avena, yogur, leche y limón en un vaso. Agregá la mitad de los arándanos y refrigerá toda la noche. Por la mañana terminá con los arándanos restantes y las almendras.",
           "nutrition": [
-            "Energía: 425 kcal · Proteínas: 22.4 g · Carbohidratos: 67.8 g",
-            "Grasas: 8.1 g · Fibra: 13.7 g",
-            "Calcio: 244 mg · Hierro: 6.9 mg · Magnesio: 146 mg",
-            "Potasio: 1162 mg · Sodio: 332 mg · Vitamina C: 18 mg"
+            "Energía: 415 kcal · Proteínas: 21.1 g · Carbohidratos: 59.4 g",
+            "Grasas: 12.1 g · Fibra: 7.9 g",
+            "Calcio: 456 mg · Hierro: 2.7 mg · Magnesio: 142 mg",
+            "Potasio: 837 mg · Sodio: 156 mg · Vitamina C: 15 mg"
           ],
           "page": 28
         },
@@ -433,7 +433,7 @@
           "id": "recetas-029",
           "title": "Tortitas de zucchini y queso",
           "details": "29 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-029.webp",
+          "image": "/nutricion/recetas-029.webp?v=4b203fa09fb7",
           "ingredients": "150 g de zucchini / zapallito; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 30 g de avena seca; 30 g de mozzarella parcialmente descremada; 5 g de aceite de oliva. Orégano.",
           "method": "Rallá el zucchini y exprimí bien el líquido. Mezclá con huevos, avena y queso. Cociná cuatro tortitas en sartén aceitada, 3-4 minutos por lado hasta cuajar por completo.",
           "nutrition": [
@@ -448,7 +448,7 @@
           "id": "recetas-030",
           "title": "Pudding de chía con cacao y naranja",
           "details": "30 / 50 · Rinde 1 porción · 8 min + 2 h de frío",
-          "image": "/nutricion/recetas-030.webp",
+          "image": "/nutricion/recetas-030.webp?v=05a12c6b051b",
           "ingredients": "20 g de semillas de chía; 160 g de leche semidescremada; 100 g de yogur natural sin azúcar, bajo en grasa; 5 g de cacao amargo sin azúcar; 150 g de naranja pelada. Vainilla.",
           "method": "Mezclá chía, leche y cacao. Refrigerá 2 horas y volvé a mezclar a los 15 minutos. Agregá yogur y gajos de naranja al servir.",
           "nutrition": [
@@ -461,16 +461,16 @@
         },
         {
           "id": "recetas-031",
-          "title": "Pan pita de pollo y yogur",
-          "details": "31 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-031.webp",
-          "ingredients": "70 g de pan integral; 100 g de pollo crudo sin piel; 50 g de yogur natural sin azúcar, bajo en grasa; 80 g de pepino; 5 g de aceite de oliva; 10 g de jugo de limón. Comino y menta.",
-          "method": "Cociná el pollo en tiras con aceite hasta que esté completamente hecho. Mezclá yogur y limón. Rellená el pan pita integral con pollo, pepino y salsa.",
+          "title": "Tostado de queso y huevo revuelto",
+          "details": "31 / 50 · Rinde 1 porción · 15 minutos",
+          "image": "/nutricion/recetas-031.webp?v=76c2ee61c184",
+          "ingredients": "70 g de pan integral; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 30 g de mozzarella parcialmente descremada; 4 g de aceite de oliva; 150 g de naranja pelada.",
+          "method": "Batí los huevos y cociná en una sartén con el aceite, revolviendo hasta que cuajen. Armá un tostado con el pan, el queso y los huevos. Dorá en sartén seca por ambos lados, hasta fundir el queso. Serví con la naranja pelada.",
           "nutrition": [
-            "Energía: 385 kcal · Proteínas: 34.4 g · Carbohidratos: 37.0 g",
-            "Grasas: 11.0 g · Fibra: 4.6 g",
-            "Calcio: 223 mg · Hierro: 2.4 mg · Magnesio: 100 mg",
-            "Potasio: 757 mg · Sodio: 400 mg · Vitamina C: 7 mg"
+            "Energía: 500 kcal · Proteínas: 30.0 g · Carbohidratos: 49.1 g",
+            "Grasas: 20.9 g · Fibra: 7.8 g",
+            "Calcio: 463 mg · Hierro: 3.7 mg · Magnesio: 86 mg",
+            "Potasio: 613 mg · Sodio: 646 mg · Vitamina C: 80 mg"
           ],
           "page": 31
         },
@@ -478,7 +478,7 @@
           "id": "recetas-032",
           "title": "Tostadas de maní, banana y cacao",
           "details": "32 / 50 · Rinde 1 porción · 8 min",
-          "image": "/nutricion/recetas-032.webp",
+          "image": "/nutricion/recetas-032.webp?v=10b9f0b0c67a",
           "ingredients": "70 g de pan integral; 20 g de pasta de maní sin azúcar ni sal; 120 g de banana sin piel; 3 g de cacao amargo sin azúcar; 150 g de leche semidescremada. Canela.",
           "method": "Tostá el pan, untá pasta de maní y agregá banana en rodajas. Espolvoreá cacao y acompañá con leche.",
           "nutrition": [
@@ -493,7 +493,7 @@
           "id": "recetas-033",
           "title": "Frittata de choclo y tomate",
           "details": "33 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-033.webp",
+          "image": "/nutricion/recetas-033.webp?v=4c16002f95fc",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de choclo cocido sin sal; 100 g de tomate; 25 g de mozzarella parcialmente descremada; 5 g de aceite de oliva; 35 g de pan integral. Albahaca.",
           "method": "Salteá el tomate con aceite. Sumá choclo y huevos batidos. Distribuí queso y cociná tapado a fuego bajo hasta que el centro cuaje. Serví con pan.",
           "nutrition": [
@@ -508,7 +508,7 @@
           "id": "recetas-034",
           "title": "Crema de ricota, cacao y cerezas",
           "details": "34 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-034.webp",
+          "image": "/nutricion/recetas-034.webp?v=dd48561b7ce9",
           "ingredients": "130 g de ricota parcialmente descremada; 80 g de yogur natural sin azúcar, bajo en grasa; 6 g de cacao amargo sin azúcar; 120 g de cerezas sin carozo; 30 g de avena seca. Vainilla.",
           "method": "Procesá ricota, yogur y cacao hasta obtener una crema. Serví con cerezas sin carozo y avena tostada en sartén seca.",
           "nutrition": [
@@ -521,16 +521,16 @@
         },
         {
           "id": "recetas-035",
-          "title": "Avena salada con huevo y champiñones",
-          "details": "35 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-035.webp",
-          "ingredients": "45 g de avena seca; 120 g de leche semidescremada; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de champiñones; 5 g de aceite de oliva; 10 g de queso parmesano. Pimienta y tomillo.",
-          "method": "Cociná avena y leche con 80 ml de agua hasta espesar. Salteá champiñones con aceite. Cociná el huevo hasta cuajar y serví sobre la avena con champiñones y queso.",
+          "title": "Porridge de vainilla y damascos",
+          "details": "35 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-035.webp?v=f33b248f8ac9",
+          "ingredients": "45 g de avena seca; 200 g de leche semidescremada; 150 g de damascos sin carozo; 15 g de almendras. Vainilla sin azúcar, a gusto.",
+          "method": "Cociná la avena con la leche a fuego suave 5-7 minutos, revolviendo hasta que quede cremosa. Agregá vainilla. Serví con damascos frescos en gajos y almendras picadas.",
           "nutrition": [
-            "Energía: 415 kcal · Proteínas: 23.8 g · Carbohidratos: 40.6 g",
-            "Grasas: 18.4 g · Fibra: 5.8 g",
-            "Calcio: 285 mg · Hierro: 3.6 mg · Magnesio: 111 mg",
-            "Potasio: 766 mg · Sodio: 314 mg · Vitamina C: 2 mg"
+            "Energía: 435 kcal · Proteínas: 19.5 g · Carbohidratos: 59.3 g",
+            "Grasas: 15.1 g · Fibra: 9.6 g",
+            "Calcio: 324 mg · Hierro: 3.3 mg · Magnesio: 157 mg",
+            "Potasio: 972 mg · Sodio: 97 mg · Vitamina C: 15 mg"
           ],
           "page": 35
         },
@@ -538,7 +538,7 @@
           "id": "recetas-036",
           "title": "Rollitos de crepe, maní y frutilla",
           "details": "36 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-036.webp",
+          "image": "/nutricion/recetas-036.webp?v=d1759e7315e7",
           "ingredients": "40 g de harina integral; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de leche semidescremada; 15 g de pasta de maní sin azúcar ni sal; 120 g de frutillas; 3 g de aceite de oliva. Vainilla.",
           "method": "Batí harina, huevo y leche. Hacé dos crepes finos en sartén aceitada. Untá maní, agregá frutillas y enrollá. Cortá en rollitos.",
           "nutrition": [
@@ -551,24 +551,24 @@
         },
         {
           "id": "recetas-037",
-          "title": "Tostada mediterránea de berenjena",
-          "details": "37 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-037.webp",
-          "ingredients": "70 g de pan integral; 120 g de berenjena; 100 g de queso cottage (2% de grasa); 5 g de aceite de oliva; 80 g de tomate. Orégano y albahaca.",
-          "method": "Cortá berenjena fina y cocinala en sartén aceitada hasta que esté tierna. Tostá el pan y cubrí con cottage, berenjena y tomate.",
+          "title": "Tostadas de palta, huevo y limón",
+          "details": "37 / 50 · Rinde 1 porción · 15 minutos",
+          "image": "/nutricion/recetas-037.webp?v=facf01a6b4fe",
+          "ingredients": "70 g de pan integral; 70 g de palta sin piel ni carozo; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 10 g de jugo de limón; 3 g de aceite de oliva.",
+          "method": "Pisá la palta con el limón. Cociná los huevos en sartén con el aceite medido, hasta que clara y yema cuajen. Tostá el pan, untá con palta y agregá los huevos.",
           "nutrition": [
-            "Energía: 345 kcal · Proteínas: 21.0 g · Carbohidratos: 44.8 g",
-            "Grasas: 10.1 g · Fibra: 8.8 g",
-            "Calcio: 243 mg · Hierro: 2.4 mg · Magnesio: 87 mg",
-            "Potasio: 767 mg · Sodio: 633 mg · Vitamina C: 14 mg"
+            "Energía: 460 kcal · Proteínas: 22.7 g · Carbohidratos: 37.3 g",
+            "Grasas: 25.2 g · Fibra: 8.9 g",
+            "Calcio: 178 mg · Hierro: 3.9 mg · Magnesio: 85 mg",
+            "Potasio: 666 mg · Sodio: 466 mg · Vitamina C: 11 mg"
           ],
           "page": 37
         },
         {
           "id": "recetas-038",
-          "title": "Bowl de mango, kéfir y avena",
+          "title": "Yogur con mango, avena y semillas",
           "details": "38 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-038.webp",
+          "image": "/nutricion/recetas-038.webp?v=70af1db8be0d",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 150 g de mango sin piel ni carozo; 40 g de avena seca; 15 g de semillas de zapallo peladas. El cálculo utiliza yogur natural como equivalente del kéfir.",
           "method": "Usá kéfir natural de leche o yogur natural. Mezclá con avena y dejá hidratar 10 minutos. Sumá mango cortado y semillas de zapallo.",
           "nutrition": [
@@ -581,16 +581,16 @@
         },
         {
           "id": "recetas-039",
-          "title": "Revuelto de tofu y tostadas",
-          "details": "39 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-039.webp",
-          "ingredients": "150 g de tofu firme con calcio; 70 g de pan integral; 40 g de espinaca; 100 g de tomate; 5 g de aceite de oliva. Cúrcuma y pimienta.",
-          "method": "Desmenuzá tofu y saltealo con aceite y cúrcuma. Sumá espinaca y tomate, y cociná 5-7 minutos. Serví con tostadas.",
+          "title": "Panqueques de maíz y banana",
+          "details": "39 / 50 · Rinde 1 porción · 25 minutos",
+          "image": "/nutricion/recetas-039.webp?v=14ddd2955b98",
+          "ingredients": "40 g de polenta seca / harina de maíz; 120 g de banana sin piel; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de leche semidescremada; 4 g de aceite de oliva; 100 g de yogur natural sin azúcar, bajo en grasa.",
+          "method": "Usá harina de maíz fina. Mezclá con banana pisada, huevo y leche; dejá reposar 10 minutos. Calentá una sartén con el aceite medido. Formá panqueques pequeños y cociná 3 minutos por lado, hasta que estén bien cocidos. Serví con yogur.",
           "nutrition": [
-            "Energía: 465 kcal · Proteínas: 36.6 g · Carbohidratos: 39.4 g",
-            "Grasas: 20.9 g · Fibra: 9.7 g",
-            "Calcio: 1187 mg · Hierro: 7.1 mg · Magnesio: 182 mg",
-            "Potasio: 994 mg · Sodio: 376 mg · Vitamina C: 25 mg"
+            "Energía: 470 kcal · Proteínas: 19.4 g · Carbohidratos: 70.4 g",
+            "Grasas: 14.1 g · Fibra: 6.0 g",
+            "Calcio: 339 mg · Hierro: 2.7 mg · Magnesio: 117 mg",
+            "Potasio: 987 mg · Sodio: 203 mg · Vitamina C: 11 mg"
           ],
           "page": 39
         },
@@ -598,7 +598,7 @@
           "id": "recetas-040",
           "title": "Scones rápidos de ricota",
           "details": "40 / 50 · Rinde 4 porciones · 15 min + 20 de horno",
-          "image": "/nutricion/recetas-040.webp",
+          "image": "/nutricion/recetas-040.webp?v=f93beafe953e",
           "ingredients": "160 g de harina integral; 200 g de ricota parcialmente descremada; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 50 g de leche semidescremada; 10 g de aceite de oliva. 2 cucharaditas de polvo de hornear; 1 scone por porción.",
           "method": "Mezclá harina con polvo de hornear. Sumá ricota, huevo, leche y aceite; uní sin amasar demasiado. Formá cuatro scones y horneá a 190 °C 18-22 minutos, hasta que estén cocidos.",
           "nutrition": [
@@ -611,16 +611,16 @@
         },
         {
           "id": "recetas-041",
-          "title": "Tostadas de hummus de zanahoria",
-          "details": "41 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-041.webp",
-          "ingredients": "70 g de pan integral; 100 g de garbanzos cocidos sin sal; 80 g de zanahoria; 10 g de tahini; 15 g de jugo de limón; 3 g de aceite de oliva. Comino.",
-          "method": "Cociná la zanahoria al vapor hasta ablandar. Procesá con garbanzos, tahini, limón, aceite y agua necesaria. Untá sobre las tostadas.",
+          "title": "Bowl cremoso de banana y frutilla",
+          "details": "41 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-041.webp?v=c881f5852bb6",
+          "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 100 g de banana sin piel; 150 g de frutillas; 30 g de avena seca; 15 g de pasta de maní sin azúcar ni sal.",
+          "method": "Procesá el yogur con la banana y la mitad de las frutillas. Verté en un bowl y agregá avena, frutillas restantes en trozos y pasta de maní. Serví enseguida.",
           "nutrition": [
-            "Energía: 465 kcal · Proteínas: 20.1 g · Carbohidratos: 68.1 g",
-            "Grasas: 13.6 g · Fibra: 15.0 g",
-            "Calcio: 232 mg · Hierro: 5.8 mg · Magnesio: 120 mg",
-            "Potasio: 782 mg · Sodio: 392 mg · Vitamina C: 12 mg"
+            "Energía: 470 kcal · Proteínas: 21.0 g · Carbohidratos: 71.7 g",
+            "Grasas: 13.7 g · Fibra: 9.5 g",
+            "Calcio: 419 mg · Hierro: 2.7 mg · Magnesio: 159 mg",
+            "Potasio: 1268 mg · Sodio: 146 mg · Vitamina C: 98 mg"
           ],
           "page": 41
         },
@@ -628,7 +628,7 @@
           "id": "recetas-042",
           "title": "Panqueques de banana y nueces",
           "details": "42 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-042.webp",
+          "image": "/nutricion/recetas-042.webp?v=d7296a8ed3bf",
           "ingredients": "120 g de banana sin piel; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 35 g de avena seca; 10 g de nueces; 3 g de aceite de oliva; 80 g de yogur natural sin azúcar, bajo en grasa. Canela.",
           "method": "Pisá banana y mezclá con huevos y avena. Cociná tres panqueques en sartén aceitada hasta que el centro esté firme. Serví con yogur y nueces.",
           "nutrition": [
@@ -643,7 +643,7 @@
           "id": "recetas-043",
           "title": "Tostadas francesas de cacao",
           "details": "43 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-043.webp",
+          "image": "/nutricion/recetas-043.webp?v=2d9e1b427f90",
           "ingredients": "70 g de pan integral; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 70 g de leche semidescremada; 5 g de cacao amargo sin azúcar; 100 g de yogur natural sin azúcar, bajo en grasa; 120 g de frutillas; 3 g de aceite de oliva. Vainilla.",
           "method": "Batí huevo, leche y cacao. Remojá el pan y cocinalo en sartén aceitada por ambos lados, hasta que el huevo quede completamente cocido. Agregá yogur y frutillas.",
           "nutrition": [
@@ -656,16 +656,16 @@
         },
         {
           "id": "recetas-044",
-          "title": "Mini tortilla de arvejas y feta",
-          "details": "44 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-044.webp",
-          "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de arvejas cocidas sin sal; 25 g de queso feta; 5 g de aceite de oliva; 50 g de pan integral. Menta y pimienta.",
-          "method": "Mezclá huevos con arvejas cocidas y feta desmenuzado. Cociná en sartén aceitada y tapada hasta cuajar completamente. Serví con pan.",
+          "title": "Scones integrales de naranja",
+          "details": "44 / 50 · Rinde 4 porciones · 35 minutos",
+          "image": "/nutricion/recetas-044.webp?v=17064078eff6",
+          "ingredients": "160 g de harina integral; 150 g de ricota parcialmente descremada; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 150 g de naranja pelada; 10 g de aceite de oliva; 30 g de pasas de uva. 1 cucharadita de polvo de hornear y ralladura de naranja.",
+          "method": "Procesá la naranja pelada sin semillas. Mezclá con ricota, huevo y aceite. Agregá harina, pasas y polvo de hornear; uní sin amasar mucho. Formá ocho scones sobre papel de horno y cociná a 180 °C durante 20-25 minutos. Una porción son dos scones.",
           "nutrition": [
-            "Energía: 440 kcal · Proteínas: 26.5 g · Carbohidratos: 34.5 g",
-            "Grasas: 21.8 g · Fibra: 6.6 g",
-            "Calcio: 279 mg · Hierro: 4.4 mg · Magnesio: 72 mg",
-            "Potasio: 369 mg · Sodio: 712 mg · Vitamina C: 8 mg"
+            "Energía: 270 kcal · Proteínas: 11.7 g · Carbohidratos: 41.4 g",
+            "Grasas: 7.7 g · Fibra: 5.5 g",
+            "Calcio: 216 mg · Hierro: 2.1 mg · Magnesio: 69 mg",
+            "Potasio: 333 mg · Sodio: 137 mg · Vitamina C: 20 mg"
           ],
           "page": 44
         },
@@ -673,7 +673,7 @@
           "id": "recetas-045",
           "title": "Avena especiada con zapallo",
           "details": "45 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-045.webp",
+          "image": "/nutricion/recetas-045.webp?v=d8fd495b6a55",
           "ingredients": "45 g de avena seca; 120 g de zapallo cocido; 200 g de leche semidescremada; 15 g de nueces. Canela y una pizca de nuez moscada.",
           "method": "Cociná avena y leche 6-8 minutos. Agregá zapallo previamente cocido y pisado; calentá bien. Serví con nueces picadas.",
           "nutrition": [
@@ -686,16 +686,16 @@
         },
         {
           "id": "recetas-046",
-          "title": "Tostadas de sardinas y tomate",
-          "details": "46 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-046.webp",
-          "ingredients": "70 g de pan integral; 85 g de sardinas en conserva escurridas, con espinas comestibles; 120 g de tomate; 10 g de jugo de limón; 35 g de palta sin piel ni carozo. Perejil.",
-          "method": "Escurrí sardinas y desmenuzalas. Tostá el pan, untá palta y agregá sardinas y tomate. Terminá con limón.",
+          "title": "Copa de yogur, ciruela y granola",
+          "details": "46 / 50 · Rinde 1 porción · 10 minutos",
+          "image": "/nutricion/recetas-046.webp?v=01ff66f821c0",
+          "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 160 g de ciruelas sin carozo; 40 g de avena seca; 15 g de nueces.",
+          "method": "Tostá avena y nueces picadas en sartén seca a fuego bajo, revolviendo 4-5 minutos. Dejá enfriar. Cortá las ciruelas y armá una copa con yogur, fruta y el crocante de avena.",
           "nutrition": [
-            "Energía: 435 kcal · Proteínas: 31.4 g · Carbohidratos: 38.2 g",
-            "Grasas: 17.6 g · Fibra: 8.0 g",
-            "Calcio: 454 mg · Hierro: 4.7 mg · Magnesio: 110 mg",
-            "Potasio: 980 mg · Sodio: 588 mg · Vitamina C: 24 mg"
+            "Energía: 455 kcal · Proteínas: 20.7 g · Carbohidratos: 60.9 g",
+            "Grasas: 16.1 g · Fibra: 7.5 g",
+            "Calcio: 412 mg · Hierro: 2.8 mg · Magnesio: 140 mg",
+            "Potasio: 957 mg · Sodio: 141 mg · Vitamina C: 17 mg"
           ],
           "page": 46
         },
@@ -703,7 +703,7 @@
           "id": "recetas-047",
           "title": "Bowl de yogur, uvas y almendras",
           "details": "47 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-047.webp",
+          "image": "/nutricion/recetas-047.webp?v=d825d251c6b6",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 150 g de uvas; 40 g de avena seca; 15 g de almendras. Canela.",
           "method": "Lavá y cortá las uvas. Mezclá yogur y avena; serví con fruta y almendras picadas.",
           "nutrition": [
@@ -718,7 +718,7 @@
           "id": "recetas-048",
           "title": "Wrap de ricota, manzana y canela",
           "details": "48 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-048.webp",
+          "image": "/nutricion/recetas-048.webp?v=c5bb8298871b",
           "ingredients": "50 g de tortilla integral; 100 g de ricota parcialmente descremada; 150 g de manzana; 10 g de nueces. Canela.",
           "method": "Rallá la manzana y mezclá con ricota y canela. Rellená la tortilla, sumá nueces, doblá y calentá 2 minutos por lado en sartén seca.",
           "nutrition": [
@@ -731,16 +731,16 @@
         },
         {
           "id": "recetas-049",
-          "title": "Huevos al pesto de perejil",
-          "details": "49 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-049.webp",
-          "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 70 g de pan integral; 10 g de perejil fresco; 10 g de nueces; 5 g de aceite de oliva; 100 g de tomate. Pimienta.",
-          "method": "Procesá perejil, nueces y aceite con una cucharada de agua. Cociná los huevos hasta cuajar, serví con tostadas, tomate y pesto.",
+          "title": "Pancitos de queso al horno",
+          "details": "49 / 50 · Rinde 4 porciones · 35 minutos",
+          "image": "/nutricion/recetas-049.webp?v=0e1d5c6460c2",
+          "ingredients": "120 g de almidón de maíz; 100 g de mozzarella parcialmente descremada; 100 g de ricota parcialmente descremada; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 30 g de leche semidescremada.",
+          "method": "Mezclá almidón, mozzarella rallada y ricota. Agregá huevo y leche; uní hasta obtener una masa moldeable. Formá doce bolitas y ponelas en una bandeja con papel de horno. Horneá a 190 °C durante 20-25 minutos, hasta dorar. Una porción son tres pancitos.",
           "nutrition": [
-            "Energía: 450 kcal · Proteínas: 24.0 g · Carbohidratos: 36.5 g",
-            "Grasas: 23.8 g · Fibra: 6.4 g",
-            "Calcio: 202 mg · Hierro: 4.7 mg · Magnesio: 96 mg",
-            "Potasio: 652 mg · Sodio: 471 mg · Vitamina C: 27 mg"
+            "Energía: 235 kcal · Proteínas: 10.8 g · Carbohidratos: 29.8 g",
+            "Grasas: 7.3 g · Fibra: 0.3 g",
+            "Calcio: 280 mg · Hierro: 0.5 mg · Magnesio: 13 mg",
+            "Potasio: 81 mg · Sodio: 203 mg · Vitamina C: 0 mg"
           ],
           "page": 49
         },
@@ -748,7 +748,7 @@
           "id": "recetas-050",
           "title": "Granola de sartén con yogur y kiwi",
           "details": "50 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-050.webp",
+          "image": "/nutricion/recetas-050.webp?v=a62cdb36e580",
           "ingredients": "40 g de avena seca; 10 g de almendras; 10 g de semillas de zapallo peladas; 200 g de yogur natural sin azúcar, bajo en grasa; 150 g de kiwi pelado. Canela.",
           "method": "Tostá avena, almendras y semillas 4 minutos a fuego bajo, moviendo. Dejá enfriar. Serví sobre yogur y kiwi en cubos.",
           "nutrition": [
@@ -769,7 +769,7 @@
           "id": "recetas-051",
           "title": "Canelones de espinaca y ricota",
           "details": "01 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-051.webp",
+          "image": "/nutricion/recetas-051.webp?v=1c755691746f",
           "ingredients": "150 g de pasta integral cocida; 120 g de ricota parcialmente descremada; 80 g de espinaca; 120 g de salsa de tomate sin sal añadida; 20 g de mozzarella parcialmente descremada; 60 g de lechuga; 60 g de tomate; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá la espinaca escurrida con ricota y una pizca de nuez moscada. Prepará la pasta según el envase, rellená y acomodá en una fuente con salsa de tomate. Cubrí con el queso y horneá a 180 °C unos 20-25 minutos. Serví con ensalada.",
           "nutrition": [
@@ -784,7 +784,7 @@
           "id": "recetas-052",
           "title": "Tacos de pescado y mango",
           "details": "02 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-052.webp",
+          "image": "/nutricion/recetas-052.webp?v=158c85bf3fc2",
           "ingredients": "150 g de pescado blanco crudo; 75 g de tortilla integral; 80 g de repollo; 80 g de mango sin piel ni carozo; 50 g de yogur natural sin azúcar, bajo en grasa; 10 g de jugo de limón; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cociná el pescado con aceite en sartén hasta que esté completamente hecho y desmenuzalo. Cortá repollo y mango. Mezclá yogur, limón y cilantro. Calentá las tortillas y rellená con pescado, vegetales, mango y salsa.",
           "nutrition": [
@@ -799,7 +799,7 @@
           "id": "recetas-053",
           "title": "Hamburguesa de lentejas y nueces",
           "details": "03 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-053.webp",
+          "image": "/nutricion/recetas-053.webp?v=0716e2ddfaf3",
           "ingredients": "150 g de lentejas cocidas sin sal; 20 g de avena seca; 10 g de nueces; 40 g de cebolla; 5 g de aceite de oliva; 70 g de pan integral; 50 g de tomate; 30 g de lechuga; 150 g de boniato cocido. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Pisá las lentejas y mezclá con avena, nueces, cebolla picada y comino. Formá una hamburguesa firme y cociná en sartén aceitada 4-5 minutos por lado. Horneá el boniato en gajos a 200 °C unos 25-30 minutos. Armá el pan con tomate y lechuga.",
           "nutrition": [
@@ -814,7 +814,7 @@
           "id": "recetas-054",
           "title": "Pasta mediterránea con atún y porotos",
           "details": "04 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-054.webp",
+          "image": "/nutricion/recetas-054.webp?v=19e1386a96c2",
           "ingredients": "140 g de pasta integral cocida; 100 g de atún al natural escurrido; 85 g de porotos blancos cocidos sin sal; 100 g de tomate; 16 g de aceitunas escurridas; 10 g de jugo de limón; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cociná la pasta según el envase, escurrí y enfriá. Mezclá con atún, porotos blancos, tomates cortados, aceitunas y albahaca. Condimentá con limón y aceite. Guardá refrigerada si no la vas a comer enseguida.",
           "nutrition": [
@@ -829,7 +829,7 @@
           "id": "recetas-055",
           "title": "Ñoquis de ricota con tomate",
           "details": "05 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-055.webp",
+          "image": "/nutricion/recetas-055.webp?v=fbb9cbe39170",
           "ingredients": "120 g de ricota parcialmente descremada; 40 g de huevo sin cáscara (50 g ≈ 1 unidad); 50 g de harina integral; 120 g de salsa de tomate sin sal añadida; 30 g de espinaca; 10 g de queso parmesano. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá ricota, huevo y la harina necesaria para una masa suave. Formá rollitos y cortá los ñoquis. Herví en agua hasta que suban y comprobá que estén cocidos. Mezclá con salsa caliente y espinaca, y terminá con queso.",
           "nutrition": [
@@ -844,7 +844,7 @@
           "id": "recetas-056",
           "title": "Arroz con mariscos y arvejas",
           "details": "06 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-056.webp",
+          "image": "/nutricion/recetas-056.webp?v=35e44cb13a6d",
           "ingredients": "150 g de arroz integral cocido; 150 g de langostinos cocidos y limpios; 80 g de arvejas cocidas sin sal; 40 g de morrón rojo; 60 g de tomate; 3 g de ajo; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Salteá ajo y morrón con aceite; agregá tomate y pimentón. Incorporá los mariscos y cociná hasta que estén completamente hechos; descartá mejillones que no se abran. Sumá arroz y arvejas y calentá bien todo. Serví enseguida.",
           "nutrition": [
@@ -859,7 +859,7 @@
           "id": "recetas-057",
           "title": "Morrón relleno de quinoa y lentejas",
           "details": "07 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-057.webp",
+          "image": "/nutricion/recetas-057.webp?v=79960a2b99e9",
           "ingredients": "180 g de morrón rojo; 90 g de quinoa cocida; 100 g de lentejas cocidas sin sal; 40 g de cebolla; 120 g de salsa de tomate sin sal añadida; 30 g de mozzarella parcialmente descremada; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cortá el morrón al medio y retirale las semillas. Salteá cebolla y mezclá con quinoa y lentejas. Rellená las mitades, cubrí con salsa y queso. Horneá a 190 °C unos 25-30 minutos, hasta que el morrón esté tierno.",
           "nutrition": [
@@ -874,7 +874,7 @@
           "id": "recetas-058",
           "title": "Pollo cítrico con cuscús",
           "details": "08 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-058.webp",
+          "image": "/nutricion/recetas-058.webp?v=01fe73f14036",
           "ingredients": "140 g de pollo crudo sin piel; 130 g de cuscús cocido; 75 g de naranja pelada; 100 g de zucchini / zapallito; 60 g de zanahoria; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cortá el pollo en tiras y condimentá con jugo de naranja y tomillo. Salteá las verduras y luego el pollo hasta que esté completamente cocido. Prepará el cuscús según el envase. Serví junto y agregá unos gajos de naranja.",
           "nutrition": [
@@ -889,7 +889,7 @@
           "id": "recetas-059",
           "title": "Bowl de tofu con salsa de maní",
           "details": "09 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-059.webp",
+          "image": "/nutricion/recetas-059.webp?v=2d2ae317f21e",
           "ingredients": "150 g de tofu firme con calcio; 150 g de arroz integral cocido; 55 g de edamame cocido; 60 g de zanahoria; 60 g de repollo; 15 g de pasta de maní sin azúcar ni sal; 30 g de yogur natural sin azúcar, bajo en grasa; 10 g de jugo de limón; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Secá y cortá el tofu; doralo con aceite en sartén. Mezclá pasta de maní, yogur, limón y un poco de agua para la salsa. Armá el bowl con arroz, edamame, vegetales y tofu. Agregá la salsa al servir.",
           "nutrition": [
@@ -904,7 +904,7 @@
           "id": "recetas-060",
           "title": "Empanadas integrales de carne y zapallo",
           "details": "10 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-060.webp",
+          "image": "/nutricion/recetas-060.webp?v=6c7c9bb6615f",
           "ingredients": "60 g de harina integral; 8 g de aceite de oliva; 100 g de carne vacuna magra cruda; 100 g de zapallo cocido; 40 g de cebolla; 50 g de lechuga; 80 g de tomate. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Rehogá cebolla, sumá carne y cociná completamente. Mezclá con zapallo y comino; dejá entibiar. Rellená las tapas y cerrá los bordes. Horneá a 200 °C unos 20-25 minutos, hasta dorar. Serví con ensalada.",
           "nutrition": [
@@ -919,7 +919,7 @@
           "id": "recetas-061",
           "title": "Huevos al tomate con garbanzos",
           "details": "11 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-061.webp",
+          "image": "/nutricion/recetas-061.webp?v=e30c5eb37514",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 85 g de garbanzos cocidos sin sal; 180 g de salsa de tomate sin sal añadida; 40 g de morrón rojo; 40 g de cebolla; 5 g de aceite de oliva; 60 g de pan integral. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Rehogá cebolla y morrón; sumá tomate, garbanzos y comino y cociná 10 minutos. Hacé dos huecos, agregá los huevos y tapá hasta que clara y yema estén cuajadas. Serví con tostadas.",
           "nutrition": [
@@ -934,7 +934,7 @@
           "id": "recetas-062",
           "title": "Lasaña de zucchini y carne",
           "details": "12 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-062.webp",
+          "image": "/nutricion/recetas-062.webp?v=94d095ba9dcf",
           "ingredients": "100 g de pasta integral cocida; 100 g de carne vacuna magra cruda; 100 g de zucchini / zapallito; 180 g de salsa de tomate sin sal añadida; 40 g de mozzarella parcialmente descremada; 30 g de cebolla; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cociná la carne con cebolla y aceite, y sumá parte de la salsa. Prepará las láminas según el envase. Alterná pasta, zucchini fino y relleno. Cubrí con salsa y mozzarella. Horneá a 190 °C unos 25-30 minutos, hasta que todo esté cocido.",
           "nutrition": [
@@ -949,7 +949,7 @@
           "id": "recetas-063",
           "title": "Ensalada de ñoquis, pepinillos y cottage",
           "details": "13 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-063.webp",
+          "image": "/nutricion/recetas-063.webp?v=91aeca8820fb",
           "ingredients": "180 g de ñoquis cocidos; 120 g de queso cottage (2% de grasa); 35 g de pepinillos en conserva escurridos; 100 g de tomate; 80 g de pepino; 25 g de mozzarella parcialmente descremada; 5 g de aceite de oliva; 10 g de jugo de limón. Eneldo, pimienta y ajo en polvo.",
           "method": "Herví los ñoquis según el envase, escurrí y dejá entibiar. Procesá cottage con limón y dos cucharadas de agua. Mezclá con pepinillos picados, tomate, pepino y queso en cubitos. Incorporá ñoquis y aceite; serví tibia o refrigerada.",
           "nutrition": [
@@ -964,7 +964,7 @@
           "id": "recetas-064",
           "title": "Ensalada César de garbanzos y pollo",
           "details": "14 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-064.webp",
+          "image": "/nutricion/recetas-064.webp?v=06fb0e0e33a6",
           "ingredients": "130 g de pollo crudo sin piel; 100 g de garbanzos cocidos sin sal; 100 g de lechuga; 40 g de pan integral; 80 g de yogur natural sin azúcar, bajo en grasa; 10 g de queso parmesano; 5 g de aceite de oliva; 15 g de jugo de limón. Mostaza y pimienta.",
           "method": "Cociná el pollo con aceite hasta que esté completamente hecho. Tostá el pan en cubos. Mezclá yogur, limón y parmesano para la salsa. Armá la ensalada con lechuga, garbanzos, pollo y crutones.",
           "nutrition": [
@@ -979,7 +979,7 @@
           "id": "recetas-065",
           "title": "Pasta cremosa de cottage y espinaca",
           "details": "15 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-065.webp",
+          "image": "/nutricion/recetas-065.webp?v=7ec9abe6f6dd",
           "ingredients": "180 g de pasta integral cocida; 130 g de queso cottage (2% de grasa); 80 g de espinaca; 100 g de tomate; 5 g de aceite de oliva; 3 g de ajo. Nuez moscada y pimienta.",
           "method": "Procesá cottage con 40 ml de agua caliente. Salteá ajo, tomate y espinaca con aceite. Sumá pasta cocida y crema de cottage, calentá suavemente sin hervir fuerte.",
           "nutrition": [
@@ -994,7 +994,7 @@
           "id": "recetas-066",
           "title": "Falafel al horno con pita y salsa",
           "details": "16 / 50 · Rinde 2 porciones · 20 min + 25 de horno",
-          "image": "/nutricion/recetas-066.webp",
+          "image": "/nutricion/recetas-066.webp?v=62df7bc293b0",
           "ingredients": "320 g de garbanzos cocidos sin sal; 60 g de cebolla; 40 g de harina de garbanzos; 15 g de perejil fresco; 10 g de aceite de oliva; 120 g de pan integral; 120 g de yogur natural sin azúcar, bajo en grasa; 160 g de pepino; 20 g de jugo de limón. Comino y pimentón; 4 medallones por porción.",
           "method": "Procesá garbanzos cocidos y bien escurridos con cebolla, perejil y harina. Refrigerá 15 minutos, formá ocho medallones y horneá aceitados a 200 °C 25 minutos, girando una vez. Serví en pita con pepino y yogur con limón.",
           "nutrition": [
@@ -1009,7 +1009,7 @@
           "id": "recetas-067",
           "title": "Bowl de arroz, salmón y mango",
           "details": "17 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-067.webp",
+          "image": "/nutricion/recetas-067.webp?v=caa38e4cd046",
           "ingredients": "160 g de arroz integral cocido; 130 g de salmón crudo; 80 g de mango sin piel ni carozo; 80 g de pepino; 60 g de edamame cocido; 40 g de yogur natural sin azúcar, bajo en grasa; 10 g de jugo de limón. Jengibre rallado.",
           "method": "Horneá salmón a 190 °C 15-20 minutos, hasta que esté hecho. Armá un bowl con arroz, edamame cocido, mango y pepino. Agregá salmón y yogur con limón.",
           "nutrition": [
@@ -1024,7 +1024,7 @@
           "id": "recetas-068",
           "title": "Tacos de lentejas y palta",
           "details": "18 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-068.webp",
+          "image": "/nutricion/recetas-068.webp?v=f861e51f7025",
           "ingredients": "160 g de lentejas cocidas sin sal; 75 g de tortilla integral; 100 g de tomate; 40 g de cebolla; 50 g de palta sin piel ni carozo; 5 g de aceite de oliva; 15 g de jugo de limón. Comino y cilantro.",
           "method": "Salteá cebolla con aceite y comino. Sumá lentejas y calentá bien. Rellená tres tortillas pequeñas con lentejas, tomate y palta; terminá con limón.",
           "nutrition": [
@@ -1039,7 +1039,7 @@
           "id": "recetas-069",
           "title": "Papas rellenas de atún y cottage",
           "details": "19 / 50 · Rinde 1 porción · 35 min",
-          "image": "/nutricion/recetas-069.webp",
+          "image": "/nutricion/recetas-069.webp?v=f8485151aec0",
           "ingredients": "250 g de papa cocida; 100 g de atún al natural escurrido; 100 g de queso cottage (2% de grasa); 50 g de choclo cocido sin sal; 100 g de tomate. Perejil.",
           "method": "Herví las papas hasta que estén tiernas. Abrilas y ahuecá un poco. Mezclá la pulpa con atún, cottage y choclo. Rellená y gratiná 8 minutos a 200 °C. Serví con tomate.",
           "nutrition": [
@@ -1054,7 +1054,7 @@
           "id": "recetas-070",
           "title": "Cuscús mediterráneo con garbanzos",
           "details": "20 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-070.webp",
+          "image": "/nutricion/recetas-070.webp?v=b371622459c0",
           "ingredients": "160 g de cuscús cocido; 130 g de garbanzos cocidos sin sal; 100 g de pepino; 100 g de tomate; 30 g de queso feta; 5 g de aceite de oliva; 15 g de jugo de limón. Menta y perejil.",
           "method": "Prepará cuscús según el envase y dejá entibiar. Mezclá con garbanzos, pepino y tomate picados. Sumá feta, aceite y limón.",
           "nutrition": [
@@ -1069,7 +1069,7 @@
           "id": "recetas-071",
           "title": "Pollo al curry suave con manzana",
           "details": "21 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-071.webp",
+          "image": "/nutricion/recetas-071.webp?v=0f41ba86ed5b",
           "ingredients": "150 g de pollo crudo sin piel; 150 g de arroz integral cocido; 100 g de manzana; 50 g de cebolla; 100 g de yogur natural sin azúcar, bajo en grasa; 5 g de aceite de oliva. Curry suave.",
           "method": "Salteá cebolla y pollo en cubos con aceite. Agregá manzana y curry; cociná hasta que el pollo esté hecho. Bajá el fuego y sumá yogur sin hervir fuerte. Serví con arroz.",
           "nutrition": [
@@ -1084,7 +1084,7 @@
           "id": "recetas-072",
           "title": "Arroz salteado con huevo y langostinos",
           "details": "22 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-072.webp",
+          "image": "/nutricion/recetas-072.webp?v=e5aa2b0877b8",
           "ingredients": "180 g de arroz integral cocido; 120 g de langostinos cocidos y limpios; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 60 g de arvejas cocidas sin sal; 60 g de zanahoria; 5 g de aceite de oliva. Jengibre y ajo en polvo.",
           "method": "Usá arroz recién cocido o refrigerado rápidamente. Salteá zanahoria, arvejas y langostinos hasta cocinar. Agregá huevo y revolvé hasta cuajar. Incorporá arroz y calentá bien todo.",
           "nutrition": [
@@ -1099,7 +1099,7 @@
           "id": "recetas-073",
           "title": "Ensalada tibia de boniato y porotos",
           "details": "23 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-073.webp",
+          "image": "/nutricion/recetas-073.webp?v=42f03d24272b",
           "ingredients": "200 g de boniato cocido; 150 g de porotos blancos cocidos sin sal; 50 g de espinaca; 30 g de queso feta; 5 g de aceite de oliva; 15 g de jugo de limón; 10 g de semillas de zapallo peladas. Pimentón y comino.",
           "method": "Horneá boniato en cubos aceitados a 200 °C 25 minutos. Mezclá tibio con porotos, espinaca, feta y semillas. Condimentá con limón.",
           "nutrition": [
@@ -1114,7 +1114,7 @@
           "id": "recetas-074",
           "title": "Hamburguesa de pollo con salsa de yogur",
           "details": "24 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-074.webp",
+          "image": "/nutricion/recetas-074.webp?v=962de18890dd",
           "ingredients": "150 g de pollo crudo sin piel; 20 g de avena seca; 70 g de pan integral; 80 g de tomate; 40 g de lechuga; 50 g de yogur natural sin azúcar, bajo en grasa; 5 g de aceite de oliva. Ajo en polvo y perejil.",
           "method": "Picá o procesá pollo crudo y mezclá con avena. Formá una hamburguesa y cociná en sartén aceitada hasta que el centro esté hecho. Armá el pan con vegetales y yogur condimentado.",
           "nutrition": [
@@ -1129,7 +1129,7 @@
           "id": "recetas-075",
           "title": "Pasta al pesto de arvejas",
           "details": "25 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-075.webp",
+          "image": "/nutricion/recetas-075.webp?v=73487d2cee54",
           "ingredients": "180 g de pasta integral cocida; 150 g de arvejas cocidas sin sal; 15 g de nueces; 15 g de queso parmesano; 5 g de aceite de oliva; 10 g de jugo de limón. Albahaca.",
           "method": "Procesá arvejas cocidas con nueces, queso, aceite y limón. Agregá agua de cocción hasta obtener una salsa. Mezclá con pasta caliente.",
           "nutrition": [
@@ -1144,7 +1144,7 @@
           "id": "recetas-076",
           "title": "Tarta de choclo y ricota",
           "details": "26 / 50 · Rinde 2 porciones · 15 min + 30 de horno",
-          "image": "/nutricion/recetas-076.webp",
+          "image": "/nutricion/recetas-076.webp?v=145a36b5f4c8",
           "ingredients": "120 g de harina integral; 15 g de aceite de oliva; 200 g de ricota parcialmente descremada; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 160 g de choclo cocido sin sal; 60 g de cebolla; 200 g de tomate. Nuez moscada.",
           "method": "Uní harina y 10 g de aceite con 65 ml de agua para la masa. Salteá cebolla con el resto del aceite. Mezclá con ricota, huevos y choclo. Cubrí una tartera con masa y relleno; horneá a 190 °C 30 minutos. Serví con tomate.",
           "nutrition": [
@@ -1159,7 +1159,7 @@
           "id": "recetas-077",
           "title": "Ensalada de pasta con salsa de palta",
           "details": "27 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-077.webp",
+          "image": "/nutricion/recetas-077.webp?v=baf87924dd9d",
           "ingredients": "160 g de pasta integral cocida; 120 g de pollo crudo sin piel; 60 g de palta sin piel ni carozo; 50 g de yogur natural sin azúcar, bajo en grasa; 100 g de tomate; 50 g de choclo cocido sin sal; 15 g de jugo de limón. Cilantro.",
           "method": "Cociná pollo completamente y cortá en cubos. Procesá palta, yogur y limón. Mezclá pasta cocida y fría con pollo, tomate y choclo. Agregá salsa al servir.",
           "nutrition": [
@@ -1174,7 +1174,7 @@
           "id": "recetas-078",
           "title": "Berenjenas gratinadas con porotos",
           "details": "28 / 50 · Rinde 1 porción · 35 min",
-          "image": "/nutricion/recetas-078.webp",
+          "image": "/nutricion/recetas-078.webp?v=4ee54ed9eb89",
           "ingredients": "250 g de berenjena; 160 g de porotos blancos cocidos sin sal; 150 g de salsa de tomate sin sal añadida; 40 g de mozzarella parcialmente descremada; 5 g de aceite de oliva; 50 g de pan integral. Orégano.",
           "method": "Horneá rodajas de berenjena con aceite a 200 °C 20 minutos. Alterná en fuente con porotos y salsa. Cubrí con queso y gratiná 10 minutos. Serví con pan.",
           "nutrition": [
@@ -1189,7 +1189,7 @@
           "id": "recetas-079",
           "title": "Polenta cremosa con hongos y huevo",
           "details": "29 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-079.webp",
+          "image": "/nutricion/recetas-079.webp?v=56faf28c572f",
           "ingredients": "55 g de polenta seca / harina de maíz; 150 g de leche semidescremada; 150 g de champiñones; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 5 g de aceite de oliva; 10 g de queso parmesano. Tomillo.",
           "method": "Cociná polenta con leche y 180 ml de agua, siguiendo el envase. Salteá hongos con aceite. Cociná huevos hasta cuajar. Serví sobre la polenta y terminá con queso.",
           "nutrition": [
@@ -1204,7 +1204,7 @@
           "id": "recetas-080",
           "title": "Ensalada de quinoa con naranja y pollo",
           "details": "30 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-080.webp",
+          "image": "/nutricion/recetas-080.webp?v=310c58faf0bf",
           "ingredients": "160 g de quinoa cocida; 130 g de pollo crudo sin piel; 100 g de naranja pelada; 50 g de espinaca; 15 g de almendras; 5 g de aceite de oliva. Perejil y pimienta.",
           "method": "Cociná pollo con aceite hasta que esté hecho. Mezclá quinoa cocida con espinaca y naranja en gajos. Agregá pollo y almendras.",
           "nutrition": [
@@ -1219,7 +1219,7 @@
           "id": "recetas-081",
           "title": "Fajitas de carne y morrón",
           "details": "31 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-081.webp",
+          "image": "/nutricion/recetas-081.webp?v=8291993f599c",
           "ingredients": "140 g de carne vacuna magra cruda; 75 g de tortilla integral; 150 g de morrón rojo; 60 g de cebolla; 40 g de palta sin piel ni carozo; 5 g de aceite de oliva; 10 g de jugo de limón. Comino y pimentón; cálculo con carne magra picada como equivalente.",
           "method": "Usá carne magra en tiras; salteá con aceite hasta cocinar completamente. Sumá morrón y cebolla y cociná hasta ablandar. Rellená tortillas y agregá palta y limón.",
           "nutrition": [
@@ -1234,7 +1234,7 @@
           "id": "recetas-082",
           "title": "Lentejas cremosas con tomate y feta",
           "details": "32 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-082.webp",
+          "image": "/nutricion/recetas-082.webp?v=f18dbf217c70",
           "ingredients": "180 g de lentejas cocidas sin sal; 150 g de salsa de tomate sin sal añadida; 40 g de cebolla; 35 g de queso feta; 5 g de aceite de oliva; 60 g de pan integral. Orégano.",
           "method": "Rehogá cebolla con aceite. Sumá tomate y lentejas; cociná 10 minutos a fuego suave. Agregá feta desmenuzado y serví con pan.",
           "nutrition": [
@@ -1249,7 +1249,7 @@
           "id": "recetas-083",
           "title": "Ensalada de papa con sardinas",
           "details": "33 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-083.webp",
+          "image": "/nutricion/recetas-083.webp?v=4bd3172e1ba7",
           "ingredients": "230 g de papa cocida; 100 g de sardinas en conserva escurridas, con espinas comestibles; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de tomate; 60 g de yogur natural sin azúcar, bajo en grasa; 15 g de jugo de limón. Eneldo.",
           "method": "Herví papa hasta ablandar y huevo 10-12 minutos. Cortá y mezclá con sardinas escurridas y tomate. Aderezá con yogur y limón.",
           "nutrition": [
@@ -1264,7 +1264,7 @@
           "id": "recetas-084",
           "title": "Sándwich caliente de berenjena y mozzarella",
           "details": "34 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-084.webp",
+          "image": "/nutricion/recetas-084.webp?v=d9fbf02db00b",
           "ingredients": "90 g de pan integral; 180 g de berenjena; 60 g de mozzarella parcialmente descremada; 100 g de tomate; 5 g de aceite de oliva. Albahaca.",
           "method": "Dorá berenjena en rodajas finas con aceite hasta que esté tierna. Rellená pan con berenjena, queso y tomate. Calentá en sartén tapada hasta fundir el queso.",
           "nutrition": [
@@ -1279,7 +1279,7 @@
           "id": "recetas-085",
           "title": "Bowl mexicano de porotos y arroz",
           "details": "35 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-085.webp",
+          "image": "/nutricion/recetas-085.webp?v=64a0d5d1fd1d",
           "ingredients": "160 g de porotos negros cocidos sin sal; 150 g de arroz integral cocido; 60 g de choclo cocido sin sal; 100 g de tomate; 40 g de palta sin piel ni carozo; 50 g de yogur natural sin azúcar, bajo en grasa. Comino, pimentón y cilantro.",
           "method": "Calentá porotos y arroz con comino. Serví con choclo, tomate y palta. Agregá yogur como salsa.",
           "nutrition": [
@@ -1294,7 +1294,7 @@
           "id": "recetas-086",
           "title": "Croquetas de atún y papa al horno",
           "details": "36 / 50 · Rinde 2 porciones · 20 min + 25 de horno",
-          "image": "/nutricion/recetas-086.webp",
+          "image": "/nutricion/recetas-086.webp?v=2d433c3508a8",
           "ingredients": "350 g de papa cocida; 200 g de atún al natural escurrido; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 40 g de avena seca; 10 g de aceite de oliva; 100 g de yogur natural sin azúcar, bajo en grasa; 100 g de lechuga; 160 g de tomate. Perejil y limón a gusto.",
           "method": "Pisá papa cocida y mezclá con atún, huevo y avena. Formá ocho croquetas; pincelá con aceite y horneá a 200 °C 25 minutos, girando. Serví cuatro por persona con yogur y ensalada.",
           "nutrition": [
@@ -1309,7 +1309,7 @@
           "id": "recetas-087",
           "title": "Sopa cremosa de arvejas con tostadas",
           "details": "37 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-087.webp",
+          "image": "/nutricion/recetas-087.webp?v=0d41ae0630da",
           "ingredients": "220 g de arvejas cocidas sin sal; 50 g de cebolla; 150 g de leche semidescremada; 5 g de aceite de oliva; 60 g de pan integral; 50 g de huevo sin cáscara (50 g ≈ 1 unidad). Menta.",
           "method": "Salteá cebolla con aceite. Sumá arvejas, leche y 150 ml de agua; cociná 10 minutos. Procesá y serví con tostadas y un huevo duro.",
           "nutrition": [
@@ -1324,7 +1324,7 @@
           "id": "recetas-088",
           "title": "Curry de garbanzos y espinaca",
           "details": "38 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-088.webp",
+          "image": "/nutricion/recetas-088.webp?v=50e793521dc0",
           "ingredients": "170 g de garbanzos cocidos sin sal; 150 g de salsa de tomate sin sal añadida; 80 g de espinaca; 50 g de cebolla; 70 g de yogur natural sin azúcar, bajo en grasa; 120 g de arroz integral cocido; 5 g de aceite de oliva. Curry suave.",
           "method": "Rehogá cebolla y curry con aceite. Agregá tomate y garbanzos, cociná 10 minutos. Sumá espinaca hasta ablandar. Fuera del fuego agregá yogur; serví con arroz.",
           "nutrition": [
@@ -1339,7 +1339,7 @@
           "id": "recetas-089",
           "title": "Pasta con salmón, limón y yogur",
           "details": "39 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-089.webp",
+          "image": "/nutricion/recetas-089.webp?v=8e23db71102e",
           "ingredients": "160 g de pasta integral cocida; 120 g de salmón crudo; 100 g de yogur natural sin azúcar, bajo en grasa; 120 g de zucchini / zapallito; 5 g de aceite de oliva; 15 g de jugo de limón. Eneldo.",
           "method": "Cociná salmón y zucchini con aceite hasta que estén hechos. Sumá pasta caliente. Bajá el fuego y mezclá con yogur y limón, sin hervir fuerte.",
           "nutrition": [
@@ -1354,7 +1354,7 @@
           "id": "recetas-090",
           "title": "Zapallitos rellenos de ricota y quinoa",
           "details": "40 / 50 · Rinde 1 porción · 35 min",
-          "image": "/nutricion/recetas-090.webp",
+          "image": "/nutricion/recetas-090.webp?v=3427c18cde07",
           "ingredients": "300 g de zucchini / zapallito; 120 g de ricota parcialmente descremada; 120 g de quinoa cocida; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 120 g de salsa de tomate sin sal añadida; 10 g de queso parmesano. Nuez moscada.",
           "method": "Cortá zapallitos al medio y ahuecá. Mezclá pulpa picada, ricota, quinoa y huevo. Rellená, cubrí con salsa y queso; horneá a 190 °C 30 minutos, hasta que el relleno cuaje.",
           "nutrition": [
@@ -1369,7 +1369,7 @@
           "id": "recetas-091",
           "title": "Ñoquis con crema de zapallo y cottage",
           "details": "41 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-091.webp",
+          "image": "/nutricion/recetas-091.webp?v=68ca341eaabe",
           "ingredients": "180 g de ñoquis cocidos; 180 g de zapallo cocido; 120 g de queso cottage (2% de grasa); 50 g de espinaca; 5 g de aceite de oliva. Nuez moscada y pimienta.",
           "method": "Procesá zapallo cocido con cottage y 40 ml de agua. Salteá espinaca con aceite. Agregá salsa y ñoquis hervidos según el envase. Calentá suavemente.",
           "nutrition": [
@@ -1384,7 +1384,7 @@
           "id": "recetas-092",
           "title": "Tacos de hongos y porotos blancos",
           "details": "42 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-092.webp",
+          "image": "/nutricion/recetas-092.webp?v=a59842064f99",
           "ingredients": "180 g de champiñones; 150 g de porotos blancos cocidos sin sal; 75 g de tortilla integral; 40 g de palta sin piel ni carozo; 5 g de aceite de oliva; 10 g de jugo de limón. Pimentón ahumado.",
           "method": "Salteá hongos con aceite hasta dorar. Agregá porotos y calentá bien. Rellená tortillas y serví con palta y limón.",
           "nutrition": [
@@ -1399,7 +1399,7 @@
           "id": "recetas-093",
           "title": "Ensalada crujiente de pollo y maní",
           "details": "43 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-093.webp",
+          "image": "/nutricion/recetas-093.webp?v=8498d4d35a76",
           "ingredients": "140 g de pollo crudo sin piel; 120 g de repollo; 80 g de zanahoria; 120 g de arroz integral cocido; 15 g de pasta de maní sin azúcar ni sal; 50 g de yogur natural sin azúcar, bajo en grasa; 15 g de jugo de limón; 5 g de aceite de oliva. Jengibre rallado.",
           "method": "Cociná pollo en tiras con aceite. Cortá finos repollo y zanahoria. Mezclá maní, yogur, limón y agua para la salsa. Serví todo con arroz.",
           "nutrition": [
@@ -1414,7 +1414,7 @@
           "id": "recetas-094",
           "title": "Arroz con tomate, porotos y queso",
           "details": "44 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-094.webp",
+          "image": "/nutricion/recetas-094.webp?v=e07bef99695b",
           "ingredients": "170 g de arroz integral cocido; 150 g de porotos blancos cocidos sin sal; 120 g de salsa de tomate sin sal añadida; 40 g de mozzarella parcialmente descremada; 40 g de cebolla; 5 g de aceite de oliva. Albahaca.",
           "method": "Rehogá cebolla con aceite. Agregá salsa, porotos y arroz cocido. Calentá bien y terminá con queso; tapá hasta que se funda.",
           "nutrition": [
@@ -1429,7 +1429,7 @@
           "id": "recetas-095",
           "title": "Tortilla de espinaca con papas doradas",
           "details": "45 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-095.webp",
+          "image": "/nutricion/recetas-095.webp?v=ab87532b89db",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de espinaca; 200 g de papa cocida; 60 g de ricota parcialmente descremada; 5 g de aceite de oliva. Pimienta.",
           "method": "Cortá papa cocida y dorala con parte del aceite. Escurrí espinaca salteada y mezclá con huevos y ricota. Cociná la tortilla con el resto del aceite hasta cuajar. Serví con papas.",
           "nutrition": [
@@ -1444,7 +1444,7 @@
           "id": "recetas-096",
           "title": "Pizza de pita con pollo y morrón",
           "details": "46 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-096.webp",
+          "image": "/nutricion/recetas-096.webp?v=7c96fe86680b",
           "ingredients": "80 g de pan integral; 120 g de pollo crudo sin piel; 80 g de salsa de tomate sin sal añadida; 100 g de morrón rojo; 40 g de mozzarella parcialmente descremada; 5 g de aceite de oliva. Orégano.",
           "method": "Cociná pollo y morrón con aceite hasta que estén hechos. Cubrí la pita con salsa, pollo, morrón y queso. Horneá a 200 °C 8-10 minutos.",
           "nutrition": [
@@ -1459,7 +1459,7 @@
           "id": "recetas-097",
           "title": "Hamburguesa de porotos y remolacha",
           "details": "47 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-097.webp",
+          "image": "/nutricion/recetas-097.webp?v=c6df44c18a58",
           "ingredients": "150 g de porotos negros cocidos sin sal; 80 g de remolacha cocida; 30 g de avena seca; 70 g de pan integral; 50 g de yogur natural sin azúcar, bajo en grasa; 40 g de lechuga; 60 g de tomate; 5 g de aceite de oliva. Comino.",
           "method": "Pisá porotos y remolacha cocida; mezclá con avena. Dejá reposar 10 minutos y formá dos medallones. Cociná en sartén aceitada 4-5 minutos por lado. Armá el pan con vegetales y yogur.",
           "nutrition": [
@@ -1474,7 +1474,7 @@
           "id": "recetas-098",
           "title": "Bowl de polenta y boloñesa de lentejas",
           "details": "48 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-098.webp",
+          "image": "/nutricion/recetas-098.webp?v=849df5833870",
           "ingredients": "55 g de polenta seca / harina de maíz; 170 g de lentejas cocidas sin sal; 150 g de salsa de tomate sin sal añadida; 40 g de cebolla; 70 g de zanahoria; 15 g de queso parmesano; 5 g de aceite de oliva. Orégano.",
           "method": "Rehogá cebolla y zanahoria con aceite. Sumá tomate y lentejas; cociná 12 minutos. Prepará polenta con agua según el envase. Serví con salsa y queso.",
           "nutrition": [
@@ -1489,7 +1489,7 @@
           "id": "recetas-099",
           "title": "Ensalada de garbanzos, durazno y feta",
           "details": "49 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-099.webp",
+          "image": "/nutricion/recetas-099.webp?v=32c99f3f6b3e",
           "ingredients": "180 g de garbanzos cocidos sin sal; 150 g de durazno sin carozo; 100 g de pepino; 40 g de queso feta; 5 g de aceite de oliva; 15 g de jugo de limón. Menta.",
           "method": "Escurrí garbanzos y cortá durazno y pepino. Mezclá con feta desmenuzado. Condimentá con aceite y limón al servir.",
           "nutrition": [
@@ -1504,7 +1504,7 @@
           "id": "recetas-100",
           "title": "Rollitos de tortilla con pollo y hummus",
           "details": "50 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-100.webp",
+          "image": "/nutricion/recetas-100.webp?v=1f1d868ebed8",
           "ingredients": "75 g de tortilla integral; 120 g de pollo crudo sin piel; 80 g de garbanzos cocidos sin sal; 5 g de tahini; 15 g de jugo de limón; 60 g de zanahoria; 40 g de lechuga; 5 g de aceite de oliva. Comino.",
           "method": "Cociná el pollo con aceite hasta que esté hecho. Procesá garbanzos con tahini, limón y agua para un hummus. Untá tortillas, agregá pollo y vegetales, enrollá y cortá.",
           "nutrition": [
@@ -1525,7 +1525,7 @@
           "id": "recetas-101",
           "title": "Vaso cremoso de cacao y banana",
           "details": "01 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-101.webp",
+          "image": "/nutricion/recetas-101.webp?v=c85feeb0dbf1",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 5 g de cacao amargo sin azúcar; 30 g de avena seca; 120 g de banana sin piel; 15 g de maní tostado sin sal. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá el yogur con cacao y avena. Agregá la banana en rodajas y terminá con maní picado. Podés dejarlo 15-20 minutos en la heladera para que la avena se hidrate y la mezcla quede más cremosa.",
           "nutrition": [
@@ -1540,7 +1540,7 @@
           "id": "recetas-102",
           "title": "Pita con hummus rosado y huevo",
           "details": "02 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-102.webp",
+          "image": "/nutricion/recetas-102.webp?v=24aa366ef3d0",
           "ingredients": "90 g de garbanzos cocidos sin sal; 50 g de remolacha cocida; 15 g de jugo de limón; 5 g de aceite de oliva; 60 g de pan integral; 80 g de pepino; 50 g de huevo sin cáscara (50 g ≈ 1 unidad). Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Procesá garbanzos, remolacha, limón, comino y aceite; añadí agua de a poco hasta lograr un hummus cremoso. Serví con el pan pita, pepino y huevo duro. Refrigerá el hummus que prepares con anticipación.",
           "nutrition": [
@@ -1555,7 +1555,7 @@
           "id": "recetas-103",
           "title": "Tostadas de ricota y frutillas",
           "details": "03 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-103.webp",
+          "image": "/nutricion/recetas-103.webp?v=2ea5fa3b44ca",
           "ingredients": "70 g de pan integral; 80 g de ricota parcialmente descremada; 100 g de frutillas. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Tostá el pan, untá la ricota y agregá las frutillas lavadas y cortadas. Terminá con menta y canela. Para otras estaciones, cambiá las frutillas por pera o durazno.",
           "nutrition": [
@@ -1570,7 +1570,7 @@
           "id": "recetas-104",
           "title": "Vaso de yogur durazno y chía",
           "details": "04 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-104.webp",
+          "image": "/nutricion/recetas-104.webp?v=9402801d6a80",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 150 g de durazno sin carozo; 30 g de avena seca; 12 g de semillas de chía. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá chía, yogur y avena. Dejá reposar en la heladera al menos 30 minutos, o desde la noche anterior, para que la chía se hidrate. Agregá durazno en cubos y una pizca de canela al servir.",
           "nutrition": [
@@ -1585,7 +1585,7 @@
           "id": "recetas-105",
           "title": "Cheesecake en vaso con arándanos",
           "details": "05 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-105.webp",
+          "image": "/nutricion/recetas-105.webp?v=4112c90ebf89",
           "ingredients": "120 g de yogur natural sin azúcar, bajo en grasa; 60 g de ricota parcialmente descremada; 30 g de avena seca; 75 g de arándanos. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá yogur, ricota y vainilla hasta lograr una crema. Colocá la avena en el fondo de un vaso y cubrí con la mezcla. Agregá arándanos y, si querés, un poco de miel. Dejá reposar en la heladera 20 minutos.",
           "nutrition": [
@@ -1600,7 +1600,7 @@
           "id": "recetas-106",
           "title": "Muffins de zanahoria y avena",
           "details": "06 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-106.webp",
+          "image": "/nutricion/recetas-106.webp?v=95de1d9efd6e",
           "ingredients": "35 g de avena seca; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 40 g de zanahoria; 30 g de leche semidescremada; 5 g de aceite de oliva; 100 g de yogur natural sin azúcar, bajo en grasa. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá avena, huevo, zanahoria, leche, canela y polvo de hornear. Repartí en dos moldes pequeños aceitados. Horneá a 180 °C durante 18-22 minutos, hasta que el centro esté cocido. Serví con el yogur.",
           "nutrition": [
@@ -1615,7 +1615,7 @@
           "id": "recetas-107",
           "title": "Crumble de manzana con yogur",
           "details": "07 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-107.webp",
+          "image": "/nutricion/recetas-107.webp?v=55e49fa72722",
           "ingredients": "180 g de manzana; 20 g de avena seca; 10 g de nueces; 5 g de aceite de oliva; 150 g de yogur natural sin azúcar, bajo en grasa. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cortá la manzana y colocala en un recipiente pequeño para horno. Mezclá avena, nueces, aceite y canela y distribuí encima. Horneá a 180 °C unos 20-25 minutos, hasta que la fruta esté tierna. Serví tibio con yogur.",
           "nutrition": [
@@ -1630,7 +1630,7 @@
           "id": "recetas-108",
           "title": "Wrap cremoso de garbanzos y palta",
           "details": "08 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-108.webp",
+          "image": "/nutricion/recetas-108.webp?v=de2c82edbec8",
           "ingredients": "50 g de tortilla integral; 85 g de garbanzos cocidos sin sal; 40 g de palta sin piel ni carozo; 60 g de pepino; 30 g de yogur natural sin azúcar, bajo en grasa; 10 g de jugo de limón. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Pisá los garbanzos y la palta, y mezclá con yogur y limón. Distribuí sobre la tortilla, sumá pepino cortado fino y enrollá. Si lo preparás para llevar, guardalo con frío hasta comerlo.",
           "nutrition": [
@@ -1645,7 +1645,7 @@
           "id": "recetas-109",
           "title": "Helado cremoso de banana y cacao",
           "details": "09 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-109.webp",
+          "image": "/nutricion/recetas-109.webp?v=a53f6d12edf8",
           "ingredients": "120 g de banana sin piel; 170 g de yogur natural sin azúcar, bajo en grasa; 5 g de cacao amargo sin azúcar; 15 g de maní tostado sin sal. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Procesá banana congelada, yogur y cacao en una procesadora apta para alimentos congelados hasta lograr una crema. Si hace falta, añadí una cucharada de leche. Serví enseguida con maní picado o congelá brevemente para una textura más firme.",
           "nutrition": [
@@ -1660,7 +1660,7 @@
           "id": "recetas-110",
           "title": "Mini pizza de pita y champiñones",
           "details": "10 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-110.webp",
+          "image": "/nutricion/recetas-110.webp?v=ccbd650cbfbe",
           "ingredients": "60 g de pan integral; 60 g de salsa de tomate sin sal añadida; 40 g de mozzarella parcialmente descremada; 70 g de champiñones; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Salteá los champiñones con aceite. Cubrí la pita con salsa, mozzarella y champiñones. Horneá a 200 °C unos 8-10 minutos, hasta que el queso se funda y la base quede crujiente. Terminá con albahaca.",
           "nutrition": [
@@ -1675,7 +1675,7 @@
           "id": "recetas-111",
           "title": "Tostadas cremosas de atún",
           "details": "11 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-111.webp",
+          "image": "/nutricion/recetas-111.webp?v=726e96690910",
           "ingredients": "70 g de pan integral; 80 g de atún al natural escurrido; 30 g de queso untable bajo en grasa; 60 g de tomate; 5 g de jugo de limón. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá atún, queso untable, unas gotas de limón y perejil. Tostá el pan, untá la mezcla y agregá tomate en rodajas. Serví al momento o conservá el relleno refrigerado.",
           "nutrition": [
@@ -1690,7 +1690,7 @@
           "id": "recetas-112",
           "title": "Yogur con pera y granola casera",
           "details": "12 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-112.webp",
+          "image": "/nutricion/recetas-112.webp?v=43526613a51f",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 170 g de pera; 30 g de avena seca; 10 g de semillas de zapallo peladas; 10 g de nueces. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Tostá avena, semillas y nueces en una sartén seca a fuego bajo 3-5 minutos, moviendo para que no se quemen. Dejá enfriar. Serví sobre el yogur con pera en cubos y canela.",
           "nutrition": [
@@ -1705,7 +1705,7 @@
           "id": "recetas-113",
           "title": "Dip cremoso de cottage y pepinillos",
           "details": "13 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-113.webp",
+          "image": "/nutricion/recetas-113.webp?v=0bffa338ec3d",
           "ingredients": "150 g de queso cottage (2% de grasa); 35 g de pepinillos en conserva escurridos; 100 g de pepino; 60 g de pan integral; 10 g de jugo de limón. Eneldo y pimienta.",
           "method": "Procesá cottage con limón. Agregá pepinillos picados y mezclá. Serví con pepino en bastones y pan integral tostado.",
           "nutrition": [
@@ -1720,7 +1720,7 @@
           "id": "recetas-114",
           "title": "Brownie de avena en taza",
           "details": "14 / 50 · Rinde 1 porción · 8 min",
-          "image": "/nutricion/recetas-114.webp",
+          "image": "/nutricion/recetas-114.webp?v=bfd5ebf4ad0e",
           "ingredients": "30 g de avena seca; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de banana sin piel; 8 g de cacao amargo sin azúcar; 30 g de leche semidescremada; 10 g de pasta de maní sin azúcar ni sal. Vainilla.",
           "method": "Pisá banana y mezclá con huevo, avena molida, cacao y leche en una taza grande. Cociná en microondas 90-120 segundos, en tandas, hasta que el centro esté cocido. Agregá maní al servir.",
           "nutrition": [
@@ -1735,7 +1735,7 @@
           "id": "recetas-115",
           "title": "Tostadas de hummus y morrón asado",
           "details": "15 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-115.webp",
+          "image": "/nutricion/recetas-115.webp?v=a6a26803ba68",
           "ingredients": "70 g de pan integral; 100 g de garbanzos cocidos sin sal; 8 g de tahini; 100 g de morrón rojo; 10 g de jugo de limón; 3 g de aceite de oliva. Comino.",
           "method": "Procesá garbanzos, tahini, limón y agua necesaria. Asá el morrón en sartén hasta ablandar. Untá pan tostado con hummus y cubrí con morrón.",
           "nutrition": [
@@ -1750,7 +1750,7 @@
           "id": "recetas-116",
           "title": "Quesadilla de manzana y ricota",
           "details": "16 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-116.webp",
+          "image": "/nutricion/recetas-116.webp?v=339586b69ac7",
           "ingredients": "50 g de tortilla integral; 100 g de ricota parcialmente descremada; 150 g de manzana; 10 g de nueces. Canela.",
           "method": "Cortá la manzana fina y calentala 4 minutos en sartén con dos cucharadas de agua. Rellená media tortilla con ricota, manzana y nueces. Doblá y dorá por ambos lados.",
           "nutrition": [
@@ -1765,7 +1765,7 @@
           "id": "recetas-117",
           "title": "Copa tipo tiramisú de yogur",
           "details": "17 / 50 · Rinde 1 porción · 10 min + 30 de frío",
-          "image": "/nutricion/recetas-117.webp",
+          "image": "/nutricion/recetas-117.webp?v=e5bb5382a8fd",
           "ingredients": "180 g de yogur natural sin azúcar, bajo en grasa; 60 g de ricota parcialmente descremada; 25 g de avena seca; 5 g de cacao amargo sin azúcar; 70 g de banana sin piel. Café descafeinado y vainilla.",
           "method": "Hidratá avena con 30 ml de café descafeinado frío. Mezclá yogur, ricota y banana pisada. Armá capas y terminá con cacao; refrigerá 30 minutos.",
           "nutrition": [
@@ -1780,7 +1780,7 @@
           "id": "recetas-118",
           "title": "Sándwich tostado de cottage y pesto",
           "details": "18 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-118.webp",
+          "image": "/nutricion/recetas-118.webp?v=96be539fc146",
           "ingredients": "70 g de pan integral; 100 g de queso cottage (2% de grasa); 80 g de tomate; 8 g de perejil fresco; 10 g de nueces; 3 g de aceite de oliva. Pimienta.",
           "method": "Procesá perejil, nueces y aceite con agua. Untá pan con cottage y pesto; agregá tomate. Cerrá y tostá en sartén tapada.",
           "nutrition": [
@@ -1795,7 +1795,7 @@
           "id": "recetas-119",
           "title": "Galletas de banana y avena",
           "details": "19 / 50 · Rinde 4 porciones · 10 min + 18 de horno",
-          "image": "/nutricion/recetas-119.webp",
+          "image": "/nutricion/recetas-119.webp?v=4edc53cb4626",
           "ingredients": "240 g de banana sin piel; 120 g de avena seca; 30 g de pasta de maní sin azúcar ni sal; 30 g de pasas de uva. Canela.",
           "method": "Pisá banana y mezclá con avena, maní y pasas. Formá ocho galletas sobre papel de horno. Horneá a 180 °C 15-18 minutos; dejá enfriar. Cada porción son dos galletas.",
           "nutrition": [
@@ -1810,7 +1810,7 @@
           "id": "recetas-120",
           "title": "Brochetas de fruta con crema de cacao",
           "details": "20 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-120.webp",
+          "image": "/nutricion/recetas-120.webp?v=dd12a248245f",
           "ingredients": "100 g de frutillas; 80 g de banana sin piel; 80 g de kiwi pelado; 150 g de yogur natural sin azúcar, bajo en grasa; 5 g de cacao amargo sin azúcar. Vainilla.",
           "method": "Cortá la fruta y armá brochetas. Mezclá yogur y cacao; serví como crema para acompañar. Guardá refrigerado si no lo consumís enseguida.",
           "nutrition": [
@@ -1825,7 +1825,7 @@
           "id": "recetas-121",
           "title": "Muffins de espinaca y queso",
           "details": "21 / 50 · Rinde 2 porciones · 10 min + 20 de horno",
-          "image": "/nutricion/recetas-121.webp",
+          "image": "/nutricion/recetas-121.webp?v=051ec7525f65",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de espinaca; 50 g de avena seca; 60 g de mozzarella parcialmente descremada; 50 g de leche semidescremada; 6 g de aceite de oliva. Orégano y media cucharadita de polvo de hornear.",
           "method": "Picá espinaca y mezclá con huevos, avena, queso y leche. Repartí en cuatro moldes aceitados. Horneá a 180 °C 18-22 minutos, hasta que cuajen. Serví dos por persona.",
           "nutrition": [
@@ -1840,7 +1840,7 @@
           "id": "recetas-122",
           "title": "Pan pita con crema de porotos",
           "details": "22 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-122.webp",
+          "image": "/nutricion/recetas-122.webp?v=3ee6086265e5",
           "ingredients": "70 g de pan integral; 130 g de porotos blancos cocidos sin sal; 15 g de jugo de limón; 5 g de aceite de oliva; 100 g de zanahoria. Romero.",
           "method": "Procesá porotos con limón, aceite y agua hasta lograr una crema. Rellená o acompañá el pan pita con esa crema y zanahoria en bastones.",
           "nutrition": [
@@ -1855,7 +1855,7 @@
           "id": "recetas-123",
           "title": "Cottage con mango, lima y almendras",
           "details": "23 / 50 · Rinde 1 porción · 8 min",
-          "image": "/nutricion/recetas-123.webp",
+          "image": "/nutricion/recetas-123.webp?v=878402060e91",
           "ingredients": "150 g de queso cottage (2% de grasa); 150 g de mango sin piel ni carozo; 15 g de almendras; 25 g de avena seca; 10 g de jugo de limón. Ralladura cítrica bien lavada.",
           "method": "Mezclá cottage con unas gotas de limón o lima. Serví con mango en cubos, avena y almendras picadas.",
           "nutrition": [
@@ -1870,7 +1870,7 @@
           "id": "recetas-124",
           "title": "Waffle de cacao y ricota",
           "details": "24 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-124.webp",
+          "image": "/nutricion/recetas-124.webp?v=d8098ae96b04",
           "ingredients": "40 g de avena seca; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 70 g de leche semidescremada; 6 g de cacao amargo sin azúcar; 3 g de aceite de oliva; 80 g de ricota parcialmente descremada; 100 g de frutillas. Media cucharadita de polvo de hornear.",
           "method": "Batí avena molida, huevo, leche y cacao. Cociná en wafflera aceitada hasta que esté firme; podés hacerlo como panqueque. Serví con ricota y frutillas.",
           "nutrition": [
@@ -1885,7 +1885,7 @@
           "id": "recetas-125",
           "title": "Rollitos de pepino, atún y queso",
           "details": "25 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-125.webp",
+          "image": "/nutricion/recetas-125.webp?v=030d8c8289e4",
           "ingredients": "180 g de pepino; 90 g de atún al natural escurrido; 40 g de queso untable bajo en grasa; 60 g de pan integral; 10 g de jugo de limón. Eneldo.",
           "method": "Cortá pepino en láminas largas con pelador. Mezclá atún, queso y limón. Colocá una cucharadita de relleno en cada lámina y enrollá. Serví con pan tostado.",
           "nutrition": [
@@ -1900,7 +1900,7 @@
           "id": "recetas-126",
           "title": "Yogur con uvas y pistachos",
           "details": "26 / 50 · Rinde 1 porción · 8 min",
-          "image": "/nutricion/recetas-126.webp",
+          "image": "/nutricion/recetas-126.webp?v=6ccea90dffff",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 150 g de uvas; 15 g de pistachos sin sal; 25 g de avena seca. Canela.",
           "method": "Cortá las uvas al medio. Serví yogur con avena, uvas y pistachos picados.",
           "nutrition": [
@@ -1915,7 +1915,7 @@
           "id": "recetas-127",
           "title": "Tostadas de palta y garbanzos crujientes",
           "details": "27 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-127.webp",
+          "image": "/nutricion/recetas-127.webp?v=be762de548bd",
           "ingredients": "70 g de pan integral; 50 g de palta sin piel ni carozo; 100 g de garbanzos cocidos sin sal; 3 g de aceite de oliva; 10 g de jugo de limón. Pimentón.",
           "method": "Secá garbanzos y horneá con aceite a 200 °C 20 minutos. Tostá pan y untá palta con limón. Agregá garbanzos al servir.",
           "nutrition": [
@@ -1930,7 +1930,7 @@
           "id": "recetas-128",
           "title": "Tortitas de zanahoria y cottage",
           "details": "28 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-128.webp",
+          "image": "/nutricion/recetas-128.webp?v=cb109474f533",
           "ingredients": "100 g de zanahoria; 100 g de queso cottage (2% de grasa); 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 35 g de avena seca; 5 g de aceite de oliva. Comino.",
           "method": "Rallá zanahoria fina. Mezclá con cottage, huevo y avena. Reposá 5 minutos y cociná cuatro tortitas en sartén aceitada hasta cuajar, por ambos lados.",
           "nutrition": [
@@ -1945,7 +1945,7 @@
           "id": "recetas-129",
           "title": "Barritas de avena, dátiles y cacao",
           "details": "29 / 50 · Rinde 6 porciones · 15 min + 1 h de frío",
-          "image": "/nutricion/recetas-129.webp",
+          "image": "/nutricion/recetas-129.webp?v=a9637729d155",
           "ingredients": "120 g de avena seca; 100 g de dátiles sin carozo; 50 g de pasta de maní sin azúcar ni sal; 15 g de cacao amargo sin azúcar; 30 g de almendras. Vainilla; 1 barrita por porción.",
           "method": "Hidratá dátiles sin carozo 10 minutos y procesá con pasta de maní. Mezclá con avena, cacao y almendras. Presioná en molde pequeño, refrigerá una hora y cortá seis barritas.",
           "nutrition": [
@@ -1960,7 +1960,7 @@
           "id": "recetas-130",
           "title": "Bowl de ricota, pera y nueces",
           "details": "30 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-130.webp",
+          "image": "/nutricion/recetas-130.webp?v=7d64929f5637",
           "ingredients": "120 g de ricota parcialmente descremada; 80 g de yogur natural sin azúcar, bajo en grasa; 170 g de pera; 15 g de nueces. Canela.",
           "method": "Mezclá ricota y yogur hasta obtener una crema. Cortá pera y serví sobre la crema con nueces.",
           "nutrition": [
@@ -1975,7 +1975,7 @@
           "id": "recetas-131",
           "title": "Mini tostadas de caponata",
           "details": "31 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-131.webp",
+          "image": "/nutricion/recetas-131.webp?v=7dc24851742a",
           "ingredients": "70 g de pan integral; 120 g de berenjena; 100 g de tomate; 30 g de cebolla; 20 g de aceitunas escurridas; 5 g de aceite de oliva; 80 g de queso cottage (2% de grasa). Orégano.",
           "method": "Salteá berenjena y cebolla con aceite hasta que estén tiernas. Sumá tomate y aceitunas; cociná 5 minutos. Serví sobre tostadas untadas con cottage.",
           "nutrition": [
@@ -1990,7 +1990,7 @@
           "id": "recetas-132",
           "title": "Pudding de chía con frutillas",
           "details": "32 / 50 · Rinde 1 porción · 10 min + 2 h de frío",
-          "image": "/nutricion/recetas-132.webp",
+          "image": "/nutricion/recetas-132.webp?v=7182e8a5505d",
           "ingredients": "20 g de semillas de chía; 150 g de leche semidescremada; 100 g de yogur natural sin azúcar, bajo en grasa; 150 g de frutillas; 20 g de avena seca. Vainilla.",
           "method": "Mezclá chía, leche y avena. Refrigerá 2 horas, mezclando otra vez a los 15 minutos. Agregá yogur y frutillas picadas.",
           "nutrition": [
@@ -2005,7 +2005,7 @@
           "id": "recetas-133",
           "title": "Pan de banana rápido",
           "details": "33 / 50 · Rinde 6 porciones · 15 min + 35 de horno",
-          "image": "/nutricion/recetas-133.webp",
+          "image": "/nutricion/recetas-133.webp?v=16a94021fdf9",
           "ingredients": "300 g de banana sin piel; 180 g de avena seca; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de leche semidescremada; 15 g de aceite de oliva; 30 g de nueces. 2 cucharaditas de polvo de hornear y canela.",
           "method": "Pisá bananas y mezclá con huevos, leche y aceite. Sumá avena molida, nueces y polvo de hornear. Horneá en budinera a 180 °C 30-35 minutos, hasta que el palillo salga limpio. Cortá seis porciones.",
           "nutrition": [
@@ -2020,7 +2020,7 @@
           "id": "recetas-134",
           "title": "Wrap de huevo y hummus",
           "details": "34 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-134.webp",
+          "image": "/nutricion/recetas-134.webp?v=b9720791738c",
           "ingredients": "50 g de tortilla integral; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 70 g de garbanzos cocidos sin sal; 5 g de tahini; 10 g de jugo de limón; 80 g de tomate. Comino.",
           "method": "Herví huevos 10-12 minutos. Procesá garbanzos con tahini, limón y agua. Untá tortilla, agregá huevo y tomate; enrollá.",
           "nutrition": [
@@ -2035,7 +2035,7 @@
           "id": "recetas-135",
           "title": "Tostadas de ricota y ciruelas",
           "details": "35 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-135.webp",
+          "image": "/nutricion/recetas-135.webp?v=14a3ac7dda42",
           "ingredients": "70 g de pan integral; 100 g de ricota parcialmente descremada; 150 g de ciruelas sin carozo; 10 g de almendras. Canela.",
           "method": "Cortá ciruelas sin carozo y calentá 3 minutos en sartén con dos cucharadas de agua. Tostá pan y serví con ricota, ciruelas y almendras.",
           "nutrition": [
@@ -2050,7 +2050,7 @@
           "id": "recetas-136",
           "title": "Dip de lentejas y tomate con pita",
           "details": "36 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-136.webp",
+          "image": "/nutricion/recetas-136.webp?v=b3f3b78fbae2",
           "ingredients": "150 g de lentejas cocidas sin sal; 80 g de tomate; 5 g de aceite de oliva; 15 g de jugo de limón; 60 g de pan integral; 100 g de pepino. Pimentón y comino.",
           "method": "Procesá lentejas con tomate, aceite, limón y agua necesaria. Serví con pita tostada y pepino.",
           "nutrition": [
@@ -2065,7 +2065,7 @@
           "id": "recetas-137",
           "title": "Crepes de pera y cacao",
           "details": "37 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-137.webp",
+          "image": "/nutricion/recetas-137.webp?v=c22dea6770a9",
           "ingredients": "40 g de harina integral; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de leche semidescremada; 150 g de pera; 5 g de cacao amargo sin azúcar; 100 g de yogur natural sin azúcar, bajo en grasa; 3 g de aceite de oliva. Vainilla.",
           "method": "Batí harina, huevo, leche y cacao. Cociná dos crepes finos en sartén aceitada por ambos lados. Rellená con pera rallada y yogur.",
           "nutrition": [
@@ -2080,7 +2080,7 @@
           "id": "recetas-138",
           "title": "Yogur helado con frutos rojos",
           "details": "38 / 50 · Rinde 1 porción · 10 min + 1 h de freezer",
-          "image": "/nutricion/recetas-138.webp",
+          "image": "/nutricion/recetas-138.webp?v=843448190c8c",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 150 g de frutos rojos (mitad frutilla, mitad arándano); 80 g de banana sin piel; 15 g de pistachos sin sal. Vainilla.",
           "method": "Procesá yogur, frutos rojos y banana. Llevá al freezer una hora, mezclando a mitad de tiempo. Serví con pistachos; debe quedar cremoso, no sólido.",
           "nutrition": [
@@ -2095,7 +2095,7 @@
           "id": "recetas-139",
           "title": "Sándwich de pollo y pepinillos",
           "details": "39 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-139.webp",
+          "image": "/nutricion/recetas-139.webp?v=aaba985c9fe4",
           "ingredients": "70 g de pan integral; 100 g de pollo crudo sin piel; 60 g de queso cottage (2% de grasa); 30 g de pepinillos en conserva escurridos; 30 g de lechuga; 3 g de aceite de oliva. Eneldo.",
           "method": "Cociná pollo con aceite y desmenuzá. Mezclá con cottage y pepinillos picados. Rellená pan con la mezcla y lechuga.",
           "nutrition": [
@@ -2110,7 +2110,7 @@
           "id": "recetas-140",
           "title": "Tostadas de queso y higos",
           "details": "40 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-140.webp",
+          "image": "/nutricion/recetas-140.webp?v=6f63fc364c33",
           "ingredients": "70 g de pan integral; 100 g de ricota parcialmente descremada; 120 g de higos frescos; 15 g de nueces. Pimienta suave o canela.",
           "method": "Tostá pan y untá ricota. Agregá higos frescos cortados y nueces picadas.",
           "nutrition": [
@@ -2125,7 +2125,7 @@
           "id": "recetas-141",
           "title": "Bowl de avena fría con café y maní",
           "details": "41 / 50 · Rinde 1 porción · 10 min + 4 h de frío",
-          "image": "/nutricion/recetas-141.webp",
+          "image": "/nutricion/recetas-141.webp?v=139314e6b19a",
           "ingredients": "40 g de avena seca; 170 g de yogur natural sin azúcar, bajo en grasa; 60 g de leche semidescremada; 15 g de pasta de maní sin azúcar ni sal; 80 g de banana sin piel. Café descafeinado.",
           "method": "Mezclá avena, yogur, leche y 30 ml de café descafeinado frío. Refrigerá 4 horas. Agregá pasta de maní y banana al servir.",
           "nutrition": [
@@ -2140,7 +2140,7 @@
           "id": "recetas-142",
           "title": "Bastones de polenta con dip de yogur",
           "details": "42 / 50 · Rinde 2 porciones · 15 min + 25 de horno",
-          "image": "/nutricion/recetas-142.webp",
+          "image": "/nutricion/recetas-142.webp?v=b0027b8bcbab",
           "ingredients": "80 g de polenta seca / harina de maíz; 20 g de queso parmesano; 10 g de aceite de oliva; 160 g de yogur natural sin azúcar, bajo en grasa; 15 g de jugo de limón. Orégano.",
           "method": "Prepará polenta firme con 280 ml de agua según el envase. Sumá queso y extendé en una fuente. Enfriá hasta endurecer, cortá bastones y horneá con aceite a 200 °C 25 minutos. Serví con yogur y limón.",
           "nutrition": [
@@ -2155,7 +2155,7 @@
           "id": "recetas-143",
           "title": "Muffins de naranja y cacao",
           "details": "43 / 50 · Rinde 4 porciones · 15 min + 20 de horno",
-          "image": "/nutricion/recetas-143.webp",
+          "image": "/nutricion/recetas-143.webp?v=8627957b502d",
           "ingredients": "100 g de avena seca; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 180 g de naranja pelada; 12 g de cacao amargo sin azúcar; 120 g de banana sin piel; 10 g de aceite de oliva. 1 cucharadita de polvo de hornear.",
           "method": "Procesá banana, huevos y naranja pelada. Mezclá con avena molida, cacao y aceite. Repartí en cuatro moldes y horneá a 180 °C 20 minutos, hasta que estén cocidos.",
           "nutrition": [
@@ -2170,7 +2170,7 @@
           "id": "recetas-144",
           "title": "Ensalada de fruta con crema de cottage",
           "details": "44 / 50 · Rinde 1 porción · 10 min",
-          "image": "/nutricion/recetas-144.webp",
+          "image": "/nutricion/recetas-144.webp?v=f7ea039e40a5",
           "ingredients": "150 g de queso cottage (2% de grasa); 80 g de banana sin piel; 100 g de frutillas; 100 g de naranja pelada; 15 g de almendras. Vainilla.",
           "method": "Procesá cottage con dos cucharadas de agua para suavizar. Cortá la fruta y serví con la crema y almendras.",
           "nutrition": [
@@ -2185,7 +2185,7 @@
           "id": "recetas-145",
           "title": "Tostada gratinada de choclo y queso",
           "details": "45 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-145.webp",
+          "image": "/nutricion/recetas-145.webp?v=c7bae8cc8a58",
           "ingredients": "70 g de pan integral; 100 g de choclo cocido sin sal; 40 g de mozzarella parcialmente descremada; 30 g de yogur natural sin azúcar, bajo en grasa; 80 g de tomate. Orégano.",
           "method": "Mezclá choclo, yogur y queso. Distribuí sobre pan y gratiná a 200 °C 8-10 minutos. Serví con tomate fresco.",
           "nutrition": [
@@ -2200,7 +2200,7 @@
           "id": "recetas-146",
           "title": "Galletas saladas de avena y semillas",
           "details": "46 / 50 · Rinde 4 porciones · 15 min + 20 de horno",
-          "image": "/nutricion/recetas-146.webp",
+          "image": "/nutricion/recetas-146.webp?v=0066ec155d35",
           "ingredients": "120 g de avena seca; 30 g de semillas de zapallo peladas; 15 g de semillas de chía; 15 g de aceite de oliva. Romero; 3 galletas por porción.",
           "method": "Mezclá avena molida, semillas, chía, aceite y 100 ml de agua. Reposá 10 minutos. Extendé fino sobre papel de horno, marcá 12 galletas y horneá a 180 °C 20 minutos. Enfriá y separá.",
           "nutrition": [
@@ -2215,7 +2215,7 @@
           "id": "recetas-147",
           "title": "Smoothie espeso de cacao y banana",
           "details": "47 / 50 · Rinde 1 porción · 8 min",
-          "image": "/nutricion/recetas-147.webp",
+          "image": "/nutricion/recetas-147.webp?v=e8912f68b1b4",
           "ingredients": "200 g de leche semidescremada; 100 g de yogur natural sin azúcar, bajo en grasa; 120 g de banana sin piel; 6 g de cacao amargo sin azúcar; 12 g de pasta de maní sin azúcar ni sal; 25 g de avena seca. Canela.",
           "method": "Licuá leche, yogur, banana, cacao, pasta de maní y avena. Serví espeso en vaso. Si preparás antes, mantené refrigerado.",
           "nutrition": [
@@ -2230,7 +2230,7 @@
           "id": "recetas-148",
           "title": "Wrap de porotos, choclo y queso",
           "details": "48 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-148.webp",
+          "image": "/nutricion/recetas-148.webp?v=80cee25eec07",
           "ingredients": "50 g de tortilla integral; 100 g de porotos negros cocidos sin sal; 60 g de choclo cocido sin sal; 30 g de mozzarella parcialmente descremada; 80 g de tomate. Comino.",
           "method": "Pisá porotos y mezclá con choclo. Rellená tortilla, agregá queso y doblá. Calentá en sartén por ambos lados hasta fundir. Serví con tomate.",
           "nutrition": [
@@ -2245,7 +2245,7 @@
           "id": "recetas-149",
           "title": "Vaso de yogur, damasco y avena tostada",
           "details": "49 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-149.webp",
+          "image": "/nutricion/recetas-149.webp?v=f333c9a6482b",
           "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 150 g de damascos sin carozo; 35 g de avena seca; 15 g de almendras. Vainilla.",
           "method": "Tostá avena y almendras a fuego bajo 3-4 minutos. Dejá enfriar. Armá un vaso con yogur, damascos sin carozo y mezcla tostada.",
           "nutrition": [
@@ -2260,7 +2260,7 @@
           "id": "recetas-150",
           "title": "Tostadas de hummus de arvejas",
           "details": "50 / 50 · Rinde 1 porción · 12 min",
-          "image": "/nutricion/recetas-150.webp",
+          "image": "/nutricion/recetas-150.webp?v=8aad4733e55f",
           "ingredients": "70 g de pan integral; 140 g de arvejas cocidas sin sal; 10 g de tahini; 15 g de jugo de limón; 3 g de aceite de oliva; 100 g de pepino. Menta.",
           "method": "Procesá arvejas cocidas, tahini, limón y aceite con agua. Untá pan tostado y acompañá con pepino.",
           "nutrition": [
@@ -2281,7 +2281,7 @@
           "id": "recetas-151",
           "title": "Pizza integral de berenjena",
           "details": "01 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-151.webp",
+          "image": "/nutricion/recetas-151.webp?v=b8be2e7b6183",
           "ingredients": "70 g de harina integral; 5 g de aceite de oliva; 80 g de salsa de tomate sin sal añadida; 100 g de berenjena; 50 g de mozzarella parcialmente descremada; 60 g de lechuga; 100 g de tomate. 1 g de levadura seca, 45-50 ml de agua, albahaca y orégano. Leudado adicional de 45-90 minutos.",
           "method": "Mezclá harina, agua, aceite y levadura según su envase hasta formar una masa; amasá y dejá levar tapada hasta que aumente claramente de volumen, unos 45-90 minutos según la temperatura. Estirá, precociná a 200 °C unos 8-10 minutos, agregá salsa, berenjena previamente asada y mozzarella. Horneá 10-15 minutos más y sumá albahaca. Serví con ensalada.",
           "nutrition": [
@@ -2296,7 +2296,7 @@
           "id": "recetas-152",
           "title": "Crema de zapallo y lentejas",
           "details": "02 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-152.webp",
+          "image": "/nutricion/recetas-152.webp?v=92cf7599f06c",
           "ingredients": "40 g de cebolla; 60 g de zanahoria; 5 g de aceite de oliva; 200 g de zapallo cocido; 100 g de lentejas cocidas sin sal; 30 g de yogur natural sin azúcar, bajo en grasa; 10 g de semillas de zapallo peladas; 60 g de pan integral. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Rehogá cebolla y zanahoria con aceite. Sumá zapallo, lentejas y agua o caldo, y cociná 10 minutos. Procesá todo o solo una parte para conservar textura. Agregá comino y cúrcuma. Serví con yogur, semillas y tostadas.",
           "nutrition": [
@@ -2311,7 +2311,7 @@
           "id": "recetas-153",
           "title": "Boniato relleno de porotos negros",
           "details": "03 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-153.webp",
+          "image": "/nutricion/recetas-153.webp?v=8aee8768003f",
           "ingredients": "220 g de boniato cocido; 120 g de porotos negros cocidos sin sal; 60 g de choclo cocido sin sal; 80 g de tomate; 50 g de palta sin piel ni carozo; 10 g de jugo de limón; 60 g de lechuga. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Lavá el boniato, pinchalo y horneá a 200 °C unos 40-50 minutos, hasta que esté tierno. Calentá porotos y choclo con pimentón. Abrí el boniato y rellená con esa mezcla, tomate y palta. Terminá con limón y cilantro; serví con ensalada.",
           "nutrition": [
@@ -2326,7 +2326,7 @@
           "id": "recetas-154",
           "title": "Albóndigas con puré de zapallo",
           "details": "04 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-154.webp",
+          "image": "/nutricion/recetas-154.webp?v=689996538ca1",
           "ingredients": "140 g de carne vacuna magra cruda; 20 g de avena seca; 40 g de cebolla; 120 g de salsa de tomate sin sal añadida; 200 g de zapallo cocido; 5 g de aceite de oliva; 60 g de lechuga; 80 g de tomate. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá la carne con avena, cebolla bien picada y perejil. Formá albóndigas y cocinalas en la salsa de tomate 15-20 minutos, hasta que el centro esté completamente cocido. Pisá el zapallo con el aceite y un poco de agua caliente. Serví con ensalada.",
           "nutrition": [
@@ -2341,7 +2341,7 @@
           "id": "recetas-155",
           "title": "Tarta rústica de espinaca y ricota",
           "details": "05 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-155.webp",
+          "image": "/nutricion/recetas-155.webp?v=396bcbc5637b",
           "ingredients": "60 g de harina integral; 5 g de aceite de oliva; 100 g de ricota parcialmente descremada; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de espinaca; 30 g de cebolla; 100 g de tomate. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá ricota, huevo, espinaca escurrida y cebolla previamente salteada. Colocá el relleno sobre la masa y doblá los bordes hacia adentro. Horneá a 190 °C durante 25-30 minutos, hasta que masa y relleno estén cocidos. Serví con ensalada.",
           "nutrition": [
@@ -2356,7 +2356,7 @@
           "id": "recetas-156",
           "title": "Zucchini relleno con carne y arroz",
           "details": "06 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-156.webp",
+          "image": "/nutricion/recetas-156.webp?v=e6a8efb86f8a",
           "ingredients": "250 g de zucchini / zapallito; 100 g de carne vacuna magra cruda; 100 g de arroz integral cocido; 120 g de salsa de tomate sin sal añadida; 30 g de mozzarella parcialmente descremada; 30 g de cebolla; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cortá el zucchini al medio y ahuecalo. Salteá cebolla y carne hasta cocinarla completamente. Mezclá con arroz, pulpa de zucchini y salsa. Rellená, agregá queso y horneá a 190 °C unos 25 minutos, hasta que esté tierno.",
           "nutrition": [
@@ -2371,7 +2371,7 @@
           "id": "recetas-157",
           "title": "Salmón con quinoa y naranja",
           "details": "07 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-157.webp",
+          "image": "/nutricion/recetas-157.webp?v=85bcb1ffc2a3",
           "ingredients": "150 g de salmón crudo; 140 g de quinoa cocida; 100 g de brócoli; 75 g de naranja pelada; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Horneá el salmón con jugo de naranja, aceite y perejil a 190 °C unos 15-20 minutos, según el grosor, hasta que esté completamente cocido. Cociná el brócoli al vapor y serví con quinoa y gajos de naranja. Podés usar otro pescado disponible.",
           "nutrition": [
@@ -2386,7 +2386,7 @@
           "id": "recetas-158",
           "title": "Frittata de champiñones y porotos",
           "details": "08 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-158.webp",
+          "image": "/nutricion/recetas-158.webp?v=0f89578eed4d",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 85 g de porotos blancos cocidos sin sal; 70 g de champiñones; 30 g de espinaca; 5 g de aceite de oliva; 35 g de pan integral. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Salteá los champiñones y la espinaca. Agregá porotos y huevos batidos. Cociná tapado a fuego bajo hasta que el centro cuaje; también podés hornear a 180 °C unos 15-20 minutos. Serví con tostada.",
           "nutrition": [
@@ -2401,7 +2401,7 @@
           "id": "recetas-159",
           "title": "Curry de lentejas rojas y zapallo",
           "details": "09 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-159.webp",
+          "image": "/nutricion/recetas-159.webp?v=7ecd802a7083",
           "ingredients": "90 g de lentejas secas; 150 g de zapallo cocido; 120 g de salsa de tomate sin sal añadida; 40 g de cebolla; 5 g de aceite de oliva; 100 g de arroz integral cocido; 30 g de yogur natural sin azúcar, bajo en grasa. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Rehogá la cebolla y agregá especias, tomate, zapallo y lentejas enjuagadas. Cubrí con agua y cociná 20-25 minutos, agregando líquido si hace falta, hasta que todo esté tierno. Serví con arroz y yogur.",
           "nutrition": [
@@ -2416,7 +2416,7 @@
           "id": "recetas-160",
           "title": "Brochetas de tofu con cuscús",
           "details": "10 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-160.webp",
+          "image": "/nutricion/recetas-160.webp?v=e42f4ad06323",
           "ingredients": "150 g de tofu firme con calcio; 70 g de morrón rojo; 100 g de zucchini / zapallito; 130 g de cuscús cocido; 45 g de yogur natural sin azúcar, bajo en grasa; 10 g de jugo de limón; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Cortá tofu y verduras en cubos y armá brochetas. Pincelá con aceite y horneá a 200 °C unos 20-25 minutos, girando a mitad de cocción. Prepará cuscús según el envase. Mezclá yogur, menta y limón para la salsa.",
           "nutrition": [
@@ -2431,7 +2431,7 @@
           "id": "recetas-161",
           "title": "Albóndigas de pollo con pasta integral",
           "details": "11 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-161.webp",
+          "image": "/nutricion/recetas-161.webp?v=49965649e208",
           "ingredients": "140 g de pollo crudo sin piel; 20 g de avena seca; 30 g de cebolla; 180 g de salsa de tomate sin sal añadida; 120 g de pasta integral cocida; 30 g de espinaca; 5 g de aceite de oliva. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Mezclá pollo, avena, cebolla fina y perejil. Formá albóndigas y cocinalas en salsa de tomate 15-20 minutos, hasta que el centro esté completamente cocido. Agregá espinaca al final. Serví sobre la pasta caliente.",
           "nutrition": [
@@ -2446,7 +2446,7 @@
           "id": "recetas-162",
           "title": "Medallones de coliflor y garbanzos",
           "details": "12 / 50 · Rinde 1 porción · 15-40 min",
-          "image": "/nutricion/recetas-162.webp",
+          "image": "/nutricion/recetas-162.webp?v=74bb10431164",
           "ingredients": "120 g de coliflor; 125 g de garbanzos cocidos sin sal; 20 g de avena seca; 5 g de aceite de oliva; 150 g de papa cocida; 45 g de yogur natural sin azúcar, bajo en grasa; 50 g de lechuga; 70 g de tomate. Hierbas y especias indicadas en la preparación, a gusto.",
           "method": "Pisá coliflor y garbanzos y mezclá con avena y comino. Formá dos medallones firmes y horneá a 200 °C unos 20 minutos, girándolos. Horneá la papa en gajos 25-30 minutos. Serví con yogur y ensalada.",
           "nutrition": [
@@ -2461,7 +2461,7 @@
           "id": "recetas-163",
           "title": "Ñoquis crocantes con tomate y cottage",
           "details": "13 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-163.webp",
+          "image": "/nutricion/recetas-163.webp?v=ec4dae176b7e",
           "ingredients": "180 g de ñoquis cocidos; 120 g de queso cottage (2% de grasa); 150 g de tomate; 60 g de espinaca; 5 g de aceite de oliva. Albahaca.",
           "method": "Herví ñoquis según el envase, escurrí y dorá con aceite en sartén. Mezclá tomate y espinaca con cottage. Serví los ñoquis tibios sobre la ensalada.",
           "nutrition": [
@@ -2476,7 +2476,7 @@
           "id": "recetas-164",
           "title": "Tortilla de brócoli y mozzarella",
           "details": "14 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-164.webp",
+          "image": "/nutricion/recetas-164.webp?v=5a3334564e66",
           "ingredients": "180 g de brócoli; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 40 g de mozzarella parcialmente descremada; 5 g de aceite de oliva; 60 g de pan integral. Pimienta.",
           "method": "Cociná brócoli al vapor y picá. Mezclá con huevos y queso. Cociná en sartén aceitada y tapada hasta que el centro cuaje; serví con pan.",
           "nutrition": [
@@ -2491,7 +2491,7 @@
           "id": "recetas-165",
           "title": "Pescado en papillote con papas",
           "details": "15 / 50 · Rinde 1 porción · 35 min",
-          "image": "/nutricion/recetas-165.webp",
+          "image": "/nutricion/recetas-165.webp?v=545e58f2b9fa",
           "ingredients": "160 g de pescado blanco crudo; 220 g de papa cocida; 100 g de zucchini / zapallito; 80 g de zanahoria; 5 g de aceite de oliva; 15 g de jugo de limón. Tomillo.",
           "method": "Cortá papa muy fina y herví 5 minutos. Colocá con pescado, verduras y aceite en papel de horno; cerrá un paquete. Horneá a 190 °C 20-25 minutos, hasta que todo esté hecho.",
           "nutrition": [
@@ -2506,7 +2506,7 @@
           "id": "recetas-166",
           "title": "Sopa de tomate con tostado de queso",
           "details": "16 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-166.webp",
+          "image": "/nutricion/recetas-166.webp?v=3b3c023c0bde",
           "ingredients": "300 g de tomate; 50 g de cebolla; 100 g de porotos blancos cocidos sin sal; 5 g de aceite de oliva; 70 g de pan integral; 40 g de mozzarella parcialmente descremada. Albahaca.",
           "method": "Rehogá cebolla, sumá tomate, porotos y 150 ml de agua. Cociná 15 minutos y procesá. Rellená pan con queso y tostá en sartén. Serví junto.",
           "nutrition": [
@@ -2521,7 +2521,7 @@
           "id": "recetas-167",
           "title": "Tarta sin masa de zucchini y ricota",
           "details": "17 / 50 · Rinde 2 porciones · 15 min + 30 de horno",
-          "image": "/nutricion/recetas-167.webp",
+          "image": "/nutricion/recetas-167.webp?v=0646ff5af7c0",
           "ingredients": "400 g de zucchini / zapallito; 220 g de ricota parcialmente descremada; 150 g de huevo sin cáscara (50 g ≈ 1 unidad); 50 g de avena seca; 10 g de aceite de oliva; 200 g de tomate. Orégano.",
           "method": "Rallá y exprimí zucchini. Mezclá con ricota, huevos y avena. Volcá en fuente aceitada y horneá a 180 °C 30 minutos, hasta cuajar. Serví con tomate.",
           "nutrition": [
@@ -2536,7 +2536,7 @@
           "id": "recetas-168",
           "title": "Bowl de garbanzos al pimentón",
           "details": "18 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-168.webp",
+          "image": "/nutricion/recetas-168.webp?v=c4d466252bde",
           "ingredients": "170 g de garbanzos cocidos sin sal; 180 g de zapallo cocido; 130 g de cuscús cocido; 60 g de yogur natural sin azúcar, bajo en grasa; 5 g de aceite de oliva; 15 g de jugo de limón. Pimentón ahumado.",
           "method": "Horneá zapallo y garbanzos aceitados a 200 °C 20 minutos. Serví sobre cuscús cocido y agregá yogur con limón.",
           "nutrition": [
@@ -2551,7 +2551,7 @@
           "id": "recetas-169",
           "title": "Berenjena rellena de carne y lentejas",
           "details": "19 / 50 · Rinde 1 porción · 40 min",
-          "image": "/nutricion/recetas-169.webp",
+          "image": "/nutricion/recetas-169.webp?v=e72976636688",
           "ingredients": "300 g de berenjena; 100 g de carne vacuna magra cruda; 100 g de lentejas cocidas sin sal; 150 g de salsa de tomate sin sal añadida; 40 g de cebolla; 30 g de mozzarella parcialmente descremada; 5 g de aceite de oliva. Comino.",
           "method": "Horneá berenjena cortada al medio a 200 °C 20 minutos. Salteá cebolla y carne hasta cocinar. Sumá lentejas, salsa y pulpa de berenjena. Rellená y gratiná con queso 10 minutos.",
           "nutrition": [
@@ -2566,7 +2566,7 @@
           "id": "recetas-170",
           "title": "Pollo con salsa de hongos y puré",
           "details": "20 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-170.webp",
+          "image": "/nutricion/recetas-170.webp?v=d3b4230ca0fe",
           "ingredients": "150 g de pollo crudo sin piel; 150 g de champiñones; 80 g de yogur natural sin azúcar, bajo en grasa; 200 g de papa cocida; 50 g de leche semidescremada; 5 g de aceite de oliva. Tomillo.",
           "method": "Cociná pollo con aceite y hongos hasta que esté hecho. Bajá el fuego y sumá yogur. Herví papas y pisá con leche caliente. Serví con la salsa.",
           "nutrition": [
@@ -2581,7 +2581,7 @@
           "id": "recetas-171",
           "title": "Ensalada tibia de arroz y huevo",
           "details": "21 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-171.webp",
+          "image": "/nutricion/recetas-171.webp?v=3ea15e588324",
           "ingredients": "160 g de arroz integral cocido; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de arvejas cocidas sin sal; 70 g de zanahoria; 40 g de palta sin piel ni carozo; 15 g de jugo de limón. Perejil.",
           "method": "Herví huevos 10-12 minutos. Cociná zanahoria al vapor y mezclá con arroz y arvejas cocidas. Agregá huevo, palta y limón.",
           "nutrition": [
@@ -2596,7 +2596,7 @@
           "id": "recetas-172",
           "title": "Tacos de pescado con repollo y yogur",
           "details": "22 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-172.webp",
+          "image": "/nutricion/recetas-172.webp?v=fd28c687c605",
           "ingredients": "160 g de pescado blanco crudo; 75 g de tortilla integral; 100 g de repollo; 80 g de yogur natural sin azúcar, bajo en grasa; 40 g de palta sin piel ni carozo; 5 g de aceite de oliva; 15 g de jugo de limón. Comino y cilantro.",
           "method": "Cociná pescado con aceite hasta que esté hecho. Cortá repollo fino y mezclá con yogur y limón. Rellená tortillas con pescado, ensalada y palta.",
           "nutrition": [
@@ -2611,7 +2611,7 @@
           "id": "recetas-173",
           "title": "Gratinado de coliflor y porotos",
           "details": "23 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-173.webp",
+          "image": "/nutricion/recetas-173.webp?v=692d10203af0",
           "ingredients": "220 g de coliflor; 160 g de porotos blancos cocidos sin sal; 120 g de leche semidescremada; 40 g de mozzarella parcialmente descremada; 15 g de avena seca; 5 g de aceite de oliva. Nuez moscada.",
           "method": "Cociná coliflor al vapor. Calentá leche con avena molida hasta espesar. Mezclá con porotos y coliflor; colocá en fuente aceitada. Cubrí con queso y gratiná a 200 °C 12 minutos.",
           "nutrition": [
@@ -2626,7 +2626,7 @@
           "id": "recetas-174",
           "title": "Crema de boniato con tofu crocante",
           "details": "24 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-174.webp",
+          "image": "/nutricion/recetas-174.webp?v=32eb26b4849c",
           "ingredients": "200 g de boniato cocido; 150 g de tofu firme con calcio; 40 g de cebolla; 5 g de aceite de oliva; 50 g de pan integral. Cúrcuma y jengibre.",
           "method": "Salteá cebolla y agregá boniato en cubos y 300 ml de agua. Cociná hasta ablandar y procesá. Dorá tofu en cubos con el aceite restante. Serví sobre la crema con pan.",
           "nutrition": [
@@ -2641,7 +2641,7 @@
           "id": "recetas-175",
           "title": "Pasta de una olla con porotos",
           "details": "25 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-175.webp",
+          "image": "/nutricion/recetas-175.webp?v=dfdc48124ddf",
           "ingredients": "70 g de pasta integral seca; 150 g de porotos blancos cocidos sin sal; 180 g de salsa de tomate sin sal añadida; 40 g de cebolla; 60 g de espinaca; 5 g de aceite de oliva; 10 g de queso parmesano. Orégano.",
           "method": "Rehogá cebolla con aceite. Sumá pasta seca, tomate y 250 ml de agua; cociná moviendo y agregando líquido si hace falta. Cuando la pasta esté cocida, sumá porotos y espinaca. Terminá con queso.",
           "nutrition": [
@@ -2656,7 +2656,7 @@
           "id": "recetas-176",
           "title": "Pizza rápida de tortilla y atún",
           "details": "26 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-176.webp",
+          "image": "/nutricion/recetas-176.webp?v=72a86cd34a3d",
           "ingredients": "60 g de tortilla integral; 100 g de atún al natural escurrido; 80 g de salsa de tomate sin sal añadida; 40 g de mozzarella parcialmente descremada; 70 g de morrón rojo. Orégano.",
           "method": "Cubri la tortilla con salsa, atún escurrido, morrón fino y queso. Horneá a 200 °C 10-12 minutos, hasta que la base esté crocante y el queso fundido.",
           "nutrition": [
@@ -2671,7 +2671,7 @@
           "id": "recetas-177",
           "title": "Pastel de carne y boniato",
           "details": "27 / 50 · Rinde 2 porciones · 20 min + 20 de horno",
-          "image": "/nutricion/recetas-177.webp",
+          "image": "/nutricion/recetas-177.webp?v=58555e7d1c75",
           "ingredients": "260 g de carne vacuna magra cruda; 450 g de boniato cocido; 80 g de cebolla; 120 g de zanahoria; 150 g de salsa de tomate sin sal añadida; 10 g de aceite de oliva; 80 g de leche semidescremada. Pimentón.",
           "method": "Herví boniato y pisá con leche. Salteá cebolla, zanahoria y carne con aceite hasta cocinar; sumá salsa. Colocá en fuente, cubrí con puré y horneá a 200 °C 20 minutos.",
           "nutrition": [
@@ -2686,7 +2686,7 @@
           "id": "recetas-178",
           "title": "Tortitas de quinoa y espinaca",
           "details": "28 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-178.webp",
+          "image": "/nutricion/recetas-178.webp?v=2aa49d9656e0",
           "ingredients": "150 g de quinoa cocida; 80 g de espinaca; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 25 g de avena seca; 15 g de queso parmesano; 5 g de aceite de oliva; 60 g de yogur natural sin azúcar, bajo en grasa; 100 g de tomate. Pimienta.",
           "method": "Mezclá quinoa cocida con espinaca cocida escurrida, huevo, avena y queso. Formá cuatro tortitas y cociná en sartén aceitada hasta cuajar. Serví con yogur y tomate.",
           "nutrition": [
@@ -2701,7 +2701,7 @@
           "id": "recetas-179",
           "title": "Salmón con crema de arvejas",
           "details": "29 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-179.webp",
+          "image": "/nutricion/recetas-179.webp?v=9b0285e40810",
           "ingredients": "150 g de salmón crudo; 180 g de arvejas cocidas sin sal; 60 g de yogur natural sin azúcar, bajo en grasa; 150 g de papa cocida; 5 g de aceite de oliva; 10 g de jugo de limón. Menta.",
           "method": "Horneá salmón con aceite y limón a 190 °C 15-20 minutos, hasta que esté hecho. Procesá arvejas cocidas con yogur y agua. Serví con papa hervida.",
           "nutrition": [
@@ -2716,7 +2716,7 @@
           "id": "recetas-180",
           "title": "Guiso rápido de lentejas y hongos",
           "details": "30 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-180.webp",
+          "image": "/nutricion/recetas-180.webp?v=8cc2da2e32b3",
           "ingredients": "200 g de lentejas cocidas sin sal; 150 g de champiñones; 100 g de zanahoria; 40 g de cebolla; 150 g de salsa de tomate sin sal añadida; 5 g de aceite de oliva; 50 g de pan integral. Laurel y pimentón.",
           "method": "Rehogá cebolla, zanahoria y hongos con aceite. Sumá tomate, lentejas cocidas y 100 ml de agua; cociná 15 minutos. Serví con pan.",
           "nutrition": [
@@ -2731,7 +2731,7 @@
           "id": "recetas-181",
           "title": "Wrap caliente de tofu y verduras",
           "details": "31 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-181.webp",
+          "image": "/nutricion/recetas-181.webp?v=8b0f8ad79e5f",
           "ingredients": "160 g de tofu firme con calcio; 75 g de tortilla integral; 100 g de morrón rojo; 100 g de zucchini / zapallito; 60 g de yogur natural sin azúcar, bajo en grasa; 5 g de aceite de oliva. Comino.",
           "method": "Dorá tofu y verduras con aceite. Rellená tortillas, agregá yogur y doblá. Calentá brevemente en sartén tapada.",
           "nutrition": [
@@ -2746,7 +2746,7 @@
           "id": "recetas-182",
           "title": "Omelette de ricota y remolacha",
           "details": "32 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-182.webp",
+          "image": "/nutricion/recetas-182.webp?v=0a47d9a287e8",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de ricota parcialmente descremada; 120 g de remolacha cocida; 60 g de pan integral; 5 g de aceite de oliva. Perejil.",
           "method": "Mezclá ricota con remolacha cocida rallada. Cociná huevos batidos en sartén aceitada hasta cuajar. Rellená, doblá y calentá un minuto. Serví con pan.",
           "nutrition": [
@@ -2761,7 +2761,7 @@
           "id": "recetas-183",
           "title": "Papas aplastadas con cottage y pollo",
           "details": "33 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-183.webp",
+          "image": "/nutricion/recetas-183.webp?v=e7ade6cb0ada",
           "ingredients": "230 g de papa cocida; 130 g de pollo crudo sin piel; 100 g de queso cottage (2% de grasa); 80 g de pepino; 5 g de aceite de oliva. Eneldo.",
           "method": "Herví papas, aplastalas y horneá con aceite a 220 °C 15 minutos. Cociná pollo completamente y desmenuzá. Serví papas con pollo, cottage y pepino.",
           "nutrition": [
@@ -2776,7 +2776,7 @@
           "id": "recetas-184",
           "title": "Zucchini salteado con garbanzos y feta",
           "details": "34 / 50 · Rinde 1 porción · 20 min",
-          "image": "/nutricion/recetas-184.webp",
+          "image": "/nutricion/recetas-184.webp?v=54b10b55ae1d",
           "ingredients": "250 g de zucchini / zapallito; 180 g de garbanzos cocidos sin sal; 40 g de queso feta; 5 g de aceite de oliva; 50 g de pan integral; 15 g de jugo de limón. Menta.",
           "method": "Salteá zucchini con aceite hasta dorar. Sumá garbanzos y calentá bien. Terminá con feta y limón, y serví con pan.",
           "nutrition": [
@@ -2791,7 +2791,7 @@
           "id": "recetas-185",
           "title": "Ratatouille con huevos y pan",
           "details": "35 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-185.webp",
+          "image": "/nutricion/recetas-185.webp?v=d55991e9f116",
           "ingredients": "120 g de berenjena; 120 g de zucchini / zapallito; 100 g de morrón rojo; 150 g de tomate; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 5 g de aceite de oliva; 60 g de pan integral. Tomillo.",
           "method": "Cociná verduras en cubos con aceite y dos cucharadas de agua, tapadas, 15-20 minutos. Hacé dos huecos y agregá huevos. Tapá hasta que cuajen por completo. Serví con pan.",
           "nutrition": [
@@ -2806,7 +2806,7 @@
           "id": "recetas-186",
           "title": "Fideos con salsa de maní y tofu",
           "details": "36 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-186.webp",
+          "image": "/nutricion/recetas-186.webp?v=bc7021b14ef3",
           "ingredients": "170 g de pasta integral cocida; 150 g de tofu firme con calcio; 80 g de zanahoria; 80 g de repollo; 15 g de pasta de maní sin azúcar ni sal; 50 g de yogur natural sin azúcar, bajo en grasa; 15 g de jugo de limón; 5 g de aceite de oliva. Jengibre.",
           "method": "Dorá tofu y salteá verduras con aceite. Mezclá maní, yogur, limón y agua para la salsa. Sumá pasta cocida y salsa; calentá suavemente.",
           "nutrition": [
@@ -2821,7 +2821,7 @@
           "id": "recetas-187",
           "title": "Polenta al horno con espinaca",
           "details": "37 / 50 · Rinde 2 porciones · 20 min + 20 de horno",
-          "image": "/nutricion/recetas-187.webp",
+          "image": "/nutricion/recetas-187.webp?v=5967a07f0f7d",
           "ingredients": "100 g de polenta seca / harina de maíz; 250 g de leche semidescremada; 180 g de espinaca; 180 g de ricota parcialmente descremada; 200 g de salsa de tomate sin sal añadida; 60 g de mozzarella parcialmente descremada. Nuez moscada.",
           "method": "Prepará polenta con leche y 250 ml de agua según el envase. Mezclá espinaca cocida escurrida con ricota. Alterná polenta, relleno y salsa en fuente; cubrí con queso y horneá a 190 °C 20 minutos.",
           "nutrition": [
@@ -2836,7 +2836,7 @@
           "id": "recetas-188",
           "title": "Albóndigas de porotos con salsa",
           "details": "38 / 50 · Rinde 2 porciones · 20 min + 25 de horno",
-          "image": "/nutricion/recetas-188.webp",
+          "image": "/nutricion/recetas-188.webp?v=ea0f44a30fa7",
           "ingredients": "320 g de porotos blancos cocidos sin sal; 60 g de avena seca; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 60 g de cebolla; 300 g de salsa de tomate sin sal añadida; 10 g de aceite de oliva; 240 g de arroz integral cocido. Orégano; 5 albóndigas por porción.",
           "method": "Pisá porotos y mezclá con avena, huevo y cebolla muy fina. Formá diez albóndigas, pincelá con aceite y horneá a 200 °C 25 minutos, hasta cocinar. Calentá en salsa y serví con arroz.",
           "nutrition": [
@@ -2851,7 +2851,7 @@
           "id": "recetas-189",
           "title": "Sopa de pollo, quinoa y verduras",
           "details": "39 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-189.webp",
+          "image": "/nutricion/recetas-189.webp?v=541eb15fcd3e",
           "ingredients": "140 g de pollo crudo sin piel; 130 g de quinoa cocida; 100 g de zanahoria; 100 g de zucchini / zapallito; 40 g de cebolla; 5 g de aceite de oliva. Perejil.",
           "method": "Salteá cebolla y pollo en cubos con aceite. Agregá verduras y 400 ml de agua; cociná 20 minutos, hasta que el pollo esté hecho. Sumá quinoa cocida y calentá bien.",
           "nutrition": [
@@ -2866,7 +2866,7 @@
           "id": "recetas-190",
           "title": "Ensalada de lentejas con pera y nueces",
           "details": "40 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-190.webp",
+          "image": "/nutricion/recetas-190.webp?v=abd6f71908ad",
           "ingredients": "180 g de lentejas cocidas sin sal; 150 g de pera; 60 g de espinaca; 35 g de queso feta; 15 g de nueces; 5 g de aceite de oliva; 10 g de jugo de limón. Pimienta.",
           "method": "Mezclá lentejas cocidas frías con pera, espinaca y feta. Sumá nueces y condimentá con aceite y limón.",
           "nutrition": [
@@ -2881,7 +2881,7 @@
           "id": "recetas-191",
           "title": "Tarta rústica de tomate y cottage",
           "details": "41 / 50 · Rinde 2 porciones · 20 min + 30 de horno",
-          "image": "/nutricion/recetas-191.webp",
+          "image": "/nutricion/recetas-191.webp?v=79ca9f285603",
           "ingredients": "120 g de harina integral; 15 g de aceite de oliva; 240 g de queso cottage (2% de grasa); 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 300 g de tomate; 20 g de queso parmesano. Albahaca.",
           "method": "Uní harina y 10 g de aceite con 65 ml de agua. Extendé la masa. Mezclá cottage y huevo y distribuí encima. Agregá tomate y queso, doblá bordes y horneá a 190 °C 30 minutos con el aceite restante.",
           "nutrition": [
@@ -2896,7 +2896,7 @@
           "id": "recetas-192",
           "title": "Arroz cremoso de zapallo y pollo",
           "details": "42 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-192.webp",
+          "image": "/nutricion/recetas-192.webp?v=7cfd28e852d5",
           "ingredients": "170 g de arroz integral cocido; 200 g de zapallo cocido; 140 g de pollo crudo sin piel; 80 g de leche semidescremada; 15 g de queso parmesano; 5 g de aceite de oliva. Tomillo.",
           "method": "Cociná pollo en cubos con aceite hasta que esté hecho. Procesá zapallo cocido con leche. Sumá arroz y crema al pollo; calentá bien y terminá con queso.",
           "nutrition": [
@@ -2911,7 +2911,7 @@
           "id": "recetas-193",
           "title": "Pescado con costra de avena y limón",
           "details": "43 / 50 · Rinde 1 porción · 30 min",
-          "image": "/nutricion/recetas-193.webp",
+          "image": "/nutricion/recetas-193.webp?v=14d8ad3e582f",
           "ingredients": "160 g de pescado blanco crudo; 25 g de avena seca; 25 g de huevo sin cáscara (50 g ≈ 1 unidad); 5 g de aceite de oliva; 15 g de jugo de limón; 180 g de papa cocida; 150 g de brócoli. Perejil.",
           "method": "Pasá pescado por huevo batido y avena con ralladura de limón. Pincelá con aceite y horneá a 200 °C 15-20 minutos, hasta que esté hecho. Serví con papa hervida y brócoli al vapor.",
           "nutrition": [
@@ -2926,7 +2926,7 @@
           "id": "recetas-194",
           "title": "Calabaza rellena de quinoa y queso",
           "details": "44 / 50 · Rinde 1 porción · 40 min",
-          "image": "/nutricion/recetas-194.webp",
+          "image": "/nutricion/recetas-194.webp?v=6535eb860fc3",
           "ingredients": "300 g de zapallo cocido; 150 g de quinoa cocida; 100 g de porotos blancos cocidos sin sal; 40 g de mozzarella parcialmente descremada; 5 g de aceite de oliva. Comino.",
           "method": "Usá una porción de calabaza con cavidad. Horneá con aceite a 200 °C hasta ablandar, unos 25 minutos. Rellená con quinoa, porotos y queso; gratiná 10 minutos.",
           "nutrition": [
@@ -2941,7 +2941,7 @@
           "id": "recetas-195",
           "title": "Huevos al tomate con porotos blancos",
           "details": "45 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-195.webp",
+          "image": "/nutricion/recetas-195.webp?v=10a4a26a5dc3",
           "ingredients": "100 g de huevo sin cáscara (50 g ≈ 1 unidad); 150 g de porotos blancos cocidos sin sal; 180 g de salsa de tomate sin sal añadida; 40 g de cebolla; 5 g de aceite de oliva; 60 g de pan integral. Pimentón.",
           "method": "Rehogá cebolla con aceite. Sumá tomate y porotos y cociná 10 minutos. Agregá huevos en dos huecos, tapá y cociná hasta que clara y yema cuajen. Serví con pan.",
           "nutrition": [
@@ -2956,7 +2956,7 @@
           "id": "recetas-196",
           "title": "Hamburguesas de salmón y papa",
           "details": "46 / 50 · Rinde 2 porciones · 20 min + 20 de horno",
-          "image": "/nutricion/recetas-196.webp",
+          "image": "/nutricion/recetas-196.webp?v=151e3411c54b",
           "ingredients": "280 g de salmón crudo; 250 g de papa cocida; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 30 g de avena seca; 10 g de aceite de oliva; 100 g de yogur natural sin azúcar, bajo en grasa; 100 g de lechuga; 160 g de tomate. Eneldo.",
           "method": "Picá salmón crudo y mezclá con papa cocida pisada, huevo y avena. Formá cuatro medallones y horneá aceitados a 200 °C 18-22 minutos, hasta cocinar el centro. Serví dos por persona con yogur y ensalada.",
           "nutrition": [
@@ -2971,7 +2971,7 @@
           "id": "recetas-197",
           "title": "Cuscús con pollo, ciruela y almendras",
           "details": "47 / 50 · Rinde 1 porción · 25 min",
-          "image": "/nutricion/recetas-197.webp",
+          "image": "/nutricion/recetas-197.webp?v=9254ee1e7a88",
           "ingredients": "160 g de cuscús cocido; 140 g de pollo crudo sin piel; 120 g de ciruelas sin carozo; 15 g de almendras; 40 g de cebolla; 5 g de aceite de oliva. Canela y comino, una pizca.",
           "method": "Salteá cebolla y pollo con aceite hasta cocinar. Agregá ciruela fresca en gajos y calentá dos minutos. Serví sobre cuscús con almendras.",
           "nutrition": [
@@ -2986,7 +2986,7 @@
           "id": "recetas-198",
           "title": "Pizza de polenta con hongos",
           "details": "48 / 50 · Rinde 2 porciones · 20 min + 25 de horno",
-          "image": "/nutricion/recetas-198.webp",
+          "image": "/nutricion/recetas-198.webp?v=8b3bc4ed65da",
           "ingredients": "100 g de polenta seca / harina de maíz; 200 g de champiñones; 160 g de salsa de tomate sin sal añadida; 100 g de mozzarella parcialmente descremada; 10 g de aceite de oliva. Orégano.",
           "method": "Prepará polenta firme con 350 ml de agua. Extendé en fuente aceitada y horneá a 200 °C 15 minutos. Salteá hongos; cubrí base con salsa, hongos y queso. Horneá 10 minutos más.",
           "nutrition": [
@@ -3001,7 +3001,7 @@
           "id": "recetas-199",
           "title": "Ensalada de garbanzos con salsa de maní",
           "details": "49 / 50 · Rinde 1 porción · 15 min",
-          "image": "/nutricion/recetas-199.webp",
+          "image": "/nutricion/recetas-199.webp?v=d953e3ca6af7",
           "ingredients": "180 g de garbanzos cocidos sin sal; 100 g de repollo; 80 g de zanahoria; 80 g de pepino; 15 g de pasta de maní sin azúcar ni sal; 70 g de yogur natural sin azúcar, bajo en grasa; 15 g de jugo de limón. Jengibre.",
           "method": "Cortá verduras finas y mezclá con garbanzos. Batí maní, yogur, limón y dos cucharadas de agua. Agregá la salsa al servir.",
           "nutrition": [
@@ -3016,7 +3016,7 @@
           "id": "recetas-200",
           "title": "Pastel de verduras y ricota",
           "details": "50 / 50 · Rinde 2 porciones · 20 min + 30 de horno",
-          "image": "/nutricion/recetas-200.webp",
+          "image": "/nutricion/recetas-200.webp?v=5ac62d726cb8",
           "ingredients": "300 g de papa cocida; 180 g de zanahoria; 160 g de arvejas cocidas sin sal; 220 g de ricota parcialmente descremada; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 10 g de aceite de oliva; 20 g de queso parmesano. Nuez moscada.",
           "method": "Herví papas y zanahorias hasta ablandar. Cortá y mezclá con arvejas, ricota y huevos. Volcá en fuente aceitada, cubrí con queso y horneá a 180 °C 30 minutos, hasta que cuaje.",
           "nutrition": [

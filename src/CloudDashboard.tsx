@@ -2,7 +2,7 @@ import { readAllPages } from './readAllPages'
 import { useCallback, useEffect, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { daysUntil } from './membership'
-import { scheduledForDay, type PlanServiceConfig } from './planServices'
+import { type PlanServiceConfig } from './planServices'
 
 type Member = { id: string; first_name: string; last_name: string; status: string; joined_at: string }
 type Plan = { id: string; member_id: string; plan_name: string; starts_at: string; ends_at: string; price: number; service_config: PlanServiceConfig | null }
@@ -67,22 +67,13 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
     return balance > 0 ? [{ member, plan, balance }] : []
   }).sort((a, b) => b.balance - a.balance || a.member.last_name.localeCompare(b.member.last_name, 'es'))
   const monthlyIncome = (snapshot?.payments ?? []).filter(item => item.paid_at.startsWith(month)).reduce((sum, item) => sum + cents(item.amount), 0)
-  const todaySessions = (snapshot?.members ?? []).flatMap(member => {
-    if (member.status !== 'Activo') return []
-    const plans = (snapshot?.plans ?? []).filter(plan => plan.member_id === member.id && plan.starts_at <= date && plan.ends_at >= date && scheduledForDay(plan.service_config, date))
-    return plans.length ? [{ member, count: plans.length }] : []
-  })
-
   return <section className="cloud-dashboard" aria-label="Indicadores del gimnasio">
     <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Panel de administración.</h1></div>
       <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar indicadores</button></div>
     <p className="muted">Socios, pagos y vencimientos.</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
-    {snapshot && <>{todaySessions.length > 0 && <section className="card service-reminders" aria-label="Recordatorios de Kinesiología"><h2>Kinesiología hoy · {date.split('-').reverse().join('/')}</h2>
-      {todaySessions.length ? <ul className="dashboard-breakdown">{todaySessions.map(({member,count}) => <li key={member.id}><span><strong>{member.first_name} {member.last_name}</strong><small>{count} sesión(es) programada(s)</small></span><button type="button" className="secondary" onClick={() => onOpenMembers?.(member.id)}>Ver ficha</button></li>)}</ul> : <p className="muted">No hay sesiones programadas para hoy.</p>}
-      <p className="muted">Recordatorios dentro de la app, según las fechas guardadas en los planes. Se actualizan al abrir el panel y mientras permanece visible.</p>
-    </section>}<div className="stats dashboard-primary">
+    {snapshot && <><div className="stats dashboard-primary">
       <div className="card"><span>Socios activos</span><strong>{snapshot.members.filter(member => member.status === 'Activo').length}</strong><small>{snapshot.members.length} personas registradas</small></div>
       <div className="card"><span>Ingresos del mes</span><strong className="amount">{money(monthlyIncome / 100)}</strong><small>Pagos registrados este mes</small></div>
       <div className="card"><span>Planes vencidos</span><strong className="red">{expired}</strong><small>{expiring} {expiring === 1 ? 'vence' : 'vencen'} en los próximos 10 días</small></div>

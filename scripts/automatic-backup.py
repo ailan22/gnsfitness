@@ -113,9 +113,19 @@ def run(force=False):
                       'offsiteUploaded': False, 'fullProviderRestoreTested': False}
             write_status(report)
             return report
-        except Exception:
+        except Exception as failure:
             # Do not copy exceptions from providers or subprocesses into logs.
+            known = {
+                'Windows no pudo proteger o abrir la configuración local.': 'windows_protection',
+                'La base rechazó la contraseña. Volvé a ingresarla sin compartirla.': 'database_authentication',
+                'No se pudo localizar el servidor. Revisá la conexión a Internet antes de reintentar.': 'database_dns',
+                'El servidor rechazó permisos de exportación. No se guardó una copia parcial.': 'database_permissions',
+                'La versión de PostgreSQL requiere actualizar la herramienta de respaldo.': 'database_version',
+                'No se pudo verificar la conexión TLS; no se continuará sin validación.': 'database_tls',
+                'La herramienta de respaldo no completó la operación. No se guardó una copia parcial.': 'database_tool',
+            }
             report = {'status': 'failed', 'checkedAt': datetime.now().astimezone().isoformat(),
+                      'reason': known.get(str(failure), 'verification_or_local_error'),
                       'message': 'No se completó el respaldo automático. Revisar conexión, claves y prueba de recuperación. Las copias anteriores se conservan.'}
             write_status(report)
             return report

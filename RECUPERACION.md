@@ -45,3 +45,7 @@ No copiar contraseñas, claves privadas, certificados, tokens ni archivos `.gnsf
 
 Ante un incidente, preservar el original, detener cambios que puedan agravar la pérdida, recuperar primero en un entorno separado y comprobar relaciones, permisos, cuentas y eliminaciones posteriores a la fecha de copia. No reactivar datos que hayan sido eliminados por una solicitud de privacidad.
 
+
+## Copia actualizada, 1 de octubre a las 14:34
+
+GNS-20261001-142855.gnsfull (11.069.389 bytes), commit 54b69c6: integridad y restauración local de 43 tablas comprobadas. Incluye nutrition_drafts y nutrition_plans; los archivos de calculadora, dietas, guía y migración 014 coinciden con la aplicación actual. Contiene 60 imágenes de las guías. Copia adicional cifrada en Google Drive, archivo 1IfGi3z18tvc8GH28CqELHp5_L2J_4tyn, acceso exclusivo del propietario y tamaño exacto comprobados. El conector no devolvió hash remoto: no se afirma cotejo criptográfico de la copia remota. Se conserva la copia original. Siguen pendientes la recuperación integral de proveedores y la automatización de respaldos.

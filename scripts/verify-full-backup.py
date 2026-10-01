@@ -84,6 +84,11 @@ def verify(path, phrase):
         if source.testzip() is not None:
             raise ValueError('No se pudo verificar el código guardado.')
         source_files = len(source.infolist())
+        current_features = {}
+        for name in ['src/PersonalNutrition.tsx', 'src/nutritionCalculator.ts', 'src/nutritionGuide.json', 'cloud/014_personal_nutrition.sql']:
+            local = backup.PROJECT / name
+            current_features[name] = name in source.namelist() and local.exists() and source.read(name).replace(b'\r\n', b'\n') == local.read_bytes().replace(b'\r\n', b'\n')
+        guide_images = [name for name in source.namelist() if name.startswith('public/nutricion/') and name.endswith('.webp')]
     common = dict(input=entries['database.dump'], stderr=subprocess.PIPE, timeout=240,
                   creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
     listing = subprocess.run([str(backup.BIN/'pg_restore.exe'), '--list'], stdout=subprocess.PIPE, **common)
@@ -103,6 +108,7 @@ def verify(path, phrase):
               'verifiedAt': datetime.now(timezone.utc).isoformat(),
               'encryptedSha256': hashlib.sha256(blob).hexdigest(),
               'sourceCommit': manifest.get('sourceCommit'), 'sourceFileCount': source_files,
+              'currentFeatureFilesMatch': current_features, 'nutritionImageCount': len(guide_images),
               'databaseObjectCount': len(inventory), 'restoreTested': False,
               'databaseObjects': inventory,
               'notIncluded': manifest.get('notIncluded', [])}

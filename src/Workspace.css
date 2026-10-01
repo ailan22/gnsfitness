@@ -119,3 +119,12 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   .student-nutrition-panel.card { padding: 14px; }
   .nutrition-guide .card { padding: 14px; }
 }
+
+.nutrition-personal { margin-block: 1rem; }
+.nutrition-personal > summary { cursor:pointer; padding:.5rem 0; }
+.nutrition-personal > summary span { display:block; font-size:.9rem; opacity:.8; margin-top:.4rem; }
+.nutrition-personal label { display:block; margin-block:.8rem; }
+.nutrition-personal select,.nutrition-personal textarea,.nutrition-personal input:not([type=checkbox]) { width:100%; max-width:100%; }
+.nutrition-diet-editor { min-height:300px; line-height:1.6; }
+.nutrition-plan-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; margin-block:1rem; }
+

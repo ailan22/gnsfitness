@@ -1,4 +1,5 @@
 import NutritionGuide from './NutritionGuide'
+import PersonalNutrition from './PersonalNutrition'
 import BackupPanel from './BackupPanel'
 import PhysioDirectory from './PhysioDirectory'
 import { ServiceNotifications } from './StudentWellbeing'
@@ -35,7 +36,7 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
       {section === 'overview' && <><CloudDashboard client={client} revision={revision} onOpenMembers={id => navigate('people', id)}/><div className="workspace-shortcuts"><button type="button" className="card" onClick={() => navigate('people', '', true)}><strong>Registrar una persona</strong><small>Datos básicos y anamnesis opcional →</small></button><button type="button" className="card" onClick={() => navigate('physio')}><strong>Kinesiología</strong><small>Ver rehabilitaciones activas →</small></button></div></>}
       {section === 'people' && <CloudMembers client={client} onCountChange={countChanged} initialNew={newPerson} initialMemberId={memberId || null} onDirtyChange={setDirty}/>}
       {section === 'physio' && <PhysioDirectory client={client} onOpen={id => navigate('people', id)}/>} 
-      {section === 'nutrition' && <><ServiceNotifications client={client}/><NutritionGuide/></>}
+      {section === 'nutrition' && <><PersonalNutrition client={client} onDirtyChange={setDirty}/><ServiceNotifications client={client}/><NutritionGuide/></>}
       {section === 'overview' && <><AccountPrivacy client={client} admin/><BackupPanel client={client}/></>}
     </Suspense></div>
   </div>

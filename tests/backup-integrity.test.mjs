@@ -10,6 +10,17 @@ const cryptoApi={};vm.runInNewContext(compile('backupCrypto.ts'),{exports:crypto
 const insertApi={};vm.runInNewContext(compile('confirmedInsert.ts'),{exports:insertApi})
 const id = n => `00000000-0000-4000-8000-${String(n).padStart(12,'0')}`
 const pass='Una frase ficticia para pruebas 2026'
+
+test('schema 14 encrypts nutrition drafts and published plans and rejects incomplete copies',async()=>{
+ const data={format:'gns-application-backup',version:1,schemaVersion:14,createdAt:new Date().toISOString(),tables:Object.fromEntries([...cryptoApi.backupTables,...cryptoApi.nutritionBackupTables].map(n=>[n,[]]))}
+ data.tables.nutrition_drafts=[{id:id(70),body:'Borrador privado'}]
+ data.tables.nutrition_plans=[{id:id(71),body:'Plan publicado'}]
+ const file=await cryptoApi.encryptBackup(data,pass)
+ assert.ok(!file.includes('Borrador privado'))
+ assert.deepEqual(JSON.parse(JSON.stringify(await cryptoApi.decryptBackup(file,pass))),data)
+ delete data.tables.nutrition_drafts
+ await assert.rejects(cryptoApi.encryptBackup(data,pass))
+})
 test('encrypted export roundtrip, random ciphertext, wrong password, tampering and partial files',async()=>{
  const data={format:'gns-application-backup',version:1,schemaVersion:13,createdAt:new Date().toISOString(),tables:Object.fromEntries(cryptoApi.backupTables.map(n=>[n,[]]))}
  data.tables.members=[{id:id(10),first_name:'Confidencial'}]

@@ -1,0 +1,66 @@
+import {useEffect, useState} from 'react'
+import type {SupabaseClient} from '@supabase/supabase-js'
+import {readAllPages} from './readAllPages'
+import {emptyAssessment,estimateEnergy,estimateMacros,type NutritionAssessment} from './nutritionCalculator'
+
+type Person={id:string;first_name:string;last_name:string;user_id:string|null}
+type Plan={title:string;body:string;published_at:string;active:boolean;draft_revision:number}
+const planColumns='title,body,published_at,active,draft_revision'
+
+export function StudentPersonalNutrition({client,memberId}:{client:SupabaseClient;memberId:string}) {
+ const [open,setOpen]=useState(false),[plan,setPlan]=useState<Plan|null>(null),[loading,setLoading]=useState(false),[error,setError]=useState(''),[revision,setRevision]=useState(0)
+ useEffect(()=>{
+  if(!open)return
+  let alive=true
+  const load=async()=>{setLoading(true);setPlan(null);setError('');try{const r=await client.from('nutrition_plans').select(planColumns).eq('member_id',memberId).eq('active',true).maybeSingle();if(r.error)throw r.error;if(alive)setPlan(r.data)}catch{if(alive)setError('No se pudo cargar tu dieta. Volvé a intentarlo.')}finally{if(alive)setLoading(false)}}
+  void load();const focus=()=>void load();window.addEventListener('focus',focus)
+  return()=>{alive=false;window.removeEventListener('focus',focus)}
+ },[client,memberId,open,revision])
+ return <details className="card nutrition-personal" onToggle={e=>setOpen(e.currentTarget.open)}><summary><strong>Nutrición personalizada</strong></summary>{open&&<>{loading?<p role="status">Cargando tu plan…</p>:error?<p role="alert">{error}</p>:plan?<><h3>{plan.title}</h3><p className="muted">Actualizado el {new Date(plan.published_at).toLocaleDateString('es-UY')}</p><div className="nutrition-plan-text">{plan.body}</div></>:<p>Todavía no tenés una dieta asignada. Cuando el administrador la envíe, aparecerá acá.</p>}<button className="secondary" disabled={loading} onClick={()=>setRevision(n=>n+1)}>Actualizar mi plan</button></>}</details>
+}
+
+export default function PersonalNutrition({client,onDirtyChange}:{client:SupabaseClient;onDirtyChange:(value:boolean)=>void}) {
+ const [people,setPeople]=useState<Person[]>([]),[member,setMember]=useState(''),[loaded,setLoaded]=useState(''),[open,setOpen]=useState(false)
+ const [assessment,setAssessment]=useState<NutritionAssessment>(emptyAssessment),[title,setTitle]=useState('Mi plan de alimentación'),[body,setBody]=useState(''),[version,setVersion]=useState(0)
+ const [plan,setPlan]=useState<Plan|null>(null),[enabled,setEnabled]=useState(false)
+ const [dirty,setDirty]=useState(false),[busy,setBusy]=useState(false),[loading,setLoading]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState(''),[refresh,setRefresh]=useState(0)
+ useEffect(()=>{onDirtyChange(dirty);const warn=(e:BeforeUnloadEvent)=>{if(dirty||busy)e.preventDefault()};window.addEventListener('beforeunload',warn);return()=>window.removeEventListener('beforeunload',warn)},[dirty,busy,onDirtyChange])
+ useEffect(()=>{let alive=true;void readAllPages((a,b)=>client.from('members').select('id,first_name,last_name,user_id',{count:'exact'}).order('last_name').order('id').range(a,b)).then(r=>{if(!alive)return;if(r.error)setError('No se pudo cargar la lista de socios.');else setPeople(r.data as Person[])}).catch(()=>{if(alive)setError('No se pudo cargar la lista de socios.')});return()=>{alive=false}},[client,refresh])
+ useEffect(()=>{
+  let alive=true
+  if(!member)return
+  const load=async()=>{setLoading(true);setLoaded('');setError('');setMessage('');setPlan(null);setEnabled(false)
+   try{const [d,p,r]=await Promise.all([client.from('nutrition_drafts').select('title,body,assessment,revision').eq('member_id',member).maybeSingle(),client.from('nutrition_plans').select(planColumns).eq('member_id',member).maybeSingle(),client.from('service_requests').select('id,status').eq('member_id',member).eq('service','nutrition').maybeSingle()]);if(d.error||p.error||r.error)throw Error();if(!alive)return
+    setTitle(d.data?.title??'Mi plan de alimentación');setBody(d.data?.body??'');setAssessment({...emptyAssessment(),...d.data?.assessment});setVersion(d.data?.revision??0);setPlan(p.data);setEnabled(r.data?.status==='enabled');setLoaded(member);setDirty(false)
+   }catch{if(alive)setError('No se pudo cargar la ficha nutricional. Reintentá antes de guardar.')}finally{if(alive)setLoading(false)}
+  };void load();return()=>{alive=false}
+ },[client,member,refresh])
+ const person=people.find(p=>p.id===member),energy=estimateEnergy(assessment),macros=estimateMacros(assessment)
+ const change=(key:keyof NutritionAssessment,value:string|boolean)=>{setAssessment(a=>({...a,[key]:value}));setDirty(true);setMessage('')}
+ const editable=!!member&&loaded===member&&!loading&&!busy
+ async function save(){if(!editable)return;setBusy(true);setError('');setMessage('');try{const r=await client.rpc('save_nutrition_draft',{p_member:member,p_title:title,p_body:body,p_assessment:assessment,p_expected:version});if(r.error)throw r.error;setVersion(r.data);setDirty(false);setMessage('Borrador guardado. Todavía no se envió al alumno.')}catch{setError('No se pudo confirmar el guardado. Tu texto sigue acá. Si guardaste desde otra ventana, copiá tus cambios antes de recargar.')}finally{setBusy(false)}}
+ async function publish(){if(!editable||dirty||!body.trim()||!enabled||!person?.user_id)return;if(!window.confirm(`¿Enviar esta dieta al panel de ${person.first_name} ${person.last_name}? Reemplazará su plan visible anterior.`))return;setBusy(true);setError('');try{const r=await client.rpc('publish_nutrition_plan',{p_member:member,p_expected:version});if(r.error)throw r.error;setPlan({title,body,draft_revision:version,active:true,published_at:new Date().toISOString()});setMessage('Dieta enviada a Nutrición personalizada en el panel del alumno.')}catch{setError('No se pudo confirmar el envío. Recargá para consultar el estado; reenviar la misma versión no duplica el plan.')}finally{setBusy(false)}}
+ async function enable(){if(!editable||!person?.user_id)return;setBusy(true);try{const r=await client.rpc('enable_personal_nutrition',{p_member:member});if(r.error)throw r.error;setEnabled(true);setMessage('Acceso a Nutrición habilitado. Podés enviar el borrador guardado.')}catch{setError('No se pudo habilitar el acceso.')}finally{setBusy(false)}}
+ async function withdraw(){if(!editable||!window.confirm('¿Retirar la dieta del panel del alumno? El borrador quedará guardado.'))return;setBusy(true);try{const r=await client.rpc('withdraw_nutrition_plan',{p_member:member});if(r.error)throw r.error;setPlan(p=>p?{...p,active:false}:null);setMessage('Dieta retirada del panel del alumno.')}catch{setError('No se pudo confirmar el retiro. Recargá para verificarlo.')}finally{setBusy(false)}}
+ return <details className="card nutrition-personal" onToggle={e=>setOpen(e.currentTarget.open)}><summary><strong>Calculadora y dieta personalizada</strong><span>Evaluar, preparar y enviar al alumno</span></summary>{open&&<>
+  <label>Socio destinatario<select value={member} disabled={busy} onChange={e=>{if(dirty&&!window.confirm('¿Descartar los cambios sin guardar y cambiar de socio?'))return;setMember(e.target.value);setDirty(false);setLoaded('');setMessage('')}}><option value="">Seleccioná un socio</option>{people.map(p=><option key={p.id} value={p.id}>{p.last_name}, {p.first_name}</option>)}</select></label>
+  <button className="text-button" disabled={busy} onClick={()=>{if(dirty&&!window.confirm('¿Descartar los cambios y recargar?'))return;setRefresh(n=>n+1)}}>Recargar ficha y socios</button>
+  {error&&<p className="error" role="alert">{error}</p>}{message&&<p className="notice" role="status">{message}</p>}{loading&&<p role="status">Cargando ficha…</p>}
+  {member&&loaded===member&&<form onSubmit={e=>{e.preventDefault();void save()}}><fieldset className="plain-fieldset" disabled={!editable}>
+   <h3>Estimación de energía</h3><p className="muted">Mifflin–St Jeor estima el gasto en reposo, usado como referencia del metabolismo basal. No es una medición: para medirlo se utiliza calorimetría indirecta. Los resultados requieren ajustes según la evolución y el criterio profesional.</p>
+   <div className="grid">{([['age','Edad (años)','18','100','1'],['weight','Peso actual (kg)','30','300','0.1'],['height','Altura (cm)','120','230','0.1']] as const).map(([key,label,min,max,step])=><label key={key}>{label}<input type="number" min={min} max={max} step={step} value={assessment[key]} onChange={e=>change(key,e.target.value)}/></label>)}
+   <label>Sexo utilizado por la fórmula<select value={assessment.sex} onChange={e=>change('sex',e.target.value)}><option value="">Seleccioná</option><option value="female">Femenino</option><option value="male">Masculino</option></select></label>
+   <label>Actividad diaria total<select value={assessment.activity} onChange={e=>change('activity',e.target.value)}><option value="">Seleccioná</option><option value="1.2">Sedentaria · 1,2</option><option value="1.375">Ligera · 1,375</option><option value="1.55">Moderada · 1,55</option><option value="1.725">Alta · 1,725</option><option value="1.9">Muy alta · 1,9</option></select></label></div>
+   <p className="muted">El factor es orientativo: considerá trabajo, desplazamientos y entrenamiento, no solo los días de gimnasio. La fórmula no contempla todas las situaciones individuales.</p>
+   <label><input type="checkbox" checked={assessment.special} onChange={e=>change('special',e.target.checked)}/> Embarazo, lactancia o condición clínica que requiere evaluación individual</label>
+   {energy?<div className="card"><strong>Reposo estimado: {energy.resting} kcal/día</strong><p>Mantenimiento estimado: {energy.maintenance===null?'Elegí la actividad':`${energy.maintenance} kcal/día`}</p></div>:<p>Completá los datos para calcular. Esta estimación es para adultos; no se calcula en menores ni en las situaciones de evaluación individual marcadas.</p>}
+   <div className="grid"><label>Objetivo acordado<input maxLength={200} value={assessment.goal} onChange={e=>change('goal',e.target.value)} placeholder="Ej.: sostener energía y mejorar recuperación"/></label><label>Contexto relevante · privado<textarea maxLength={4000} value={assessment.context} onChange={e=>change('context',e.target.value)} placeholder="Alergias, intolerancias, indicaciones clínicas, gustos, horarios y posibilidades para cocinar."/></label></div>
+   <details><summary>Calorías y macronutrientes definidos para el plan</summary><p className="muted">Completá solo los objetivos que hayas evaluado. El gasto estimado no se convierte automáticamente en una recomendación de ingesta.</p><div className="grid">{([['kcal','Energía objetivo (kcal/día)'],['protein','Proteínas (g/día)'],['fat','Grasas (g/día)']] as const).map(([key,label])=><label key={key}>{label}<input type="number" min="0" max="10000" step="1" value={assessment[key]} onChange={e=>change(key,e.target.value)}/></label>)}</div>{macros?<p>Carbohidratos restantes: {macros.carbs} g/día (4 kcal/g de proteína y carbohidrato; 9 kcal/g de grasa).</p>:<p>Completá los tres valores; las calorías de proteínas y grasas no pueden superar el total.</p>}</details>
+   <h3>Dieta para el alumno</h3><p>Solo el título y el texto de abajo se muestran al socio. La evaluación de arriba queda privada.</p>
+   <label>Título<input required maxLength={120} value={title} onChange={e=>{setTitle(e.target.value);setDirty(true)}}/></label>
+   <label>Plan de alimentación<textarea className="nutrition-diet-editor" rows={14} maxLength={20000} value={body} onChange={e=>{setBody(e.target.value);setDirty(true)}} placeholder={'Objetivo y fecha de revisión\n\nDesayuno\nAlimentos, cantidades y alternativas\n\nAlmuerzo\n\nMerienda\n\nCena\n\nAntes y después de entrenar\n\nHidratación e indicaciones'}/></label>
+   <button type="submit">{busy?'Guardando…':'Guardar borrador privado'}</button>
+  </fieldset></form>}
+  {member&&loaded===member&&<section className="card"><h3>Enviar al panel de {person?.first_name} {person?.last_name}</h3><p>{plan?.active?`Plan publicado: ${plan.title}. ${plan.draft_revision===version&&!dirty?'Coincide con el borrador guardado.':'Hay cambios que todavía no se enviaron.'}`:'Todavía no hay una dieta publicada.'}</p>{!person?.user_id&&<p>Primero vinculá la cuenta del alumno desde su ficha en Socios.</p>}{!enabled&&<p>Necesita tener habilitado el acceso a Nutrición. Podés habilitarlo aquí sin registrar un cobro.</p>}{!enabled&&person?.user_id&&<button disabled={!editable} onClick={()=>void enable()}>Habilitar Nutrición</button>}{dirty&&<p>Guardá los cambios antes de enviarlos.</p>}<div className="actions"><button disabled={!editable||dirty||version===0||!body.trim()||!enabled||!person?.user_id} onClick={()=>void publish()}>Enviar dieta al alumno</button>{plan?.active&&<button className="secondary" disabled={!editable} onClick={()=>void withdraw()}>Retirar del panel</button>}</div><p className="muted">Se entrega dentro de la app. No se envía por correo ni WhatsApp.</p></section>}
+ </>}</details>
+}

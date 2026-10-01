@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
-import { backupTables, decryptBackup, encryptBackup, validateBackup } from './backupCrypto'
+import { decryptBackup, encryptBackup, validateBackup } from './backupCrypto'
 
 export default function BackupPanel({ client }: { client: SupabaseClient }) {
   const [password,setPassword] = useState(''), [confirmation,setConfirmation] = useState('')
@@ -16,8 +16,8 @@ export default function BackupPanel({ client }: { client: SupabaseClient }) {
       if (verify) {
         if (!file || file.size>70_000_000) throw Error('Elegí un respaldo .gnsbackup de hasta 70 MB')
         const data = await decryptBackup(await file.text(),password)
-        const count = backupTables.reduce((n,t)=>n+data.tables[t].length,0)
-        setMessage(`Archivo descifrado e íntegro: ${count} registros en 12 tablas. Creado ${data.createdAt}. Esta comprobación no restaura datos ni certifica una recuperación completa del servidor.`)
+        const count = Object.values(data.tables).reduce((n,rows)=>n+rows.length,0)
+        setMessage(`Archivo descifrado e íntegro: ${count} registros en ${Object.keys(data.tables).length} tablas. Creado ${data.createdAt}. Esta comprobación no restaura datos ni certifica una recuperación completa del servidor.`)
       } else {
         const result = await client.rpc('export_application_backup')
         if (result.error) throw Error('No se pudo obtener una copia completa. Revisá tu conexión y el doble factor; no se descargó un respaldo parcial.')

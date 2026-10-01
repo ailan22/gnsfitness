@@ -8,7 +8,7 @@ function canonical(value: unknown): string {
 
 // Caller retains the same ID until the form closes. Never overwrite a record
 // whose response was lost, and never treat a changed draft as already saved.
-export async function confirmedInsert(client: SupabaseClient, table: 'memberships' | 'routines', row: Record<string, unknown> & { id: string; member_id: string }) {
+export async function confirmedInsert(client: SupabaseClient, table: 'memberships' | 'routines' | 'sessions', row: Record<string, unknown> & { id: string; member_id: string }) {
   const columns = Object.keys(row).join(',')
   const lookup = async () => {
     const result = await client.from(table).select(columns).eq('id', row.id).eq('member_id', row.member_id).maybeSingle()

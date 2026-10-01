@@ -4,6 +4,7 @@ import { observeAccount } from './observeAccount'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
 import AccountPrivacy from './AccountPrivacy'
+import { closeSession } from './closeSession'
 import { biometricAvailability, nativePlatform, nativeSessionStorage } from './nativeBiometrics'
 
 const CloudAdmin = lazy(() => import('./CloudAdmin'))
@@ -38,6 +39,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [pending, setPending] = useState(false)
+  const [closing, setClosing] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(Boolean(client))
   const [recovering, setRecovering] = useState(recoveryRequested)
@@ -113,14 +115,15 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
 
   async function signOut() {
     if (!client || pending) return
-    setPending(true); setError('')
+    setClosing(true); setPending(true); setError('')
     try {
-      if (nativeStorage) await nativeStorage.disable()
-      setBiometricEnabled(false); setBiometricSaved(false); setBiometricMessage('')
-      const { error: authError } = await client.auth.signOut()
-      if (authError) setError('No se pudo cerrar la sesión. Intentá de nuevo.')
-    } catch { setError('No se pudo completar el cierre de sesión. Intentá de nuevo.') }
-    finally { setPending(false) }
+      const result = await closeSession({ revoke: () => client.auth.signOut(),
+        disableBiometrics: nativeStorage ? () => nativeStorage.disable() : undefined,
+        disk: window.localStorage, sessionKey })
+      window.location.replace(result.remoteRevoked ? '/' : '/?local-signout=1')
+    } catch {
+      setError('No se pudo confirmar el cierre. Cerrá completamente la app o el navegador antes de dejar el dispositivo.')
+    }
   }
 
   async function toggleBiometrics() {
@@ -158,6 +161,8 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
     } finally { setBiometricSaved(nativeStorage.saved); setPending(false) }
   }
 
+  if (closing) return <section className="card"><p role="status">Cerrando sesión…</p>{error && <p role="alert">{error}</p>}</section>
+
   if (recovering && client) return <section className="card cloud-account cloud-portal" aria-label="Recuperación de acceso a GNS Fitness">
     <PasswordRecovery client={client} authenticated={Boolean(user) && !requestOnly} checking={loading} invalidLink={callbackFailed}/>
     {error && <p className="error" role="alert">{error}</p>}
@@ -167,6 +172,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
     {role === 'student' || role === 'admin' ? null : !user ? <><img className="signin-logo" src="/gns-logo-transparent.png" alt="GNS Fitness" width="128" height="128"/><p className="eyebrow">TU ESPACIO · GNS FITNESS</p><h1>Entrá a tu espacio.</h1><p className="muted">Iniciá sesión con tu correo y contraseña para ver tu espacio personal.</p></> : <h2>Cuenta conectada</h2>}
     {!configured ? <p className="notice">Para activar la conexión, configurá la URL del proyecto y su clave publicable en <code>.env.local</code>, siguiendo <code>cloud/README.md</code>.</p> : loading ? <p>Comprobando cuenta…</p> : !user ?
       <form className="cloud-signin" onSubmit={signIn}>
+        {new URLSearchParams(window.location.search).get('local-signout') === '1' && <p role="status">El acceso se cerró en este dispositivo. Sin conexión no se pudo confirmar la revocación en el servidor.</p>}
         {biometricSaved && <button type="button" disabled={pending} onClick={() => void unlockBiometrics()}>Ingresar con {biometry.label}</button>}
         <label>Correo electrónico<input type="email" autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)}/></label>
         <label>Contraseña<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)}/></label>

@@ -1,5 +1,6 @@
 import { readAllPages } from './readAllPages'
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
+import { confirmedInsert } from './confirmedInsert'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { SessionExerciseResult } from './data'
 import { parseDay } from './membership'
@@ -23,6 +24,7 @@ export default function CloudSessionRecorder({ client, memberId, routines, sessi
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [submissionId] = useState(() => crypto.randomUUID())
+  const saveBusy = useRef(false)
   const routine = routines.find(item => item.id === routineId)
   const block = routine && routine.id === current?.id ? currentProgress?.block ?? 1 : 1
   const week = routine && routine.id === current?.id ? currentProgress?.week ?? 1 : 1
@@ -36,7 +38,7 @@ export default function CloudSessionRecorder({ client, memberId, routines, sessi
   }
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (saving) return
+    if (saving || saveBusy.current) return
     if (!parseDay(performedAt) || performedAt > today() || notes.length > 4000 ||
       (routineId && !routine) || (day && (!routine || !Number.isInteger(Number(day)) || Number(day) < 1 || Number(day) > routine.days_per_week))) {
       setError('Revisá la fecha, la rutina y el día seleccionado.'); return
@@ -46,14 +48,14 @@ export default function CloudSessionRecorder({ client, memberId, routines, sessi
     if (completedResults.some(item => [item.sets, item.reps, item.load, item.rir].some(value => value.length > 60))) {
       setError('Cada resultado admite hasta 60 caracteres.'); return
     }
+    saveBusy.current = true
     setSaving(true); setError('')
     try {
     // The stable request ID prevents an uncertain network response from creating
     // another session when this form is retried.
     const existing = await client.from('sessions').select('id').eq('id', submissionId).eq('member_id', memberId).maybeSingle()
     if (existing.error) { setError('No se pudo verificar el guardado. Revisá la conexión e intentá nuevamente.'); return }
-    if (existing.data) { onSaved(); return }
-    if (suggested && current) {
+    if (!existing.data && suggested && current) {
       const latest = await readAllPages((from, to) => client.from('sessions').select('id,performed_at,routine_id,routine_name,day,block,week,notes,results,created_at', { count: 'exact' })
         .eq('member_id', memberId).order('id').range(from, to))
       if (latest.error || !latest.data) {
@@ -69,13 +71,12 @@ export default function CloudSessionRecorder({ client, memberId, routines, sessi
       routine_id: routine?.id ?? null, routine_name: routine?.name ?? '', day: day ? Number(day) : null,
       block: routine && day ? block : null, week: routine && day ? (block - 1) * routine.block_rounds + week : null,
       notes: notes.trim(), results: completedResults }
-    const response = await client.from('sessions').insert(row).select('id').maybeSingle()
-    setSaving(false)
-    if (response.error || !response.data) { setError('No se pudo guardar el entrenamiento en Supabase. Revisá la conexión y los permisos.'); return }
+    await confirmedInsert(client, 'sessions', row)
     onSaved()
-    } catch {
-      setError('Se interrumpió la conexión. Podés reintentar desde este formulario; se verificará si el entrenamiento ya se guardó. Si cerrás la ficha, revisá primero el historial.')
+    } catch (failure) {
+      setError(failure instanceof Error ? failure.message : 'No se pudo confirmar el guardado. Conservá el formulario y revisá el historial antes de crear otro registro.')
     } finally {
+      saveBusy.current = false
       setSaving(false)
     }
   }

@@ -135,7 +135,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
     targetExercise.current = exerciseId ?? null
     if (!routine || !progress || progress.finished || !exercises.length || recordingRef.current || history?.member.status !== 'Activo') return
     setChecked([]); setPerformedAt(today()); setNotes(''); setError(''); setMessage(''); setSubmissionId(crypto.randomUUID())
-    setResults(exercises.map(item => ({ exerciseId: item.id, name: item.name, sets: '', reps: '', load: '', rir: '', comment: '' })))
+    setResults(exercises.map(item => ({ exerciseId: item.id, name: item.name, sets: '', reps: '', load: '', rir: '' })))
     setExpected({ lastId: progress.last?.id ?? null, day: progress.nextDay, week: globalWeek })
     recordingRef.current = true
     setRecording(true)
@@ -146,7 +146,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
     if (checked.length < exercises.length && !window.confirm('Quedan ejercicios sin marcar. ¿Querés finalizar igualmente este día?')) return
     savingRef.current = true
     setSaving(true); setError('')
-    const filled = results.filter(item => [item.sets, item.reps, item.load, item.rir, item.comment ?? ''].some(value => value.trim()))
+    const filled = results.filter(item => [item.load, item.rir].some(value => value.trim()))
     try {
       const { error: writeError } = await client.rpc('student_register_next_day_checked', {
         p_request_id: submissionId, p_routine_id: routine.id, p_performed_at: performedAt, p_notes: notes.trim(), p_results: filled,
@@ -191,7 +191,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             {exercises.length ? !recording && <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={item.id}>
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}
               <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
-              <button type="button" className="secondary exercise-record-button" disabled={history.member.status !== 'Activo'} onClick={() => begin(item.id)}>Registrar peso y comentario</button>
+              <button type="button" className="secondary exercise-record-button" disabled={history.member.status !== 'Activo'} onClick={() => begin(item.id)}>Registrar kilos y RIR</button>
             </div>)}</div> : <p>Este día no tiene ejercicios cargados. Consultá con tu entrenador.</p>}
             {guidance && <div className="session-guidance"><strong>Indicaciones para este día</strong><p>{guidance}</p></div>}
             {components.map(item => <div className="session-guidance" key={item.id}><strong>{item.title}</strong><p>{item.details}</p></div>)}
@@ -210,9 +210,8 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           <label>Fecha del entrenamiento<input type="date" required max={today()} value={performedAt} onChange={event => setPerformedAt(event.target.value)}/></label>
           {exercises.map(item => <div className={`session-exercise ${checked.includes(item.id) ? 'exercise-checked' : ''}`} key={item.id} id={`exercise-${item.id}`}><label className="exercise-check"><input type="checkbox" checked={checked.includes(item.id)} onChange={event => setChecked(current => event.target.checked ? [...current, item.id] : current.filter(id => id !== item.id))}/><strong>{item.name}</strong><span>{checked.includes(item.id) ? 'Completado' : 'Marcar al terminar'}</span></label><small>Planificado: {item.sets || '—'} series · {item.reps || '—'} repeticiones · Carga {item.load || '—'} · RIR {item.rir || '—'}</small>
             <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
-            <div className="grid">{(['load', 'sets', 'reps', 'rir'] as const).map(field => <label key={field}>{({ sets: 'Series realizadas', reps: 'Repeticiones realizadas', load: 'Peso utilizado (kg o tipo de carga)', rir: 'RIR real' })[field]}
-              <input placeholder={field === 'load' ? 'Ej.: 20 kg; o 20 / 22 / 22 kg por serie' : undefined} maxLength={60} value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => setResults(current => current.map(result => result.exerciseId === item.id ? { ...result, [field]: event.target.value } : result))}/></label>)}</div>
-            <label>Comentario del ejercicio (opcional)<textarea rows={2} maxLength={300} placeholder="Ej.: completé las series con buena técnica" value={results.find(result => result.exerciseId === item.id)?.comment ?? ''} onChange={event => setResults(current => current.map(result => result.exerciseId === item.id ? { ...result, comment: event.target.value } : result))}/></label>
+            <div className="grid student-result-fields">{(['load', 'rir'] as const).map(field => <label key={field}>{field === 'load' ? 'Kilos utilizados' : 'RIR real'}
+              <input type="number" min="0" max={field === 'rir' ? 10 : undefined} step={field === 'load' ? 'any' : '1'} inputMode={field === 'load' ? 'decimal' : 'numeric'} placeholder={field === 'load' ? 'Ej.: 22,5' : 'Ej.: 2'} value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => setResults(current => current.map(result => result.exerciseId === item.id ? { ...result, [field]: event.target.value } : result))}/></label>)}</div>
           </div>)}
           <label>Comentario del entrenamiento (opcional)<textarea rows={2} maxLength={4000} value={notes} onChange={event => setNotes(event.target.value)}/></label>
           <button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar y completar día'}</button>

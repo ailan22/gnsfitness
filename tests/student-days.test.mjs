@@ -83,14 +83,22 @@ test('inactive member cannot begin a day even with exercises', () => {
 
 
 
- test('per-exercise comment-only results are retained and submitted with the correct exercise', async () => {
-  const ui = harness(); ui.begin(); ui.field('Comentario del ejercicio', 'Me costó la última serie'); await ui.save()
-  assert.equal(ui.calls[0].args.p_results.length, 1)
-  assert.equal(ui.calls[0].args.p_results[0].exerciseId, 'exercise')
-  assert.equal(ui.calls[0].args.p_results[0].comment, 'Me costó la última serie')
- })
- test('loads and comments stay together in the training record', async () => {
-  const ui = harness(); ui.begin(); ui.field('Peso utilizado', '20 / 22 / 22 kg'); ui.field('Comentario del ejercicio', 'Buena técnica'); await ui.save()
-  const result = ui.calls[0].args.p_results[0]
-  assert.equal(result.load, '20 / 22 / 22 kg'); assert.equal(result.comment, 'Buena técnica')
- })
+test('RIR zero alone is retained with the correct exercise', async () => {
+ const ui = harness(); ui.begin(); ui.field('RIR real', '0'); await ui.save()
+ assert.equal(ui.calls[0].args.p_results.length, 1)
+ assert.equal(ui.calls[0].args.p_results[0].exerciseId, 'exercise')
+ assert.equal(ui.calls[0].args.p_results[0].rir, '0')
+})
+test('decimal kilos and RIR are saved without claiming performed sets or reps', async () => {
+ const ui = harness(); ui.begin(); ui.field('Kilos utilizados', '22.5'); ui.field('RIR real', '2'); await ui.save()
+ const result = ui.calls[0].args.p_results[0]
+ assert.equal(result.load, '22.5'); assert.equal(result.rir, '2')
+ assert.equal(result.sets, ''); assert.equal(result.reps, '')
+ assert.equal(result.comment, undefined)
+ assert.doesNotMatch(ui.text(), /Comentario del ejercicio|Series realizadas|Repeticiones realizadas/)
+})
+test('historical comments and performed sets remain readable', () => {
+ const old = {...record(1),results:[{exerciseId:'exercise',name:'Sentadilla',sets:'3',reps:'10',load:'20 kg',rir:'2',comment:'Comentario anterior conservado'}]}
+ const ui = harness({sessions:[old]}); ui.history()
+ assert.match(ui.text(), /Comentario anterior conservado/)
+})

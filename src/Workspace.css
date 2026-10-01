@@ -125,6 +125,29 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .nutrition-personal > summary span { display:block; font-size:.9rem; opacity:.8; margin-top:.4rem; }
 .nutrition-personal label { display:block; margin-block:.8rem; }
 .nutrition-personal select,.nutrition-personal textarea,.nutrition-personal input:not([type=checkbox]) { width:100%; max-width:100%; }
+
+/* Compact requests keep the pending count visible while the list is closed. */
+.service-notifications.card { padding: 12px 16px; margin: 16px 0; }
+.service-notifications > summary { cursor: pointer; font-weight: 700; line-height: 1.8; }
+.service-notifications > summary .badge { margin-left: 8px; }
+.service-notifications[open] > summary { margin-bottom: 14px; }
+.nutrition-recipes { align-items: start; }
+
+/* Preserve the student's order and palette; recover space from nested margins. */
+@media (max-width: 650px) {
+  .content:has(.cloud-student) { width: 100%; max-width: none; padding: 20px 8px 60px; }
+  .cloud-entry .cloud-portal:has(.cloud-student) { padding: 8px; }
+  .cloud-student .card { padding: 12px; }
+  .cloud-student .student-exercise, .cloud-student .session-exercise { padding: 10px; }
+  .cloud-student .student-nutrition-panel { padding: 10px; }
+  .cloud-student .student-wellbeing > .student-today { padding: 8px; }
+  .cloud-student .nutrition-guide .card { padding: 8px; }
+  .cloud-student .nutrition-recipe { padding: 8px; }
+  .cloud-student .session-exercise .student-result-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .cloud-student .heading { flex-wrap: wrap; gap: 12px; }
+  .cloud-student summary, .cloud-student p, .cloud-student strong { overflow-wrap: anywhere; }
+  .cloud-student input, .cloud-student select, .cloud-student textarea { font-size: 16px; }
+}
 .nutrition-diet-editor { min-height:300px; line-height:1.6; }
 .nutrition-plan-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; margin-block:1rem; }
 

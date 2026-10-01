@@ -1,0 +1,1065 @@
+{
+  "source": {
+    "file": "GNS_70_Postres_Saludables.pdf",
+    "sha256": "fa21af87edab080f819846e9b9dc99fe20cdb5b133136164b7ac284b2ba4848d",
+    "pages": 70
+  },
+  "sections": [
+    {
+      "id": "postres",
+      "title": "Postres",
+      "items": [
+        {
+          "id": "dulces-001",
+          "title": "Cheesecake en vaso con arándanos",
+          "details": "01 / 70 · Rinde 2 porciones · 10 minutos + 20 de frío",
+          "image": "/nutricion/dulces-001.webp",
+          "ingredients": "240 g de yogur natural sin azúcar, bajo en grasa; 120 g de ricota parcialmente descremada; 60 g de avena seca; 150 g de arándanos. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Tostá la avena en sartén seca 3 minutos y dejá enfriar. Mezclá yogur, ricota y vainilla hasta obtener una crema suave. Repartí la avena en dos vasos, agregá la crema y los arándanos. Refrigerá 20 minutos.",
+          "nutrition": [
+            "Energía: 320 kcal · Proteínas: 18.8 g · Carbohidratos: 42.3 g",
+            "Grasas: 8.9 g · Fibra: 5.0 g",
+            "Calcio: 404 mg · Hierro: 2.0 mg · Magnesio: 87 mg",
+            "Potasio: 542 mg · Sodio: 145 mg · Vitamina C: 8 mg"
+          ],
+          "page": 1
+        },
+        {
+          "id": "dulces-002",
+          "title": "Helado cremoso de banana y cacao",
+          "details": "02 / 70 · Rinde 2 porciones · 5 minutos con banana congelada",
+          "image": "/nutricion/dulces-002.webp",
+          "ingredients": "240 g de banana sin piel; 170 g de yogur natural sin azúcar, bajo en grasa; 10 g de cacao amargo sin azúcar; 15 g de maní tostado sin sal. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Procesá la banana congelada con yogur y cacao en un equipo apto para alimentos congelados. Agregá una cucharada de leche si necesitás facilitar el procesado. Serví enseguida con maní picado. Para mayor firmeza, llevá al freezer 20-30 minutos.",
+          "nutrition": [
+            "Energía: 215 kcal · Proteínas: 8.6 g · Carbohidratos: 37.9 g",
+            "Grasas: 6.1 g · Fibra: 5.6 g",
+            "Calcio: 172 mg · Hierro: 1.2 mg · Magnesio: 85 mg",
+            "Potasio: 752 mg · Sodio: 62 mg · Vitamina C: 11 mg"
+          ],
+          "page": 2
+        },
+        {
+          "id": "dulces-003",
+          "title": "Crumble tibio de manzana y nueces",
+          "details": "03 / 70 · Rinde 2 porciones · 10 minutos + 25 de horno",
+          "image": "/nutricion/dulces-003.webp",
+          "ingredients": "360 g de manzana; 40 g de avena seca; 20 g de nueces; 10 g de aceite de oliva; 200 g de yogur natural sin azúcar, bajo en grasa. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Cortá las manzanas en cubos y distribuí en una fuente pequeña. Mezclá avena, nueces, aceite y canela; poné encima de la fruta. Horneá a 180 °C durante 20-25 minutos, hasta que la manzana esté tierna. Serví tibio con el yogur.",
+          "nutrition": [
+            "Energía: 345 kcal · Proteínas: 10.6 g · Carbohidratos: 46.5 g",
+            "Grasas: 14.8 g · Fibra: 7.1 g",
+            "Calcio: 214 mg · Hierro: 1.6 mg · Magnesio: 77 mg",
+            "Potasio: 557 mg · Sodio: 72 mg · Vitamina C: 9 mg"
+          ],
+          "page": 3
+        },
+        {
+          "id": "dulces-004",
+          "title": "Copa cremosa de cacao y banana",
+          "details": "04 / 70 · Rinde 2 porciones · 10 minutos + 20 de frío",
+          "image": "/nutricion/dulces-004.webp",
+          "ingredients": "300 g de yogur natural sin azúcar, bajo en grasa; 240 g de banana sin piel; 10 g de cacao amargo sin azúcar; 40 g de avena seca; 30 g de maní tostado sin sal. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Mezclá el yogur con cacao y avena. Repartí en dos copas y refrigerá 20 minutos para hidratar la avena. Agregá banana en rodajas y maní justo antes de servir.",
+          "nutrition": [
+            "Energía: 380 kcal · Proteínas: 17.2 g · Carbohidratos: 57.3 g",
+            "Grasas: 12.2 g · Fibra: 8.3 g",
+            "Calcio: 306 mg · Hierro: 2.3 mg · Magnesio: 145 mg",
+            "Potasio: 1038 mg · Sodio: 109 mg · Vitamina C: 12 mg"
+          ],
+          "page": 4
+        },
+        {
+          "id": "dulces-005",
+          "title": "Vasitos de durazno y chía",
+          "details": "05 / 70 · Rinde 2 porciones · 10 minutos + 2 horas de frío",
+          "image": "/nutricion/dulces-005.webp",
+          "ingredients": "300 g de yogur natural sin azúcar, bajo en grasa; 300 g de durazno sin carozo; 24 g de semillas de chía; 40 g de avena seca; 60 g de leche semidescremada. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Mezclá yogur, leche, chía y avena. Tapá y dejá en la heladera 2 horas, revolviendo otra vez a los 15 minutos. Repartí en vasos y agregá los duraznos cortados. Terminá con canela.",
+          "nutrition": [
+            "Energía: 305 kcal · Proteínas: 15.6 g · Carbohidratos: 44.6 g",
+            "Grasas: 8.4 g · Fibra: 8.5 g",
+            "Calcio: 406 mg · Hierro: 2.4 mg · Magnesio: 118 mg",
+            "Potasio: 813 mg · Sodio: 121 mg · Vitamina C: 11 mg"
+          ],
+          "page": 5
+        },
+        {
+          "id": "dulces-006",
+          "title": "Mousse de cacao y palta",
+          "details": "06 / 70 · Rinde 2 porciones · 10 minutos + 30 de frío",
+          "image": "/nutricion/dulces-006.webp",
+          "ingredients": "150 g de palta sin piel ni carozo; 120 g de banana sin piel; 10 g de cacao amargo sin azúcar; 45 g de leche semidescremada; 60 g de frutillas. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Procesá palta, banana, cacao y vainilla. Agregá la leche de a poco hasta lograr una textura cremosa. Repartí en dos bowls y refrigerá 30 minutos. Serví con frutillas.",
+          "nutrition": [
+            "Energía: 205 kcal · Proteínas: 4.1 g · Carbohidratos: 26.4 g",
+            "Grasas: 12.4 g · Fibra: 9.0 g",
+            "Calcio: 50 mg · Hierro: 1.4 mg · Magnesio: 69 mg",
+            "Potasio: 732 mg · Sodio: 18 mg · Vitamina C: 30 mg"
+          ],
+          "page": 6
+        },
+        {
+          "id": "dulces-007",
+          "title": "Muffins de zanahoria y banana",
+          "details": "07 / 70 · Rinde 6 porciones · 15 minutos + 22 de horno",
+          "image": "/nutricion/dulces-007.webp",
+          "ingredients": "120 g de banana sin piel; 80 g de zanahoria; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 90 g de avena seca; 80 g de leche semidescremada; 15 g de aceite de oliva. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Pisá la banana y mezclá con huevo, leche, aceite y zanahoria. Incorporá avena, polvo de hornear y canela. Distribuí en seis moldes aceitados. Horneá a 180 °C durante 18-22 minutos, hasta que un palillo salga limpio. Dejá entibiar antes de desmoldar.",
+          "nutrition": [
+            "Energía: 120 kcal · Proteínas: 4.4 g · Carbohidratos: 16.5 g",
+            "Grasas: 4.7 g · Fibra: 2.5 g",
+            "Calcio: 34 mg · Hierro: 1.0 mg · Magnesio: 36 mg",
+            "Potasio: 209 mg · Sodio: 28 mg · Vitamina C: 3 mg"
+          ],
+          "page": 7
+        },
+        {
+          "id": "dulces-008",
+          "title": "Bocaditos de avena, cacao y maní",
+          "details": "08 / 70 · Rinde 8 porciones · 15 minutos + 30 de frío",
+          "image": "/nutricion/dulces-008.webp",
+          "ingredients": "40 g de avena seca; 45 g de pasta de maní sin azúcar ni sal; 10 g de cacao amargo sin azúcar; 20 g de pasas de uva. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Hidratá las pasas 10 minutos con un poco de agua tibia y procesalas con la pasta de maní. Agregá avena y cacao. Sumá agua de a poco hasta formar una masa moldeable. Armá ocho bolitas y refrigerá 30 minutos.",
+          "nutrition": [
+            "Energía: 65 kcal · Proteínas: 2.4 g · Carbohidratos: 7.3 g",
+            "Grasas: 3.4 g · Fibra: 1.4 g",
+            "Calcio: 9 mg · Hierro: 0.6 mg · Magnesio: 25 mg",
+            "Potasio: 90 mg · Sodio: 2 mg · Vitamina C: 0 mg"
+          ],
+          "page": 8
+        },
+        {
+          "id": "dulces-009",
+          "title": "Crepes de ricota y naranja",
+          "details": "09 / 70 · Rinde 4 porciones · 20 minutos",
+          "image": "/nutricion/dulces-009.webp",
+          "ingredients": "80 g de harina integral; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 180 g de leche semidescremada; 160 g de ricota parcialmente descremada; 300 g de naranja pelada; 20 g de nueces; 10 g de aceite de oliva. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Batí harina, huevo y leche hasta lograr una mezcla fluida. Cociná cuatro crepes finos en sartén ligeramente aceitada, por ambos lados. Mezclá la ricota con ralladura de una naranja bien lavada. Rellená y serví con los gajos y las nueces.",
+          "nutrition": [
+            "Energía: 255 kcal · Proteínas: 11.7 g · Carbohidratos: 28.2 g",
+            "Grasas: 11.6 g · Fibra: 4.3 g",
+            "Calcio: 212 mg · Hierro: 1.4 mg · Magnesio: 55 mg",
+            "Potasio: 361 mg · Sodio: 79 mg · Vitamina C: 40 mg"
+          ],
+          "page": 9
+        },
+        {
+          "id": "dulces-010",
+          "title": "Copa de pera y granola crujiente",
+          "details": "10 / 70 · Rinde 2 porciones · 15 minutos",
+          "image": "/nutricion/dulces-010.webp",
+          "ingredients": "300 g de yogur natural sin azúcar, bajo en grasa; 340 g de pera; 60 g de avena seca; 20 g de semillas de zapallo peladas; 20 g de nueces. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Tostá avena, semillas y nueces en sartén seca a fuego bajo durante 3-5 minutos, moviendo seguido. Dejá enfriar. Cortá las peras y armá capas de yogur, fruta y granola. Agregá canela al servir.",
+          "nutrition": [
+            "Energía: 430 kcal · Proteínas: 18.1 g · Carbohidratos: 58.8 g",
+            "Grasas: 16.1 g · Fibra: 9.7 g",
+            "Calcio: 320 mg · Hierro: 3.0 mg · Magnesio: 166 mg",
+            "Potasio: 802 mg · Sodio: 108 mg · Vitamina C: 9 mg"
+          ],
+          "page": 10
+        },
+        {
+          "id": "dulces-011",
+          "title": "Brownies de porotos negros",
+          "details": "11 / 70 · Rinde 8 porciones · 15 min + 25 de horno",
+          "image": "/nutricion/dulces-011.webp",
+          "ingredients": "300 g de porotos negros cocidos sin sal; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 35 g de cacao amargo sin azúcar; 60 g de avena seca; 100 g de dátiles sin carozo; 15 g de aceite de oliva; 30 g de chocolate de 70-85% cacao. 1 cucharadita de polvo de hornear; 1 cuadrado por porción.",
+          "method": "Procesá porotos cocidos escurridos, huevos, dátiles hidratados, cacao y aceite. Sumá avena molida y chocolate picado. Extendé en molde pequeño y horneá a 180 °C 22-25 minutos, hasta que el centro esté cocido. Enfriá y cortá ocho cuadrados.",
+          "nutrition": [
+            "Energía: 180 kcal · Proteínas: 7.5 g · Carbohidratos: 27.7 g",
+            "Grasas: 6.0 g · Fibra: 6.9 g",
+            "Calcio: 74 mg · Hierro: 2.6 mg · Magnesio: 78 mg",
+            "Potasio: 363 mg · Sodio: 60 mg · Vitamina C: ND"
+          ],
+          "page": 11
+        },
+        {
+          "id": "dulces-012",
+          "title": "Peras al horno con nueces",
+          "details": "12 / 70 · Rinde 2 porciones · 10 minutos + 30 de horno",
+          "image": "/nutricion/dulces-012.webp",
+          "ingredients": "340 g de pera; 20 g de nueces; 150 g de yogur natural sin azúcar, bajo en grasa. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Cortá las peras al medio y retirales el centro. Colocalas en una fuente con el agua; rellená los huecos con nueces y espolvoreá canela. Horneá a 180 °C durante 25-30 minutos, hasta que estén tiernas. Serví tibias con yogur.",
+          "nutrition": [
+            "Energía: 210 kcal · Proteínas: 6.1 g · Carbohidratos: 32.5 g",
+            "Grasas: 7.9 g · Fibra: 5.9 g",
+            "Calcio: 162 mg · Hierro: 0.7 mg · Magnesio: 40 mg",
+            "Potasio: 417 mg · Sodio: 54 mg · Vitamina C: 8 mg"
+          ],
+          "page": 12
+        },
+        {
+          "id": "dulces-013",
+          "title": "Mousse de chocolate y tofu",
+          "details": "13 / 70 · Rinde 4 porciones · 10 min + 2 h de frío",
+          "image": "/nutricion/dulces-013.webp",
+          "ingredients": "300 g de tofu sedoso; 80 g de chocolate de 70-85% cacao; 120 g de banana sin piel; 10 g de cacao amargo sin azúcar. Vainilla.",
+          "method": "Derretí chocolate a baño María suave y dejá entibiar. Procesá con tofu sedoso escurrido, banana y cacao hasta lograr una crema lisa. Repartí en cuatro vasos y refrigerá 2 horas.",
+          "nutrition": [
+            "Energía: 195 kcal · Proteínas: 6.0 g · Carbohidratos: 19.7 g",
+            "Grasas: 11.0 g · Fibra: 4.0 g",
+            "Calcio: 43 mg · Hierro: 3.4 mg · Magnesio: 88 mg",
+            "Potasio: 424 mg · Sodio: 9 mg · Vitamina C: ND"
+          ],
+          "page": 13
+        },
+        {
+          "id": "dulces-014",
+          "title": "Arroz con leche y naranja",
+          "details": "14 / 70 · Rinde 4 porciones · 10 minutos + 35 de cocción",
+          "image": "/nutricion/dulces-014.webp",
+          "ingredients": "90 g de arroz integral seco; 720 g de leche semidescremada. Vainilla, canela o ralladura cítrica según la preparación. Sin los endulzantes opcionales en el cálculo.",
+          "method": "Poné arroz, agua, leche y cáscara de naranja en una olla. Cociná a fuego bajo 30-35 minutos, revolviendo seguido, hasta que el arroz esté tierno y cremoso. Agregá más leche si hace falta. Retirá la cáscara y serví con canela;",
+          "nutrition": [
+            "Energía: 175 kcal · Proteínas: 7.6 g · Carbohidratos: 25.8 g",
+            "Grasas: 4.3 g · Fibra: 0.8 g",
+            "Calcio: 218 mg · Hierro: 0.3 mg · Magnesio: 46 mg",
+            "Potasio: 308 mg · Sodio: 86 mg · Vitamina C: 0 mg"
+          ],
+          "page": 14
+        },
+        {
+          "id": "dulces-015",
+          "title": "Brownie de boniato y cacao",
+          "details": "15 / 70 · Rinde 8 porciones · 15 min + 30 de horno",
+          "image": "/nutricion/dulces-015.webp",
+          "ingredients": "300 g de boniato cocido; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 80 g de avena seca; 30 g de cacao amargo sin azúcar; 40 g de pasta de maní sin azúcar ni sal; 80 g de dátiles sin carozo. 1 cucharadita de polvo de hornear.",
+          "method": "Procesá boniato cocido con huevos, dátiles hidratados y pasta de maní. Incorporá avena molida y cacao. Horneá en molde pequeño a 180 °C 25-30 minutos, hasta que el centro esté cocido. Enfriá y dividí en ocho.",
+          "nutrition": [
+            "Energía: 155 kcal · Proteínas: 6.0 g · Carbohidratos: 25.4 g",
+            "Grasas: 5.0 g · Fibra: 4.6 g",
+            "Calcio: 77 mg · Hierro: 1.7 mg · Magnesio: 62 mg",
+            "Potasio: 393 mg · Sodio: 73 mg · Vitamina C: 7 mg"
+          ],
+          "page": 15
+        },
+        {
+          "id": "dulces-016",
+          "title": "Cheesecake de limón en vaso",
+          "details": "16 / 70 · Rinde 3 porciones · 15 min + 1 h de frío",
+          "image": "/nutricion/dulces-016.webp",
+          "ingredients": "250 g de queso cottage (2% de grasa); 180 g de yogur natural sin azúcar, bajo en grasa; 60 g de avena seca; 40 g de dátiles sin carozo; 25 g de jugo de limón. Ralladura de limón y vainilla.",
+          "method": "Procesá avena con dátiles hidratados para una base suelta. Procesá cottage, yogur y limón. Repartí ambas mezclas en tres vasos y refrigerá una hora.",
+          "nutrition": [
+            "Energía: 220 kcal · Proteínas: 15.5 g · Carbohidratos: 32.0 g",
+            "Grasas: 4.2 g · Fibra: 3.0 g",
+            "Calcio: 222 mg · Hierro: 1.2 mg · Magnesio: 61 mg",
+            "Potasio: 432 mg · Sodio: 299 mg · Vitamina C: 4 mg"
+          ],
+          "page": 16
+        },
+        {
+          "id": "dulces-017",
+          "title": "Trufas de dátiles y almendras",
+          "details": "17 / 70 · Rinde 10 porciones · 15 min + 30 de frío",
+          "image": "/nutricion/dulces-017.webp",
+          "ingredients": "120 g de dátiles sin carozo; 80 g de almendras; 20 g de cacao amargo sin azúcar; 20 g de pasta de maní sin azúcar ni sal. 1 trufa por porción.",
+          "method": "Hidratá dátiles sin carozo 10 minutos. Procesá con almendras, cacao y maní, agregando una cucharada de agua si hace falta. Formá diez trufas y refrigerá 30 minutos.",
+          "nutrition": [
+            "Energía: 95 kcal · Proteínas: 2.7 g · Carbohidratos: 12.3 g",
+            "Grasas: 5.3 g · Fibra: 2.6 g",
+            "Calcio: 33 mg · Hierro: 0.7 mg · Magnesio: 41 mg",
+            "Potasio: 184 mg · Sodio: 1 mg · Vitamina C: 0 mg"
+          ],
+          "page": 17
+        },
+        {
+          "id": "dulces-018",
+          "title": "Duraznos asados con crema de vainilla",
+          "details": "18 / 70 · Rinde 2 porciones · 15 min + 15 de horno",
+          "image": "/nutricion/dulces-018.webp",
+          "ingredients": "300 g de durazno sin carozo; 120 g de ricota parcialmente descremada; 100 g de yogur natural sin azúcar, bajo en grasa; 20 g de almendras. Vainilla.",
+          "method": "Cortá duraznos al medio y horneá a 190 °C 15 minutos. Procesá ricota y yogur con vainilla. Serví fruta tibia con crema y almendras.",
+          "nutrition": [
+            "Energía: 230 kcal · Proteínas: 12.9 g · Carbohidratos: 23.1 g",
+            "Grasas: 10.9 g · Fibra: 3.5 g",
+            "Calcio: 291 mg · Hierro: 1.1 mg · Magnesio: 58 mg",
+            "Potasio: 550 mg · Sodio: 94 mg · Vitamina C: 10 mg"
+          ],
+          "page": 18
+        },
+        {
+          "id": "dulces-019",
+          "title": "Paletas de mango y yogur",
+          "details": "19 / 70 · Rinde 6 porciones · 10 min + 4 h de freezer",
+          "image": "/nutricion/dulces-019.webp",
+          "ingredients": "350 g de mango sin piel ni carozo; 300 g de yogur natural sin azúcar, bajo en grasa; 15 g de jugo de limón. 1 paleta por porción.",
+          "method": "Procesá mango con yogur y limón. Distribuí en seis moldes y congelá cuatro horas. Desmoldá pasando brevemente por agua templada.",
+          "nutrition": [
+            "Energía: 65 kcal · Proteínas: 3.1 g · Carbohidratos: 12.4 g",
+            "Grasas: 1.0 g · Fibra: 0.9 g",
+            "Calcio: 98 mg · Hierro: 0.1 mg · Magnesio: 14 mg",
+            "Potasio: 218 mg · Sodio: 36 mg · Vitamina C: 23 mg"
+          ],
+          "page": 19
+        },
+        {
+          "id": "dulces-020",
+          "title": "Cheesecake de cacao en vaso",
+          "details": "20 / 70 · Rinde 4 porciones · 15 min + 1 h de frío",
+          "image": "/nutricion/dulces-020.webp",
+          "ingredients": "300 g de queso cottage (2% de grasa); 200 g de yogur natural sin azúcar, bajo en grasa; 20 g de cacao amargo sin azúcar; 60 g de avena seca; 150 g de banana sin piel; 20 g de chocolate de 70-85% cacao. Vainilla.",
+          "method": "Procesá cottage, yogur, banana y cacao. Tostá avena y dejá enfriar; repartí en vasos. Agregá crema y chocolate rallado. Refrigerá una hora.",
+          "nutrition": [
+            "Energía: 225 kcal · Proteínas: 14.8 g · Carbohidratos: 30.8 g",
+            "Grasas: 6.5 g · Fibra: 5.0 g",
+            "Calcio: 195 mg · Hierro: 2.2 mg · Magnesio: 88 mg",
+            "Potasio: 521 mg · Sodio: 269 mg · Vitamina C: ND"
+          ],
+          "page": 20
+        },
+        {
+          "id": "dulces-021",
+          "title": "Crumble de ciruelas y almendras",
+          "details": "21 / 70 · Rinde 4 porciones · 15 min + 25 de horno",
+          "image": "/nutricion/dulces-021.webp",
+          "ingredients": "500 g de ciruelas sin carozo; 80 g de avena seca; 40 g de almendras; 15 g de aceite de oliva; 240 g de yogur natural sin azúcar, bajo en grasa. Canela.",
+          "method": "Cortá ciruelas sin carozo y colocá en una fuente. Mezclá avena, almendras y aceite; repartí encima. Horneá a 180 °C 25 minutos y serví con yogur.",
+          "nutrition": [
+            "Energía: 265 kcal · Proteínas: 9.5 g · Carbohidratos: 33.9 g",
+            "Grasas: 11.4 g · Fibra: 5.1 g",
+            "Calcio: 155 mg · Hierro: 1.6 mg · Magnesio: 81 mg",
+            "Potasio: 496 mg · Sodio: 43 mg · Vitamina C: 12 mg"
+          ],
+          "page": 21
+        },
+        {
+          "id": "dulces-022",
+          "title": "Bark de yogur, chocolate y frutillas",
+          "details": "22 / 70 · Rinde 6 porciones · 10 min + 3 h de freezer",
+          "image": "/nutricion/dulces-022.webp",
+          "ingredients": "400 g de yogur natural sin azúcar, bajo en grasa; 180 g de frutillas; 50 g de chocolate de 70-85% cacao; 30 g de almendras. Usá yogur espeso; 1 pieza por porción.",
+          "method": "Extendé yogur sobre papel de horno en una capa de 1 cm. Distribuí frutillas, almendras y chocolate picado. Congelá 3 horas y cortá en seis piezas. Serví al sacar del freezer.",
+          "nutrition": [
+            "Energía: 130 kcal · Proteínas: 5.4 g · Carbohidratos: 11.9 g",
+            "Grasas: 7.2 g · Fibra: 2.1 g",
+            "Calcio: 146 mg · Hierro: 1.4 mg · Magnesio: 48 mg",
+            "Potasio: 298 mg · Sodio: 49 mg · Vitamina C: ND"
+          ],
+          "page": 22
+        },
+        {
+          "id": "dulces-023",
+          "title": "Tarta de avena, ricota y frutilla",
+          "details": "23 / 70 · Rinde 6 porciones · 20 min + 25 de horno",
+          "image": "/nutricion/dulces-023.webp",
+          "ingredients": "120 g de avena seca; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 300 g de ricota parcialmente descremada; 150 g de banana sin piel; 240 g de frutillas; 10 g de aceite de oliva. Vainilla.",
+          "method": "Mezclá avena molida, un huevo, aceite y agua necesaria para una masa. Cubrí molde pequeño. Procesá ricota, banana y el otro huevo; rellená. Horneá a 180 °C 25 minutos hasta cuajar. Enfriá y decorá con frutillas.",
+          "nutrition": [
+            "Energía: 220 kcal · Proteínas: 11.7 g · Carbohidratos: 24.7 g",
+            "Grasas: 8.8 g · Fibra: 3.6 g",
+            "Calcio: 164 mg · Hierro: 1.7 mg · Magnesio: 57 mg",
+            "Potasio: 322 mg · Sodio: 74 mg · Vitamina C: 26 mg"
+          ],
+          "page": 23
+        },
+        {
+          "id": "dulces-024",
+          "title": "Bombones de banana y maní",
+          "details": "24 / 70 · Rinde 8 porciones · 15 min + 1 h de freezer",
+          "image": "/nutricion/dulces-024.webp",
+          "ingredients": "240 g de banana sin piel; 40 g de pasta de maní sin azúcar ni sal; 60 g de chocolate de 70-85% cacao. 1 bombón por porción.",
+          "method": "Cortá banana en 16 rodajas gruesas. Uní de a dos con maní para formar ocho bocaditos. Congelá 30 minutos. Derretí chocolate y cubrí parcialmente; congelá otros 30 minutos.",
+          "nutrition": [
+            "Energía: 100 kcal · Proteínas: 2.0 g · Carbohidratos: 11.4 g",
+            "Grasas: 5.9 g · Fibra: 1.8 g",
+            "Calcio: 9 mg · Hierro: 1.1 mg · Magnesio: 34 mg",
+            "Potasio: 189 mg · Sodio: 3 mg · Vitamina C: ND"
+          ],
+          "page": 24
+        },
+        {
+          "id": "dulces-025",
+          "title": "Budín de limón y yogur",
+          "details": "25 / 70 · Rinde 8 porciones · 15 min + 35 de horno",
+          "image": "/nutricion/dulces-025.webp",
+          "ingredients": "160 g de harina integral; 200 g de yogur natural sin azúcar, bajo en grasa; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 200 g de banana sin piel; 20 g de aceite de oliva; 30 g de jugo de limón. 2 cucharaditas de polvo de hornear y ralladura de limón.",
+          "method": "Pisá banana y mezclá con yogur, huevos, aceite y limón. Incorporá harina y polvo de hornear. Horneá en budinera a 180 °C 30-35 minutos, hasta que un palillo salga limpio. Cortá ocho porciones.",
+          "nutrition": [
+            "Energía: 145 kcal · Proteínas: 5.8 g · Carbohidratos: 22.5 g",
+            "Grasas: 4.7 g · Fibra: 2.8 g",
+            "Calcio: 135 mg · Hierro: 1.2 mg · Magnesio: 41 mg",
+            "Potasio: 242 mg · Sodio: 115 mg · Vitamina C: 4 mg"
+          ],
+          "page": 25
+        },
+        {
+          "id": "dulces-026",
+          "title": "Mug cake de cacao y yogur",
+          "details": "26 / 70 · Rinde 1 porción · 8 min",
+          "image": "/nutricion/dulces-026.webp",
+          "ingredients": "50 g de huevo sin cáscara (50 g ≈ 1 unidad); 60 g de yogur natural sin azúcar, bajo en grasa; 25 g de avena seca; 8 g de cacao amargo sin azúcar; 60 g de banana sin piel. Un cuarto de cucharadita de polvo de hornear.",
+          "method": "Mezclá banana pisada, huevo, yogur, avena molida y cacao en una taza grande. Cociná en microondas en tandas de 30 segundos, unos 90-120 segundos en total, hasta que el centro cuaje.",
+          "nutrition": [
+            "Energía: 280 kcal · Proteínas: 15.9 g · Carbohidratos: 39.7 g",
+            "Grasas: 8.7 g · Fibra: 7.2 g",
+            "Calcio: 238 mg · Hierro: 3.5 mg · Magnesio: 117 mg",
+            "Potasio: 653 mg · Sodio: 195 mg · Vitamina C: 6 mg"
+          ],
+          "page": 26
+        },
+        {
+          "id": "dulces-027",
+          "title": "Tortitas de ricota con frutos rojos",
+          "details": "27 / 70 · Rinde 2 porciones · 20 min",
+          "image": "/nutricion/dulces-027.webp",
+          "ingredients": "200 g de ricota parcialmente descremada; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 40 g de avena seca; 160 g de frutos rojos (mitad frutilla, mitad arándano); 5 g de aceite de oliva. Vainilla; dos tortitas por porción.",
+          "method": "Mezclá ricota, huevo y avena molida. Formá cuatro tortitas y cociná en sartén aceitada por ambos lados, hasta cuajar. Serví con frutos rojos.",
+          "nutrition": [
+            "Energía: 310 kcal · Proteínas: 18.5 g · Carbohidratos: 27.4 g",
+            "Grasas: 14.4 g · Fibra: 3.9 g",
+            "Calcio: 306 mg · Hierro: 2.1 mg · Magnesio: 61 mg",
+            "Potasio: 337 mg · Sodio: 136 mg · Vitamina C: 27 mg"
+          ],
+          "page": 27
+        },
+        {
+          "id": "dulces-028",
+          "title": "Copa de ananá y coco",
+          "details": "28 / 70 · Rinde 2 porciones · 10 min + 30 de frío",
+          "image": "/nutricion/dulces-028.webp",
+          "ingredients": "300 g de ananá pelado; 250 g de yogur natural sin azúcar, bajo en grasa; 100 g de ricota parcialmente descremada; 15 g de coco seco sin azúcar. Vainilla.",
+          "method": "Procesá yogur y ricota. Armá capas con ananá en cubos y crema; terminá con coco. Refrigerá 30 minutos.",
+          "nutrition": [
+            "Energía: 270 kcal · Proteínas: 13.6 g · Carbohidratos: 32.8 g",
+            "Grasas: 10.9 g · Fibra: 3.3 g",
+            "Calcio: 386 mg · Hierro: 1.0 mg · Magnesio: 54 mg",
+            "Potasio: 559 mg · Sodio: 141 mg · Vitamina C: 73 mg"
+          ],
+          "page": 28
+        },
+        {
+          "id": "dulces-029",
+          "title": "Pudding de chía tipo chocolate",
+          "details": "29 / 70 · Rinde 2 porciones · 10 min + 3 h de frío",
+          "image": "/nutricion/dulces-029.webp",
+          "ingredients": "40 g de semillas de chía; 300 g de leche semidescremada; 15 g de cacao amargo sin azúcar; 40 g de dátiles sin carozo. Vainilla.",
+          "method": "Licuá leche con dátiles sin carozo previamente hidratados y cacao. Mezclá con chía. Refrigerá 3 horas y revolvé otra vez a los 15 minutos. Serví en dos vasos.",
+          "nutrition": [
+            "Energía: 245 kcal · Proteínas: 10.1 g · Carbohidratos: 35.0 g",
+            "Grasas: 10.2 g · Fibra: 11.0 g",
+            "Calcio: 329 mg · Hierro: 2.8 mg · Magnesio: 132 mg",
+            "Potasio: 545 mg · Sodio: 75 mg · Vitamina C: 1 mg"
+          ],
+          "page": 29
+        },
+        {
+          "id": "dulces-030",
+          "title": "Helado rápido de frutilla y ricota",
+          "details": "30 / 70 · Rinde 3 porciones · 10 min",
+          "image": "/nutricion/dulces-030.webp",
+          "ingredients": "300 g de frutillas; 200 g de ricota parcialmente descremada; 180 g de banana sin piel. Vainilla.",
+          "method": "Congelá fruta limpia y cortada desde el día anterior. Procesá en equipo apto para congelados con la ricota hasta obtener una crema. Serví enseguida.",
+          "nutrition": [
+            "Energía: 175 kcal · Proteínas: 8.9 g · Carbohidratos: 24.8 g",
+            "Grasas: 5.8 g · Fibra: 3.6 g",
+            "Calcio: 200 mg · Hierro: 0.9 mg · Magnesio: 39 mg",
+            "Potasio: 451 mg · Sodio: 68 mg · Vitamina C: 64 mg"
+          ],
+          "page": 30
+        },
+        {
+          "id": "dulces-031",
+          "title": "Crema de cacao, yogur y maní",
+          "details": "31 / 70 · Rinde 2 porciones · 10 min + 30 de frío",
+          "image": "/nutricion/dulces-031.webp",
+          "ingredients": "300 g de yogur natural sin azúcar, bajo en grasa; 30 g de pasta de maní sin azúcar ni sal; 15 g de cacao amargo sin azúcar; 120 g de banana sin piel. Canela.",
+          "method": "Procesá yogur, banana, cacao y pasta de maní. Repartí en dos bowls y refrigerá 30 minutos para espesar.",
+          "nutrition": [
+            "Energía: 255 kcal · Proteínas: 13.3 g · Carbohidratos: 32.0 g",
+            "Grasas: 11.3 g · Fibra: 5.1 g",
+            "Calcio: 294 mg · Hierro: 1.6 mg · Magnesio: 104 mg",
+            "Potasio: 764 mg · Sodio: 110 mg · Vitamina C: 6 mg"
+          ],
+          "page": 31
+        },
+        {
+          "id": "dulces-032",
+          "title": "Galletas de zanahoria y nueces",
+          "details": "32 / 70 · Rinde 8 porciones · 15 min + 18 de horno",
+          "image": "/nutricion/dulces-032.webp",
+          "ingredients": "150 g de zanahoria; 120 g de avena seca; 180 g de banana sin piel; 40 g de nueces; 50 g de huevo sin cáscara (50 g ≈ 1 unidad). Canela; 1 galleta por porción.",
+          "method": "Mezclá zanahoria rallada, banana pisada, huevo, avena y nueces. Formá ocho galletas y horneá a 180 °C 15-18 minutos, hasta que estén cocidas. Dejá enfriar.",
+          "nutrition": [
+            "Energía: 130 kcal · Proteínas: 4.5 g · Carbohidratos: 17.6 g",
+            "Grasas: 5.0 g · Fibra: 3.0 g",
+            "Calcio: 24 mg · Hierro: 1.1 mg · Magnesio: 44 mg",
+            "Potasio: 236 mg · Sodio: 22 mg · Vitamina C: 3 mg"
+          ],
+          "page": 32
+        },
+        {
+          "id": "dulces-033",
+          "title": "Tarta fría de chocolate y ricota",
+          "details": "33 / 70 · Rinde 8 porciones · 20 min + 3 h de frío",
+          "image": "/nutricion/dulces-033.webp",
+          "ingredients": "120 g de avena seca; 100 g de dátiles sin carozo; 30 g de pasta de maní sin azúcar ni sal; 350 g de ricota parcialmente descremada; 150 g de yogur natural sin azúcar, bajo en grasa; 100 g de chocolate de 70-85% cacao. Vainilla.",
+          "method": "Procesá avena, dátiles hidratados y maní para la base. Presioná en molde de 16-18 cm. Derretí chocolate y mezclá tibio con ricota y yogur procesados. Volcá sobre la base y refrigerá 3 horas. Cortá ocho porciones.",
+          "nutrition": [
+            "Energía: 260 kcal · Proteínas: 10.5 g · Carbohidratos: 29.5 g",
+            "Grasas: 12.1 g · Fibra: 4.0 g",
+            "Calcio: 180 mg · Hierro: 2.6 mg · Magnesio: 78 mg",
+            "Potasio: 360 mg · Sodio: 60 mg · Vitamina C: ND"
+          ],
+          "page": 33
+        },
+        {
+          "id": "dulces-034",
+          "title": "Vasitos de avena, manzana y canela",
+          "details": "34 / 70 · Rinde 3 porciones · 15 min + 1 h de frío",
+          "image": "/nutricion/dulces-034.webp",
+          "ingredients": "90 g de avena seca; 300 g de leche semidescremada; 300 g de manzana; 180 g de yogur natural sin azúcar, bajo en grasa; 20 g de nueces. Canela.",
+          "method": "Cociná avena y leche 6 minutos. Cociná manzana picada con tres cucharadas de agua hasta ablandar. Enfriá, armá capas con yogur y agregá nueces. Refrigerá una hora.",
+          "nutrition": [
+            "Energía: 300 kcal · Proteínas: 12.8 g · Carbohidratos: 43.6 g",
+            "Grasas: 9.5 g · Fibra: 6.0 g",
+            "Calcio: 259 mg · Hierro: 1.8 mg · Magnesio: 90 mg",
+            "Potasio: 546 mg · Sodio: 91 mg · Vitamina C: 5 mg"
+          ],
+          "page": 34
+        },
+        {
+          "id": "dulces-035",
+          "title": "Brownie de zucchini y nueces",
+          "details": "35 / 70 · Rinde 8 porciones · 15 min + 30 de horno",
+          "image": "/nutricion/dulces-035.webp",
+          "ingredients": "220 g de zucchini / zapallito; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de avena seca; 30 g de cacao amargo sin azúcar; 180 g de banana sin piel; 40 g de nueces; 15 g de aceite de oliva. 1 cucharadita de polvo de hornear.",
+          "method": "Rallá y exprimí zucchini. Mezclá con huevos, banana pisada, avena molida, cacao, aceite y nueces. Horneá a 180 °C 25-30 minutos, hasta que el centro esté cocido. Enfriá antes de cortar ocho porciones.",
+          "nutrition": [
+            "Energía: 150 kcal · Proteínas: 5.8 g · Carbohidratos: 17.3 g",
+            "Grasas: 7.9 g · Fibra: 3.9 g",
+            "Calcio: 66 mg · Hierro: 1.7 mg · Magnesio: 61 mg",
+            "Potasio: 302 mg · Sodio: 61 mg · Vitamina C: 7 mg"
+          ],
+          "page": 35
+        },
+        {
+          "id": "dulces-036",
+          "title": "Flan suave de vainilla",
+          "details": "36 / 70 · Rinde 4 porciones · 45 minutos + frío",
+          "image": "/nutricion/dulces-036.webp",
+          "ingredients": "400 g de leche semidescremada; 150 g de huevo sin cáscara (50 g ≈ 1 unidad); 120 g de banana sin piel. Vainilla sin azúcar, a gusto.",
+          "method": "Procesá leche, huevos y banana con vainilla. Repartí en cuatro moldes aptos para horno. Colocalos en una fuente con agua caliente hasta la mitad de su altura. Horneá a 160 °C durante 35-40 minutos, hasta que el centro cuaje. Dejá enfriar y refrigerá 3 horas.",
+          "nutrition": [
+            "Energía: 130 kcal · Proteínas: 8.3 g · Carbohidratos: 11.9 g",
+            "Grasas: 5.6 g · Fibra: 0.8 g",
+            "Calcio: 142 mg · Hierro: 0.8 mg · Magnesio: 24 mg",
+            "Potasio: 299 mg · Sodio: 101 mg · Vitamina C: 3 mg"
+          ],
+          "page": 36
+        },
+        {
+          "id": "dulces-037",
+          "title": "Mini cheesecake horneado de limón",
+          "details": "37 / 70 · Rinde 4 porciones · 35 minutos + frío",
+          "image": "/nutricion/dulces-037.webp",
+          "ingredients": "250 g de ricota parcialmente descremada; 120 g de yogur natural sin azúcar, bajo en grasa; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 25 g de jugo de limón; 100 g de banana sin piel. Ralladura de limón, a gusto.",
+          "method": "Procesá todos los ingredientes con ralladura de limón. Dividí en cuatro moldes de silicona. Horneá a 170 °C durante 25-30 minutos, hasta que los bordes estén firmes. Enfriá y refrigerá 2 horas antes de desmoldar.",
+          "nutrition": [
+            "Energía: 165 kcal · Proteínas: 12.1 g · Carbohidratos: 11.6 g",
+            "Grasas: 7.9 g · Fibra: 0.7 g",
+            "Calcio: 241 mg · Hierro: 0.8 mg · Magnesio: 25 mg",
+            "Potasio: 279 mg · Sodio: 119 mg · Vitamina C: 5 mg"
+          ],
+          "page": 37
+        },
+        {
+          "id": "dulces-038",
+          "title": "Galletitas de cacao y avena",
+          "details": "38 / 70 · Rinde 8 porciones · 15 min + 15 de horno",
+          "image": "/nutricion/dulces-038.webp",
+          "ingredients": "120 g de avena seca; 180 g de banana sin piel; 20 g de cacao amargo sin azúcar; 40 g de pasta de maní sin azúcar ni sal; 25 g de chocolate de 70-85% cacao. 1 galletita por porción.",
+          "method": "Mezclá banana pisada, avena, cacao y maní. Sumá chocolate picado. Formá ocho galletitas y horneá a 180 °C 12-15 minutos. Dejá enfriar para que se afirmen.",
+          "nutrition": [
+            "Energía: 135 kcal · Proteínas: 4.6 g · Carbohidratos: 19.1 g",
+            "Grasas: 5.4 g · Fibra: 3.7 g",
+            "Calcio: 17 mg · Hierro: 1.6 mg · Magnesio: 61 mg",
+            "Potasio: 233 mg · Sodio: 3 mg · Vitamina C: ND"
+          ],
+          "page": 38
+        },
+        {
+          "id": "dulces-039",
+          "title": "Crema de limón con frutillas",
+          "details": "39 / 70 · Rinde 3 porciones · 15 minutos + frío",
+          "image": "/nutricion/dulces-039.webp",
+          "ingredients": "300 g de leche semidescremada; 20 g de almidón de maíz; 150 g de yogur natural sin azúcar, bajo en grasa; 30 g de jugo de limón; 100 g de banana sin piel; 200 g de frutillas.",
+          "method": "Disolvé el almidón en la leche fría. Calentá a fuego suave, revolviendo, hasta que espese; cociná 1 minuto más. Enfriá y procesá con yogur, banana y limón. Serví en tres copas con las frutillas cortadas. Refrigerá 1 hora.",
+          "nutrition": [
+            "Energía: 160 kcal · Proteínas: 6.8 g · Carbohidratos: 27.8 g",
+            "Grasas: 3.1 g · Fibra: 2.3 g",
+            "Calcio: 225 mg · Hierro: 0.5 mg · Magnesio: 38 mg",
+            "Potasio: 489 mg · Sodio: 84 mg · Vitamina C: 47 mg"
+          ],
+          "page": 39
+        },
+        {
+          "id": "dulces-040",
+          "title": "Hummus dulce de cacao",
+          "details": "40 / 70 · Rinde 4 porciones · 12 min",
+          "image": "/nutricion/dulces-040.webp",
+          "ingredients": "240 g de garbanzos cocidos sin sal; 20 g de cacao amargo sin azúcar; 30 g de pasta de maní sin azúcar ni sal; 50 g de dátiles sin carozo; 200 g de frutillas. Vainilla.",
+          "method": "Procesá garbanzos cocidos, dátiles hidratados, cacao y maní. Agregá agua de a poco hasta lograr una crema suave. Serví en cuatro porciones con frutillas para acompañar.",
+          "nutrition": [
+            "Energía: 205 kcal · Proteínas: 8.5 g · Carbohidratos: 34.2 g",
+            "Grasas: 6.3 g · Fibra: 8.6 g",
+            "Calcio: 55 mg · Hierro: 2.9 mg · Magnesio: 80 mg",
+            "Potasio: 456 mg · Sodio: 7 mg · Vitamina C: 30 mg"
+          ],
+          "page": 40
+        },
+        {
+          "id": "dulces-041",
+          "title": "Clafoutis integral de manzana",
+          "details": "41 / 70 · Rinde 4 porciones · 45 minutos",
+          "image": "/nutricion/dulces-041.webp",
+          "ingredients": "300 g de manzana; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 200 g de leche semidescremada; 60 g de harina integral; 30 g de pasas de uva. Canela y vainilla sin azúcar, a gusto.",
+          "method": "Cortá la manzana en láminas finas y repartí en una fuente con papel de horno. Batí huevos, leche y harina con canela. Agregá las pasas y volcá sobre la fruta. Horneá a 180 °C durante 30-35 minutos, hasta que cuaje. Dividí en cuatro porciones.",
+          "nutrition": [
+            "Energía: 175 kcal · Proteínas: 7.2 g · Carbohidratos: 29.7 g",
+            "Grasas: 3.9 g · Fibra: 3.7 g",
+            "Calcio: 88 mg · Hierro: 1.2 mg · Magnesio: 36 mg",
+            "Potasio: 295 mg · Sodio: 62 mg · Vitamina C: 4 mg"
+          ],
+          "page": 41
+        },
+        {
+          "id": "dulces-042",
+          "title": "Helado de cacao y cottage",
+          "details": "42 / 70 · Rinde 3 porciones · 10 min + 2 h de freezer",
+          "image": "/nutricion/dulces-042.webp",
+          "ingredients": "250 g de queso cottage (2% de grasa); 240 g de banana sin piel; 20 g de cacao amargo sin azúcar; 80 g de leche semidescremada. Vainilla.",
+          "method": "Procesá cottage, banana congelada en rodajas, cacao y leche en equipo apto para congelados. Llevá al freezer 1-2 horas, mezclando a mitad de tiempo. Serví cuando esté firme pero cremoso.",
+          "nutrition": [
+            "Energía: 165 kcal · Proteínas: 11.8 g · Carbohidratos: 27.4 g",
+            "Grasas: 3.6 g · Fibra: 4.5 g",
+            "Calcio: 137 mg · Hierro: 1.2 mg · Magnesio: 65 mg",
+            "Potasio: 530 mg · Sodio: 271 mg · Vitamina C: 7 mg"
+          ],
+          "page": 42
+        },
+        {
+          "id": "dulces-043",
+          "title": "Cestitas de avena con frutillas",
+          "details": "43 / 70 · Rinde 4 porciones · 30 minutos",
+          "image": "/nutricion/dulces-043.webp",
+          "ingredients": "100 g de avena seca; 120 g de banana sin piel; 200 g de yogur natural sin azúcar, bajo en grasa; 200 g de frutillas.",
+          "method": "Pisá la banana y mezclá con la avena. Formá cuatro cestitas en moldes de silicona, presionando la base y los bordes. Horneá a 180 °C durante 15-18 minutos. Dejá enfriar por completo; rellená con yogur y frutillas justo antes de servir.",
+          "nutrition": [
+            "Energía: 170 kcal · Proteínas: 7.5 g · Carbohidratos: 30.8 g",
+            "Grasas: 2.7 g · Fibra: 4.4 g",
+            "Calcio: 114 mg · Hierro: 1.5 mg · Magnesio: 67 mg",
+            "Potasio: 408 mg · Sodio: 36 mg · Vitamina C: 32 mg"
+          ],
+          "page": 43
+        },
+        {
+          "id": "dulces-044",
+          "title": "Budín de pera y almendras",
+          "details": "44 / 70 · Rinde 6 porciones · 50 minutos",
+          "image": "/nutricion/dulces-044.webp",
+          "ingredients": "250 g de pera; 100 g de avena seca; 40 g de almendras; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 100 g de yogur natural sin azúcar, bajo en grasa. 1 cucharadita de polvo de hornear y canela, a gusto.",
+          "method": "Procesá la avena y las almendras hasta formar harina. Mezclá con huevos, yogur y pera rallada; incorporá el polvo de hornear. Volcá en un molde pequeño con papel de horno y cociná a 180 °C durante 35-40 minutos. Enfriá y cortá en seis porciones.",
+          "nutrition": [
+            "Energía: 160 kcal · Proteínas: 7.3 g · Carbohidratos: 20.3 g",
+            "Grasas: 6.4 g · Fibra: 3.9 g",
+            "Calcio: 120 mg · Hierro: 1.5 mg · Magnesio: 56 mg",
+            "Potasio: 231 mg · Sodio: 89 mg · Vitamina C: 2 mg"
+          ],
+          "page": 44
+        },
+        {
+          "id": "dulces-045",
+          "title": "Paletas de yogur, cacao y maní",
+          "details": "45 / 70 · Rinde 6 porciones · 10 min + 4 h de freezer",
+          "image": "/nutricion/dulces-045.webp",
+          "ingredients": "350 g de yogur natural sin azúcar, bajo en grasa; 150 g de leche semidescremada; 20 g de cacao amargo sin azúcar; 180 g de banana sin piel; 30 g de pasta de maní sin azúcar ni sal. 1 paleta por porción.",
+          "method": "Licuá todos los ingredientes. Repartí en seis moldes de paleta y congelá 4 horas. Para desmoldar, pasá unos segundos por agua templada.",
+          "nutrition": [
+            "Energía: 115 kcal · Proteínas: 6.0 g · Carbohidratos: 15.2 g",
+            "Grasas: 4.5 g · Fibra: 2.3 g",
+            "Calcio: 145 mg · Hierro: 0.7 mg · Magnesio: 46 mg",
+            "Potasio: 358 mg · Sodio: 54 mg · Vitamina C: 3 mg"
+          ],
+          "page": 45
+        },
+        {
+          "id": "dulces-046",
+          "title": "Copa de pistacho y ricota",
+          "details": "46 / 70 · Rinde 3 porciones · 10 minutos + frío",
+          "image": "/nutricion/dulces-046.webp",
+          "ingredients": "180 g de ricota parcialmente descremada; 180 g de yogur natural sin azúcar, bajo en grasa; 30 g de pistachos sin sal; 200 g de pera. Vainilla sin azúcar, a gusto.",
+          "method": "Procesá ricota y yogur con vainilla hasta lograr una crema lisa. Cortá la pera en cubitos y picá los pistachos. Armá tres copas alternando fruta y crema. Terminá con pistachos y refrigerá 20 minutos.",
+          "nutrition": [
+            "Energía: 215 kcal · Proteínas: 12.2 g · Carbohidratos: 20.2 g",
+            "Grasas: 10.3 g · Fibra: 3.1 g",
+            "Calcio: 290 mg · Hierro: 0.8 mg · Magnesio: 36 mg",
+            "Potasio: 395 mg · Sodio: 102 mg · Vitamina C: 4 mg"
+          ],
+          "page": 46
+        },
+        {
+          "id": "dulces-047",
+          "title": "Bombones de frutilla y yogur",
+          "details": "47 / 70 · Rinde 8 porciones · 15 min + 2 h de freezer",
+          "image": "/nutricion/dulces-047.webp",
+          "ingredients": "200 g de frutillas; 180 g de yogur natural sin azúcar, bajo en grasa; 70 g de chocolate de 70-85% cacao. 1 bombón por porción.",
+          "method": "Picá frutillas y mezclá con yogur espeso. Formá ocho montoncitos sobre papel de horno y congelá una hora. Derretí chocolate y cubrí parcialmente; congelá otra hora.",
+          "nutrition": [
+            "Energía: 75 kcal · Proteínas: 2.0 g · Carbohidratos: 7.5 g",
+            "Grasas: 4.2 g · Fibra: 1.5 g",
+            "Calcio: 52 mg · Hierro: 1.2 mg · Magnesio: 27 mg",
+            "Potasio: 153 mg · Sodio: 18 mg · Vitamina C: ND"
+          ],
+          "page": 47
+        },
+        {
+          "id": "dulces-048",
+          "title": "Sorbete rápido de mango y ananá",
+          "details": "48 / 70 · Rinde 4 porciones · 10 minutos + congelado",
+          "image": "/nutricion/dulces-048.webp",
+          "ingredients": "250 g de mango sin piel ni carozo; 250 g de ananá pelado; 20 g de jugo de limón. 30-60 ml de agua para procesar.",
+          "method": "Cortá mango y ananá en cubos y congelá 4 horas en una bandeja. Procesá la fruta congelada con el limón y 30-60 ml de agua, agregándola poco a poco hasta obtener una textura cremosa. Serví enseguida en cuatro copas.",
+          "nutrition": [
+            "Energía: 70 kcal · Proteínas: 0.9 g · Carbohidratos: 17.9 g",
+            "Grasas: 0.3 g · Fibra: 1.9 g",
+            "Calcio: 15 mg · Hierro: 0.3 mg · Magnesio: 14 mg",
+            "Potasio: 178 mg · Sodio: 1 mg · Vitamina C: 55 mg"
+          ],
+          "page": 48
+        },
+        {
+          "id": "dulces-049",
+          "title": "Mousse de cacao y zapallo",
+          "details": "49 / 70 · Rinde 3 porciones · 12 min + 1 h de frío",
+          "image": "/nutricion/dulces-049.webp",
+          "ingredients": "300 g de zapallo cocido; 200 g de yogur natural sin azúcar, bajo en grasa; 20 g de cacao amargo sin azúcar; 50 g de dátiles sin carozo; 20 g de pasta de maní sin azúcar ni sal. Canela.",
+          "method": "Procesá zapallo cocido frío con yogur, cacao, dátiles hidratados y maní. Repartí en tres vasos y refrigerá una hora.",
+          "nutrition": [
+            "Energía: 165 kcal · Proteínas: 7.3 g · Carbohidratos: 27.4 g",
+            "Grasas: 5.5 g · Fibra: 5.0 g",
+            "Calcio: 159 mg · Hierro: 1.8 mg · Magnesio: 74 mg",
+            "Potasio: 641 mg · Sodio: 50 mg · Vitamina C: 5 mg"
+          ],
+          "page": 49
+        },
+        {
+          "id": "dulces-050",
+          "title": "Paletas de kiwi y yogur",
+          "details": "50 / 70 · Rinde 6 porciones · 15 minutos + congelado",
+          "image": "/nutricion/dulces-050.webp",
+          "ingredients": "250 g de kiwi pelado; 300 g de yogur natural sin azúcar, bajo en grasa; 100 g de banana sin piel.",
+          "method": "Procesá el yogur con la banana. Triturá dos tercios del kiwi y cortá el resto en rodajas. Repartí rodajas, puré y crema de yogur en seis moldes de paletas. Colocá los palitos y congelá al menos 5 horas.",
+          "nutrition": [
+            "Energía: 70 kcal · Proteínas: 3.3 g · Carbohidratos: 13.4 g",
+            "Grasas: 1.0 g · Fibra: 1.7 g",
+            "Calcio: 106 mg · Hierro: 0.2 mg · Magnesio: 20 mg",
+            "Potasio: 307 mg · Sodio: 36 mg · Vitamina C: 40 mg"
+          ],
+          "page": 50
+        },
+        {
+          "id": "dulces-051",
+          "title": "Cuadraditos de chocolate y arroz inflado",
+          "details": "51 / 70 · Rinde 8 porciones · 15 min + 1 h de frío",
+          "image": "/nutricion/dulces-051.webp",
+          "ingredients": "50 g de galletas de arroz integral sin sal, quebradas; 90 g de chocolate de 70-85% cacao; 40 g de pasta de maní sin azúcar ni sal; 30 g de almendras. 1 cuadrado por porción.",
+          "method": "Derretí chocolate suavemente y mezclá con maní. Sumá galletas de arroz integral sin sal, quebradas y almendras picadas. Presioná en molde pequeño, refrigerá una hora y cortá ocho cuadrados.",
+          "nutrition": [
+            "Energía: 145 kcal · Proteínas: 3.3 g · Carbohidratos: 12.2 g",
+            "Grasas: 9.4 g · Fibra: 2.2 g",
+            "Calcio: 21 mg · Hierro: 1.7 mg · Magnesio: 52 mg",
+            "Potasio: 154 mg · Sodio: 5 mg · Vitamina C: ND"
+          ],
+          "page": 51
+        },
+        {
+          "id": "dulces-052",
+          "title": "Helado de durazno y vainilla",
+          "details": "52 / 70 · Rinde 4 porciones · 10 minutos + congelado",
+          "image": "/nutricion/dulces-052.webp",
+          "ingredients": "400 g de durazno sin carozo; 250 g de yogur natural sin azúcar, bajo en grasa; 100 g de banana sin piel. Vainilla sin azúcar, a gusto.",
+          "method": "Congelá durazno y banana en trozos durante 4 horas. Procesá con yogur y vainilla, haciendo pausas para bajar la mezcla de los bordes. Serví en cuatro copas o llevá al freezer 30 minutos para una textura más firme.",
+          "nutrition": [
+            "Energía: 100 kcal · Proteínas: 4.5 g · Carbohidratos: 19.6 g",
+            "Grasas: 1.3 g · Fibra: 2.1 g",
+            "Calcio: 122 mg · Hierro: 0.4 mg · Magnesio: 26 mg",
+            "Potasio: 426 mg · Sodio: 44 mg · Vitamina C: 9 mg"
+          ],
+          "page": 52
+        },
+        {
+          "id": "dulces-053",
+          "title": "Brochetas de fruta con dip cremoso",
+          "details": "53 / 70 · Rinde 4 porciones · 15 minutos",
+          "image": "/nutricion/dulces-053.webp",
+          "ingredients": "180 g de frutillas; 180 g de kiwi pelado; 180 g de mango sin piel ni carozo; 200 g de yogur natural sin azúcar, bajo en grasa; 80 g de ricota parcialmente descremada. Vainilla sin azúcar, a gusto.",
+          "method": "Cortá las frutas en trozos grandes y ensartá en cuatro brochetas. Batí yogur y ricota con vainilla. Serví cada brocheta con un cuarto del dip; mantené todo refrigerado hasta consumir.",
+          "nutrition": [
+            "Energía: 130 kcal · Proteínas: 6.1 g · Carbohidratos: 21.3 g",
+            "Grasas: 2.9 g · Fibra: 3.0 g",
+            "Calcio: 173 mg · Hierro: 0.5 mg · Magnesio: 30 mg",
+            "Potasio: 427 mg · Sodio: 57 mg · Vitamina C: 85 mg"
+          ],
+          "page": 53
+        },
+        {
+          "id": "dulces-054",
+          "title": "Mini tortas de chocolate y garbanzos",
+          "details": "54 / 70 · Rinde 6 porciones · 15 min + 25 de horno",
+          "image": "/nutricion/dulces-054.webp",
+          "ingredients": "250 g de garbanzos cocidos sin sal; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 25 g de cacao amargo sin azúcar; 80 g de dátiles sin carozo; 40 g de avena seca; 10 g de aceite de oliva. 1 cucharadita de polvo de hornear.",
+          "method": "Procesá garbanzos, huevos, dátiles hidratados y aceite. Sumá cacao y avena molida. Repartí en seis moldes y horneá a 180 °C 20-25 minutos, hasta que el centro esté cocido.",
+          "nutrition": [
+            "Energía: 180 kcal · Proteínas: 8.0 g · Carbohidratos: 28.5 g",
+            "Grasas: 5.4 g · Fibra: 6.3 g",
+            "Calcio: 96 mg · Hierro: 2.6 mg · Magnesio: 62 mg",
+            "Potasio: 329 mg · Sodio: 80 mg · Vitamina C: 1 mg"
+          ],
+          "page": 54
+        },
+        {
+          "id": "dulces-055",
+          "title": "Damascos tibios con crema de almendras",
+          "details": "55 / 70 · Rinde 4 porciones · 25 minutos",
+          "image": "/nutricion/dulces-055.webp",
+          "ingredients": "400 g de damascos sin carozo; 200 g de yogur natural sin azúcar, bajo en grasa; 40 g de almendras. Vainilla sin azúcar, a gusto.",
+          "method": "Abrí los damascos y colocá las mitades en una fuente con papel de horno. Horneá a 190 °C durante 15 minutos. Triturá las almendras y mezclá con yogur y vainilla. Repartí la fruta y la crema en cuatro platos.",
+          "nutrition": [
+            "Energía: 135 kcal · Proteínas: 6.1 g · Carbohidratos: 16.8 g",
+            "Grasas: 6.2 g · Fibra: 3.2 g",
+            "Calcio: 131 mg · Hierro: 0.8 mg · Magnesio: 46 mg",
+            "Potasio: 449 mg · Sodio: 36 mg · Vitamina C: 10 mg"
+          ],
+          "page": 55
+        },
+        {
+          "id": "dulces-056",
+          "title": "Copa de chocolate y frutos rojos",
+          "details": "56 / 70 · Rinde 2 porciones · 15 min + 1 h de frío",
+          "image": "/nutricion/dulces-056.webp",
+          "ingredients": "200 g de yogur natural sin azúcar, bajo en grasa; 120 g de ricota parcialmente descremada; 40 g de chocolate de 70-85% cacao; 160 g de frutos rojos (mitad frutilla, mitad arándano). Vainilla.",
+          "method": "Derretí chocolate y dejá entibiar. Mezclá con yogur y ricota procesados. Armá dos copas con fruta y crema, y refrigerá una hora.",
+          "nutrition": [
+            "Energía: 300 kcal · Proteínas: 14.2 g · Carbohidratos: 28.2 g",
+            "Grasas: 15.1 g · Fibra: 3.9 g",
+            "Calcio: 370 mg · Hierro: 3.0 mg · Magnesio: 79 mg",
+            "Potasio: 544 mg · Sodio: 134 mg · Vitamina C: ND"
+          ],
+          "page": 56
+        },
+        {
+          "id": "dulces-057",
+          "title": "Tartitas de higo y ricota",
+          "details": "57 / 70 · Rinde 4 porciones · 30 minutos",
+          "image": "/nutricion/dulces-057.webp",
+          "ingredients": "100 g de avena seca; 100 g de banana sin piel; 200 g de ricota parcialmente descremada; 240 g de higos frescos; 20 g de almendras. Vainilla sin azúcar, a gusto.",
+          "method": "Mezclá avena molida y banana pisada. Forrá cuatro moldes pequeños de silicona y horneá a 180 °C durante 15 minutos. Dejá enfriar. Rellená con ricota batida con vainilla y terminá con higos en cuartos y almendras picadas.",
+          "nutrition": [
+            "Energía: 260 kcal · Proteínas: 11.7 g · Carbohidratos: 37.4 g",
+            "Grasas: 8.4 g · Fibra: 5.7 g",
+            "Calcio: 185 mg · Hierro: 1.9 mg · Magnesio: 82 mg",
+            "Potasio: 435 mg · Sodio: 51 mg · Vitamina C: 3 mg"
+          ],
+          "page": 57
+        },
+        {
+          "id": "dulces-058",
+          "title": "Pera rellena de cacao y ricota",
+          "details": "58 / 70 · Rinde 2 porciones · 15 min + 20 de horno",
+          "image": "/nutricion/dulces-058.webp",
+          "ingredients": "340 g de pera; 120 g de ricota parcialmente descremada; 10 g de cacao amargo sin azúcar; 20 g de nueces. Canela.",
+          "method": "Cortá peras al medio y ahuecá. Mezclá ricota con cacao y rellená. Sumá nueces y horneá a 180 °C 20 minutos con tres cucharadas de agua en la fuente.",
+          "nutrition": [
+            "Energía: 255 kcal · Proteínas: 9.9 g · Carbohidratos: 33.2 g",
+            "Grasas: 12.2 g · Fibra: 7.8 g",
+            "Calcio: 195 mg · Hierro: 1.6 mg · Magnesio: 62 mg",
+            "Potasio: 392 mg · Sodio: 62 mg · Vitamina C: 7 mg"
+          ],
+          "page": 58
+        },
+        {
+          "id": "dulces-059",
+          "title": "Bocaditos de coco y dátil",
+          "details": "59 / 70 · Rinde 6 porciones · 15 minutos + frío",
+          "image": "/nutricion/dulces-059.webp",
+          "ingredients": "100 g de dátiles sin carozo; 50 g de coco seco sin azúcar; 40 g de avena seca; 30 g de almendras.",
+          "method": "Si los dátiles están secos, remojalos 10 minutos y escurrí. Procesá con avena, almendras y 35 g del coco hasta obtener una pasta moldeable. Formá doce bolitas y pasalas por los 15 g de coco restantes. Refrigerá 30 minutos. Cada porción son dos bocaditos.",
+          "nutrition": [
+            "Energía: 155 kcal · Proteínas: 3.1 g · Carbohidratos: 20.0 g",
+            "Grasas: 8.4 g · Fibra: 3.8 g",
+            "Calcio: 30 mg · Hierro: 0.9 mg · Magnesio: 42 mg",
+            "Potasio: 226 mg · Sodio: 3 mg · Vitamina C: 0 mg"
+          ],
+          "page": 59
+        },
+        {
+          "id": "dulces-060",
+          "title": "Trufas de coco y chocolate",
+          "details": "60 / 70 · Rinde 10 porciones · 15 min + 1 h de frío",
+          "image": "/nutricion/dulces-060.webp",
+          "ingredients": "50 g de coco seco sin azúcar; 100 g de dátiles sin carozo; 40 g de avena seca; 20 g de cacao amargo sin azúcar; 20 g de pasta de maní sin azúcar ni sal. 1 trufa por porción.",
+          "method": "Procesá dátiles hidratados con maní y cacao. Sumá avena y coco; ajustá con una cucharada de agua si hace falta. Formá diez trufas y refrigerá una hora.",
+          "nutrition": [
+            "Energía: 95 kcal · Proteínas: 2.0 g · Carbohidratos: 12.9 g",
+            "Grasas: 4.8 g · Fibra: 2.7 g",
+            "Calcio: 13 mg · Hierro: 0.8 mg · Magnesio: 30 mg",
+            "Potasio: 156 mg · Sodio: 3 mg · Vitamina C: 0 mg"
+          ],
+          "page": 60
+        },
+        {
+          "id": "dulces-061",
+          "title": "Cuadrados tiernos de arándanos",
+          "details": "61 / 70 · Rinde 6 porciones · 40 minutos",
+          "image": "/nutricion/dulces-061.webp",
+          "ingredients": "120 g de avena seca; 160 g de yogur natural sin azúcar, bajo en grasa; 100 g de huevo sin cáscara (50 g ≈ 1 unidad); 150 g de banana sin piel; 180 g de arándanos. 1 cucharadita de polvo de hornear y vainilla sin azúcar.",
+          "method": "Mezclá avena molida, yogur, huevos y banana pisada. Incorporá el polvo de hornear y los arándanos con movimientos suaves. Volcá en un molde pequeño con papel de horno. Cociná a 180 °C durante 25-30 minutos. Enfriá y cortá en seis cuadrados.",
+          "nutrition": [
+            "Energía: 160 kcal · Proteínas: 7.4 g · Carbohidratos: 25.5 g",
+            "Grasas: 3.6 g · Fibra: 3.5 g",
+            "Calcio: 121 mg · Hierro: 1.5 mg · Magnesio: 51 mg",
+            "Potasio: 284 mg · Sodio: 96 mg · Vitamina C: 5 mg"
+          ],
+          "page": 61
+        },
+        {
+          "id": "dulces-062",
+          "title": "Pudding tropical de coco y chía",
+          "details": "62 / 70 · Rinde 3 porciones · 10 minutos + frío",
+          "image": "/nutricion/dulces-062.webp",
+          "ingredients": "240 g de leche semidescremada; 120 g de yogur natural sin azúcar, bajo en grasa; 35 g de semillas de chía; 20 g de coco seco sin azúcar; 240 g de ananá pelado.",
+          "method": "Mezclá leche, yogur, chía y coco. Esperá 10 minutos, volvé a revolver y refrigerá al menos 3 horas. Repartí en tres vasos y agregá el ananá en cubitos justo antes de servir.",
+          "nutrition": [
+            "Energía: 205 kcal · Proteínas: 7.6 g · Carbohidratos: 23.6 g",
+            "Grasas: 10.2 g · Fibra: 6.2 g",
+            "Calcio: 255 mg · Hierro: 1.4 mg · Magnesio: 70 mg",
+            "Potasio: 376 mg · Sodio: 71 mg · Vitamina C: 39 mg"
+          ],
+          "page": 62
+        },
+        {
+          "id": "dulces-063",
+          "title": "Flan de cacao al horno",
+          "details": "63 / 70 · Rinde 4 porciones · 15 min + 35 de horno",
+          "image": "/nutricion/dulces-063.webp",
+          "ingredients": "150 g de huevo sin cáscara (50 g ≈ 1 unidad); 400 g de leche semidescremada; 20 g de cacao amargo sin azúcar; 60 g de dátiles sin carozo. Vainilla; sin caramelo.",
+          "method": "Licuá leche, cacao y dátiles hidratados. Mezclá con huevos sin batir demasiado. Repartí en cuatro moldes y horneá a baño María a 160 °C 30-35 minutos, hasta cuajar. Enfriá y refrigerá dos horas.",
+          "nutrition": [
+            "Energía: 155 kcal · Proteínas: 9.3 g · Carbohidratos: 19.2 g",
+            "Grasas: 6.3 g · Fibra: 2.9 g",
+            "Calcio: 157 mg · Hierro: 1.5 mg · Magnesio: 49 mg",
+            "Potasio: 372 mg · Sodio: 101 mg · Vitamina C: 0 mg"
+          ],
+          "page": 63
+        },
+        {
+          "id": "dulces-064",
+          "title": "Tortitas dulces de polenta y naranja",
+          "details": "64 / 70 · Rinde 4 porciones · 35 minutos",
+          "image": "/nutricion/dulces-064.webp",
+          "ingredients": "60 g de polenta seca / harina de maíz; 300 g de leche semidescremada; 200 g de naranja pelada; 50 g de huevo sin cáscara (50 g ≈ 1 unidad); 30 g de pasas de uva. Ralladura de naranja, a gusto.",
+          "method": "Calentá la leche y agregá la polenta en forma de lluvia. Cociná revolviendo según el envase, hasta espesar. Dejá entibiar; mezclá con huevo, pasas y la mitad de la naranja picada. Repartí en cuatro moldes y horneá a 180 °C durante 20 minutos. Serví con la naranja restante.",
+          "nutrition": [
+            "Energía: 155 kcal · Proteínas: 6.0 g · Carbohidratos: 27.0 g",
+            "Grasas: 3.3 g · Fibra: 2.6 g",
+            "Calcio: 123 mg · Hierro: 0.9 mg · Magnesio: 36 mg",
+            "Potasio: 312 mg · Sodio: 60 mg · Vitamina C: 27 mg"
+          ],
+          "page": 64
+        },
+        {
+          "id": "dulces-065",
+          "title": "Crema de chocolate y naranja",
+          "details": "65 / 70 · Rinde 2 porciones · 15 min + 1 h de frío",
+          "image": "/nutricion/dulces-065.webp",
+          "ingredients": "300 g de leche semidescremada; 20 g de almidón de maíz; 15 g de cacao amargo sin azúcar; 20 g de chocolate de 70-85% cacao; 150 g de naranja pelada. Ralladura de naranja bien lavada.",
+          "method": "Disolvé almidón y cacao en la leche fría. Cociná a fuego bajo revolviendo hasta que hierva suavemente y espese. Sumá chocolate y ralladura de naranja. Repartí en vasos y refrigerá; serví con gajos.",
+          "nutrition": [
+            "Energía: 225 kcal · Proteínas: 7.9 g · Carbohidratos: 34.1 g",
+            "Grasas: 8.4 g · Fibra: 5.8 g",
+            "Calcio: 227 mg · Hierro: 2.4 mg · Magnesio: 85 mg",
+            "Potasio: 532 mg · Sodio: 75 mg · Vitamina C: ND"
+          ],
+          "page": 65
+        },
+        {
+          "id": "dulces-066",
+          "title": "Crumble de cerezas y pistachos",
+          "details": "66 / 70 · Rinde 4 porciones · 35 minutos",
+          "image": "/nutricion/dulces-066.webp",
+          "ingredients": "350 g de cerezas sin carozo; 70 g de avena seca; 30 g de pistachos sin sal; 80 g de banana sin piel.",
+          "method": "Colocá las cerezas sin carozo en una fuente pequeña. Mezclá avena, pistachos picados y banana pisada hasta formar grumos. Repartí sobre la fruta y horneá a 180 °C durante 25 minutos. Dividí en cuatro porciones.",
+          "nutrition": [
+            "Energía: 185 kcal · Proteínas: 5.6 g · Carbohidratos: 32.2 g",
+            "Grasas: 4.8 g · Fibra: 5.0 g",
+            "Calcio: 30 mg · Hierro: 1.5 mg · Magnesio: 55 mg",
+            "Potasio: 418 mg · Sodio: 1 mg · Vitamina C: 8 mg"
+          ],
+          "page": 66
+        },
+        {
+          "id": "dulces-067",
+          "title": "Manzanas asadas con avena y cacao",
+          "details": "67 / 70 · Rinde 2 porciones · 15 min + 25 de horno",
+          "image": "/nutricion/dulces-067.webp",
+          "ingredients": "360 g de manzana; 40 g de avena seca; 10 g de cacao amargo sin azúcar; 20 g de nueces; 150 g de yogur natural sin azúcar, bajo en grasa. Canela.",
+          "method": "Ahuecá las manzanas. Mezclá avena, cacao y nueces con cuatro cucharadas de agua. Rellená y horneá a 180 °C 25 minutos, hasta que estén tiernas. Serví con yogur.",
+          "nutrition": [
+            "Energía: 295 kcal · Proteínas: 10.3 g · Carbohidratos: 47.7 g",
+            "Grasas: 10.1 g · Fibra: 9.0 g",
+            "Calcio: 175 mg · Hierro: 2.2 mg · Magnesio: 98 mg",
+            "Potasio: 574 mg · Sodio: 56 mg · Vitamina C: 9 mg"
+          ],
+          "page": 67
+        },
+        {
+          "id": "dulces-068",
+          "title": "Copa de uvas asadas y yogur",
+          "details": "68 / 70 · Rinde 3 porciones · 25 minutos",
+          "image": "/nutricion/dulces-068.webp",
+          "ingredients": "300 g de uvas; 240 g de yogur natural sin azúcar, bajo en grasa; 30 g de nueces. Canela, a gusto.",
+          "method": "Horneá las uvas lavadas, sin tallos, a 190 °C durante 15-20 minutos. Dejá entibiar. Repartí yogur en tres copas y agregá las uvas con su jugo y las nueces picadas. Serví enseguida.",
+          "nutrition": [
+            "Energía: 185 kcal · Proteínas: 6.4 g · Carbohidratos: 25.1 g",
+            "Grasas: 7.9 g · Fibra: 1.6 g",
+            "Calcio: 166 mg · Hierro: 0.7 mg · Magnesio: 36 mg",
+            "Potasio: 422 mg · Sodio: 58 mg · Vitamina C: 4 mg"
+          ],
+          "page": 68
+        },
+        {
+          "id": "dulces-069",
+          "title": "Banana asada con maní y yogur",
+          "details": "69 / 70 · Rinde 2 porciones · 10 min + 15 de horno",
+          "image": "/nutricion/dulces-069.webp",
+          "ingredients": "240 g de banana sin piel; 30 g de pasta de maní sin azúcar ni sal; 200 g de yogur natural sin azúcar, bajo en grasa; 5 g de cacao amargo sin azúcar. Canela.",
+          "method": "Abrí bananas a lo largo, sin piel, y colocá en fuente. Distribuí maní y horneá a 180 °C 12-15 minutos. Serví con yogur y cacao espolvoreado.",
+          "nutrition": [
+            "Energía: 265 kcal · Proteínas: 10.4 g · Carbohidratos: 39.2 g",
+            "Grasas: 10.0 g · Fibra: 4.8 g",
+            "Calcio: 200 mg · Hierro: 1.0 mg · Magnesio: 87 mg",
+            "Potasio: 785 mg · Sodio: 74 mg · Vitamina C: 11 mg"
+          ],
+          "page": 69
+        },
+        {
+          "id": "dulces-070",
+          "title": "Arroz cremoso con mango y cardamomo",
+          "details": "70 / 70 · Rinde 4 porciones · 20 minutos",
+          "image": "/nutricion/dulces-070.webp",
+          "ingredients": "240 g de arroz integral cocido; 300 g de leche semidescremada; 200 g de mango sin piel ni carozo; 15 g de coco seco sin azúcar. Cardamomo o canela, a gusto.",
+          "method": "Colocá arroz integral ya cocido y leche en una olla. Cociná a fuego bajo 12-15 minutos, revolviendo, hasta que quede cremoso. Dejá entibiar y repartí en cuatro vasos. Terminá con mango en cubitos y coco.",
+          "nutrition": [
+            "Energía: 165 kcal · Proteínas: 4.8 g · Carbohidratos: 27.3 g",
+            "Grasas: 4.7 g · Fibra: 2.4 g",
+            "Calcio: 98 mg · Hierro: 0.6 mg · Magnesio: 40 mg",
+            "Potasio: 261 mg · Sodio: 40 mg · Vitamina C: 18 mg"
+          ],
+          "page": 70
+        }
+      ]
+    }
+  ]
+}

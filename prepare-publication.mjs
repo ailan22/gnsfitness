@@ -15,7 +15,7 @@ for (const name of fs.readdirSync(path.join(dist, 'assets'))) {
   files.push(`assets/${name}`)
 }
 for (const name of fs.readdirSync(path.join(dist, 'nutricion'))) {
-  if (!/^(alimentacion|postres)-[0-9]{2}-[0-9]+\.webp$/.test(name)) throw Error('Unexpected nutrition asset')
+  if (!/^(?:(alimentacion|postres)-[0-9]{2}-[0-9]+|(recetas|dulces)-[0-9]{3})\.webp$/.test(name)) throw Error('Unexpected nutrition asset')
   files.push(`nutricion/${name}`)
 }
 let allCode = ''

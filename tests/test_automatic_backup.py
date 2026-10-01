@@ -35,6 +35,11 @@ class AutomaticBackupTests(unittest.TestCase):
                     self.assertTrue(second['skipped'])
                     self.assertEqual(captured.call_count, 1)
                     self.assertFalse(first['offsiteUploaded'])
+                    third = automatic.run(force=True)
+                    self.assertEqual(third['status'], 'verified')
+                    self.assertNotEqual(first['path'], third['path'])
+                    self.assertTrue(Path(first['path']).exists())
+                    self.assertEqual(captured.call_count, 2)
                 automatic.REPORT.unlink()
                 with patch.object(automatic.backup, 'capture', side_effect=RuntimeError('Do not leak sensitive provider details')):
                     self.assertEqual(automatic.run()['status'], 'failed')

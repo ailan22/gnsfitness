@@ -78,7 +78,7 @@ def write_status(data):
     REPORT.write_text(json.dumps(data, indent=2), encoding='utf-8')
 
 
-def run():
+def run(force=False):
     import msvcrt
     PRIVATE.mkdir(exist_ok=True)
     with (PRIVATE / 'automatic-backup.lock').open('a+b') as lock:
@@ -92,7 +92,7 @@ def run():
             return {'status': 'already_running'}
         try:
             today = datetime.now().astimezone().date().isoformat()
-            if REPORT.exists():
+            if REPORT.exists() and not force:
                 previous = json.loads(REPORT.read_text(encoding='utf-8'))
                 if previous.get('status') == 'verified' and previous.get('localDate') == today and Path(previous.get('path', '')).is_file():
                     return {**previous, 'skipped': True}
@@ -172,7 +172,7 @@ def configure():
 
 if __name__ == '__main__':
     if '--run' in sys.argv:
-        result = run()
+        result = run(force='--force' in sys.argv)
         print(json.dumps(result))
         sys.exit(0 if result['status'] in ('verified', 'already_running') else 1)
     else:

@@ -362,7 +362,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
             {s.notes && <p>{s.notes}</p>}
             {s.results.length > 0 && <details><summary>Ver resultados</summary><ul>{s.results.map((result, index) =>
               <li key={`${result.exerciseId}-${index}`}><strong>{result.name}</strong> · {result.sets} series · {result.reps} repeticiones
-                {result.load && ` · Carga ${result.load}`}{result.rir && ` · RIR ${result.rir}`}</li>)}</ul></details>}
+                {result.load && ` · Carga ${result.load}`}{result.rir && ` · RIR ${result.rir}`}{result.comment && <p className="exercise-comment">{result.comment}</p>}</li>)}</ul></details>}
             {review ? <div className="session-review"><strong>Revisado por {review.trainer_name} · {readableDate(review.reviewed_at)}</strong>{review.notes && <span>{review.notes}</span>}</div> : <p className="muted">Pendiente de revisión.</p>}
             <div className="session-actions"><button type="button" className="secondary" disabled={saving || Boolean(deletingSessionId)} onClick={() => openReview(s.id, review)}>{review ? 'Editar revisión' : 'Revisar entrenamiento'}</button>
               <button type="button" className="text-button delete-action" disabled={saving || Boolean(deletingSessionId)} onClick={() => void deleteSession(s)}>{deletingSessionId === s.id ? 'Eliminando…' : 'Eliminar entrenamiento'}</button></div>

@@ -12,14 +12,15 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
   const states = [], refs = [], calls = []
   let cursor = 0, refCursor = 0, tree
   const exports = {}
-  vm.runInNewContext(compile('CloudStudent.tsx'), { exports, crypto: { randomUUID: () => 'request-id' },
+  vm.runInNewContext(compile('CloudStudent.tsx'), { exports, window: { confirm: () => true }, crypto: { randomUUID: () => 'request-id' },
     require(name) {
+      if (name === './StudentWellbeing') return { StudentWellbeing: () => null }
       if (name === './cloudTraining') return training
       if (name === './readAllPages') return {}
       if (name === 'react') return {
         useEffect() {},
         useRef(value) { const i = refCursor++; return refs[i] ??= { current: value } },
-        useState(initial) { const i = cursor++; if (!(i in states)) states[i] = i === 0 ? history : i === 1 ? false : typeof initial === 'function' ? initial() : initial; return [states[i], value => { states[i] = typeof value === 'function' ? value(states[i]) : value }] },
+        useState(initial) { const i = cursor++; if (!(i in states)) states[i] = i === 2 ? history : i === 3 ? false : typeof initial === 'function' ? initial() : initial; return [states[i], value => { states[i] = typeof value === 'function' ? value(states[i]) : value }] },
       }
       if (name === 'react/jsx-runtime') return { Fragment: 'fragment', jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) }
       throw Error(name)
@@ -33,6 +34,8 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
   return { calls, nodes, text: () => text(tree),
     cards: () => nodes().filter(n => n.type === 'section' && /card student-day/.test(n.props.className ?? '')),
     begin() { const button = nodes().find(n => n.type === 'button' && !n.props.disabled && text(n.props.children).includes('Completar Día')); assert.ok(button); button.props.onClick(); render() },
+    history() { nodes().find(n => n.type === 'button' && text(n.props.children).includes('Historial')).props.onClick(); render() },
+    field(label, value) { const wrapper = nodes().find(n => n.type === 'label' && text(n.props.children).includes(label)); const input = nodes(wrapper).find(n => n.type === 'input' || n.type === 'textarea'); input.props.onChange({ target: { value } }); render() },
     async save() { await nodes().find(n => n.type === 'form').props.onSubmit({preventDefault(){}}); await new Promise(resolve => setImmediate(resolve)); render() },
   }
 }
@@ -52,7 +55,7 @@ test('empty day three has a visible disabled button and preserves previous recor
  assert.match(JSON.stringify(day), /Disponible/)
  assert.equal(ui.nodes(day).find(n=>n.type==='button').props.disabled, true)
  assert.match(ui.text(), /Faltan ejercicios/)
- assert.match(ui.text(), /Registro conservado/)
+ ui.history(); assert.match(ui.text(), /Registro conservado/)
 })
 test('failed save retains current day, form and locked next day', async () => {
  const ui = harness({failure:{code:'network'}})
@@ -70,7 +73,7 @@ test('save uses checked server registration and only persisted history unlocks n
  const refreshed = harness({sessions:[record(1)]})
  assert.match(JSON.stringify(refreshed.cards()[1]), /Disponible/)
  assert.match(JSON.stringify(refreshed.cards()[2]), /Bloqueado/)
- assert.match(refreshed.text(), /Mi registro de entrenamientos/)
+ refreshed.history(); assert.match(refreshed.text(), /Mi registro de entrenamientos/)
 })
 test('inactive member cannot begin a day even with exercises', () => {
  const ui = harness({status:'Inactivo'})
@@ -79,3 +82,15 @@ test('inactive member cannot begin a day even with exercises', () => {
 
 
 
+
+ test('per-exercise comment-only results are retained and submitted with the correct exercise', async () => {
+  const ui = harness(); ui.begin(); ui.field('Comentario del ejercicio', 'Me costó la última serie'); await ui.save()
+  assert.equal(ui.calls[0].args.p_results.length, 1)
+  assert.equal(ui.calls[0].args.p_results[0].exerciseId, 'exercise')
+  assert.equal(ui.calls[0].args.p_results[0].comment, 'Me costó la última serie')
+ })
+ test('loads and comments stay together in the training record', async () => {
+  const ui = harness(); ui.begin(); ui.field('Peso utilizado', '20 / 22 / 22 kg'); ui.field('Comentario del ejercicio', 'Buena técnica'); await ui.save()
+  const result = ui.calls[0].args.p_results[0]
+  assert.equal(result.load, '20 / 22 / 22 kg'); assert.equal(result.comment, 'Buena técnica')
+ })

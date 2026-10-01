@@ -224,3 +224,25 @@ textarea { min-height: 90px; resize: vertical; }
 .account-legal a { color: #f4f3ee; }
 .account-privacy { margin: 24px 0; }
 .account-privacy summary { cursor: pointer; font-weight: 700; }
+/* Student workspace: keep the established gold and dark palette. */
+.cloud-student > h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); margin-bottom: 12px; }
+.cloud-student .student-section-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; border: 0; padding: 0; }
+.student-section-nav button { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; min-height: 92px; padding: 18px; border-radius: 16px; }
+.student-section-nav small { font-size: 12px; line-height: 1.5; font-weight: 400; }
+.student-section-nav button[aria-current="page"] { box-shadow: 0 5px 22px #d3ac551a; }
+.cloud-student .student-today { border-radius: 20px; border: 1px solid #78613c; background: linear-gradient(140deg, #292b30, #202127); }
+.cloud-student .student-exercises { display: grid; gap: 14px; }
+.cloud-student .student-exercise { padding: 20px; background: #ffffff04; border: 1px solid #ffffff18; border-radius: 14px; }
+.exercise-record-button { align-self: flex-start; margin-top: 14px; }
+.cloud-student .student-record { border: 1px solid #b48c43; border-radius: 20px; scroll-margin-top: 24px; }
+.cloud-student .session-exercise { padding: 20px; margin: 20px 0; border: 1px solid #ffffff24; border-radius: 14px; scroll-margin-top: 24px; }
+.cloud-student .session-exercise.exercise-checked { border-left: 4px solid #d3ac55; }
+.cloud-student textarea { min-height: 76px; resize: vertical; }
+.exercise-comment { display: block; margin-top: 8px; color: #d8d4c9; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+ .cloud-student .student-section-nav { gap: 6px; }
+ .student-section-nav button { min-height: 88px; padding: 12px 9px; border-radius: 12px; font-size: 13px; }
+ .student-section-nav small { font-size: 11px; }
+ .cloud-student .student-exercise, .cloud-student .session-exercise { padding: 15px; }
+ .cloud-student .session-exercise .grid { grid-template-columns: 1fr; }
+}

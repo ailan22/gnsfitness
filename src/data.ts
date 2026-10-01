@@ -67,6 +67,7 @@ export type Payment = {
 }
 
 export type SessionExerciseResult = {
+  comment?: string
   exerciseId: string
   name: string
   sets: string
@@ -156,7 +157,7 @@ export function validateBackup(value: unknown): Data | null {
         typeof s.review.reviewedAt === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s.review.reviewedAt))) &&
       (s.results === undefined || (Array.isArray(s.results) &&
         s.results.every(result => isObject(result) && typeof result.exerciseId === 'string' &&
-          typeof result.name === 'string' && ['sets', 'reps', 'load', 'rir'].every(key => typeof result[key] === 'string')))))) return null
+          typeof result.name === 'string' && (result.comment === undefined || (typeof result.comment === 'string' && result.comment.length <= 300)) && ['sets', 'reps', 'load', 'rir'].every(key => typeof result[key] === 'string')))))) return null
   return { ...value, sessions } as Data
 }
 

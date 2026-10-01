@@ -1,7 +1,6 @@
 """Local, interactive database backup. Never logs passwords or database contents.
 This captures DB + tracked source; provider settings/secrets need separate escrow.
 """
-import base64
 import hashlib
 import io
 import json
@@ -45,6 +44,12 @@ def command(args, env=None, timeout=300):
         error = result.stderr.decode('utf-8', errors='replace').lower()
         if 'password authentication failed' in error:
             raise RuntimeError('La base rechazó la contraseña. Volvé a ingresarla sin compartirla.')
+        if 'could not translate host name' in error or 'name or service not known' in error:
+            raise RuntimeError('No se pudo localizar el servidor. Revisá la conexión a Internet antes de reintentar.')
+        if 'permission denied' in error:
+            raise RuntimeError('El servidor rechazó permisos de exportación. No se guardó una copia parcial.')
+        if 'server version' in error and 'mismatch' in error:
+            raise RuntimeError('La versión de PostgreSQL requiere actualizar la herramienta de respaldo.')
         if 'certificate' in error or 'ssl' in error:
             raise RuntimeError('No se pudo verificar la conexión TLS; no se continuará sin validación.')
         raise RuntimeError('La herramienta de respaldo no completó la operación. No se guardó una copia parcial.')
@@ -52,9 +57,9 @@ def command(args, env=None, timeout=300):
 
 def capture(password, phrase, target):
     env = os.environ.copy()
-    env.update(PGHOST='aws-0-sa-east-1.pooler.supabase.com', PGPORT='5432',
-               PGUSER='postgres.xwnbeuyywxbqrnlbnskg', PGDATABASE='postgres',
-               PGPASSWORD=password, PGSSLMODE='verify-full', PGSSLROOTCERT='system',
+    env.update(PGHOST='db.xwnbeuyywxbqrnlbnskg.supabase.co', PGPORT='5432',
+               PGUSER='postgres', PGDATABASE='postgres',
+               PGPASSWORD=password, PGSSLMODE='verify-full', PGSSLROOTCERT=str(WORKSPACE / '.backup-tools/supabase-ca.crt'),
                PGCONNECT_TIMEOUT='20', PGAPPNAME='GNS encrypted backup')
     try:
         version = command([str(BIN/'psql.exe'), '-X', '-A', '-t', '-c', 'show server_version_num'], env).strip()
@@ -100,7 +105,7 @@ def capture(password, phrase, target):
 def main():
     import tkinter as tk
     from tkinter import filedialog, messagebox
-    root = tk.Tk(); root.title('GNS FITNESS · Respaldo privado'); root.geometry('610x430')
+    root = tk.Tk(); root.title('GNS FITNESS · Respaldo privado · Conexión corregida'); root.geometry('610x430')
     root.attributes('-topmost', True)
     tk.Label(root, text='Respaldo cifrado de la base de datos', font=('Segoe UI',16,'bold')).pack(pady=12)
     tk.Label(root,text='Ingresá las claves solo aquí. No se envían al chat ni se guardan en archivos.\nLa contraseña de base se usa para conectar con tu Supabase por TLS.', wraplength=570).pack()

@@ -20,4 +20,5 @@ for (const file of fs.readdirSync(path.join(source, 'assets'))) {
   if (!/\.(js|css|svg|png|woff2?)$/.test(file)) throw Error('Unexpected mobile asset')
   fs.copyFileSync(path.join(source, 'assets', file), path.join(target, 'assets', file))
 }
+fs.cpSync(path.join(source, 'nutricion'), path.join(target, 'nutricion'), { recursive: true })
 console.log('Mobile web assets prepared; native binaries still require platform SDKs.')

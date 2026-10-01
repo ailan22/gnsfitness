@@ -101,3 +101,21 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .plan-grand-total { border-top:1px solid #685639; padding-top:16px; color:#edcb84; font-size:1.1rem; }
 .service-reminders { margin-bottom:24px; border-left:3px solid #d3ac55; }
 @media(max-width:550px) { .schedule-calendar { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+
+.cloud-student .student-nutrition-panel, .cloud-student .student-history-panel { margin: 20px 0; background: #191c16; }
+.student-nutrition-panel > summary, .student-history-panel > summary { cursor: pointer; color: #edcb84; padding: 6px 0; }
+.student-nutrition-panel > summary span { margin-left: 12px; font-size: .9rem; color: #c5c4b8; }
+.student-nutrition-panel[open] > summary, .student-history-panel[open] > summary { margin-bottom: 20px; }
+.nutrition-recipes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin-top: 20px; }
+.nutrition-recipe { min-width: 0; padding: 18px; background: #141710; border: 1px solid #4a4838; border-radius: 14px; }
+.nutrition-recipe:only-child { grid-column: 1 / -1; }
+.nutrition-recipe h3 { color: #edcb84; line-height: 1.4; }
+.nutrition-recipe p { line-height: 1.75; font-size: 1rem; }
+.nutrition-guide .nutrition-photo { max-height: none; object-fit: contain; }
+@media(max-width:700px) {
+  .nutrition-recipes { grid-template-columns: 1fr; }
+  .nutrition-recipe { padding: 12px; }
+  .student-nutrition-panel > summary span { display: block; margin: 8px 0 0 18px; }
+  .student-nutrition-panel.card { padding: 14px; }
+  .nutrition-guide .card { padding: 14px; }
+}

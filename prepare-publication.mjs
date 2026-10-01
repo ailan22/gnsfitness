@@ -14,7 +14,10 @@ for (const name of fs.readdirSync(path.join(dist, 'assets'))) {
   if (!/\.(js|css|svg|png|woff2?)$/.test(name)) throw Error('Unexpected build asset')
   files.push(`assets/${name}`)
 }
-for (const name of ['guia-alimentacion-gns.pdf', 'postres-y-recetas-dulces-gns.pdf', 'plato-equilibrado.png', 'colaciones.png', 'metodo-plato.svg']) files.push(`nutricion/${name}`)
+for (const name of fs.readdirSync(path.join(dist, 'nutricion'))) {
+  if (!/^(alimentacion|postres)-[0-9]{2}-[0-9]+\.webp$/.test(name)) throw Error('Unexpected nutrition asset')
+  files.push(`nutricion/${name}`)
+}
 let allCode = ''
 for (const name of files) {
   if (/\.(html|js|css|svg)$/.test(name)) allCode += fs.readFileSync(path.join(dist, name), 'utf8')

@@ -1,255 +1,868 @@
 {
-  "title": "Aprendé a alimentarte",
-  "subtitle": "Guía práctica de alimentación y entrenamiento",
-  "edition": "GNS FITNESS · Septiembre de 2026",
-  "intro": "Una guía completa para empezar desde cero: aprender a combinar alimentos, organizar comidas y acompañar el entrenamiento. No necesitás comer perfecto ni comprar productos especiales. Elegí un cambio, practicalo y sumá el siguiente.",
-  "scope": "Material educativo para personas adultas sanas. No es un plan personalizado ni una prescripción clínica. Embarazo, menores de edad, diabetes, enfermedad renal, alergias, síntomas digestivos persistentes o antecedentes de trastornos alimentarios requieren adaptación con un profesional de nutrición habilitado.",
+  "sources": [
+    {
+      "file": "guia-alimentacion-gns.pdf",
+      "pages": 29,
+      "sha256": "0564e55629838bb3bef2c19d058d77c7a6ddceb8779dd5cc9cadcf84504b9645"
+    },
+    {
+      "file": "postres-y-recetas-dulces-gns.pdf",
+      "pages": 12,
+      "sha256": "be1d81bdb46135f90253e9057ca9e8428107a28e6ce7c48e934e097aa1f66ce5"
+    }
+  ],
   "sections": [
     {
       "id": "bases",
-      "title": "1. Entendé qué aporta cada alimento",
-      "visual": "food",
-      "lead": "Los alimentos cumplen funciones diferentes y se complementan. Una comida puede ser sencilla y estar bien armada.",
+      "title": "Alimentación saludable",
+      "intro": "",
       "items": [
-        "Carbohidratos: aportan energía. Ejemplos: arroz, avena, pan, pasta, papa, boniato, frutas y legumbres. No hace falta eliminarlos para alimentarse mejor.",
-        "Proteínas: participan en el mantenimiento y reparación de tejidos. Alterná huevos, pescado, pollo, carnes magras, lácteos, tofu y legumbres. No dependas de un único alimento.",
-        "Grasas: forman parte de una alimentación suficiente. Incluí aceite, palta, semillas o frutos secos según preferencias y tolerancia.",
-        "Fibra y micronutrientes: verduras, frutas, legumbres y granos integrales aportan fibra, vitaminas y minerales. Aumentá la fibra gradualmente si no estás acostumbrado.",
-        "El conjunto importa: priorizá variedad y alimentos poco procesados; reducí la frecuencia de bebidas azucaradas y productos con mucho sodio, azúcar o grasas saturadas."
-      ],
-      "practice": "Ejercicio: mirá tu próxima comida. Identificá una fuente de energía, una de proteína y una fruta o verdura. Si falta algo, pensá qué opción accesible podés sumar.",
-      "sources": [
-        "who",
-        "msp"
+        {
+          "title": "Alimentación saludable",
+          "paragraphs": [
+            "Una alimentación saludable es variada, suficiente, equilibrada y segura. Aporta la energía y los nutrientes que necesitás para vivir, moverte y recuperarte, y se adapta a tus gustos y a tu vida cotidiana.",
+            "Para qué sirve",
+            "Contribuye al cuidado de la salud y a prevenir enfermedades relacionadas con la alimentación. Aporta energía para las actividades diarias y materiales para mantener los tejidos, incluido el músculo.",
+            "Una base para disfrutar",
+            "Combiná frutas, verduras, legumbres, cereales, fuentes de proteína y grasas como el aceite de oliva. Variá colores, sabores y texturas. Moderá la sal y los productos con mucho azúcar, sodio o grasas poco saludables. Para adultos, una referencia es al menos 400 g diarios de frutas y verduras.",
+            "Un día de ejemplo",
+            "Para un día completo, podés combinar la opción 1 de cada grupo: tostadas francesas, canelones, vaso cremoso de cacao y pizza integral. También podés alternar las otras propuestas según tus preferencias. Las opciones tienen distintos aportes y no son intercambiables en cantidades exactas. Para acompañar: agua con limón al despertar, té verde por la mañana, menta después de comer, jengibre con limón y miel en la tarde o manzanilla por la noche. Elegí 1-3 infusiones según tu gusto y tolerancia.",
+            "Porciones y medidas",
+            "Cada receta es para una persona adulta. Ajustá las cantidades a tu hambre, actividad y objetivo; no es una dieta individual. Taza de 240 ml, cucharada de 15 ml y cucharadita de 5 ml. Cereales y legumbres se indican cocidos salvo que diga secos o harina. En carnes y pescados, respetá el peso crudo o cocido indicado. Los tiempos son orientativos y dependen del horno y el tamaño de las piezas. Cociná completamente huevos, carnes y pescados. Mantené con frío las preparaciones con lácteos, huevos o pescado."
+          ],
+          "images": [],
+          "page": 1
+        }
       ]
     },
     {
-      "id": "plato",
-      "title": "2. Armá tu plato paso a paso",
-      "visual": "plate",
-      "lead": "Usá esta imagen como una referencia de composición, no como una cantidad obligatoria ni un límite de comida.",
+      "id": "entrenar",
+      "title": "Antes y después de entrenar",
+      "intro": "",
       "items": [
-        "La mitad: verduras y frutas. En almuerzo o cena podés usar principalmente verduras y acompañar con fruta. Variá colores, texturas y preparaciones.",
-        "Un cuarto: una fuente de proteína, como huevo, pollo, pescado, tofu o legumbres.",
-        "Un cuarto: cereales preferentemente integrales. En esta adaptación práctica también podés usar papa o boniato como fuente de energía.",
-        "Completá con agua y una cantidad de aceite, semillas o palta que se ajuste a tu comida. Las legumbres aportan proteína y carbohidratos: no pertenecen exclusivamente a un solo grupo.",
-        "Las proporciones también sirven para un guiso, una vianda o un salteado. Con más entrenamiento podés necesitar más energía; el plato no debe dejarte con hambre persistente o sin recuperación."
-      ],
-      "practice": "Tres ejemplos propios: pollo + arroz + ensalada; lentejas + arroz + verduras salteadas; tortilla de huevo + boniato + tomate y zanahoria. Ajustá cantidades a tus necesidades.",
-      "sources": [
-        "plate"
+        {
+          "title": "Antes y después de entrenar",
+          "paragraphs": [
+            "Comer suficiente ayuda a disponer de energía para moverte y de nutrientes para recuperarte. El entrenamiento puede aumentar tus necesidades: las porciones del día de ejemplo son un punto de partida, no un límite.",
+            "Antes de entrenar",
+            "Elegí alimentos que te sienten bien. Unas 2-3 horas antes podés hacer una comida completa. Si falta poco y tenés hambre, una banana, yogur o una tostada pueden resultar más cómodos. Mucha grasa o fibra justo antes puede generar molestias en algunas personas.",
+            "Después de entrenar",
+            "Incluí proteína y carbohidratos en la siguiente comida: por ejemplo, huevos con pan, yogur con avena o canelones con ricota. Si falta mucho para comer, una colación puede ayudarte. La alimentación del día importa más que depender de un suplemento.",
+            "Agua y recuperación",
+            "Tené agua disponible y tomá durante el día y la sesión. El calor, el sudor y el tiempo de ejercicio cambian las necesidades. Para muchas sesiones habituales de gimnasio, el agua alcanza; esfuerzos prolongados o mucho calor pueden requerir una estrategia específica. Evitá forzarte a beber grandes cantidades.",
+            "Adaptá la comida a tu demanda",
+            "Si te quedás con hambre, sumá una colación o aumentá la porción. Si el día incluye mucho ejercicio, podés necesitar más pan, pasta, avena, papa o fruta, además de suficiente proteína. Un nutricionista puede definir las cantidades según tus objetivos.",
+            "Lo que una infusión puede acompañar",
+            "Una bebida agradable puede formar parte de tu rutina y de un momento de calma. No sustituye una comida, la recuperación, el descanso ni el agua que necesitás. Elegí la que te resulte agradable y te siente bien. Cansancio persistente, mareos o una recuperación pobre requieren revisar alimentación, descanso y salud. Evitá compensar las comidas con ejercicio o restringir lo que comés por culpa."
+          ],
+          "images": [],
+          "page": 2
+        }
       ]
     },
     {
-      "id": "porciones",
-      "title": "3. Elegí cantidades que puedas sostener",
-      "visual": "none",
-      "lead": "No existe una porción ni una cantidad de calorías que sirva para todos. El tamaño corporal, la actividad, la salud y el apetito cambian las necesidades.",
+      "id": "desayunos",
+      "title": "Desayunos · 12 ideas",
+      "intro": "Ingredientes para una persona. Ajustá las porciones a tus necesidades.",
       "items": [
-        "Empezá con comidas regulares que encajen en tus horarios. Las colaciones son una herramienta si tenés hambre o hay muchas horas entre comidas; no son obligatorias.",
-        "Observá cómo te sentís: hambre entre comidas, saciedad cómoda, energía y recuperación. Si terminás siempre con mucha hambre, revisá si la comida es suficiente y completa.",
-        "Para ganar masa muscular hace falta entrenamiento adecuado y alimentación suficiente. No alcanza con agregar proteína a una dieta escasa.",
-        "Si buscás reducir grasa, evitá recortes extremos o compensar comidas con castigos de ejercicio. Pedí un ajuste individual que permita entrenar, recuperarte y conservar una buena relación con la comida.",
-        "La balanza no resume tu progreso. Anotá energía, desempeño, regularidad y cómo te queda la ropa si te resulta útil. No hace falta pesarse todos los días."
-      ],
-      "practice": "Durante una semana registrá solo tres cosas: horario de las comidas, energía durante el entrenamiento y hambre al terminar el día. Usalo para conversar con el profesional, no para juzgarte.",
-      "sources": [
-        "who",
-        "ais"
+        {
+          "title": "01 · Tostadas francesas con durazno",
+          "paragraphs": [
+            "Ingredientes. 2 rebanadas de pan integral, 2 huevos, 2 cucharadas de leche, 100 g de yogur natural, 1 durazno, 1 cucharada de pistachos o maní sin sal, canela y 1 cucharadita de aceite para la sartén.",
+            "Cómo se hace. Batí los huevos con la leche y canela. Pasá el pan por la mezcla y cociná en sartén aceitada a fuego medio, 2-3 minutos por lado, hasta que el huevo quede completamente cocido. Serví con yogur, durazno en gajos y frutos secos."
+          ],
+          "images": [
+            "/nutricion/alimentacion-03-1.webp"
+          ],
+          "page": 3
+        },
+        {
+          "title": "02 · Avena horneada de manzana y canela",
+          "paragraphs": [
+            "Ingredientes. ½ taza de avena, 1 huevo, ½ manzana rallada, ¼ taza de leche, canela, ¼ cucharadita de polvo de hornear y 1 cucharada de nueces. Para acompañar: 100 g de yogur natural y la otra mitad de la manzana.",
+            "Cómo se hace. Mezclá avena, huevo, leche, media manzana rallada, canela y polvo de hornear. Colocá en un molde pequeño aceitado, sumá nueces y horneá a 180 °C durante 20-25 minutos, hasta que el centro esté cocido. Serví con yogur y el resto de la manzana."
+          ],
+          "images": [
+            "/nutricion/alimentacion-03-2.webp"
+          ],
+          "page": 3
+        },
+        {
+          "title": "03 · Waffle salado con huevos y palta",
+          "paragraphs": [
+            "Ingredientes. Para el waffle: ⅓ taza de harina integral, 1 huevo, 3 cucharadas de leche, una pizca de polvo de hornear y 1 cucharadita de aceite. Para cubrir: 1 huevo completamente cocido, ¼ de palta, tomate y perejil.",
+            "Cómo se hace. Mezclá harina, un huevo, leche, polvo de hornear y aceite. Cociná en wafflera según el equipo, hasta que esté firme y dorado; también podés hacer pequeños panqueques en sartén. Cubrí con el otro huevo bien cocido, palta, tomate y perejil."
+          ],
+          "images": [
+            "/nutricion/alimentacion-04-1.webp"
+          ],
+          "page": 4
+        },
+        {
+          "title": "04 · Wrap de huevos espinaca y tomate",
+          "paragraphs": [
+            "Ingredientes. 1 tortilla integral mediana, 2 huevos completamente cocidos, 1 puñado de espinaca, ½ tomate, 20 g de queso feta o magro y 1 cucharadita de aceite. Para acompañar: 1 naranja.",
+            "Cómo se hace. Salteá espinaca y tomate con el aceite. Agregá los huevos batidos y cociná hasta que cuajen por completo. Rellená la tortilla con los huevos y el queso, doblá y calentá brevemente en sartén. Serví la naranja como acompañamiento."
+          ],
+          "images": [
+            "/nutricion/alimentacion-04-2.webp"
+          ],
+          "page": 4
+        },
+        {
+          "title": "05 · Avena de la noche con frutos rojos",
+          "paragraphs": [
+            "Ingredientes. ½ taza de avena, 170 g de yogur natural, ¼ taza de leche, ½ taza de frutos rojos, 1 cucharada de almendras y canela.",
+            "Cómo se hace. Mezclá avena, yogur, leche y canela en un frasco. Tapá y dejá en la heladera al menos 4 horas, idealmente toda la noche. Por la mañana agregá los frutos rojos y las almendras picadas."
+          ],
+          "images": [
+            "/nutricion/alimentacion-05-1.webp"
+          ],
+          "page": 5
+        },
+        {
+          "title": "06 · Crepes de ricota y naranja",
+          "paragraphs": [
+            "Ingredientes. ⅓ taza de harina integral, 1 huevo, ⅓ taza de leche, 80 g de ricota, 1 naranja, 1 cucharada de nueces y 1 cucharadita de aceite.",
+            "Cómo se hace. Batí harina, huevo y leche. Cociná dos crepes finos en sartén ligeramente aceitada, por ambos lados. Rellená con ricota y ralladura de naranja bien lavada. Serví con los gajos de naranja y nueces."
+          ],
+          "images": [
+            "/nutricion/alimentacion-05-2.webp"
+          ],
+          "page": 5
+        },
+        {
+          "title": "07 · Muffins de huevo y verduras",
+          "paragraphs": [
+            "Ingredientes. 2 huevos, ½ taza de espinaca, ¼ de morrón, 20 g de queso magro, 1 cucharadita de aceite y 1-2 tostadas integrales.",
+            "Cómo se hace. Picá las verduras y saltealas brevemente. Mezclá con huevos batidos y queso. Repartí en moldes individuales aceitados y horneá a 180 °C durante 15-20 minutos, hasta que el centro cuaje. Serví con las tostadas."
+          ],
+          "images": [
+            "/nutricion/alimentacion-06-1.webp"
+          ],
+          "page": 6
+        },
+        {
+          "title": "08 · Tostadas con hummus y huevo",
+          "paragraphs": [
+            "Ingredientes. 2 rebanadas integrales, ¼ taza de hummus, 1-2 huevos duros, ½ tomate, perejil y una pizca de pimentón.",
+            "Cómo se hace. Tostá el pan y untá el hummus. Cortá los huevos duros y el tomate en rodajas. Distribuí sobre las tostadas y terminá con perejil y pimentón. Si preparás el huevo antes, mantenelo refrigerado."
+          ],
+          "images": [
+            "/nutricion/alimentacion-06-2.webp"
+          ],
+          "page": 6
+        },
+        {
+          "title": "09 · Quesadilla de porotos y queso",
+          "paragraphs": [
+            "Ingredientes. 1 tortilla integral mediana, ½ taza de porotos negros cocidos, 40 g de queso magro, ½ tomate, comino y 1 cucharadita de aceite.",
+            "Cómo se hace. Pisá parcialmente los porotos y condimentá con comino. Distribuí porotos y queso sobre media tortilla y doblá. Calentá en sartén aceitada 2-3 minutos por lado, hasta que el queso se funda. Serví con tomate."
+          ],
+          "images": [
+            "/nutricion/alimentacion-07-1.webp"
+          ],
+          "page": 7
+        },
+        {
+          "title": "10 · Sándwich caprese con huevo",
+          "paragraphs": [
+            "Ingredientes. 2 rebanadas de pan integral, 1 huevo duro, 40 g de mozzarella, ½ tomate, albahaca y 1 cucharadita de aceite de oliva.",
+            "Cómo se hace. Cortá huevo, tomate y mozzarella en rodajas. Armá el sándwich con albahaca y aceite. Podés servirlo fresco o tostarlo en sartén tapada hasta que el queso se ablande."
+          ],
+          "images": [
+            "/nutricion/alimentacion-07-2.webp"
+          ],
+          "page": 7
+        },
+        {
+          "title": "11 · Yogur con chía y mango",
+          "paragraphs": [
+            "Ingredientes. 200 g de yogur natural, 1 cucharada de chía, 3 cucharadas de avena, ½ mango y 2-3 cucharadas de agua o leche.",
+            "Cómo se hace. Mezclá yogur, chía, avena y agua o leche. Dejá hidratar en la heladera al menos 30 minutos. Agregá el mango en cubos al servir. Si lo dejás preparado desde la noche anterior, mantenelo tapado y refrigerado."
+          ],
+          "images": [
+            "/nutricion/alimentacion-08-1.webp"
+          ],
+          "page": 8
+        },
+        {
+          "title": "12 · Tortilla de papa y cebolla",
+          "paragraphs": [
+            "Ingredientes. 2 huevos, 1 papa chica, ¼ de cebolla, 1 cucharadita de aceite, 1 tomate y perejil.",
+            "Cómo se hace. Cociná la papa en agua hasta que esté tierna y cortala en rodajas. Rehogá la cebolla, mezclá con la papa y huevos batidos. Cociná tapado a fuego bajo hasta cuajar por completo; volteá con cuidado. Serví con tomate y perejil."
+          ],
+          "images": [
+            "/nutricion/alimentacion-08-2.webp"
+          ],
+          "page": 8
+        }
       ]
     },
     {
-      "id": "pre",
-      "title": "4. Qué comer antes de entrenar",
-      "visual": "timing",
-      "lead": "Buscá llegar con energía y comodidad digestiva. Probá lo que te funciona en sesiones habituales, no el día de una competencia.",
+      "id": "almuerzos",
+      "title": "Almuerzos · 12 ideas",
+      "intro": "Ingredientes para una persona. Ajustá las porciones a tus necesidades.",
       "items": [
-        "Entre 2 y 4 horas antes: suele tolerarse una comida principal. Ejemplos propios: arroz con pollo y verduras cocidas; pasta con huevo y tomate; sándwich con relleno proteico y fruta.",
-        "Alrededor de 1 hora antes: si necesitás comer, elegí una colación más pequeña y fácil de digerir, principalmente con carbohidratos. Ejemplos: banana madura, tostada o yogur con fruta si lo tolerás.",
-        "Si te sentís pesado, reducí la cantidad y alejá de la sesión las comidas muy grasas, muy abundantes o con mucha fibra. No hace falta evitar esos alimentos durante todo el día.",
-        "Tomá líquido de a poco antes de empezar. No intentes resolver toda la hidratación tomando mucho de golpe justo antes.",
-        "Si entrenás muy temprano, podés probar una colación pequeña y desayunar después. Si aparecen mareos o malestar, detené la actividad y revisá la situación con un profesional."
-      ],
-      "practice": "Elegí dos colaciones que ya conozcas y llevá una si tu jornada es larga. No estrenes suplementos ni comidas que te caen mal para intentar rendir más.",
-      "sources": [
-        "pre"
+        {
+          "title": "01 · Canelones de espinaca y ricota",
+          "paragraphs": [
+            "Ingredientes. 2-3 láminas de pasta para canelones, 120 g de ricota, 1 taza de espinaca cocida, ½ taza de salsa de tomate, 1 cucharada de queso rallado, nuez moscada, ensalada de hojas y tomate, 1 cucharadita de aceite.",
+            "Cómo se hace. Mezclá la espinaca escurrida con ricota y una pizca de nuez moscada. Prepará la pasta según el envase, rellená y acomodá en una fuente con salsa de tomate. Cubrí con el queso y horneá a 180 °C unos 20-25 minutos. Serví con ensalada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-09-1.webp"
+          ],
+          "page": 9
+        },
+        {
+          "title": "02 · Tacos de pescado y mango",
+          "paragraphs": [
+            "Ingredientes. 2-3 tortillas integrales chicas, 140-160 g de pescado cocido, ½ taza de repollo morado, ½ mango chico, 3 cucharadas de yogur natural, limón, cilantro y 1 cucharadita de aceite.",
+            "Cómo se hace. Cociná el pescado con aceite en sartén hasta que esté completamente hecho y desmenuzalo. Cortá repollo y mango. Mezclá yogur, limón y cilantro. Calentá las tortillas y rellená con pescado, vegetales, mango y salsa."
+          ],
+          "images": [
+            "/nutricion/alimentacion-09-2.webp"
+          ],
+          "page": 9
+        },
+        {
+          "title": "03 · Hamburguesa de lentejas y nueces",
+          "paragraphs": [
+            "Ingredientes. ¾ taza de lentejas cocidas, 2 cucharadas de avena, 1 cucharada de nueces picadas, ¼ de cebolla, comino, 1 cucharadita de aceite; 1 pan integral, tomate y lechuga. Para acompañar: 1 boniato chico al horno.",
+            "Cómo se hace. Pisá las lentejas y mezclá con avena, nueces, cebolla picada y comino. Formá una hamburguesa firme y cociná en sartén aceitada 4-5 minutos por lado. Horneá el boniato en gajos a 200 °C unos 25-30 minutos. Armá el pan con tomate y lechuga."
+          ],
+          "images": [
+            "/nutricion/alimentacion-10-1.webp"
+          ],
+          "page": 10
+        },
+        {
+          "title": "04 · Pasta mediterránea con atún y porotos",
+          "paragraphs": [
+            "Ingredientes. 1 taza de pasta integral cocida, 100 g de atún al natural escurrido, ½ taza de porotos blancos cocidos, tomates cherry, 4 aceitunas, albahaca, limón y 1 cucharadita de aceite de oliva.",
+            "Cómo se hace. Cociná la pasta según el envase, escurrí y enfriá. Mezclá con atún, porotos blancos, tomates cortados, aceitunas y albahaca. Condimentá con limón y aceite. Guardá refrigerada si no la vas a comer enseguida."
+          ],
+          "images": [
+            "/nutricion/alimentacion-10-2.webp"
+          ],
+          "page": 10
+        },
+        {
+          "title": "05 · Ñoquis de ricota con tomate",
+          "paragraphs": [
+            "Ingredientes. 120 g de ricota bien escurrida, 1 huevo chico, ⅓-½ taza de harina, ½ taza de salsa de tomate, 1 puñado de espinaca y 1 cucharada de queso rallado.",
+            "Cómo se hace. Mezclá ricota, huevo y la harina necesaria para una masa suave. Formá rollitos y cortá los ñoquis. Herví en agua hasta que suban y comprobá que estén cocidos. Mezclá con salsa caliente y espinaca, y terminá con queso."
+          ],
+          "images": [
+            "/nutricion/alimentacion-11-1.webp"
+          ],
+          "page": 11
+        },
+        {
+          "title": "06 · Arroz con mariscos y arvejas",
+          "paragraphs": [
+            "Ingredientes. ¾ taza de arroz integral cocido, 150 g de mariscos limpios, ½ taza de arvejas, ¼ de morrón, ½ tomate, ajo, pimentón y 1 cucharadita de aceite.",
+            "Cómo se hace. Salteá ajo y morrón con aceite; agregá tomate y pimentón. Incorporá los mariscos y cociná hasta que estén completamente hechos; descartá mejillones que no se abran. Sumá arroz y arvejas y calentá bien todo. Serví enseguida."
+          ],
+          "images": [
+            "/nutricion/alimentacion-11-2.webp"
+          ],
+          "page": 11
+        },
+        {
+          "title": "07 · Morrón relleno de quinoa y lentejas",
+          "paragraphs": [
+            "Ingredientes. 1 morrón grande, ½ taza de quinoa cocida, ½ taza de lentejas cocidas, ¼ de cebolla, ½ taza de salsa de tomate, 30 g de queso y 1 cucharadita de aceite.",
+            "Cómo se hace. Cortá el morrón al medio y retirale las semillas. Salteá cebolla y mezclá con quinoa y lentejas. Rellená las mitades, cubrí con salsa y queso. Horneá a 190 °C unos 25-30 minutos, hasta que el morrón esté tierno."
+          ],
+          "images": [
+            "/nutricion/alimentacion-12-1.webp"
+          ],
+          "page": 12
+        },
+        {
+          "title": "08 · Pollo cítrico con cuscús",
+          "paragraphs": [
+            "Ingredientes. 140 g de pollo crudo, ¾ taza de cuscús integral cocido, ½ naranja, ½ zucchini, ½ zanahoria, 1 cucharadita de aceite y tomillo.",
+            "Cómo se hace. Cortá el pollo en tiras y condimentá con jugo de naranja y tomillo. Salteá las verduras y luego el pollo hasta que esté completamente cocido. Prepará el cuscús según el envase. Serví junto y agregá unos gajos de naranja."
+          ],
+          "images": [
+            "/nutricion/alimentacion-12-2.webp"
+          ],
+          "page": 12
+        },
+        {
+          "title": "09 · Bowl de tofu con salsa de maní",
+          "paragraphs": [
+            "Ingredientes. 150 g de tofu firme, ¾ taza de arroz cocido, ⅓ taza de edamame cocido, zanahoria, repollo, 1 cucharada de pasta de maní sin azúcar, 2 cucharadas de yogur, limón y 1 cucharadita de aceite.",
+            "Cómo se hace. Secá y cortá el tofu; doralo con aceite en sartén. Mezclá pasta de maní, yogur, limón y un poco de agua para la salsa. Armá el bowl con arroz, edamame, vegetales y tofu. Agregá la salsa al servir."
+          ],
+          "images": [
+            "/nutricion/alimentacion-13-1.webp"
+          ],
+          "page": 13
+        },
+        {
+          "title": "10 · Empanadas integrales de carne y zapallo",
+          "paragraphs": [
+            "Ingredientes. 2 tapas integrales medianas, 100 g de carne picada magra cruda, ½ taza de zapallo cocido, ¼ de cebolla, comino, 1 cucharadita de aceite y ensalada.",
+            "Cómo se hace. Rehogá cebolla, sumá carne y cociná completamente. Mezclá con zapallo y comino; dejá entibiar. Rellená las tapas y cerrá los bordes. Horneá a 200 °C unos 20-25 minutos, hasta dorar. Serví con ensalada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-13-2.webp"
+          ],
+          "page": 13
+        },
+        {
+          "title": "11 · Huevos al tomate con garbanzos",
+          "paragraphs": [
+            "Ingredientes. 2 huevos, ½ taza de garbanzos cocidos, ¾ taza de tomate triturado, ¼ de morrón, ¼ de cebolla, comino, 1 cucharadita de aceite y 1-2 tostadas integrales.",
+            "Cómo se hace. Rehogá cebolla y morrón; sumá tomate, garbanzos y comino y cociná 10 minutos. Hacé dos huecos, agregá los huevos y tapá hasta que clara y yema estén cuajadas. Serví con tostadas."
+          ],
+          "images": [
+            "/nutricion/alimentacion-14-1.webp"
+          ],
+          "page": 14
+        },
+        {
+          "title": "12 · Lasaña de zucchini y carne",
+          "paragraphs": [
+            "Ingredientes. 2-3 láminas de lasaña, 100 g de carne magra cruda, ½ zucchini, ¾ taza de salsa de tomate, 40 g de mozzarella, cebolla y 1 cucharadita de aceite.",
+            "Cómo se hace. Cociná la carne con cebolla y aceite, y sumá parte de la salsa. Prepará las láminas según el envase. Alterná pasta, zucchini fino y relleno. Cubrí con salsa y mozzarella. Horneá a 190 °C unos 25-30 minutos, hasta que todo esté cocido."
+          ],
+          "images": [
+            "/nutricion/alimentacion-14-2.webp"
+          ],
+          "page": 14
+        }
       ]
     },
     {
-      "id": "post",
-      "title": "5. Qué comer después de entrenar",
-      "visual": "recovery",
-      "lead": "Pensá en tres tareas: recuperar líquido, reponer energía y aportar proteína. La urgencia depende de la sesión y de cuándo volvés a entrenar.",
+      "id": "meriendas",
+      "title": "Meriendas · 12 ideas",
+      "intro": "Ingredientes para una persona. Ajustá las porciones a tus necesidades.",
       "items": [
-        "Si pronto vas a almorzar o cenar, esa comida puede cubrir la recuperación. Si falta mucho, una colación puede ayudarte a llegar con menos hambre.",
-        "Combiná carbohidratos y proteína: yogur con avena y fruta; sándwich de huevo; arroz con pollo; o lentejas con cereal y verduras. Son ejemplos, no porciones equivalentes.",
-        "Si tenés otra sesión exigente en pocas horas, la recuperación necesita más planificación. Coordiná horarios y cantidades con un nutricionista deportivo.",
-        "No dependas de un batido ni de una supuesta ventana de pocos minutos. La comida habitual puede aportar los nutrientes necesarios; el resto del día también cuenta.",
-        "Si al terminar no tenés apetito, probá una opción pequeña tolerable y completá más tarde. Evitá pasar muchas horas sin comer si la sesión te dejó agotado."
-      ],
-      "practice": "Dejá elegida tu comida de recuperación antes de salir: una vianda completa o una colación que puedas conservar en frío cuando corresponda.",
-      "sources": [
-        "recovery"
+        {
+          "title": "01 · Vaso cremoso de cacao y banana",
+          "paragraphs": [
+            "Ingredientes. 200 g de yogur natural, 1 banana, 3 cucharadas de avena, 1 cucharadita de cacao amargo y 1 cucharada de maní sin sal.",
+            "Cómo se hace. Mezclá el yogur con cacao y avena. Agregá la banana en rodajas y terminá con maní picado. Podés dejarlo 15-20 minutos en la heladera para que la avena se hidrate y la mezcla quede más cremosa."
+          ],
+          "images": [
+            "/nutricion/alimentacion-15-1.webp"
+          ],
+          "page": 15
+        },
+        {
+          "title": "02 · Pita con hummus rosado y huevo",
+          "paragraphs": [
+            "Ingredientes. 1 pan pita integral mediano, ½ taza de garbanzos cocidos, ¼ de remolacha cocida, limón, comino, 1 cucharadita de aceite, 1 huevo duro y pepino. El hummus lleva garbanzos y remolacha como base.",
+            "Cómo se hace. Procesá garbanzos, remolacha, limón, comino y aceite; añadí agua de a poco hasta lograr un hummus cremoso. Serví con el pan pita, pepino y huevo duro. Refrigerá el hummus que prepares con anticipación."
+          ],
+          "images": [
+            "/nutricion/alimentacion-15-2.webp"
+          ],
+          "page": 15
+        },
+        {
+          "title": "03 · Tostadas de ricota y frutillas",
+          "paragraphs": [
+            "Ingredientes. 2 rebanadas de pan integral, 80-100 g de ricota, 1 taza de frutillas, unas hojas de menta y una pizca de canela. Podés usar durazno o pera según la estación.",
+            "Cómo se hace. Tostá el pan, untá la ricota y agregá las frutillas lavadas y cortadas. Terminá con menta y canela. Para otras estaciones, cambiá las frutillas por pera o durazno."
+          ],
+          "images": [
+            "/nutricion/alimentacion-16-1.webp"
+          ],
+          "page": 16
+        },
+        {
+          "title": "04 · Vaso de yogur durazno y chía",
+          "paragraphs": [
+            "Ingredientes. 200 g de yogur natural, 1 durazno, 3 cucharadas de avena, 1 cucharada de chía hidratada y canela.",
+            "Cómo se hace. Mezclá chía, yogur y avena. Dejá reposar en la heladera al menos 30 minutos, o desde la noche anterior, para que la chía se hidrate. Agregá durazno en cubos y una pizca de canela al servir."
+          ],
+          "images": [
+            "/nutricion/alimentacion-16-2.webp"
+          ],
+          "page": 16
+        },
+        {
+          "title": "05 · Cheesecake en vaso con arándanos",
+          "paragraphs": [
+            "Ingredientes. 120 g de yogur natural, 60 g de ricota, 3 cucharadas de avena, ½ taza de arándanos, vainilla y 1 cucharadita de miel opcional.",
+            "Cómo se hace. Mezclá yogur, ricota y vainilla hasta lograr una crema. Colocá la avena en el fondo de un vaso y cubrí con la mezcla. Agregá arándanos y, si querés, un poco de miel. Dejá reposar en la heladera 20 minutos."
+          ],
+          "images": [
+            "/nutricion/alimentacion-17-1.webp"
+          ],
+          "page": 17
+        },
+        {
+          "title": "06 · Muffins de zanahoria y avena",
+          "paragraphs": [
+            "Ingredientes. ⅓ taza de avena molida, 1 huevo, ½ zanahoria rallada, 2 cucharadas de leche, canela, ¼ cucharadita de polvo de hornear, 1 cucharadita de aceite y 100 g de yogur.",
+            "Cómo se hace. Mezclá avena, huevo, zanahoria, leche, canela y polvo de hornear. Repartí en dos moldes pequeños aceitados. Horneá a 180 °C durante 18-22 minutos, hasta que el centro esté cocido. Serví con el yogur."
+          ],
+          "images": [
+            "/nutricion/alimentacion-17-2.webp"
+          ],
+          "page": 17
+        },
+        {
+          "title": "07 · Crumble de manzana con yogur",
+          "paragraphs": [
+            "Ingredientes. 1 manzana, ¼ taza de avena, 1 cucharada de nueces picadas, canela, 1 cucharadita de aceite y 150 g de yogur natural.",
+            "Cómo se hace. Cortá la manzana y colocala en un recipiente pequeño para horno. Mezclá avena, nueces, aceite y canela y distribuí encima. Horneá a 180 °C unos 20-25 minutos, hasta que la fruta esté tierna. Serví tibio con yogur."
+          ],
+          "images": [
+            "/nutricion/alimentacion-18-1.webp"
+          ],
+          "page": 18
+        },
+        {
+          "title": "08 · Wrap cremoso de garbanzos y palta",
+          "paragraphs": [
+            "Ingredientes. 1 tortilla integral, ½ taza de garbanzos cocidos, ¼ de palta, pepino, 2 cucharadas de yogur natural y limón.",
+            "Cómo se hace. Pisá los garbanzos y la palta, y mezclá con yogur y limón. Distribuí sobre la tortilla, sumá pepino cortado fino y enrollá. Si lo preparás para llevar, guardalo con frío hasta comerlo."
+          ],
+          "images": [
+            "/nutricion/alimentacion-18-2.webp"
+          ],
+          "page": 18
+        },
+        {
+          "title": "09 · Helado cremoso de banana y cacao",
+          "paragraphs": [
+            "Ingredientes. 1 banana congelada en rodajas, 170 g de yogur natural, 1 cucharadita de cacao amargo y 1 cucharada de maní.",
+            "Cómo se hace. Procesá banana congelada, yogur y cacao en una procesadora apta para alimentos congelados hasta lograr una crema. Si hace falta, añadí una cucharada de leche. Serví enseguida con maní picado o congelá brevemente para una textura más firme."
+          ],
+          "images": [
+            "/nutricion/alimentacion-19-1.webp"
+          ],
+          "page": 19
+        },
+        {
+          "title": "10 · Mini pizza de pita y champiñones",
+          "paragraphs": [
+            "Ingredientes. 1 pita integral mediana, ¼ taza de salsa de tomate, 40 g de mozzarella, ½ taza de champiñones, albahaca y 1 cucharadita de aceite.",
+            "Cómo se hace. Salteá los champiñones con aceite. Cubrí la pita con salsa, mozzarella y champiñones. Horneá a 200 °C unos 8-10 minutos, hasta que el queso se funda y la base quede crujiente. Terminá con albahaca."
+          ],
+          "images": [
+            "/nutricion/alimentacion-19-2.webp"
+          ],
+          "page": 19
+        },
+        {
+          "title": "11 · Tostadas cremosas de atún",
+          "paragraphs": [
+            "Ingredientes. 2 rebanadas integrales, 70-80 g de atún al natural escurrido, 2 cucharadas de queso untable, tomate, limón y perejil.",
+            "Cómo se hace. Mezclá atún, queso untable, unas gotas de limón y perejil. Tostá el pan, untá la mezcla y agregá tomate en rodajas. Serví al momento o conservá el relleno refrigerado."
+          ],
+          "images": [
+            "/nutricion/alimentacion-20-1.webp"
+          ],
+          "page": 20
+        },
+        {
+          "title": "12 · Yogur con pera y granola casera",
+          "paragraphs": [
+            "Ingredientes. 200 g de yogur natural, 1 pera, 3 cucharadas de avena, 1 cucharada de semillas de zapallo, 1 cucharada de nueces y canela.",
+            "Cómo se hace. Tostá avena, semillas y nueces en una sartén seca a fuego bajo 3-5 minutos, moviendo para que no se quemen. Dejá enfriar. Serví sobre el yogur con pera en cubos y canela."
+          ],
+          "images": [
+            "/nutricion/alimentacion-20-2.webp"
+          ],
+          "page": 20
+        }
       ]
     },
     {
-      "id": "ideas",
-      "title": "6. Diez desayunos y meriendas",
-      "visual": "food",
-      "lead": "Combinaciones originales para variar. Ajustá cantidades, alergias y tolerancia; no tienen las mismas calorías ni aportan la misma cantidad de proteína.",
+      "id": "cenas",
+      "title": "Cenas · 12 ideas",
+      "intro": "Ingredientes para una persona. Ajustá las porciones a tus necesidades.",
       "items": [
-        "1. Yogur natural + avena + banana o fruta de estación.",
-        "2. Pan integral + huevo revuelto + tomate.",
-        "3. Leche o bebida de soja fortificada + avena cocida + manzana.",
-        "4. Tostada + ricota + pera.",
-        "5. Sándwich de pollo cocido + zanahoria rallada.",
-        "6. Yogur natural + fruta + un agregado de frutos secos.",
-        "7. Pan + hummus + tomate, acompañado de fruta.",
-        "8. Omelette de verduras + pan.",
-        "9. Licuado de leche o bebida de soja fortificada con banana y avena. Ajustá textura y cantidad a tu tolerancia.",
-        "10. Tostada + pasta de maní sin azúcar agregada + yogur natural o alternativa de soja con proteína."
-      ],
-      "practice": "Elegí tres combinaciones y repetilas durante la semana. Para una colación muy cercana al entrenamiento, simplificá y evitá cantidades grandes de grasa o fibra si te provocan molestias.",
-      "sources": [
-        "pre"
+        {
+          "title": "01 · Pizza integral de berenjena",
+          "paragraphs": [
+            "Ingredientes. Base individual con 70-80 g de harina integral, 45-50 ml de agua, 1 g de levadura seca y 1 cucharadita de aceite; ½ taza de salsa de tomate, 60-80 g de mozzarella, ½ berenjena asada, albahaca y una ensalada de hojas y zanahoria.",
+            "Cómo se hace. Mezclá harina, agua, aceite y levadura según su envase hasta formar una masa; amasá y dejá levar tapada hasta que aumente claramente de volumen, unos 45-90 minutos según la temperatura. Estirá, precociná a 200 °C unos 8-10 minutos, agregá salsa, berenjena previamente asada y mozzarella. Horneá 10-15 minutos más y sumá albahaca. Serví con ensalada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-21-1.webp"
+          ],
+          "page": 21
+        },
+        {
+          "title": "02 · Crema de zapallo y lentejas",
+          "paragraphs": [
+            "Ingredientes. 1 taza de zapallo cocido, ¾ taza de lentejas cocidas, ½ zanahoria, ¼ de cebolla, agua o caldo con poca sal, comino, una pizca de cúrcuma, 1 cucharadita de aceite, 2 cucharadas de yogur natural y 1 cucharada de semillas de zapallo. Para acompañar: 1-2 tostadas integrales.",
+            "Cómo se hace. Rehogá cebolla y zanahoria con aceite. Sumá zapallo, lentejas y agua o caldo, y cociná 10 minutos. Procesá todo o solo una parte para conservar textura. Agregá comino y cúrcuma. Serví con yogur, semillas y tostadas."
+          ],
+          "images": [
+            "/nutricion/alimentacion-21-2.webp"
+          ],
+          "page": 21
+        },
+        {
+          "title": "03 · Boniato relleno de porotos negros",
+          "paragraphs": [
+            "Ingredientes. 1 boniato mediano, ¾ taza de porotos negros cocidos, ¼ taza de choclo, tomate, ¼ de palta, cilantro, limón y pimentón. Para acompañar: una ensalada de hojas verdes.",
+            "Cómo se hace. Lavá el boniato, pinchalo y horneá a 200 °C unos 40-50 minutos, hasta que esté tierno. Calentá porotos y choclo con pimentón. Abrí el boniato y rellená con esa mezcla, tomate y palta. Terminá con limón y cilantro; serví con ensalada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-22-1.webp"
+          ],
+          "page": 22
+        },
+        {
+          "title": "04 · Albóndigas con puré de zapallo",
+          "paragraphs": [
+            "Ingredientes. 120-150 g de carne picada magra cruda, 2 cucharadas de avena, ¼ de cebolla, perejil, ½ taza de salsa de tomate, 1 taza de zapallo cocido, 1 cucharadita de aceite y ensalada verde.",
+            "Cómo se hace. Mezclá la carne con avena, cebolla bien picada y perejil. Formá albóndigas y cocinalas en la salsa de tomate 15-20 minutos, hasta que el centro esté completamente cocido. Pisá el zapallo con el aceite y un poco de agua caliente. Serví con ensalada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-22-2.webp"
+          ],
+          "page": 22
+        },
+        {
+          "title": "05 · Tarta rústica de espinaca y ricota",
+          "paragraphs": [
+            "Ingredientes. 1 tapa integral individual o 60 g de harina integral con agua y 1 cucharadita de aceite; 100 g de ricota, 1 huevo, ½ taza de espinaca cocida, cebolla y ensalada de tomate.",
+            "Cómo se hace. Mezclá ricota, huevo, espinaca escurrida y cebolla previamente salteada. Colocá el relleno sobre la masa y doblá los bordes hacia adentro. Horneá a 190 °C durante 25-30 minutos, hasta que masa y relleno estén cocidos. Serví con ensalada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-23-1.webp"
+          ],
+          "page": 23
+        },
+        {
+          "title": "06 · Zucchini relleno con carne y arroz",
+          "paragraphs": [
+            "Ingredientes. 1 zucchini grande, 100 g de carne magra cruda, ½ taza de arroz cocido, ½ taza de salsa de tomate, 30 g de mozzarella, cebolla y 1 cucharadita de aceite.",
+            "Cómo se hace. Cortá el zucchini al medio y ahuecalo. Salteá cebolla y carne hasta cocinarla completamente. Mezclá con arroz, pulpa de zucchini y salsa. Rellená, agregá queso y horneá a 190 °C unos 25 minutos, hasta que esté tierno."
+          ],
+          "images": [
+            "/nutricion/alimentacion-23-2.webp"
+          ],
+          "page": 23
+        },
+        {
+          "title": "07 · Salmón con quinoa y naranja",
+          "paragraphs": [
+            "Ingredientes. 150 g de salmón crudo, ¾ taza de quinoa cocida, 1 taza de brócoli, ½ naranja, 1 cucharadita de aceite y perejil.",
+            "Cómo se hace. Horneá el salmón con jugo de naranja, aceite y perejil a 190 °C unos 15-20 minutos, según el grosor, hasta que esté completamente cocido. Cociná el brócoli al vapor y serví con quinoa y gajos de naranja. Podés usar otro pescado disponible."
+          ],
+          "images": [
+            "/nutricion/alimentacion-24-1.webp"
+          ],
+          "page": 24
+        },
+        {
+          "title": "08 · Frittata de champiñones y porotos",
+          "paragraphs": [
+            "Ingredientes. 2 huevos, ½ taza de porotos blancos cocidos, ½ taza de champiñones, espinaca, 1 cucharadita de aceite y 1 tostada integral.",
+            "Cómo se hace. Salteá los champiñones y la espinaca. Agregá porotos y huevos batidos. Cociná tapado a fuego bajo hasta que el centro cuaje; también podés hornear a 180 °C unos 15-20 minutos. Serví con tostada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-24-2.webp"
+          ],
+          "page": 24
+        },
+        {
+          "title": "09 · Curry de lentejas rojas y zapallo",
+          "paragraphs": [
+            "Ingredientes. ½ taza de lentejas rojas secas, 1 taza de zapallo en cubos, ½ taza de tomate triturado, cebolla, comino, una pizca de cúrcuma, 1 cucharadita de aceite, ½ taza de arroz cocido y 2 cucharadas de yogur.",
+            "Cómo se hace. Rehogá la cebolla y agregá especias, tomate, zapallo y lentejas enjuagadas. Cubrí con agua y cociná 20-25 minutos, agregando líquido si hace falta, hasta que todo esté tierno. Serví con arroz y yogur."
+          ],
+          "images": [
+            "/nutricion/alimentacion-25-1.webp"
+          ],
+          "page": 25
+        },
+        {
+          "title": "10 · Brochetas de tofu con cuscús",
+          "paragraphs": [
+            "Ingredientes. 150 g de tofu firme, morrón, zucchini, ¾ taza de cuscús integral cocido, 3 cucharadas de yogur natural, menta, limón y 1 cucharadita de aceite.",
+            "Cómo se hace. Cortá tofu y verduras en cubos y armá brochetas. Pincelá con aceite y horneá a 200 °C unos 20-25 minutos, girando a mitad de cocción. Prepará cuscús según el envase. Mezclá yogur, menta y limón para la salsa."
+          ],
+          "images": [
+            "/nutricion/alimentacion-25-2.webp"
+          ],
+          "page": 25
+        },
+        {
+          "title": "11 · Albóndigas de pollo con pasta integral",
+          "paragraphs": [
+            "Ingredientes. 140 g de pollo picado crudo, 2 cucharadas de avena, cebolla, perejil, ¾ taza de salsa de tomate, ¾ taza de pasta integral cocida, espinaca y 1 cucharadita de aceite.",
+            "Cómo se hace. Mezclá pollo, avena, cebolla fina y perejil. Formá albóndigas y cocinalas en salsa de tomate 15-20 minutos, hasta que el centro esté completamente cocido. Agregá espinaca al final. Serví sobre la pasta caliente."
+          ],
+          "images": [
+            "/nutricion/alimentacion-26-1.webp"
+          ],
+          "page": 26
+        },
+        {
+          "title": "12 · Medallones de coliflor y garbanzos",
+          "paragraphs": [
+            "Ingredientes. 1 taza de coliflor cocida y escurrida, ¾ taza de garbanzos cocidos, 2 cucharadas de avena, comino, 1 cucharadita de aceite, 1 papa chica, 3 cucharadas de yogur y ensalada.",
+            "Cómo se hace. Pisá coliflor y garbanzos y mezclá con avena y comino. Formá dos medallones firmes y horneá a 200 °C unos 20 minutos, girándolos. Horneá la papa en gajos 25-30 minutos. Serví con yogur y ensalada."
+          ],
+          "images": [
+            "/nutricion/alimentacion-26-2.webp"
+          ],
+          "page": 26
+        }
       ]
     },
     {
-      "id": "cocina",
-      "title": "7. Variá sin complicarte",
-      "visual": "none",
-      "lead": "La variedad puede surgir de cambiar un ingrediente o una preparación. No necesitás un menú nuevo cada día.",
+      "id": "bebidas-dia",
+      "title": "Bebidas durante el día",
+      "intro": "",
       "items": [
-        "Bowl rápido: combiná arroz ya cocido, lentejas, zanahoria, tomate y un aderezo sencillo de aceite y limón. Guardá los ingredientes perecederos en frío.",
-        "Pollo de dos maneras: una vez con verduras al horno y boniato; otra, desmenuzado en sándwich con ensalada. Cociná bien el pollo y mantené separados los utensilios que tocaron carne cruda.",
-        "Atún como opción ocasional: mezclalo con porotos, tomate y arroz, o usalo como relleno de sándwich. Alterná con otras proteínas; no hace falta comer atún diariamente.",
-        "Salsa de yogur: yogur natural sin azúcar + limón + hierbas. Usala como acompañamiento de verduras o una comida, no como sustituto de todo el plato.",
-        "Compra práctica: elegí dos proteínas, dos bases de energía, varias verduras y frutas de estación. Tener opciones congeladas o en conserva facilita resolver una comida."
-      ],
-      "practice": "El perfil de Instagram aportó ideas temáticas de variedad, atún y pollo. Estas combinaciones son propias; no se copiaron sus recetas completas ni sus imágenes.",
-      "sources": [
-        "instagram1",
-        "instagram2",
-        "msp"
+        {
+          "title": "Bebidas durante el día",
+          "paragraphs": [
+            "Te recomiendo elegir 1-3 infusiones suaves al día según tu gusto y necesidad. No hace falta tomar todas: alterná con agua y escuchá tu tolerancia.",
+            "Al despertar · Agua con limón",
+            "Ingredientes: 250 ml de agua potable a temperatura ambiente o tibia y jugo de ¼-½ limón.",
+            "Qué aporta: líquido para empezar el día hidratándote, sabor fresco y una pequeña cantidad de vitamina C. Si el sabor te anima a beber agua, puede ayudarte a sostener ese hábito. Podés tomarla antes del desayuno si te sienta bien; el aporte de agua y limón también se aprovecha en otros horarios.",
+            "Elegila cuando: querés una rutina simple al levantarte. Si te provoca ardor en ayunas, tomala con comida o elegí agua sola. Enjuagá la boca con agua después para reducir el contacto del ácido con los dientes.",
+            "Con el desayuno · Té verde con naranja",
+            "Ingredientes: 1 saquito de té verde, 250 ml de agua y una tira de cáscara de naranja bien lavada.",
+            "Qué aporta: líquido, polifenoles y cafeína, que puede favorecer la atención y el estado de alerta. El aroma cítrico hace la bebida más agradable sin necesidad de azúcar.",
+            "Elegilo cuando: querés una bebida para la mañana. Si tenés sensibilidad a la cafeína, palpitaciones o te aumenta la ansiedad, preferí una opción sin cafeína. Evitá tomarlo cerca de tu hora de dormir.",
+            "Después de comer · Menta",
+            "Ingredientes: 1 saquito de menta apta para infusión y 250 ml de agua.",
+            "Qué aporta: una bebida sin cafeína de aroma fresco, usada tradicionalmente para acompañar la digestión. Tomarla despacio puede ser una pausa agradable después del almuerzo.",
+            "Elegila cuando: buscás una opción digestiva suave y disfrutás su sabor. Si te empeora la acidez o el reflujo, elegí otra bebida. Usá hojas o saquitos identificados; no ingieras aceite esencial de menta."
+          ],
+          "images": [],
+          "page": 27
+        }
       ]
     },
     {
-      "id": "compras",
-      "title": "8. Compras, etiquetas e hidratación",
-      "visual": "none",
-      "lead": "Una compra organizada suele ser más útil que buscar alimentos de moda.",
+      "id": "bebidas-noche",
+      "title": "Infusiones para la tarde y la noche",
+      "intro": "",
       "items": [
-        "Compará productos de la misma categoría por 100 g o 100 ml. Después mirá cuánto consumís: una porción del envase no siempre coincide con tu porción.",
-        "Revisá ingredientes, sodio, azúcares y grasas saturadas. Los octógonos de advertencia ayudan a reconocer excesos; una frase como 'fitness' no garantiza una mejor composición.",
-        "No todas las bebidas vegetales reemplazan nutricionalmente a la leche. Revisá proteína y fortificación; elegí una alternativa adecuada con asesoramiento si excluís grupos completos.",
-        "Agua como bebida habitual. Tenela disponible durante el entrenamiento y ajustá según sed, calor, duración y sudoración. No hay un número de litros válido para todos y no conviene forzarse a beber en exceso.",
-        "Las bebidas deportivas pueden tener utilidad en esfuerzos prolongados o situaciones específicas; no son necesarias por el solo hecho de ir al gimnasio. Los suplementos requieren una razón concreta, no una promesa publicitaria."
-      ],
-      "practice": "Compará dos yogures o dos panes de precio parecido. Anotá cuál encaja mejor por composición, presupuesto y gusto. Una alimentación sostenible también debe ser accesible.",
-      "sources": [
-        "msp",
-        "who",
-        "ais",
-        "sportsdrink"
+        {
+          "title": "Infusiones para la tarde y la noche",
+          "paragraphs": [
+            "Por la tarde · Jengibre limón y miel",
+            "Ingredientes: 250 ml de agua, 2-3 rodajitas finas de jengibre fresco, jugo de ¼ limón y hasta 1 cucharadita de miel.",
+            "Qué aporta: líquido, aroma cálido del jengibre, una pequeña cantidad de vitamina C del limón y dulzor y energía de la miel. Es una combinación reconfortante para tomar despacio. El jengibre tiene un uso tradicional digestivo; la miel puede suavizar la sensación de irritación de garganta.",
+            "Elegila cuando: querés una pausa cálida, especialmente en días frescos. La miel es opcional y cuenta como azúcar añadido. Si tenés acidez, reducí el limón y el jengibre o cambiá de infusión.",
+            "Para variar · Leche dorada con cúrcuma",
+            "Ingredientes: 200-250 ml de leche o bebida de soja fortificada sin azúcar, ¼ cucharadita de cúrcuma y una pizca de canela.",
+            "Qué aporta: proteína y calcio si usás leche o una bebida de soja fortificada. La cúrcuma aporta color, aroma y curcuminoides; la canela da sabor. Es una alternativa sin cafeína que puede acompañar una merienda.",
+            "Elegila cuando: querés una bebida cremosa y aromática. Usá pequeñas cantidades culinarias de especias; no hace falta sumar cápsulas ni extractos.",
+            "Antes de descansar · Manzanilla",
+            "Ingredientes: 1 saquito de manzanilla y 250 ml de agua.",
+            "Qué aporta: líquido y una bebida suave sin cafeína. Recomiendo integrarla a un ritual de relajación: bajar las luces, dejar el celular y tomarla con calma. El momento de pausa también forma parte del bienestar psicológico.",
+            "Elegila cuando: querés cerrar el día con tranquilidad. Evitala si sos alérgico a plantas de la familia de las margaritas. Si tomás anticoagulantes o sedantes, consultá antes de usarla habitualmente. En embarazo, lactancia, enfermedades o si tomás medicación, consultá qué hierbas son adecuadas para vos. Tomá las bebidas tibias, no hirviendo, y respetá las indicaciones del envase."
+          ],
+          "images": [],
+          "page": 28
+        }
       ]
     },
     {
-      "id": "organizacion",
-      "title": "9. Organizá una semana realista",
-      "visual": "none",
-      "lead": "Preparar una base te permite improvisar con menos esfuerzo. Planificá para tu rutina, no para una semana ideal.",
+      "id": "sabores",
+      "title": "Hierbas y especias",
+      "intro": "",
       "items": [
-        "Paso 1: revisá los días de entrenamiento y elegí dos almuerzos, dos cenas y tres desayunos que puedas repetir.",
-        "Paso 2: cociná una base de cereal o legumbres, una proteína y verduras. Guardá cada preparación identificada con su fecha.",
-        "Paso 3: refrigerá pronto en recipientes poco profundos. No dejes perecederos a temperatura ambiente más de 2 horas, o 1 hora con calor superior a 32 °C.",
-        "Mantené la heladera a 4 °C o menos. Como regla general, usá las sobras refrigeradas en 3 a 4 días o congelalas antes. Seguí indicaciones más estrictas del producto; no uses el olor como única prueba de seguridad.",
-        "Para transportar yogur, carnes o comidas cocidas, usá una conservadora con frío. Recalentá las sobras hasta 74 °C en el centro cuando corresponda; no alcanza con que estén apenas tibias."
-      ],
-      "practice": "Ejemplo de día: desayuno de yogur, avena y fruta; almuerzo completo; banana antes de entrenar si hace falta; cena con proteína, arroz y verduras. Es una estructura orientativa, no un menú obligatorio ni una dieta calculada.",
-      "sources": [
-        "foodsafe",
-        "usda"
+        {
+          "title": "Hierbas y especias",
+          "paragraphs": [
+            "Usá pequeñas cantidades para sumar aroma, color y variedad a los platos cotidianos.",
+            "Cúrcuma y jengibre",
+            "Cúrcuma: da un color dorado al arroz, las legumbres y las cremas de verduras. Aporta curcuminoides, entre ellos curcumina. Una pizca es suficiente para empezar a explorar su sabor.",
+            "Jengibre: aporta gingeroles y un aroma fresco y picante. Combina con salteados, sopas, aderezos y bebidas con limón. Ajustá la cantidad si te resulta intenso o te provoca ardor.",
+            "Más combinaciones para disfrutar",
+            "Canela: yogur, avena y fruta asada.",
+            "Comino: hamburguesas de lentejas, garbanzos y zapallo.",
+            "Pimentón: albóndigas, boniato y hummus.",
+            "Orégano: pizzas, tomate y huevos.",
+            "Romero: papas, boniato y pan casero.",
+            "Tomillo: sopas, champiñones y porotos.",
+            "Perejil: pescado, aderezos y ensaladas tibias.",
+            "Albahaca: pasta, pizza y ricota.",
+            "Menta: fruta, pepino y yogur.",
+            "Ajo: salsas, legumbres y verduras.",
+            "Nuez moscada: ricota, espinaca y purés, apenas una pizca.",
+            "Sabor que ayuda a sostener los hábitos",
+            "Cuando una comida resulta rica, es más fácil volver a elegirla. Las hierbas y especias te permiten crear combinaciones nuevas y dar sabor sin depender siempre de mucha sal o salsas azucaradas. Probá una mezcla a la vez y ajustá según tus gustos. Elegí productos identificados y aptos para consumo. Usá cantidades culinarias: especias y hierbas acompañan una alimentación variada, no sustituyen tratamientos."
+          ],
+          "images": [],
+          "page": 29
+        }
       ]
     },
     {
-      "id": "inicio",
-      "title": "10. Tu plan de acción",
-      "visual": "none",
-      "lead": "Elegí un hábito pequeño y concreto. Evaluá lo que te ayuda a sentirte y entrenar mejor.",
+      "id": "postres",
+      "title": "Postres saludables · 12 recetas",
+      "intro": "Dulces simples, ricos y para compartir.",
       "items": [
-        "Esta semana: agregar verduras a una comida, organizar una colación o llevar agua. Elegí solo uno para empezar.",
-        "Revisión: ¿lo pude sostener?, ¿tuve energía?, ¿llegué con hambre extrema?, ¿qué me resultó práctico? Ajustá sin buscar perfección.",
-        "No hay alimentos mágicos para quemar grasa ni obligación de comer siempre pollo. Una publicación de redes puede inspirar una receta, pero no define tus necesidades.",
-        "Consultá si aparecen cansancio persistente, mareos, cambios menstruales, lesiones repetidas, pérdida de peso involuntaria o miedo intenso a comer. No se resuelven simplemente reduciendo más las porciones.",
-        "Llevá a la consulta: horarios, preferencias, presupuesto, entrenamiento, medicación y síntomas relevantes. Así se puede adaptar la alimentación de forma responsable."
-      ],
-      "practice": "Mi primer cambio será: __________. Lo voy a facilitar con: __________. Lo revisaré el: __________. La constancia se construye con decisiones que puedas repetir.",
-      "sources": [
-        "energy",
-        "who"
+        {
+          "title": "Cheesecake en vaso con arándanos",
+          "paragraphs": [
+            "01 / 12 · 2 porciones · 10 minutos + 20 de frío",
+            "Ingredientes 240 g de yogur natural sin azúcar, 120 g de ricota, 6 cucharadas de avena, 1 taza de arándanos, vainilla y hasta 2 cucharaditas de miel opcional.",
+            "Cómo se hace Tostá la avena en sartén seca 3 minutos y dejá enfriar. Mezclá yogur, ricota y vainilla hasta obtener una crema suave. Repartí la avena en dos vasos, agregá la crema y los arándanos. Refrigerá 20 minutos. Endulzá solo si lo necesitás.",
+            "Un toque más Podés usar frutillas o duraznos en vez de arándanos."
+          ],
+          "images": [
+            "/nutricion/postres-01-1.webp"
+          ],
+          "page": 1
+        },
+        {
+          "title": "Crumble tibio de manzana y nueces",
+          "paragraphs": [
+            "02 / 12 · 2 porciones · 10 minutos + 25 de horno",
+            "Ingredientes 2 manzanas, ½ taza de avena, 2 cucharadas de nueces picadas, 2 cucharaditas de aceite, canela y 200 g de yogur natural.",
+            "Cómo se hace Cortá las manzanas en cubos y distribuí en una fuente pequeña. Mezclá avena, nueces, aceite y canela; poné encima de la fruta. Horneá a 180 °C durante 20-25 minutos, hasta que la manzana esté tierna. Serví tibio con el yogur.",
+            "Un toque más Queda rico también con pera y una pizca de jengibre."
+          ],
+          "images": [
+            "/nutricion/postres-02-1.webp"
+          ],
+          "page": 2
+        },
+        {
+          "title": "Helado cremoso de banana y cacao",
+          "paragraphs": [
+            "03 / 12 · 2 porciones · 5 minutos con banana congelada",
+            "Ingredientes 2 bananas maduras congeladas en rodajas, 170 g de yogur natural, 2 cucharaditas de cacao amargo y 1 cucharada de maní picado.",
+            "Cómo se hace Procesá la banana congelada con yogur y cacao en un equipo apto para alimentos congelados. Agregá una cucharada de leche si necesitás facilitar el procesado. Serví enseguida con maní picado. Para mayor firmeza, llevá al freezer 20-30 minutos.",
+            "Un toque más Congelá las bananas en rodajas separadas desde la noche anterior."
+          ],
+          "images": [
+            "/nutricion/postres-03-1.webp"
+          ],
+          "page": 3
+        },
+        {
+          "title": "Vasitos de durazno y chía",
+          "paragraphs": [
+            "04 / 12 · 2 porciones · 10 minutos + 2 horas de frío",
+            "Ingredientes 300 g de yogur natural, 2 duraznos, 2 cucharadas de chía, 4 cucharadas de avena, 4 cucharadas de leche y canela.",
+            "Cómo se hace Mezclá yogur, leche, chía y avena. Tapá y dejá en la heladera 2 horas, revolviendo otra vez a los 15 minutos. Repartí en vasos y agregá los duraznos cortados. Terminá con canela.",
+            "Un toque más Fuera de temporada, usá pera o mango."
+          ],
+          "images": [
+            "/nutricion/postres-04-1.webp"
+          ],
+          "page": 4
+        },
+        {
+          "title": "Muffins de zanahoria y banana",
+          "paragraphs": [
+            "05 / 12 · 6 muffins · 15 minutos + 22 de horno",
+            "Ingredientes 1 banana madura, 1 zanahoria mediana rallada, 1 huevo, 1 taza de avena molida, ⅓ taza de leche, 1 cucharada de aceite, 1 cucharadita de polvo de hornear y canela.",
+            "Cómo se hace Pisá la banana y mezclá con huevo, leche, aceite y zanahoria. Incorporá avena, polvo de hornear y canela. Distribuí en seis moldes aceitados. Horneá a 180 °C durante 18-22 minutos, hasta que un palillo salga limpio. Dejá entibiar antes de desmoldar.",
+            "Un toque más Podés agregar ralladura de naranja para un aroma más fresco."
+          ],
+          "images": [
+            "/nutricion/postres-05-1.webp"
+          ],
+          "page": 5
+        },
+        {
+          "title": "Crepes de ricota y naranja",
+          "paragraphs": [
+            "06 / 12 · 4 crepes · 20 minutos",
+            "Ingredientes ⅔ taza de harina integral, 1 huevo, ¾ taza de leche, 160 g de ricota, 2 naranjas, 2 cucharadas de nueces y 2 cucharaditas de aceite.",
+            "Cómo se hace Batí harina, huevo y leche hasta lograr una mezcla fluida. Cociná cuatro crepes finos en sartén ligeramente aceitada, por ambos lados. Mezclá la ricota con ralladura de una naranja bien lavada. Rellená y serví con los gajos y las nueces.",
+            "Un toque más Una pizca de vainilla combina muy bien con la ricota."
+          ],
+          "images": [
+            "/nutricion/postres-06-1.webp"
+          ],
+          "page": 6
+        },
+        {
+          "title": "Copa de pera y granola crujiente",
+          "paragraphs": [
+            "07 / 12 · 2 porciones · 15 minutos",
+            "Ingredientes 300 g de yogur natural, 2 peras, 6 cucharadas de avena, 2 cucharadas de semillas de zapallo, 2 cucharadas de nueces y canela.",
+            "Cómo se hace Tostá avena, semillas y nueces en sartén seca a fuego bajo durante 3-5 minutos, moviendo seguido. Dejá enfriar. Cortá las peras y armá capas de yogur, fruta y granola. Agregá canela al servir.",
+            "Un toque más Poné la granola al final para que conserve su textura."
+          ],
+          "images": [
+            "/nutricion/postres-07-1.webp"
+          ],
+          "page": 7
+        },
+        {
+          "title": "Copa cremosa de cacao y banana",
+          "paragraphs": [
+            "08 / 12 · 2 porciones · 10 minutos + 20 de frío",
+            "Ingredientes 300 g de yogur natural, 2 bananas, 2 cucharaditas de cacao amargo, 4 cucharadas de avena y 2 cucharadas de maní picado.",
+            "Cómo se hace Mezclá el yogur con cacao y avena. Repartí en dos copas y refrigerá 20 minutos para hidratar la avena. Agregá banana en rodajas y maní justo antes de servir.",
+            "Un toque más Para una crema más lisa, procesá media banana con el yogur."
+          ],
+          "images": [
+            "/nutricion/postres-08-1.webp"
+          ],
+          "page": 8
+        },
+        {
+          "title": "Peras al horno con nueces",
+          "paragraphs": [
+            "09 / 12 · 2 porciones · 10 minutos + 30 de horno",
+            "Ingredientes 2 peras maduras y firmes, 2 cucharadas de nueces picadas, canela, 3 cucharadas de agua y 150 g de yogur natural.",
+            "Cómo se hace Cortá las peras al medio y retirales el centro. Colocalas en una fuente con el agua; rellená los huecos con nueces y espolvoreá canela. Horneá a 180 °C durante 25-30 minutos, hasta que estén tiernas. Serví tibias con yogur.",
+            "Un toque más Si están muy firmes, sumá unos minutos de cocción."
+          ],
+          "images": [
+            "/nutricion/postres-09-1.webp"
+          ],
+          "page": 9
+        },
+        {
+          "title": "Mousse de cacao y palta",
+          "paragraphs": [
+            "10 / 12 · 2 porciones · 10 minutos + 30 de frío",
+            "Ingredientes 1 palta mediana madura, 1 banana madura, 2 cucharadas de cacao amargo, 2-4 cucharadas de leche, vainilla y 4 frutillas.",
+            "Cómo se hace Procesá palta, banana, cacao y vainilla. Agregá la leche de a poco hasta lograr una textura cremosa. Repartí en dos bowls y refrigerá 30 minutos. Serví con frutillas.",
+            "Un toque más Elegí una palta sin partes oscuras y una banana bien madura."
+          ],
+          "images": [
+            "/nutricion/postres-10-1.webp"
+          ],
+          "page": 10
+        },
+        {
+          "title": "Bocaditos de avena, cacao y maní",
+          "paragraphs": [
+            "11 / 12 · 8 bocaditos · 15 minutos + 30 de frío",
+            "Ingredientes ½ taza de avena fina, 3 cucharadas de pasta de maní sin azúcar, 2 cucharadas de cacao amargo, 2 cucharadas de pasas de uva y 2-4 cucharadas de agua.",
+            "Cómo se hace Hidratá las pasas 10 minutos con un poco de agua tibia y procesalas con la pasta de maní. Agregá avena y cacao. Sumá agua de a poco hasta formar una masa moldeable. Armá ocho bolitas y refrigerá 30 minutos.",
+            "Un toque más Serví 1-2 bocaditos por persona, según el hambre y el resto de la comida."
+          ],
+          "images": [
+            "/nutricion/postres-11-1.webp"
+          ],
+          "page": 11
+        },
+        {
+          "title": "Arroz con leche y naranja",
+          "paragraphs": [
+            "12 / 12 · 4 porciones · 10 minutos + 35 de cocción",
+            "Ingredientes ½ taza de arroz crudo, 3 tazas de leche, ½ taza de agua, una tira de cáscara de naranja bien lavada, canela y hasta 2 cucharaditas de azúcar opcional.",
+            "Cómo se hace Poné arroz, agua, leche y cáscara de naranja en una olla. Cociná a fuego bajo 30-35 minutos, revolviendo seguido, hasta que el arroz esté tierno y cremoso. Agregá más leche si hace falta. Retirá la cáscara y serví con canela; endulzá a gusto con poca cantidad.",
+            "Un toque más Podés servirlo tibio o enfriarlo rápidamente y guardarlo en la heladera. Medidas: taza de 240 ml, cucharada de 15 ml y cucharadita de 5 ml. Mantené refrigerados los postres con lácteos o fruta cortada. Enfriá el arroz cocido rápidamente y consumilo refrigerado dentro de 24 horas."
+          ],
+          "images": [
+            "/nutricion/postres-12-1.webp"
+          ],
+          "page": 12
+        }
       ]
-    }
-  ],
-  "sources": [
-    {
-      "id": "msp",
-      "name": "Ministerio de Salud Pública de Uruguay · Guía alimentaria",
-      "url": "https://www.gub.uy/ministerio-salud-publica/comunicacion/publicaciones/guia-alimentaria-para-poblacion-uruguaya"
-    },
-    {
-      "id": "who",
-      "name": "OMS · Alimentación saludable",
-      "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"
-    },
-    {
-      "id": "plate",
-      "name": "Health Canada · Cómo armar el plato",
-      "url": "https://www.canada.ca/en/health-canada/services/food-guide/eating-support/cooking/make-healthy-meals-plate.html"
-    },
-    {
-      "id": "pre",
-      "name": "Sports Dietitians Australia · Alimentación antes del ejercicio",
-      "url": "https://www.sportsdietitians.com.au/factsheets/pre-exercise-fuelling/"
-    },
-    {
-      "id": "recovery",
-      "name": "Sports Dietitians Australia · Recuperación",
-      "url": "https://www.sportsdietitians.com.au/wp-content/uploads/2015/04/120628-Recovery_SD-version.pdf"
-    },
-    {
-      "id": "ais",
-      "name": "Australian Institute of Sport · Nutrición",
-      "url": "https://www.ais.gov.au/nutrition"
-    },
-    {
-      "id": "sportsdrink",
-      "name": "Australian Institute of Sport · Bebidas deportivas",
-      "url": "https://www.ausport.gov.au/ais/nutrition/supplements/group_a/sports-foods2/sports-drink"
-    },
-    {
-      "id": "foodsafe",
-      "name": "FoodSafety.gov · Conservación de sobras",
-      "url": "https://www.foodsafety.gov/blog/10-smart-tips-keep-your-restaurant-leftovers-safe"
-    },
-    {
-      "id": "usda",
-      "name": "USDA · Sobras y seguridad alimentaria",
-      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety"
-    },
-    {
-      "id": "instagram1",
-      "name": "Referencia temática: BioMuscleLapNutricion · Atún y variedad",
-      "url": "https://www.instagram.com/biomusclelapnutricion/p/DdfBLWJgbjP/"
-    },
-    {
-      "id": "instagram2",
-      "name": "Referencia temática: BioMuscleLapNutricion · Preparaciones con pollo",
-      "url": "https://www.instagram.com/biomusclelapnutricion/p/Dd4g_IsATdc/"
-    },
-    {
-      "id": "energy",
-      "name": "Australian Institute of Sport · Disponibilidad de energía",
-      "url": "https://www.ausport.gov.au/coaching/community/education/coaching-women-and-girls/resources/relative-energy-deficiency-in-sport"
     }
   ]
 }

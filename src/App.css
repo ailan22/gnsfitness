@@ -230,7 +230,7 @@ textarea { min-height: 90px; resize: vertical; }
 .student-section-nav button { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; min-height: 92px; padding: 18px; border-radius: 16px; }
 .student-section-nav small { font-size: 12px; line-height: 1.5; font-weight: 400; }
 .student-section-nav button[aria-current="page"] { box-shadow: 0 5px 22px #d3ac551a; }
-.cloud-student .student-today { border-radius: 20px; border: 1px solid #78613c; background: linear-gradient(140deg, #292b30, #202127); }
+.cloud-student .student-today { border-radius: 20px; border: 1px solid #78613c; background: linear-gradient(140deg, #25261e, #171a14); }
 .cloud-student .student-exercises { display: grid; gap: 14px; }
 .cloud-student .student-exercise { padding: 20px; background: #ffffff04; border: 1px solid #ffffff18; border-radius: 14px; }
 .exercise-record-button { align-self: flex-start; margin-top: 14px; }

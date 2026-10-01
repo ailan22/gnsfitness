@@ -42,11 +42,11 @@ const client = {async rpc(_name,args){if(_name==='request_nutrition_access'){tab
 }}
 const mobile = new URLSearchParams(location.search).has('mobile')
 const student = <CloudStudent client={client} user={previewUser}/>
-createRoot(document.getElementById('root')).render(mobile ? <iframe title="Vista móvil" src={studentMode ? "/workspace-preview.html?student=1" : "/workspace-preview.html"} style={{width:390,height:844,border:0}}/> : <div className={studentMode ? "app" : "app app-admin"}><header className="topbar"><div className="brand">{!storeScreen && <img className="brand-logo" src="/gns-logo-transparent.png" alt=""/>}<span className="brand-copy"><span className="brand-title">GNS <span>FITNESS</span></span><span className="brand-motto">ENERGÍA · SALUD · BIENESTAR · VITALIDAD</span></span></div><span className="tag">{storeScreen ? 'Portal del alumno' : 'Vista de prueba · datos ficticios'}</span></header><main className="content">{studentMode ? storeScreen ? <div className="cloud-entry"><section className="card cloud-account cloud-portal">{student}</section></div> : student : <CloudAdmin client={client}/>}</main></div>)
+createRoot(document.getElementById('root')).render(mobile ? <iframe title="Vista móvil" src={"/workspace-preview.html?" + new URLSearchParams([...new URLSearchParams(location.search)].filter(([key])=>key!=="mobile")).toString()} style={{width:390,height:844,border:0}}/> : <div className={studentMode ? "app" : "app app-admin"}><header className="topbar"><div className="brand">{!storeScreen && <img className="brand-logo" src="/gns-logo-transparent.png" alt=""/>}<span className="brand-copy"><span className="brand-title">GNS <span>FITNESS</span></span><span className="brand-motto">ENERGÍA · SALUD · BIENESTAR · VITALIDAD</span></span></div><span className="tag">{storeScreen ? 'Portal del alumno' : 'Vista de prueba · datos ficticios'}</span></header><main className="content">{studentMode ? storeScreen ? <div className="cloud-entry"><section className="card cloud-account cloud-portal">{student}</section></div> : student : <CloudAdmin client={client}/>}</main></div>)
 if (storeScreen && storeScreen !== 'training') {
   const timer = setInterval(() => {
-    const label = storeScreen === 'progress' ? 'Historial' : 'Nutrición'
-    const button = [...document.querySelectorAll('.student-section-nav button')].find(b=>b.querySelector('strong')?.textContent===label)
+    const selector = storeScreen === 'progress' ? '.student-history-panel > summary' : '.student-nutrition-panel > summary'
+    const button = document.querySelector(selector)
     if (button) { button.click(); clearInterval(timer) }
   },100)
   setTimeout(()=>clearInterval(timer),10000)

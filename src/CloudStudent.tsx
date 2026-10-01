@@ -10,9 +10,11 @@ type Review = { session_id: string; trainer_name: string; notes: string; reviewe
 type History = { member: Member; routines: CloudRoutine[]; sessions: CloudSession[]; reviews: Review[] }
 const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_000).toISOString().slice(0, 10)
 
+const ignoreNutritionDirty = () => {}
+
 export default function CloudStudent({ client, user }: { client: SupabaseClient; user: User }) {
-  const [section, setSection] = useState<'training'|'progress'|'nutrition'>('training')
-  const [wellbeingDirty, setWellbeingDirty] = useState(false)
+  const [nutritionOpen, setNutritionOpen] = useState(false)
+  const [historyOpen, setHistoryOpen] = useState(false)
   const [history, setHistory] = useState<History | null>(null)
   const [loading, setLoading] = useState(true)
   const [revision, setRevision] = useState(0)
@@ -170,9 +172,11 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       <p className="muted">Acá tenés tu rutina y la guía para entrenar. {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}
-      <nav className="student-section-nav" aria-label="Secciones del alumno">{([['training','Mi rutina'],['nutrition','Nutrición'],['progress','Historial']] as const).map(([id,label])=><button key={id} className={section===id?'':'secondary'} aria-current={section===id?'page':undefined} onClick={()=>{if(id===section)return;if(wellbeingDirty&&!window.confirm('Hay un dato sin guardar. ¿Descartarlo y cambiar de sección?'))return;setWellbeingDirty(false);setSection(id)}}><strong>{label}</strong><small>{id==='training'?'Rutina, pesos y ejercicios':id==='nutrition'?'Guías y alimentación':'Tu historial y tus avances'}</small></button>)}</nav>
-      {section==='nutrition'&&<StudentWellbeing key={section} client={client} memberId={history.member.id} section="nutrition" onDirtyChange={setWellbeingDirty}/>}
-      <div hidden={section!=='training'}>
+      <details className="student-nutrition-panel card" onToggle={event => setNutritionOpen(event.currentTarget.open)}>
+        <summary><strong>Nutrición</strong><span>Guías, recetas y alimentación</span></summary>
+        {nutritionOpen && <StudentWellbeing client={client} memberId={history.member.id} section="nutrition" onDirtyChange={ignoreNutritionDirty}/>}
+      </details>
+      <div>
       {!routine || !progress ? <div className="card empty">Todavía no tenés una rutina asignada. Consultá con tu entrenador.</div> : <>
         <section ref={todayCard} className="card student-today">
           <p className="eyebrow">MI ENTRENAMIENTO DE HOY</p>
@@ -241,7 +245,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
 
       </>}
       </div>
-      {section==='progress' && <>        <section className="card" aria-label="Mi registro de entrenamientos"><h2>Mis entrenamientos</h2>
+      <details className="student-history-panel card" onToggle={event => setHistoryOpen(event.currentTarget.open)}><summary>Historial de entrenamientos</summary>{historyOpen && <section className="card" aria-label="Mi registro de entrenamientos"><h2>Mis entrenamientos</h2>
           {history.sessions.length === 0 ? <p>Todavía no registraste entrenamientos.</p> : <>
             <p className="muted">Últimos {Math.min(10, history.sessions.length)} de {history.sessions.length} entrenamientos guardados.</p>
             {history.sessions.slice(0, 10).map(session => <article key={session.id} className="student-feedback-item">
@@ -251,7 +255,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
               {session.results?.length > 0 && <details><summary>Ver mis resultados</summary>{session.results.map((result, index) => <p key={`${result.exerciseId}-${index}`}><strong>{result.name}</strong> · Series: {result.sets || '—'} · Repeticiones: {result.reps || '—'} · Carga: {result.load || '—'} · RIR: {result.rir || '—'}{result.comment && <span className="exercise-comment">{result.comment}</span>}</p>)}</details>}
             </article>)}
           </>}
-        </section></>}
+        </section>}</details>
     </>}
   </section>
 }

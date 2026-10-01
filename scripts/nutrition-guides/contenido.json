@@ -1,0 +1,407 @@
+{
+  "breakfasts": [
+    {
+      "title": "Yogur, avena y fruta",
+      "image": "yogur",
+      "time": "5 minutos",
+      "yield_": "1 bol",
+      "ingredients": "200 g de yogur natural pasteurizado; 30 g de avena; 1 banana pequeña; 4 frutillas.",
+      "steps": [
+        "Lavá las frutillas y cortá la fruta.",
+        "Serví el yogur, agregá la avena y terminá con la fruta. Si te gusta más blanda, dejá hidratar la avena en el yogur dentro de la heladera.",
+        "Consumí en el momento o llevá en un recipiente refrigerado."
+      ],
+      "swap": "Usá pera o durazno de estación. El yogur sin lactosa sirve para intolerancia a la lactosa; no para alergia a la leche.",
+      "note": "Una combinación de cereal, lácteo y fruta para desayuno o merienda. Ajustá la cantidad al apetito.",
+      "allergens": "Leche; avena (posible gluten)."
+    },
+    {
+      "title": "Avena tibia con manzana",
+      "image": "avena",
+      "time": "12-15 minutos",
+      "yield_": "1 bol",
+      "ingredients": "40 g de avena; 200 ml de leche pasteurizada; 1 manzana pequeña; 10 g de nueces; canela a gusto.",
+      "steps": [
+        "Lavá y cortá la manzana. Cociná la mitad con la leche y la avena a fuego bajo, revolviendo 5-8 minutos.",
+        "Agregá un poco de agua si se espesa demasiado. Terminá con el resto de la manzana, cruda o cocida, y canela.",
+        "Picá las nueces y añadilas al servir."
+      ],
+      "swap": "Probá pera en lugar de manzana. Para una opción vegetal, usá bebida de soja fortificada sin azúcar; los aportes varían según el producto.",
+      "note": "Práctica para los días fríos. Si la fibra te resulta pesada antes de entrenar, elegila en otro horario.",
+      "allergens": "Leche; nueces; avena (posible gluten)."
+    },
+    {
+      "title": "Tostadas con huevo y palta",
+      "image": "tostadas",
+      "time": "12 minutos",
+      "yield_": "1 plato",
+      "ingredients": "1-2 rebanadas de pan integral; 2 huevos; 1/4 de palta; 1 tomate pequeño; 1 cucharadita de aceite.",
+      "steps": [
+        "Lavá y cortá el tomate. Pisá la palta y tostá el pan.",
+        "Cociná los huevos revueltos con el aceite hasta que estén firmes, sin partes líquidas.",
+        "Untá las tostadas con palta y agregá los huevos. Acompañá con el tomate."
+      ],
+      "swap": "Cambiá palta por ricota o huevo por tofu bien cocido y condimentado.",
+      "note": "Desayuno o merienda salada. No hace falta reservar los huevos solo para el almuerzo.",
+      "allergens": "Huevo; trigo. La alternativa con ricota contiene leche."
+    },
+    {
+      "title": "Tostadas de ricota y pera",
+      "image": "ricota",
+      "time": "5 minutos",
+      "yield_": "1 plato",
+      "ingredients": "2 rebanadas de pan integral; 80 g de ricota pasteurizada; 1 pera pequeña; canela opcional.",
+      "steps": [
+        "Lavá la pera, retirale el centro y cortala en láminas.",
+        "Tostá el pan y repartí la ricota.",
+        "Agregá la pera y, si te gusta, un toque de canela."
+      ],
+      "swap": "Usá queso fresco pasteurizado y durazno. Si la pera está firme, cocinala unos minutos con un poco de agua.",
+      "note": "Una alternativa sencilla para variar las tostadas dulces sin depender de mermelada.",
+      "allergens": "Leche; trigo."
+    },
+    {
+      "title": "Hummus, pan y vegetales",
+      "image": "hummus",
+      "time": "10 minutos",
+      "yield_": "2 colaciones",
+      "ingredients": "200 g de garbanzos cocidos y escurridos; 1 cucharada de aceite; 1 cucharada de limón; 2-4 cucharadas de agua; 1 zanahoria; 1/2 pepino; 1 pan pita integral grande.",
+      "steps": [
+        "Procesá los garbanzos con aceite, limón y agua de a poco hasta lograr una crema. Condimentá a gusto.",
+        "Lavá los vegetales y cortalos en bastones.",
+        "Serví el hummus con los bastones y el pan dividido en dos. Guardá refrigerado lo que no uses."
+      ],
+      "swap": "Probá porotos blancos en lugar de garbanzos. Esta versión no lleva tahini; si lo agregás, incorporás sésamo.",
+      "note": "Opción salada con legumbres. No es la primera elección justo antes de entrenar si te provoca distensión.",
+      "allergens": "Trigo; revisar ingredientes del pan."
+    },
+    {
+      "title": "Panqueques de banana y avena",
+      "image": "panqueques",
+      "time": "15 minutos",
+      "yield_": "6 pequeños / 2 porciones",
+      "ingredients": "1 banana madura mediana; 1 huevo; 60 g de avena molida; 60-90 ml de leche; 1/2 cucharadita de polvo de hornear; 1 cucharadita de aceite; 100 g de yogur natural y frutillas para servir.",
+      "steps": [
+        "Pisá la banana. Mezclá huevo, avena, polvo de hornear y 60 ml de leche. Esperá 5 minutos; agregá más leche si queda demasiado espeso.",
+        "En una sartén apenas aceitada, cociná pequeñas porciones 2-3 minutos por lado a fuego medio-bajo. El centro debe quedar cocido, sin masa húmeda.",
+        "Serví con yogur y fruta lavada. No pruebes la mezcla cruda."
+      ],
+      "swap": "Probá con pera cocida pisada. Si usás avena sin gluten, debe estar certificada y también los demás ingredientes.",
+      "note": "La banana aporta dulzor. No necesitan jarabes, aunque las cantidades siguen importando.",
+      "allergens": "Huevo; leche; avena (posible gluten)."
+    },
+    {
+      "title": "Sándwich fresco y mandarina",
+      "image": "sandwich",
+      "time": "5 minutos",
+      "yield_": "1 sándwich",
+      "ingredients": "2 rebanadas de pan integral; 60 g de queso fresco pasteurizado; 1/2 tomate; hojas de lechuga; 1 mandarina.",
+      "steps": [
+        "Lavá y secá tomate y lechuga.",
+        "Armá el sándwich con queso y vegetales. Acompañá con la mandarina.",
+        "Si lo llevás, mantenelo en una bolsa térmica con frío hasta consumir."
+      ],
+      "swap": "Cambiá queso por hummus o por pollo previamente cocido y refrigerado.",
+      "note": "Merienda práctica para salir de casa. Si vas a entrenar pronto, ajustá volumen y tolerancia.",
+      "allergens": "Leche; trigo."
+    },
+    {
+      "title": "Vasito de chía y mango",
+      "image": "chia",
+      "time": "10 minutos + 4 horas de frío",
+      "yield_": "2 vasitos",
+      "ingredients": "250 ml de leche pasteurizada o bebida de soja fortificada; 30 g de semillas de chía; 1 mango pequeño; vainilla opcional.",
+      "steps": [
+        "Mezclá chía y leche en un recipiente. Volvé a mezclar a los 10 minutos para evitar grumos.",
+        "Tapá y refrigerá al menos 4 horas, hasta que las semillas se hidraten y la mezcla espese.",
+        "Repartí en dos vasitos y agregá el mango lavado, pelado y cortado. No consumas la chía seca a cucharadas."
+      ],
+      "swap": "Probá con frutilla o durazno. Si no te gusta la textura, elegí el bol de yogur.",
+      "note": "Es una opción, no un alimento obligatorio. Empezá con una cantidad pequeña si no acostumbrás comer mucha fibra.",
+      "allergens": "Leche o soja, según la bebida."
+    }
+  ],
+  "lunches": [
+    {
+      "title": "Pollo, arroz y verduras",
+      "image": "plato-equilibrado.png",
+      "time": "35 minutos",
+      "yield_": "2 porciones",
+      "ingredients": "300 g de pollo sin piel; 120 g de arroz integral seco; 1 brócoli pequeño; 1 zanahoria; 1 tomate; hojas verdes; 2 cucharaditas de aceite; limón y condimentos.",
+      "steps": [
+        "Cociná el arroz según el envase. Lavá las verduras y cociná el brócoli y la zanahoria al vapor hasta que estén tiernos.",
+        "Cortá el pollo en tiras y cocinalo en sartén con el aceite. Comprobá 74 °C en el centro con termómetro de cocina.",
+        "Serví arroz y pollo con las verduras cocidas y la ensalada de tomate y hojas. Terminá con limón."
+      ],
+      "swap": "Podés cambiar el arroz por papa o boniato. Para una versión vegetal, reemplazá el pollo por garbanzos o tofu.",
+      "note": "El pollo aporta proteínas; el arroz, energía; las verduras suman variedad y fibra.",
+      "allergens": "Sin alérgenos principales añadidos en esta versión; revisar condimentos."
+    },
+    {
+      "title": "Hamburguesitas de atún",
+      "image": "atun.png",
+      "time": "35 minutos",
+      "yield_": "2 porciones",
+      "ingredients": "2 latas de atún al natural (unos 240 g escurridos en total); 1 huevo; 40 g de avena fina; perejil; 1 boniato mediano; 1 tomate; hojas verdes; 2 cucharaditas de aceite; 2 cucharadas de yogur natural y limón.",
+      "steps": [
+        "Calentá el horno a 200 °C. Cortá el boniato en gajos, mezclá con parte del aceite y horneá hasta que esté tierno, unos 25-30 minutos.",
+        "Mezclá atún escurrido, huevo, avena y perejil. Dejá reposar 5 minutos y formá 6 medallones pequeños. Si la mezcla está seca, agregá una cucharada de agua.",
+        "Horneá sobre una placa aceitada unos 15-20 minutos, dando vuelta a mitad de cocción; el centro debe alcanzar 71 °C. Serví con ensalada y yogur con limón."
+      ],
+      "swap": "Alterná el atún con otros pescados en conserva. Si usás sardinas, retirales las espinas que prefieras y ajustá la humedad de la mezcla.",
+      "note": "Una forma práctica de combinar pescado, avena y verduras. Los tiempos dependen del tamaño de los medallones.",
+      "allergens": "Pescado; huevo; leche; avena (posible gluten)."
+    },
+    {
+      "title": "Ensalada de lentejas y arroz",
+      "image": "lentejas.png",
+      "time": "15 minutos*",
+      "yield_": "2 porciones",
+      "ingredients": "300 g de lentejas cocidas y escurridas; 150 g de arroz integral cocido; 1 tomate; 1 zanahoria; 1/2 pepino; perejil; 2 cucharaditas de aceite y limón.",
+      "steps": [
+        "Si usás lentejas en conserva, enjuagalas y escurrilas. Usá arroz recién cocido o que se haya enfriado y refrigerado correctamente.",
+        "Lavá y cortá tomate y pepino. Rallá la zanahoria y picá el perejil.",
+        "Mezclá todo y condimentá con aceite y limón. Serví enseguida o guardá en heladera."
+      ],
+      "swap": "Cambiá las lentejas por garbanzos o porotos cocidos. El arroz puede ser quinoa o cuscús; este último contiene trigo.",
+      "note": "Las legumbres aportan proteínas vegetales y fibra. *Tiempo con arroz y lentejas ya cocidos.",
+      "allergens": "Sin alérgenos principales añadidos; revisar conservas."
+    },
+    {
+      "title": "Pasta con carne y vegetales",
+      "image": "pasta.png",
+      "time": "30 minutos",
+      "yield_": "2 porciones",
+      "ingredients": "140 g de pasta integral seca; 200 g de carne vacuna picada magra; 250 g de tomate triturado; 1 zucchini; 1/2 cebolla; hojas verdes; 2 cucharaditas de aceite y orégano.",
+      "steps": [
+        "Picá cebolla y zucchini. Cocinalos con el aceite en una sartén amplia.",
+        "Agregá la carne y desarmala con una cuchara. Incorporá el tomate y orégano, y cociná a fuego suave. La carne picada debe alcanzar 71 °C.",
+        "Herví la pasta según el envase. Escurrí, mezclá con la salsa y acompañá con ensalada verde."
+      ],
+      "swap": "Para una opción sin carne, usá 250 g de lentejas cocidas en la salsa. Si necesitás evitar gluten, elegí pasta certificada sin gluten.",
+      "note": "El plato integra una fuente de energía, una de proteínas y vegetales, sin necesidad de salsas complejas.",
+      "allergens": "Trigo."
+    },
+    {
+      "title": "Pescado con papa y verduras",
+      "image": "pescado.png",
+      "time": "30 minutos",
+      "yield_": "2 porciones",
+      "ingredients": "2 filetes de merluza u otro pescado blanco (300-350 g en total); 2 papas medianas; 1 brócoli pequeño; 2 zanahorias; 2 cucharaditas de aceite; limón y perejil.",
+      "steps": [
+        "Pelá o lavá bien las papas y cortalas. Hervilas hasta que estén tiernas. Cociná brócoli y zanahorias al vapor.",
+        "Poné los filetes en una fuente con aceite y limón. Horneá a 200 °C unos 12-18 minutos, según el grosor; comprobá 63 °C en el centro.",
+        "Revisá las espinas y serví con papa, verduras y perejil."
+      ],
+      "swap": "Podés usar pescado congelado, descongelándolo en la heladera. Cambiá las papas por boniato o arroz.",
+      "note": "Una preparación sencilla que permite variar el pescado y aprovechar verduras de estación.",
+      "allergens": "Pescado."
+    },
+    {
+      "title": "Omelette con ensalada y tostada",
+      "image": "omelette.png",
+      "time": "15 minutos",
+      "yield_": "1 porción",
+      "ingredients": "2 huevos; 1 puñado de espinaca; 1 tomate; 1/2 pepino; 1-2 rebanadas de pan integral; 1 cucharadita de aceite y condimentos.",
+      "steps": [
+        "Lavá los vegetales. Salteá la espinaca y la mitad del tomate con parte del aceite.",
+        "Batí los huevos, agregalos a la sartén y cociná a fuego moderado. Doblá el omelette cuando esté firme y terminá la cocción sin huevo líquido.",
+        "Tostá el pan. Serví con el tomate restante y pepino en ensalada."
+      ],
+      "swap": "Podés usar acelga cocida y bien escurrida o champiñones. Para evitar trigo, acompañá con papa cocida o pan certificado sin gluten.",
+      "note": "Los huevos aportan proteínas. La tostada y los vegetales completan una comida rápida.",
+      "allergens": "Huevo; trigo."
+    },
+    {
+      "title": "Wrap de pollo con ensalada",
+      "image": "wrap.png",
+      "time": "20 minutos*",
+      "yield_": "2 porciones",
+      "ingredients": "2 tortillas integrales grandes; 250 g de pollo cocido; lechuga; 1 tomate; 1 zanahoria; 1/2 pepino; 4 cucharadas de yogur natural; limón y condimentos.",
+      "steps": [
+        "Lavá y cortá los vegetales. Desmenuzá el pollo cocido. Si lo cocinás desde crudo, debe alcanzar 74 °C.",
+        "Mezclá yogur y limón. Calentá brevemente las tortillas para que se doblen sin romperse.",
+        "Rellená con pollo, lechuga, tomate y salsa. Cerrá y acompañá con zanahoria y pepino. Mantené refrigerado hasta consumir."
+      ],
+      "swap": "Usá garbanzos pisados en lugar del pollo. Si el yogur no te resulta adecuado, probá hummus; revisá sus ingredientes si hay alergias.",
+      "note": "Práctico para llevar, siempre manteniendo el frío. *Tiempo con el pollo previamente cocido.",
+      "allergens": "Trigo; leche."
+    }
+  ],
+  "desserts": [
+    {
+      "title": "Panqueques de banana y avena",
+      "image": "panqueques",
+      "time": "15 minutos",
+      "yield_": "6 pequeños / 2 porciones",
+      "ingredients": "1 banana madura mediana; 1 huevo; 60 g de avena molida; 60-90 ml de leche; 1/2 cucharadita de polvo de hornear; 1 cucharadita de aceite; 100 g de yogur natural y frutillas para servir.",
+      "steps": [
+        "Pisá la banana. Mezclá huevo, avena, polvo de hornear y 60 ml de leche. Esperá 5 minutos; agregá más leche si queda demasiado espeso.",
+        "En una sartén apenas aceitada, cociná pequeñas porciones 2-3 minutos por lado a fuego medio-bajo. El centro debe quedar cocido, sin masa húmeda.",
+        "Serví con yogur y fruta lavada. No pruebes la mezcla cruda."
+      ],
+      "swap": "Probá con pera cocida pisada. Si usás avena sin gluten, debe estar certificada y también los demás ingredientes.",
+      "note": "La banana aporta dulzor. No necesitan jarabes, aunque las cantidades siguen importando.",
+      "allergens": "Huevo; leche; avena (posible gluten)."
+    },
+    {
+      "title": "Muffins de banana y avena",
+      "image": "muffins",
+      "time": "35 minutos",
+      "yield_": "6 muffins pequeños",
+      "ingredients": "2 bananas maduras medianas (200 g peladas); 1 huevo; 120 g de avena molida; 80 g de yogur natural; 1 cucharada de aceite; 1 cucharadita de polvo de hornear; vainilla.",
+      "steps": [
+        "Calentá el horno a 180 °C. Pisá las bananas y mezclá con huevo, yogur, aceite y vainilla.",
+        "Incorporá avena y polvo de hornear. Dejá reposar 5 minutos y repartí en 6 moldes pequeños, llenando hasta 3/4.",
+        "Horneá unos 20-25 minutos. Comprobá que el centro esté cocido con un palillo limpio. Enfriá antes de desmoldar."
+      ],
+      "swap": "Agregá canela o ralladura de naranja lavada. La textura es húmeda y menos aireada que la de una magdalena tradicional.",
+      "note": "El dulzor depende de la madurez de la banana. Receta sin azúcar agregada en la mezcla, siempre que yogur y demás ingredientes no la contengan.",
+      "allergens": "Huevo; leche; avena (posible gluten)."
+    },
+    {
+      "title": "Galletitas blandas de banana",
+      "image": "cookies",
+      "time": "25 minutos",
+      "yield_": "8 galletitas",
+      "ingredients": "1 banana madura grande (120 g pelada); 80 g de avena; 15 g de chocolate amargo picado; canela opcional.",
+      "steps": [
+        "Calentá el horno a 180 °C. Pisá bien la banana y mezclá con avena, chocolate y canela.",
+        "Dejá reposar 5 minutos. Formá 8 montoncitos sobre papel de horno y aplastalos: no se expanden solos.",
+        "Horneá 15-18 minutos y dejá enfriar. Quedan blandas; no busques la textura de una galletita crocante."
+      ],
+      "swap": "Podés omitir el chocolate o usar pasas picadas. Cambiar azúcar por pasas no elimina los azúcares propios de la fruta.",
+      "note": "Una opción casera para acompañar una merienda. El chocolate puede contener azúcar y otros alérgenos: revisá el rótulo.",
+      "allergens": "Avena (posible gluten); el chocolate puede contener leche o soja."
+    },
+    {
+      "title": "Manzanas al horno con canela",
+      "image": "manzanas",
+      "time": "35-40 minutos",
+      "yield_": "2 porciones",
+      "ingredients": "2 manzanas medianas; 20 g de nueces picadas; canela; 3 cucharadas de agua; 100 g de yogur natural pasteurizado.",
+      "steps": [
+        "Calentá el horno a 180 °C. Lavá las manzanas, cortalas por la mitad y retirales las semillas.",
+        "Ponelas en una fuente con el agua. Repartí nueces y canela en el centro y horneá unos 25-30 minutos, hasta que estén tiernas.",
+        "Serví tibias con yogur. Si la superficie se seca antes de ablandarse, cubrí la fuente durante parte de la cocción."
+      ],
+      "swap": "Usá peras firmes. Si hay alergia a frutos secos, omití las nueces y usá utensilios sin contaminación cruzada.",
+      "note": "La fruta cocida permite variar texturas. No requiere miel ni jarabes para prepararla.",
+      "allergens": "Nueces; leche."
+    },
+    {
+      "title": "Vasito de chía y mango",
+      "image": "chia",
+      "time": "10 minutos + 4 horas de frío",
+      "yield_": "2 vasitos",
+      "ingredients": "250 ml de leche pasteurizada o bebida de soja fortificada; 30 g de semillas de chía; 1 mango pequeño; vainilla opcional.",
+      "steps": [
+        "Mezclá chía y leche en un recipiente. Volvé a mezclar a los 10 minutos para evitar grumos.",
+        "Tapá y refrigerá al menos 4 horas, hasta que las semillas se hidraten y la mezcla espese.",
+        "Repartí en dos vasitos y agregá el mango lavado, pelado y cortado. No consumas la chía seca a cucharadas."
+      ],
+      "swap": "Probá con frutilla o durazno. Si no te gusta la textura, elegí el bol de yogur.",
+      "note": "Es una opción, no un alimento obligatorio. Empezá con una cantidad pequeña si no acostumbrás comer mucha fibra.",
+      "allergens": "Leche o soja, según la bebida."
+    },
+    {
+      "title": "Helado rápido de banana y cacao",
+      "image": "helado",
+      "time": "10 minutos + congelado previo",
+      "yield_": "2 porciones pequeñas",
+      "ingredients": "2 bananas maduras congeladas en rodajas (200-240 g); 1 cucharada de cacao puro sin azúcar; 2-4 cucharadas de leche pasteurizada, bebida vegetal o agua.",
+      "steps": [
+        "Pelá y cortá las bananas antes de congelarlas en un recipiente apto, al menos 4 horas.",
+        "Dejalas ablandar 3-5 minutos. Procesá con cacao y un poco de líquido; agregalo de a cucharadas para no volverlo un batido.",
+        "Serví enseguida. Usá un equipo apto para fruta congelada y respetá sus instrucciones."
+      ],
+      "swap": "Omití el cacao y sumá canela. Para otra versión, combiná banana y frutillas congeladas aptas para consumo sin cocción, siguiendo su envase.",
+      "note": "Queda cremoso recién procesado; al recongelarse se endurece. No equivale nutricionalmente a un yogur ni a un suplemento proteico.",
+      "allergens": "Leche o soja si se utilizan; revisar cacao."
+    },
+    {
+      "title": "Paletas de yogur y frutilla",
+      "image": "paletas",
+      "time": "10 minutos + 6 horas de frío",
+      "yield_": "4 paletas pequeñas",
+      "ingredients": "250 g de yogur natural pasteurizado; 150 g de frutillas frescas; 1 banana pequeña madura.",
+      "steps": [
+        "Lavá las frutillas y retirales el cabito. Pisá o procesá con banana y yogur.",
+        "Repartí en 4 moldes limpios, colocá los palitos y congelá al menos 6 horas.",
+        "Desmoldá pasando brevemente el exterior por agua. Mantené congeladas hasta servir."
+      ],
+      "swap": "Usá durazno maduro o mango. Con yogur sin lactosa cambiás la lactosa, pero el producto sigue conteniendo proteínas de leche.",
+      "note": "El tamaño depende del molde. Elegí ingredientes que te resulten agradables sin necesitar mucho dulzor adicional.",
+      "allergens": "Leche."
+    },
+    {
+      "title": "Crumble de pera y manzana",
+      "image": "crumble",
+      "time": "40 minutos",
+      "yield_": "4 porciones",
+      "ingredients": "2 manzanas y 2 peras medianas; 80 g de avena; 30 g de harina integral; 2 cucharadas de aceite (30 ml); 2-3 cucharadas de agua; canela.",
+      "steps": [
+        "Calentá el horno a 180 °C. Lavá, retirales el centro y cortá las frutas. Distribuí en una fuente pequeña con canela y 2 cucharadas de agua.",
+        "Mezclá avena, harina y aceite. Añadí apenas agua si hace falta para formar migas y repartilas sobre la fruta.",
+        "Horneá 25-30 minutos, hasta que la fruta esté tierna y la superficie dorada. Dejá entibiar. No pruebes la harina cruda."
+      ],
+      "swap": "Probá con duraznos de estación. Para evitar trigo, reemplazá la harina por avena molida certificada sin gluten y revisá todos los ingredientes.",
+      "note": "La cobertura suma cereal y textura; no hace falta añadir miel. El rendimiento permite compartir o guardar porciones.",
+      "allergens": "Trigo; avena (posible gluten)."
+    }
+  ],
+  "sources": {
+    "MSP": [
+      "Ministerio de Salud Pública de Uruguay · Guía alimentaria",
+      "https://www.gub.uy/ministerio-salud-publica/comunicacion/publicaciones/guia-alimentaria-para-poblacion-uruguaya"
+    ],
+    "OMS": [
+      "OMS · Alimentación saludable",
+      "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"
+    ],
+    "PLATO": [
+      "Health Canada · Cómo armar el plato",
+      "https://www.canada.ca/en/health-canada/services/food-guide/eating-support/cooking/make-healthy-meals-plate.html"
+    ],
+    "PRE": [
+      "Sports Dietitians Australia · Antes del ejercicio",
+      "https://www.sportsdietitians.com.au/factsheets/pre-exercise-fuelling/"
+    ],
+    "POST": [
+      "Sports Dietitians Australia · Recuperación",
+      "https://www.sportsdietitians.com.au/wp-content/uploads/2015/04/120628-Recovery_SD-version.pdf"
+    ],
+    "MANZ": [
+      "NCCIH · Manzanilla: evidencia y seguridad",
+      "https://www.nccih.nih.gov/health/chamomile"
+    ],
+    "MENTA": [
+      "NCCIH · Menta y aceite de menta",
+      "https://www.nccih.nih.gov/health/peppermint-oil"
+    ],
+    "JENG": [
+      "NCCIH · Jengibre",
+      "https://www.nccih.nih.gov/health/ginger"
+    ],
+    "CURC": [
+      "NCCIH · Cúrcuma",
+      "https://www.nccih.nih.gov/health/turmeric"
+    ],
+    "FRIO": [
+      "USDA · Conservación de sobras",
+      "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety"
+    ],
+    "TEMP": [
+      "FoodSafety.gov · Temperaturas internas seguras",
+      "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+    ],
+    "IG": [
+      "Inspiración visual · Carrusel de desayunos de @biomusclelapnutricion",
+      "https://www.instagram.com/biomusclelapnutricion/p/Dd309FJDilS/"
+    ],
+    "IG2": [
+      "Inspiración de variedad · Platos de @biomusclelapnutricion",
+      "https://www.instagram.com/biomusclelapnutricion/p/Dd2PnbcjtXW/"
+    ]
+  }
+}

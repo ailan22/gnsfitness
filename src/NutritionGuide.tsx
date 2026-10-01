@@ -5,7 +5,7 @@ export default function NutritionGuide() {
     <header className="card"><p className="eyebrow">GUÍA GNS FITNESS</p><h2>{guide.title}</h2><p>{guide.intro}</p>
       <img className="nutrition-photo" src="/nutricion/plato-equilibrado.png" alt="Ejemplo ilustrativo: verduras, arroz y pollo en un plato, acompañado de agua y fruta" loading="lazy"/>
       <p className="muted">Imagen ilustrativa creada con IA. Las cantidades no son una prescripción.</p>
-      <p><a href="/nutricion/guia-alimentacion-gns.pdf" target="_blank" rel="noopener noreferrer">Guía completa de alimentación · 31 páginas con imágenes</a></p>
+      <p><a href="/nutricion/guia-alimentacion-gns.pdf" target="_blank" rel="noopener noreferrer">Guía completa de alimentación · 17 páginas con imágenes</a></p>
       <p>Nutrición, método del plato, desayunos, meriendas, almuerzos, cenas, pre y postentreno, infusiones y aguas naturales.</p>
       <p><a href="/nutricion/postres-y-recetas-dulces-gns.pdf" target="_blank" rel="noopener noreferrer">Postres y recetas dulces · 14 páginas con imágenes</a></p>
       <p>Ocho recetas con ingredientes, pasos, variantes y cuidados de conservación.</p>

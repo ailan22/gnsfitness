@@ -170,3 +170,9 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 .nutrition-plan-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; margin-block:1rem; }
 
+
+.room-month { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:6px; margin:16px 0; }
+.room-month button { padding:12px 4px; min-width:0; }
+.room-day { display:block; margin:12px 0; }
+.room-day summary { cursor:pointer; color:#edcb84; padding:8px 0; }
+.room-booking { padding:14px 0; border-bottom:1px solid #494338; }

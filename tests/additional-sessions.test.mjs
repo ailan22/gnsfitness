@@ -19,7 +19,7 @@ function harness() {
  const client={from(){const filters=[];let patch;return{update(p){patch=p;return this},eq(k,v){if(k!=='member_id')filters.push([k,v]);return this},select(){return this},async maybeSingle(){if(!filters.every(([k,v])=>k==='service_config'?JSON.stringify(row[k])===v:row[k]===v))return{data:null,error:null};Object.assign(row,patch);return{data:{id:row.id},error:null}}}}}
  function render(){cursor=0;ref=0;tree=exports.default({client,plan,memberId:'m',onSaved(){saved++}})}
  function nodes(n=tree){if(!n||typeof n!=='object')return[];if(Array.isArray(n))return n.flatMap(nodes);return[n,...nodes(n.props?.children ?? null)]}
- render();return{row,plan,get saved(){return saved},select(dates){nodes().find(n=>n.type==='schedule').props.onChange(dates);render()},async save(){await nodes().find(n=>n.type==='form').props.onSubmit({preventDefault(){}});await new Promise(resolve=>setImmediate(resolve));render()},text(){return JSON.stringify(tree)}}
+ render();return{row,plan,get saved(){return saved},select(dates){nodes().find(n=>n.type==='schedule').props.onChange(dates);nodes().find(n=>n.type==='schedule').props.onTimesChange(Object.fromEntries(dates.map(d=>[d,'17:00'])));render()},async save(){await nodes().find(n=>n.type==='form').props.onSubmit({preventDefault(){}});await new Promise(resolve=>setImmediate(resolve));render()},text(){return JSON.stringify(tree)}}
 }
 test('adding sessions preserves existing dates, charges only new distinct dates and does not double charge a stale retry',async()=>{
  const ui=harness();ui.select(['2026-10-05','2026-10-15','2026-10-15']);await ui.save()

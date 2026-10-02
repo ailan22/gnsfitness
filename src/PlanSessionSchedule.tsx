@@ -1,8 +1,13 @@
+import type { SupabaseClient } from '@supabase/supabase-js'
+import { useRoomAvailability } from './useRoomAvailability'
+import { availableRoomTimes } from './roomSchedule'
 import { useState } from 'react'
 import { serviceDates, summarizeServiceDates } from './planServices'
+import { uruguayToday } from './planReminders'
 
-export default function PlanSessionSchedule({ start, end, dates, onChange, lockedDates = [] }: { start: string; end: string; dates: string[]; lockedDates?: string[]; onChange: (dates: string[]) => void }) {
-  const [month, setMonth] = useState(start.slice(0, 7))
+export default function PlanSessionSchedule({ start, end, dates, onChange, lockedDates = [], client, times = {}, onTimesChange }: { client?: SupabaseClient; times?: Record<string,string>; onTimesChange?: (times: Record<string,string>) => void; start: string; end: string; dates: string[]; lockedDates?: string[]; onChange: (dates: string[]) => void }) {
+  const room = useRoomAvailability(client)
+  const [month, setMonth] = useState(() => uruguayToday().slice(0, 7))
   const [weekdays, setWeekdays] = useState<number[]>([])
   const [weeks, setWeeks] = useState([1, 2, 3, 4, 5])
   const activeMonth = month >= start.slice(0, 7) && month <= end.slice(0, 7) ? month : start.slice(0, 7)
@@ -15,6 +20,11 @@ export default function PlanSessionSchedule({ start, end, dates, onChange, locke
     <button type="button" className="secondary" disabled={!weekdays.length || !weeks.length} onClick={() => onChange([...new Set([...dates, ...serviceDates(activeMonth, weekdays, start, end, weeks)])].sort())}>Agregar fechas de este mes</button>
     <p>Podés marcar o desmarcar cada fecha. Cada fecha cuenta como una sesión de $650.</p>
     <div className="schedule-calendar">{days.map(date => <label key={date}><input type="checkbox" disabled={lockedDates.includes(date)} checked={dates.includes(date) || lockedDates.includes(date)} onChange={() => onChange(dates.includes(date) ? dates.filter(d => d !== date) : [...dates, date].sort())}/>{date.slice(8)}</label>)}</div>
+    {client && onTimesChange && dates.length > 0 && <details className="member-compact"><summary>Hora de cada sesión · 35 minutos</summary>
+      {room.error && <p className="error" role="alert">{room.error}</p>}
+      {dates.map(date => <label className="room-day" key={date}>{date.split('-').reverse().join('/')}<select required disabled={room.loading || Boolean(room.error)} value={times[date] || ''} onChange={e => onTimesChange({...times, [date]:e.target.value})}><option value="">Elegir hora disponible</option>{availableRoomTimes(date,room.appointments).map(t=><option key={t}>{t}</option>)}</select></label>)}
+      <p>Horarios de Uruguay. Cada sesión reserva la sala durante 35 minutos.</p>
+    </details>}
     <p className="muted">Fechas seleccionadas: {summarizeServiceDates(dates) || 'Ninguna'}</p>
     {dates.length > 0 && <button type="button" className="text-button" onClick={() => onChange([])}>Quitar todas las fechas</button>}
     <p className="muted">Al guardar, estas sesiones aparecerán en Avisos desde dos días antes y hasta el día de la sesión.</p>

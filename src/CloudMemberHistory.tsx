@@ -1,3 +1,4 @@
+import PhysioRoomTimes from './PhysioRoomTimes'
 import AdditionalPhysioSessions from './AdditionalPhysioSessions'
 import PlanSessionSchedule from './PlanSessionSchedule'
 import { confirmedInsert } from './confirmedInsert'
@@ -84,6 +85,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   const [deletingRoutineId, setDeletingRoutineId] = useState<string | null>(null)
   const [recording, setRecording] = useState<'suggested' | 'manual' | null>(null)
   const [planForm, setPlanForm] = useState({ planName: planCatalog[0].name, startsAt: today(), extras: [] as string[], details: '' })
+  const [physioTimes, setPhysioTimes] = useState<Record<string,string>>({})
   const [physioDates, setPhysioDates] = useState<string[]>([])
   const [paymentForm, setPaymentForm] = useState({ paidAt: today(), amount: '', method: 'Efectivo' })
   useEffect(() => {
@@ -225,11 +227,12 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
       setError('Revisá el plan y la fecha de inicio para calcular el importe.'); return
     }
     if (hasPhysio && (!physioDates.length || physioDates.some(d => !parseDay(d) || d < planForm.startsAt || d > endsAt))) { setError('Seleccioná las fechas de Kinesiología dentro de la vigencia del plan.'); return }
+    if (hasPhysio && physioDates.some(d => !physioTimes[d])) { setError('Elegí la hora de cada sesión de kinesiología.'); return }
     planBusy.current = true
     setSaving(true); setError(''); setMessage('')
     try {
     await confirmedInsert(client, 'memberships', { id: planRequestId.current, member_id: memberId,
-      plan_name: [selectedPlan.name,...planForm.extras].join(' + '), service_extras: planForm.extras, service_details: planForm.details.trim(), service_config: { version: 1, nutritionMonthly: NUTRITION_PRICE, nutritionMonths: hasNutrition ? selectedPlan.months : 0, physioSessionPrice: PHYSIO_SESSION_PRICE, physioDates: hasPhysio ? physioDates : [] }, months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 })
+      plan_name: [selectedPlan.name,...planForm.extras].join(' + '), service_extras: planForm.extras, service_details: planForm.details.trim(), service_config: { version: 1, nutritionMonthly: NUTRITION_PRICE, nutritionMonths: hasNutrition ? selectedPlan.months : 0, physioSessionPrice: PHYSIO_SESSION_PRICE, physioDates: hasPhysio ? physioDates : [], physioTimes: hasPhysio ? Object.fromEntries(physioDates.map(d=>[d,physioTimes[d]])) : {} }, months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 })
     setActiveForm(null); setMessage('Plan guardado en Supabase. No se registró ningún pago.'); setRevision(value => value + 1)
     onChanged()
     } catch (error) { setError(error instanceof Error ? error.message : 'No se pudo confirmar el guardado. Conservamos el formulario.') }
@@ -309,13 +312,13 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     </form></div>}
     {!error && !history && <p role="status">Cargando historial de Supabase…</p>}
     {history && <>
-      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving || activeForm === 'plan'} onClick={() => { planRequestId.current = crypto.randomUUID(); setActiveForm('plan'); setPhysioDates([]); setError(''); setMessage(''); setPlanForm({ planName: planCatalog[0].name, startsAt: today(), extras: [], details: '' }) }}>+ Asignar plan</button></div>
+      <div className="heading"><h2>Plan y pagos</h2><button type="button" disabled={saving || activeForm === 'plan'} onClick={() => { planRequestId.current = crypto.randomUUID(); setActiveForm('plan'); setPhysioDates([]); setPhysioTimes({}); setError(''); setMessage(''); setPlanForm({ planName: planCatalog[0].name, startsAt: today(), extras: [], details: '' }) }}>+ Asignar plan</button></div>
       {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
         <h2>Asignar plan</h2><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => changePlan(event.target.value, planForm.startsAt)}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
           <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => changePlan(planForm.planName, event.target.value)}/></label>
           <label>Total del plan (UYU)<input readOnly value={money(totalPlanPrice)} aria-label="Total del plan (UYU)"/></label></div>
         <fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra => <label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e => setPlanForm({...planForm, extras: e.target.checked ? [...planForm.extras, extra] : planForm.extras.filter(x => x !== extra)})}/>+ {extra} · {extra === 'Nutrición' ? '$3.000 por mes' : '$650 por sesión'}</label>)}</fieldset>
-        {hasPhysio && endsAt && <PlanSessionSchedule start={planForm.startsAt} end={endsAt} dates={physioDates} onChange={setPhysioDates}/>}
+        {hasPhysio && endsAt && <PlanSessionSchedule start={planForm.startsAt} end={endsAt} dates={physioDates} onChange={setPhysioDates} client={client} times={physioTimes} onTimesChange={setPhysioTimes}/>}
         <section className="plan-cost-summary" aria-label="Desglose del precio" aria-live="polite"><h3>Resumen del importe</h3>
           <p>Cuota del gimnasio · {selectedPlan?.months} mes(es): <strong>{money(selectedPlan?.price ?? 0)}</strong></p>
           {hasNutrition && <p>Nutrición · {money(NUTRITION_PRICE)} × {selectedPlan?.months} mes(es): <strong>{money(NUTRITION_PRICE * (selectedPlan?.months ?? 1))}</strong></p>}
@@ -343,7 +346,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
           <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar pago'}</button><button type="button" className="secondary" disabled={saving} onClick={() => { setActiveForm(null); setError('') }}>Cancelar</button></div>
                   </fieldset>
         </form>}
-        <AdditionalPhysioSessions key={currentPlan.id} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Sesiones adicionales guardadas. Se actualizó el total y el saldo del plan.'); setRevision(value => value + 1); onChanged() }}/><h3>Pagos de este plan</h3>{history.payments.filter(payment => payment.membership_id === currentPlan.id).length === 0 ? <p className="muted">Todavía no hay pagos registrados.</p> : history.payments.filter(payment => payment.membership_id === currentPlan.id).map(payment => <p key={payment.id}>{readableDate(payment.paid_at)} · {payment.method} · {money(payment.amount)}</p>)}
+        <PhysioRoomTimes key={`times-${currentPlan.id}`} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Horarios guardados. La sala quedó reservada.'); setRevision(value => value + 1); onChanged() }}/><AdditionalPhysioSessions key={currentPlan.id} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Sesiones adicionales guardadas. Se actualizó el total y el saldo del plan.'); setRevision(value => value + 1); onChanged() }}/><h3>Pagos de este plan</h3>{history.payments.filter(payment => payment.membership_id === currentPlan.id).length === 0 ? <p className="muted">Todavía no hay pagos registrados.</p> : history.payments.filter(payment => payment.membership_id === currentPlan.id).map(payment => <p key={payment.id}>{readableDate(payment.paid_at)} · {payment.method} · {money(payment.amount)}</p>)}
       </section>}
       {history.memberships.length > 1 && <section className="card profile"><h2>Planes anteriores</h2>{history.memberships.slice(1).map(plan => <p key={plan.id}>{plan.plan_name}: {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)} · {money(plan.price)} · pagado {money(history.payments.filter(payment => payment.membership_id === plan.id).reduce((total, payment) => total + Number(payment.amount), 0))}</p>)}</section>}
     </>}

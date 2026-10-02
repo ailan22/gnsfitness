@@ -3,7 +3,7 @@ import { parseDay } from './membership'
 export const NUTRITION_PRICE = 3000
 export const PHYSIO_SESSION_PRICE = 650
 
-export type PlanServiceConfig = { version: 1; nutritionMonthly: number; nutritionMonths: number; physioSessionPrice: number; physioDates: string[] }
+export type PlanServiceConfig = { version: 1; nutritionMonthly: number; nutritionMonths: number; physioSessionPrice: number; physioDates: string[]; physioTimes?: Record<string, string> }
 
 export function planTotal(base: number, months: number, nutrition: boolean, physioDates: string[]) {
   return base + (nutrition ? NUTRITION_PRICE * months : 0) + new Set(physioDates).size * PHYSIO_SESSION_PRICE

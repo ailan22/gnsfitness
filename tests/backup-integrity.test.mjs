@@ -11,6 +11,15 @@ const insertApi={};vm.runInNewContext(compile('confirmedInsert.ts'),{exports:ins
 const id = n => `00000000-0000-4000-8000-${String(n).padStart(12,'0')}`
 const pass='Una frase ficticia para pruebas 2026'
 
+test('schema 15 encrypts shared-room appointments and rejects a copy without them',async()=>{
+ const data={format:'gns-application-backup',version:1,schemaVersion:15,createdAt:new Date().toISOString(),tables:Object.fromEntries([...cryptoApi.backupTables,...cryptoApi.nutritionBackupTables,...cryptoApi.roomBackupTables].map(n=>[n,[]]))}
+ data.tables.room_appointments=[{id:id(75),kind:'reiki',member_id:id(10)}]
+ const file=await cryptoApi.encryptBackup(data,pass)
+ assert.deepEqual(JSON.parse(JSON.stringify(await cryptoApi.decryptBackup(file,pass))),data)
+ delete data.tables.room_appointments
+ await assert.rejects(cryptoApi.encryptBackup(data,pass))
+})
+
 test('schema 14 encrypts nutrition drafts and published plans and rejects incomplete copies',async()=>{
  const data={format:'gns-application-backup',version:1,schemaVersion:14,createdAt:new Date().toISOString(),tables:Object.fromEntries([...cryptoApi.backupTables,...cryptoApi.nutritionBackupTables].map(n=>[n,[]]))}
  data.tables.nutrition_drafts=[{id:id(70),body:'Borrador privado'}]

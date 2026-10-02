@@ -17,7 +17,6 @@ export function dayInUruguay(now = new Date()) {
 
 export function selectReminders({ members, memberships, contacts, blockedKeys = [], today = dayInUruguay() }) {
   const current = dateValue(today)
-  const target = new Date(current + 5 * DAY).toISOString().slice(0, 10)
   const blocked = new Set(blockedKeys)
   const contactByMember = new Map(contacts.map(contact => [contact.member_id, contact]))
   const plansByMember = new Map()
@@ -37,14 +36,16 @@ export function selectReminders({ members, memberships, contacts, blockedKeys = 
     // Longest currently valid coverage wins when memberships overlap.
     const active = plans.filter(plan => plan.starts_at <= today && plan.ends_at >= today)
       .sort((a, b) => b.ends_at.localeCompare(a.ends_at) || b.starts_at.localeCompare(a.starts_at) || String(a.id).localeCompare(String(b.id)))[0]
-    if (!active || active.ends_at !== target) continue
+    if (!active) continue
+    const daysBefore = (dateValue(active.ends_at)-current)/DAY
+    if (![10,5].includes(daysBefore)) continue
     const followingDay = new Date(dateValue(active.ends_at) + DAY).toISOString().slice(0, 10)
     // An already recorded renewal covering the next day makes this notice unnecessary.
     if (plans.some(plan => plan.id !== active.id && plan.starts_at <= followingDay && plan.ends_at > active.ends_at)) continue
-    const key = `whatsapp:${member.id}:${active.id}:${active.ends_at}:five-days`
+    const key = `whatsapp:${member.id}:${active.id}:${active.ends_at}:${daysBefore===5?'five-days':'ten-days'}`
     if (blocked.has(key)) continue
     reminders.push({ key, member_id: member.id, membership_id: active.id,
-      first_name: member.first_name, phone_e164: contact.phone_e164, expires_on: active.ends_at, notify_on: today })
+      first_name: member.first_name, phone_e164: contact.phone_e164, expires_on: active.ends_at, notify_on: today, days_before: daysBefore })
     blocked.add(key)
   }
   return reminders

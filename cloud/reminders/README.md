@@ -14,8 +14,11 @@ Usa la fecha `ends_at`, no la duración ni el saldo. No enviar mensualmente a un
 1. Conectar número y cuenta a WhatsApp Business Platform con el flujo aplicable al número.
    La aplicación WhatsApp Business, por sí sola, no conecta esta app con la API.
 2. Aprobar la plantilla de utilidad y revisar coste de proveedor/Meta con el titular.
-   Borrador: «Hola, {{1}}. Tu plan de GNS Fitness vence el {{2}}.
-   Te avisamos con cinco días de anticipación para que puedas coordinar la renovación».
+   Borrador: «Hola, {{1}}. Tu plan de GNS FITNESS vence el {{2}}, dentro de {{3}} días.
+   Te avisamos para que puedas organizar tu renovación con tranquilidad. Podés coordinarla
+   con nuestro equipo. Si ya realizaste el pago y aún no figura, avisanos para revisarlo.
+   ¡Gracias por entrenar con nosotros!».
+   Avisos a los 10 y 5 días antes, con claves separadas para evitar duplicados.
 3. Crear almacenamiento protegido para contactos normalizados, consentimiento por número,
    bajas y registro de envíos. No inferir consentimiento de la existencia de la ficha.
 4. Implementar trabajador y programación diaria en Supabase, con secretos solo del servidor.

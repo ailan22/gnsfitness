@@ -20,6 +20,7 @@ type CloudMember = {
   welcome_form: 'Bienvenido' | 'Bienvenida' | 'Te damos la bienvenida'
   emergency_contact_name: string
   emergency_contact_phone: string
+  health_provider: string
   goal: string
   limitations: string
   trainer_name: string
@@ -33,7 +34,7 @@ type PaymentFilter = 'Todos' | 'Con saldo pendiente' | 'Sin saldo pendiente'
 const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_000).toISOString().slice(0, 10)
 const blank = (): MemberForm => ({ first_name: '', last_name: '', phone: '', email: '', birth_date: null,
   joined_at: today(), status: 'Activo', welcome_form: 'Te damos la bienvenida', emergency_contact_name: '', emergency_contact_phone: '',
-  goal: '', limitations: '', trainer_name: '', notes: '' })
+  goal: '', limitations: '', trainer_name: '', notes: '', health_provider: '' })
 
 export default function CloudMembers({ client, onCountChange, initialNew = false, initialMemberId = null, onDirtyChange }: {
   client: SupabaseClient
@@ -77,7 +78,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const refresh = useCallback(async () => {
     setLoading(true)
     const [memberResult, notesResult, plansResult, paymentsResult] = await Promise.all([
-      readAllPages((from, to) => client.from('members').select('id,first_name,last_name,phone,email,birth_date,joined_at,status,welcome_form,emergency_contact_name,emergency_contact_phone,goal,limitations,trainer_name', { count: 'exact' }).order('joined_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
+      readAllPages((from, to) => client.from('members').select('id,first_name,last_name,phone,email,birth_date,joined_at,status,welcome_form,emergency_contact_name,emergency_contact_phone,health_provider,goal,limitations,trainer_name', { count: 'exact' }).order('joined_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
       readAllPages((from, to) => client.from('member_admin_notes').select('member_id,notes', { count: 'exact' }).order('member_id', { ascending: true }).range(from, to)),
       readAllPages((from, to) => client.from('memberships').select('id,member_id,starts_at,ends_at,price', { count: 'exact' }).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
       readAllPages((from, to) => client.from('payments').select('membership_id,amount', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
@@ -235,9 +236,9 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
       <CloudMemberHistory client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
         onChanged={() => { onCountChange(members.length); onDirtyChange?.(dirty || healthDirty) }} onClose={() => { if (healthDirty && !window.confirm('¿Descartar los cambios de salud sin guardar?')) return; setHistoryId(null); void refresh() }}>
-      <div className="cloud-profile-grid"><section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Nacimiento: {selected.birth_date || 'Sin registrar'}</p><p>Fecha de alta: {selected.joined_at || 'Sin registrar'}</p><p>Saludo en su portal: {selected.welcome_form}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Teléfono de emergencia: {selected.emergency_contact_phone || 'Sin registrar'}</p></section>
+      <div className="cloud-profile-grid"><section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de alta: {selected.joined_at || 'Sin registrar'}</p><p>Saludo en su portal: {selected.welcome_form}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p></section>
         <details className="member-compact"><summary>Estado del socio · <strong>{selected.status}</strong></summary><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p></details></div>
-      <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p><p>Entrenador asignado: {selected.trainer_name || 'Sin registrar'}</p><p>Observaciones administrativas: {notes[selected.id] || 'Ninguna'}</p></section>
+      <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
       <StudentAccess key={selected.id + selected.email} client={client} member={selected} />
       <MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/>
 
@@ -249,7 +250,6 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
         <label>Apellido *<input required value={form.last_name} onChange={event => update('last_name', event.target.value)}/></label>
         <label>Teléfono<input type="tel" value={form.phone} onChange={event => update('phone', event.target.value)}/></label>
         <label>Correo<input type="email" value={form.email} onChange={event => update('email', event.target.value)}/></label>
-        <label>Nacimiento<input type="date" max={today()} value={form.birth_date || ''} onChange={event => update('birth_date', event.target.value || null)}/></label>
         <label>Alta *<input type="date" required max={today()} value={form.joined_at} onChange={event => update('joined_at', event.target.value)}/></label>
         <label>Estado<select value={form.status} onChange={event => update('status', event.target.value as MemberForm['status'])}>
           <option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option>
@@ -257,13 +257,11 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
         <label>Saludo para el alumno<select value={form.welcome_form} onChange={event => update('welcome_form', event.target.value as MemberForm['welcome_form'])}>
           <option>Bienvenida</option><option>Bienvenido</option><option>Te damos la bienvenida</option>
         </select></label>
-        <label>Entrenador asignado<input value={form.trainer_name} onChange={event => update('trainer_name', event.target.value)}/></label>
+        <label>Prestador de salud<input maxLength={160} placeholder="Mutualista, ASSE o seguro de salud" value={form.health_provider ?? ''} onChange={event => update('health_provider', event.target.value)}/></label>
         <label>Contacto de emergencia<input value={form.emergency_contact_name} onChange={event => update('emergency_contact_name', event.target.value)}/></label>
-        <label>Teléfono de emergencia<input type="tel" value={form.emergency_contact_phone} onChange={event => update('emergency_contact_phone', event.target.value)}/></label>
       </div>
       <label>Objetivo<input value={form.goal} onChange={event => update('goal', event.target.value)}/></label>
       <label>Limitaciones o cuidados<textarea value={form.limitations} onChange={event => update('limitations', event.target.value)}/></label>
-      <label>Observaciones administrativas<textarea value={form.notes} onChange={event => update('notes', event.target.value)}/></label>
       <details className="intake-accordion"><summary><span><strong>Anamnesis inicial de salud y entrenamiento</strong><small>Opcional al registrar · acceso privado</small></span></summary>
         <p className="muted">Podés completarla ahora o agregarla después desde la ficha. Se guardará como un registro nuevo, sin reemplazar anamnesis anteriores.</p>
         {!intake ? <button type="button" className="secondary" onClick={() => { setIntake(blankHealthDraft()); setDirty(true); intakeId.current = crypto.randomUUID() }}>Completar anamnesis ahora</button> : <>

@@ -1,6 +1,7 @@
 import type { Exercise, SessionExerciseResult } from './data'
 
 export type CloudPlan = {
+  sessionTests?: Record<string,Record<string,{id:string;title:string;details:string}[]>>
   exercisesByDay?: Record<string, Exercise[]>
   blockExercises?: Record<string, Record<string, Exercise[]>>
   weekExercises?: Record<string, Record<string, Record<string, Exercise[]>>>

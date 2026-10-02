@@ -37,10 +37,10 @@ export default function PlanNotifications({ client, memberId, revision = 0, onOp
         {!memberId && <strong>{people.get(n.memberId)?.first_name} {people.get(n.memberId)?.last_name}</strong>}
         <p>{n.kind === 'physio' ? 'Sesión de kinesiología' : 'Vencimiento del plan'} · {n.days === 0 ? 'hoy' : n.days === 1 ? 'mañana' : `en ${n.days} días`}</p>
         <small>{n.date.split('-').reverse().join('/')}</small>
-        {memberId && n.kind === 'expiry' && <p>Coordiná la renovación con GNS para continuar tu plan.</p>}
+        {memberId && n.kind === 'expiry' && <p>Hola, {people.get(n.memberId)?.first_name}. {n.days>5?'Te avisamos con tiempo para que puedas organizar tu próxima renovación.':'Te recordamos que se acerca la renovación de tu plan.'} Podés coordinarla con el equipo de GNS FITNESS. Si ya realizaste el pago y aún no figura, avisanos para revisarlo. ¡Gracias por entrenar con nosotros!</p>}
         {onOpen && <button type="button" className="text-button" onClick={event => { event.currentTarget.closest('details')?.removeAttribute('open'); onOpen(n.memberId) }}>Ver ficha</button>}
       </article>)}
-      <small>Sesiones: desde 2 días antes. Planes: desde 5 días antes. Se actualizan mientras usás la app.</small>
+      <small>Sesiones: desde 2 días antes. Planes: aviso a los 10 días y recordatorio a los 5; quedan visibles hasta el vencimiento. Se actualizan mientras usás la app.</small>
     </div>
   </details></div>
 }

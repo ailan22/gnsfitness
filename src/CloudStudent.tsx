@@ -196,6 +196,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             </div>)}</div> : <p>Este día no tiene ejercicios cargados. Consultá con tu entrenador.</p>}
             {guidance && <div className="session-guidance"><strong>Indicaciones para este día</strong><p>{guidance}</p></div>}
             {components.map(item => <div className="session-guidance" key={item.id}><strong>{item.title}</strong><p>{item.details}</p></div>)}
+            {(routine.plan.sessionTests?.[(progress.block-1)*routine.block_rounds+progress.week]?.[progress.nextDay]??[]).map(item=><section className="student-test" key={item.id}><span>Prueba</span><h3>{item.title}</h3><p>{item.details}</p></section>)}
 
             {!exercises.length && <p className="muted">Para habilitar este día, tu entrenador debe cargar sus ejercicios. Tu avance anterior queda guardado.</p>}
             {history.member.status !== 'Activo' && <p className="notice">Tu ficha no está activa. Contactá al administrador para registrar entrenamientos.</p>}
@@ -234,6 +235,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             {plannedExercises(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds).map(item => <p key={item.id}><strong>{item.name}</strong> · {item.sets || '—'} × {item.reps || '—'}</p>)}
             {plannedGuidance(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds) && <div className="session-guidance"><strong>Indicaciones</strong><p>{plannedGuidance(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds)}</p></div>}
             {plannedComponents(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds).map(item => <div className="session-guidance" key={item.id}><strong>{item.title}</strong><p>{item.details}</p></div>)}
+            {(routine.plan.sessionTests?.[(progress.block-1)*routine.block_rounds+week]?.[day]??[]).map(item=><section className="student-test" key={item.id}><span>Prueba</span><h4>{item.title}</h4><p>{item.details}</p></section>)}
             {current ? <>
               <button type="button" disabled={recording || !exercises.length || history.member.status !== 'Activo'} onClick={() => begin()}>{recording ? 'Completá el registro abierto' : `Completar Día ${day}`}</button>
               <p className="muted">{!exercises.length ? 'Faltan ejercicios para este día. Tu entrenador debe completar la rutina.' : 'Guardá el registro de este día para habilitar el siguiente.'}</p>

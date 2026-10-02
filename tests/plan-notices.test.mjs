@@ -17,9 +17,12 @@ test('sessions start two days before, stay through the date, and disappear after
  assert.equal(planReminders([plan],'2026-12-29').filter(n=>n.kind==='physio').length,1)
  assert.equal(planReminders([plan],'2026-12-30').filter(n=>n.kind==='physio').length,0)
 })
-test('annual plan expiry appears five days before actual end, not monthly',()=>{
+test('annual plan expiry appears ten days before and changes reminder stage at five days',()=>{
  assert.equal(planReminders([plan],'2026-01-26').length,0)
- assert.equal(planReminders([plan],'2026-12-25').filter(n=>n.kind==='expiry').length,0)
+ assert.equal(planReminders([plan],'2026-12-20').filter(n=>n.kind==='expiry').length,0)
+ const early=planReminders([plan],'2026-12-21').find(n=>n.kind==='expiry')
+ assert.equal(early.days,10)
+ assert.notEqual(early.key,planReminders([plan],'2026-12-26').find(n=>n.kind==='expiry').key)
  assert.equal(planReminders([plan],'2026-12-26').filter(n=>n.kind==='expiry').length,1)
  assert.equal(planReminders([plan],'2026-12-31')[0].days,0)
  assert.equal(planReminders([plan],'2027-01-01').length,0)

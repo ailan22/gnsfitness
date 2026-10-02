@@ -54,12 +54,12 @@ export default function HolisticSchedule({client,onOpen}:{client:SupabaseClient;
   try{const result=await client.rpc('cancel_holistic_session',{p_id:id});if(result.error)throw new Error('cancel');setMessage('Sesión cancelada. Horario liberado.');setRevision(v=>v+1)}catch{setError('No se pudo confirmar la cancelación. Actualizá la agenda.')}
   finally{busy.current=false;setSaving(false)}
  }
- return <section className="card holistic-schedule"><div className="heading"><h2>Terapias holísticas</h2><button className="secondary" type="button" disabled={saving} onClick={()=>{setError('');setRevision(v=>v+1)}}>Actualizar agenda</button></div>
-  <p>Reiki y Registros Akáshicos · 35 minutos · sala compartida con kinesiología. Horarios de Uruguay.</p>
+ return <section className="card holistic-schedule"><div className="heading"><h2 className="holistic-title">Terapias holísticas</h2><button className="secondary" type="button" disabled={saving} onClick={()=>{setError('');setRevision(v=>v+1)}}>Actualizar agenda</button></div>
+  <div className="therapy-choices" aria-label="Elegir terapia">{[['reiki','Reiki'],['akashic','Registros Akáshicos']].map(([value,label])=><button type="button" key={value} aria-pressed={kind===value} className={kind===value?'therapy-choice active':'therapy-choice'} disabled={saving} onClick={()=>setKind(value)}>{label}</button>)}</div><p className="therapy-duration">35 minutos por sesión</p>
   {(error||room.error)&&<p className="error" role="alert">{error||room.error}</p>}{message&&<p role="status">{message}</p>}
   <form onSubmit={e=>void save(e)}><fieldset disabled={saving||!loaded||room.loading||Boolean(room.error)} className="plain-fieldset">
    <div className="grid"><label>Persona<select required value={person} onChange={e=>setPerson(e.target.value)}><option value="">Elegir persona</option>{people.map(p=><option key={p.id} value={p.id}>{name(p.id)}</option>)}</select></label>
-   <label>Terapia<select value={kind} onChange={e=>setKind(e.target.value)}><option value="reiki">Reiki</option><option value="akashic">Registros Akáshicos</option></select></label>
+   
    <label>Mes<input type="month" required value={month} min={uruguayToday().slice(0,7)} onChange={e=>{setMonth(e.target.value);setDate(e.target.value===uruguayToday().slice(0,7)?uruguayToday():`${e.target.value}-01`);setTime('')}}/></label></div>
    <div className="room-month" aria-label="Días del mes">{days.map(d=><button type="button" key={d} disabled={d<uruguayToday()} className={date===d?'active':'secondary'} aria-pressed={date===d} onClick={()=>{setDate(d);setTime('')}}>{d.slice(8)}</button>)}</div>
    <details className="member-compact"><summary>{date.split('-').reverse().join('/')} · Elegir horario disponible</summary>

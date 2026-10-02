@@ -6,8 +6,9 @@ import ts from 'typescript'
 const compile = file => ts.transpileModule(readFileSync(new URL(`../src/${file}`, import.meta.url), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2023, jsx: ts.JsxEmit.ReactJSX } }).outputText
 const training = {}
 vm.runInNewContext(compile('cloudTraining.ts'), { exports: training })
-function harness({ empty = false, sessions = [], failure = null, status = 'Activo' } = {}) {
+function harness({ empty = false, sessions = [], failure = null, status = 'Activo', sessionTests = {} } = {}) {
   const routine = { id: 'routine', name: 'Plan personal', days_per_week: 3, program_rounds: 2, block_rounds: 2, plan: { exercisesByDay: Object.fromEntries([1,2,3].map(day => [day, empty ? [] : [{ id: 'exercise', name: 'Sentadilla', sets: '3', reps: '10' }]])) } }
+  routine.plan.sessionTests = sessionTests
   const history = { member: { id: 'member', first_name: 'Alumna', status, welcome_form: 'Bienvenida' }, routines: [routine], sessions, reviews: [] }
   const states = [], refs = [], calls = []
   let cursor = 0, refCursor = 0, tree
@@ -41,6 +42,14 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
   }
 }
 const record = day => ({id:`session-${day}`, routine_id:'routine', routine_name:'Plan personal', day, performed_at:'2026-01-01', created_at:`2026-01-01T0${day}:00:00Z`, notes:'Registro conservado', results:[]})
+
+test('assigned test is labelled and appears only on its exact planned day',()=>{
+ const ui=harness({sessionTests:{1:{2:[{id:'test',title:'Movilidad',details:'Evaluación supervisada'}]}}})
+ assert.doesNotMatch(JSON.stringify(ui.cards()[0]),/Evaluación supervisada/)
+ assert.match(JSON.stringify(ui.cards()[1]),/Evaluación supervisada/)
+ assert.match(JSON.stringify(ui.cards()[1]),/Prueba/)
+ assert.doesNotMatch(JSON.stringify(ui.cards()[2]),/Evaluación supervisada/)
+})
 test('first day can be completed from its card while later days remain locked', () => {
  const ui = harness()
  assert.match(JSON.stringify(ui.cards()[0]), /Disponible/)

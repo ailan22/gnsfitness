@@ -7,6 +7,15 @@ const contact = { member_id: member.id, phone_e164: '+59899000000', whatsapp_opt
 const plan = { id: 'plan', member_id: member.id, starts_at: '2026-09-03', ends_at: '2026-10-03' }
 const select = (overrides = {}) => selectReminders({ members: [member], contacts: [contact], memberships: [plan], today: '2026-09-28', ...overrides })
 
+test('ten-day and five-day notifications have separate deduplication keys',()=>{
+ const early=select({today:'2026-09-23'})[0],later=select()[0]
+ assert.equal(early.days_before,10)
+ assert.equal(later.days_before,5)
+ assert.notEqual(early.key,later.key)
+ assert.equal(select({blockedKeys:[early.key]}).length,1)
+ assert.equal(select({today:'2026-09-23',blockedKeys:[early.key]}).length,0)
+})
+
 test('monthly, quarterly, six-month and annual plans use their own end date', () => {
   for (const starts_at of ['2026-09-03', '2026-07-03', '2026-04-03', '2025-10-03']) {
     const result = select({ memberships: [{ ...plan, starts_at }] })

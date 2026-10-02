@@ -1,5 +1,6 @@
 import { useRef, useState, type FormEvent } from 'react'
 import { confirmedInsert } from './confirmedInsert'
+import RoutineImporter from './RoutineImporter'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { Exercise } from './data'
 import { plannedExercises, plannedGuidance, plannedComponents, type CloudPlan, type CloudRoutine } from './cloudTraining'
@@ -81,6 +82,10 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
       }
     }
     for (const block of Object.keys(trimmed.blockDetails ?? {})) if (+block > safeBlocks) delete trimmed.blockDetails![block]
+    for (const [week, entries] of Object.entries(trimmed.sessionTests ?? {})) {
+      if (+week > weeks) { delete trimmed.sessionTests![week]; continue }
+      for (const day of Object.keys(entries)) if (+day > days) delete entries[day]
+    }
     for (const field of ['sessionGuidance', 'sessionComponents'] as const) {
       for (const [block, entries] of Object.entries(trimmed[field] ?? {})) {
         if (+block > safeBlocks) { delete trimmed[field]![block]; continue }
@@ -117,6 +122,7 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
         <label>Semanas del programa *<input type="number" min="1" max="104" required value={weeks} onChange={event => setWeeks(Number(event.target.value))}/></label>
         <label>Semanas por bloque *<input type="number" min="1" max={weeks} required value={blockWeeks} onChange={event => setBlockWeeks(Number(event.target.value))}/></label>
       </div>
+      <RoutineImporter weeks={weeks} days={days} blockWeeks={blockWeeks} onApply={setPlan}/>
       <p className="muted">Abrí un bloque y una semana para ajustar cada día. Las semanas sin cambios mantienen la planificación anterior.</p>
       {Array.from({ length: safeBlocks }, (_, index) => index + 1).map(block =>
         <details key={block} className="editor-block"><summary>Bloque {block} · semanas {(block - 1) * blockWeeks + 1}–{Math.min(block * blockWeeks, weeks)}{plan.blockDetails?.[block]?.name ? ` · ${plan.blockDetails[block].name}` : ''}</summary>
@@ -127,11 +133,15 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
               {Array.from({ length: days }, (_, index) => index + 1).map(day => {
                 const items = planned(day, block, week)
                 const components = plannedComponents(plan, day, block, week, blockWeeks, weeks)
+                const absoluteWeek = (block-1)*blockWeeks+week
+                const tests = plan.sessionTests?.[absoluteWeek]?.[day] ?? []
+                const changeTests = (items: typeof tests) => setPlan(current=>({...current,sessionTests:{...current.sessionTests,[absoluteWeek]:{...current.sessionTests?.[absoluteWeek],[day]:items}}}))
                 return <section className="day" key={day}><div className="heading"><h3>Día {day}</h3><button type="button" className="secondary" onClick={() => setEditing({ block, week, day, exercise: blankExercise() })}>+ Ejercicio</button></div>
                   {items.length === 0 && <p className="muted">Sin ejercicios todavía.</p>}
                   {items.map(item => <div className="exercise" key={item.id}><div><strong>{item.name}</strong><small>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'}</small></div>
                     <div className="actions"><button type="button" className="text-button" onClick={() => setEditing({ block, week, day, exercise: { ...item } })}>Editar</button>
                       <button type="button" className="text-button" onClick={() => changeItems(block, week, day, items.filter(ex => ex.id !== item.id))}>Eliminar</button></div></div>)}
+                  <div className="routine-tests"><div className="heading"><h4>Pruebas de este día</h4><button type="button" className="secondary" onClick={()=>changeTests([...tests,{id:crypto.randomUUID(),title:'Prueba',details:''}])}>+ Prueba</button></div><p className="muted">Se muestra al alumno únicamente en esta semana y día.</p>{tests.map(t=><div key={t.id}><label>Nombre de la prueba<input maxLength={120} value={t.title} onChange={e=>changeTests(tests.map(item=>item.id===t.id?{...item,title:e.target.value}:item))}/></label><label>Cómo realizarla<textarea maxLength={4000} value={t.details} onChange={e=>changeTests(tests.map(item=>item.id===t.id?{...item,details:e.target.value}:item))}/></label><button type="button" className="text-button" onClick={()=>changeTests(tests.filter(item=>item.id!==t.id))}>Quitar prueba</button></div>)}</div>
                   <label>Indicaciones opcionales para este día<textarea maxLength={4000} value={plannedGuidance(plan, day, block, week, blockWeeks, weeks)} onChange={event => changeGuidance(block, week, day, event.target.value)}/></label>
                   <div className="heading"><h4>Componentes opcionales</h4><button type="button" className="secondary" onClick={() => changeComponents(block, week, day, [...components, { id: crypto.randomUUID(), title: '', details: '' }])}>+ Componente</button></div>
                   {components.map(component => <div key={component.id} className="grid"><label>Título<input maxLength={120} value={component.title} onChange={event => changeComponents(block, week, day, components.map(c => c.id === component.id ? { ...c, title: event.target.value } : c))}/></label>

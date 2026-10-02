@@ -20,7 +20,7 @@ export function planReminders(plans: ReminderPlan[], today: string): PlanNotice[
     if (active) {
       const days = daysUntil(active.ends_at, today)!
       const renewed = own.some(p => p.ends_at > active.ends_at && (daysUntil(p.starts_at, active.ends_at) ?? Infinity) <= 1)
-      if (days <= 5 && !renewed) notices.push({ key: `expiry:${active.id}:${active.ends_at}`, memberId, date: active.ends_at, days, kind: 'expiry' })
+      if (days <= 10 && !renewed) notices.push({ key: `expiry:${active.id}:${active.ends_at}:${days<=5?5:10}`, memberId, date: active.ends_at, days, kind: 'expiry' })
     }
     for (const plan of own) {
       if (plan.service_config?.version !== 1) continue

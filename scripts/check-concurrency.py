@@ -9,6 +9,7 @@ import secrets
 import socket
 import subprocess
 import uuid
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 BIN = ROOT.parent / '.backup-tools/pgsql/bin'
@@ -101,7 +102,59 @@ insert into memberships(id,member_id,plan_name,months,starts_at,ends_at,price) v
         result = query('select (select count(*) from sessions)||\',\'||(select sum(amount)::int from payments)||\',\'||(select count(*) from room_appointments);')
         if result.returncode or result.stdout.strip() != '1,60,1':
             raise RuntimeError('Unexpected persisted totals')
-        report = {'status':'passed','checks':checks,'realPostgreSQL':True,'productionTouched':False,'directory':str(run)}
+        # Contention check uses fictitious records only. It is not a production
+        # capacity claim: every request attempts to spend the same balance.
+        phase = 'bounded_contention'
+        result = query(f"insert into memberships(id,member_id,plan_name,months,starts_at,ends_at,price) values('{uid(100)}','{uid(10)}','Contention',1,current_date,current_date+30,100)")
+        if result.returncode:
+            raise RuntimeError('Contention fixture failed')
+        started_at = time.monotonic()
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            outcomes = list(pool.map(query, [as_user(1,f"select register_payment('{uid(n)}','{uid(10)}','{uid(100)}',current_date,1000,'Efectivo')") for n in range(101,141)]))
+        elapsed = time.monotonic()-started_at
+        if sum(r.returncode == 0 for r in outcomes) != 10:
+            raise RuntimeError('Concurrent balance limit failed')
+        if query(f"select sum(amount)::int from payments where membership_id='{uid(100)}'").stdout.strip() != '100':
+            raise RuntimeError('Balance invariant failed')
+        checks.append('40_payments_8_connections_exactly_10_accepted')
+        phase = 'backup_and_restore_fixtures'
+        snapshot_start = time.monotonic()
+        # This isolated database contains only our fixtures. A whole-database
+        # dump retains namespace ACLs that schema-filtered pg_dump may omit.
+        dump = command(['pg_dump.exe'])
+        if dump.returncode or query('create database gns_recovery_drill').returncode:
+            raise RuntimeError('Fixture archive failed')
+        env['PGDATABASE'] = 'gns_recovery_drill'
+        # Restore into a new database on the isolated local server. The dump
+        # contains no real records. Ownership and ACLs are deliberately kept.
+        restored = query(dump.stdout)
+        if restored.returncode:
+            (run/'restore-error.txt').write_text(restored.stderr, encoding='utf-8')
+            raise RuntimeError('Fixture restore failed')
+        restored_totals = query("select (select count(*) from sessions)||','||(select sum(amount)::int from payments)||','||(select count(*) from room_appointments);")
+        if restored_totals.returncode or restored_totals.stdout.strip() != '1,160,1':
+            raise RuntimeError('Restored data invariant failed')
+        own = query(as_user(2, 'select count(*) from public.members'))
+        if own.returncode or '\n1\n' not in own.stdout:
+            raise RuntimeError('Restored student access failed')
+        denied = query(as_user(2,'select export_application_backup()'))
+        if denied.returncode == 0:
+            raise RuntimeError('Restored export boundary failed')
+        denied_mfa = query(as_user(1,'select export_application_backup()').replace("'aal2'","'aal1'"))
+        if denied_mfa.returncode == 0:
+            raise RuntimeError('Restored MFA boundary failed')
+        recovery_seconds = time.monotonic()-snapshot_start
+        checks.extend(['pg_dump_restored_into_separate_database','restored_totals_match','restored_student_isolation_and_mfa'])
+        phase = 'restart_persistence'
+        if command(['pg_ctl.exe','-D',str(run/'data'),'-m','fast','-w','restart']).returncode:
+            raise RuntimeError('Local restart failed')
+        if query('select count(*) from payments').stdout.strip() != '11':
+            raise RuntimeError('Restored data lost after restart')
+        checks.append('restored_data_survives_restart')
+        report = {'status':'passed','checks':checks,'realPostgreSQL':True,'productionTouched':False,'directory':str(run),
+                  'contention':{'requests':40,'connections':8,'accepted':10,'seconds':round(elapsed,3)},
+                  'fixtureRecoverySeconds':round(recovery_seconds,3),'fullProviderRestoreTested':False,
+                  'excluded':['Supabase Auth HTTP services','email delivery','physical iPhone','real production snapshot']}
     except Exception:
         report = {'status':'failed','phase':phase,'productionTouched':False,'directory':str(run)}
     finally:

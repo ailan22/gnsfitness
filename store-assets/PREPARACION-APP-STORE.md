@@ -1,54 +1,49 @@
-# GNS FITNESS · preparación para App Store
+# GNS FITNESS · envío a App Store
 
-Estado al 30/09/2026. **No enviada a revisión ni publicada en App Store.**
+Estado de preparación al 02/10/2026: **versión 1.0 (13) disponible en TestFlight interno; no reenviada a revisión pública**. Apple pidió información adicional bajo 2.1, incluida una grabación en un iPhone físico. Las menciones a otros apartados en «Prevent Common Issues» no acreditan por sí solas que haya detectado cada uno de esos fallos.
 
-Compilación 1.0 (6) cargada correctamente a App Store Connect, build Codemagic `6abd21c1083ff0a9a53abf1c`, entrega `0743920d-44d1-439a-8e86-037b264ef43c`. Esta carga precede a la corrección del correo público; generar otro binario cuando las páginas legales estén definitivas. El intento anterior repitió el número 2: corregido con `PROJECT_BUILD_NUMBER` para ambos flujos firmados.
+Antes del reenvío: cerrar el ensayo de recuperación, confirmar la prueba física de la compilación 13, disponer del video y probar las credenciales de demostración. La sesión de App Store Connect volvió a pedir acceso durante la revisión de la ficha; no se modificó todavía la versión seleccionada para distribución.
 
-Capturas generadas en build `6abd190f083ff0a9a53abc45` (iPhone y iPad con datos ficticios). Pendientes de descargar, revisar visualmente y adjuntar. La sesión web de App Store Connect expiró: volver a ingresar para completar la ficha.
+Preparación local: `GUIA-VIDEO-REVISION.txt` y `BORRADOR-RESPUESTA-APPLE.txt`. El borrador identifica datos que faltan y no debe enviarse con campos pendientes. WhatsApp automático sigue pendiente de conexión y no debe anunciarse como operativo.
 
-## Preparado
+## Antecedente del primer envío
 
-- Face ID confirmado en el iPhone por el titular.
-- Versión instalada anteriormente: 1.0 (2), TestFlight interno. No se puede presentar esa compilación para distribución pública.
-- Nuevo flujo manual `ios-app-store` con firma App Store y sin `testFlightInternalTestingOnly`. Sube el archivo a Apple pero no solicita revisión ni publica automáticamente.
-- Descripción, texto promocional y palabras clave redactados en `app-store-es.json`; guardados como borrador en App Store Connect. Publicación manual seleccionada y verificada.
-- Contacto público confirmado: gndevicciconde@gmail.com.
-- Páginas locales `public/privacidad.html` y `public/soporte.html`, accesibles también dentro del binario nativo. Responsable incorporado: Geronimo Vicciconde. Pendientes de desplegar en el sitio público.
-- Solicitudes privadas de acceso, rectificación y eliminación desde la cuenta del alumno. Gestión manual de solicitudes en el resumen del administrador, protegida por MFA.
-- Migración 010 aplicada en producción. Verificado: RLS activado, lectura y ejecución anónimas denegadas. No se eliminaron cuentas ni registros reales.
-- Cuenta aislada de revisión `app-review@gnsfitness.invalid`, rol alumno, con socio y rutina ficticios. Inicio de sesión probado en el cliente local contra el servidor real. No accede a otros socios. Clave guardada fuera del repositorio, en `.private-ios/app-review.json` del espacio de trabajo.
-- Flujo `ios-store-screenshots`: ejecuta los componentes reales con datos ficticios en simuladores nativos de iPhone y iPad. No incluye una publicación ni credenciales de producción. Revisar imágenes antes de adjuntarlas a Apple.
-- Pruebas locales: build, lint, 7 pruebas biométricas y prueba integral de aislamiento de solicitudes aprobadas.
+El 30/09/2026 a las 14:32 se confirmó el primer envío. Los detalles siguientes documentan ese envío histórico y no prueban que la versión actual esté aprobada o publicada.
 
-## Datos del titular pendientes
+## Versión enviada
 
-- Países confirmados: Uruguay, Argentina, Brasil y México; sin incorporación automática de otros territorios.
-- Precio confirmado: descarga gratuita.
-- Responsable y copyright confirmados: Geronimo Vicciconde.
-- Contacto de revisión confirmado: Geronimo Vicciconde, gndevicciconde@gmail.com, +598 97 961 526 (teléfono privado para Apple).
-- La distribución solicitada no incluye la UE.
-- Verificar cómo se atiende a menores y las autorizaciones necesarias; la clasificación por edad de Apple no sustituye el consentimiento ni las condiciones de los servicios.
+- App: GNS FITNESS, identificador 6817642980, bundle uy.gnsfitness.app.
+- Versión 1.0 (10), exclusivamente iPhone. iPad queda para otra versión por indicación del titular.
+- Commit 3c9e89f: TARGETED_DEVICE_FAMILY = 1 en Debug y Release. Incluye corrección de márgenes seguros del commit fa677fd.
+- Codemagic: 6abd4598083ff0a9a53ac9c7. Firma App Store; carga finalizada sin errores.
+- Entrega Apple: b894f496-d46c-4934-9259-faee14915c24.
+- Envío a revisión: edc35da9-ef88-4f87-8bde-6abdf13f324a.
+- Confirmación visible: «1 artículo enviado» y «Pendiente de revisión».
+- Publicación automática tras aprobación seleccionada. Apple indica que enviará un correo al completar la revisión; la aprobación no está garantizada.
 
-## Antes de enviar
+[Consultar revisión](https://appstoreconnect.apple.com/apps/6817642980/distribution/reviewsubmissions/details/edc35da9-ef88-4f87-8bde-6abdf13f324a)
 
-### Estado verificado el 30/09/2026
+## Ficha y comprobaciones completadas
 
-- App Store Connect: guardados contacto de revisión, credenciales de la cuenta ficticia, copyright, subtítulo y categoría Salud y forma física.
-- Precio gratuito y disponibilidad únicamente en Uruguay, Argentina, Brasil y México guardados.
-- Cuestionario de edad guardado: clasificación calculada 16+; información médica o de tratamientos frecuente y temas de bienestar presentes.
-- Privacidad: borrador de diez tipos completo, todos para funcionalidad, vinculados a identidad y sin seguimiento. Incluye información de pago por el método registrado (no tarjetas ni credenciales bancarias). Todavía sin publicar y sin URL pública verificada.
-- Compilación 1.0 (7), commit 877ebeb, entregada a Apple sin errores. Codemagic: 6abd2edd083ff0a9a53ac2e1. Entrega: 52e937de-6bba-4f9e-8e6a-7b2b5929ccd9. Falta seleccionarla en la versión para revisión.
-- Carpeta web publicaciones/gns-fitness-1790783106241 desplegada: versión Cloudflare 4191dc0e. Verificadas públicamente privacidad.html y soporte.html, sin autenticación, con responsable y correo correctos. Ambos enlaces guardados en App Store Connect.
-- Compilación 7 seleccionada y guardada en la versión 1.0 de App Store Connect.
-- Pendientes: cargar web pública, comprobar URLs, descargar y revisar capturas nativas, adjuntarlas, confirmar derechos del contenido con el titular y revisar declaración de dispositivo médico. No se envió a revisión ni se publicó la app.
+- Descarga gratuita, únicamente Uruguay, Argentina, Brasil y México; sin incorporación automática de otros territorios.
+- Responsable y copyright: Geronimo Vicciconde. Contacto: gndevicciconde@gmail.com. Teléfono privado de revisión: +59897961526.
+- Descripción, texto promocional, palabras clave, subtítulo y categoría Salud y forma física guardados.
+- Clasificación calculada por Apple: 16+. No sustituye las condiciones de atención del gimnasio.
+- Titular confirmó ser creador de logo, imágenes y rutinas y autorizó publicación. Declaración de contenido propio registrada.
+- Declaración de no dispositivo médico guardada para esta app de gestión sin diagnóstico automático.
+- Privacidad publicada: diez tipos de datos, funcionalidad, vinculados a identidad, sin seguimiento. Incluye método de pago administrativo, sin tarjetas ni credenciales bancarias.
+- Soporte y privacidad públicos verificados, con responsable y correo correctos, desplegados en Cloudflare versión 4191dc0e.
+- Soporte: https://still-disk-e7b3.gndevicciconde.workers.dev/soporte.html
+- Privacidad: https://still-disk-e7b3.gndevicciconde.workers.dev/privacidad.html
+- Dos capturas nativas limpias de iPhone (progreso y nutrición), datos ficticios, 1320 × 2868; cargadas en 6,9 pulgadas y heredadas por 6,5. Se descartó captura de entrenamiento con notificación del sistema superpuesta.
+- Capturas generadas en 6abd3d89083ff0a9a53ac765. Selección local: publicaciones/capturas-listas/iPhone.
+- Cuenta aislada de revisión app-review@gnsfitness.invalid, rol alumno, con datos ficticios; credenciales entregadas a Apple. Clave fuera del repositorio en .private-ios/app-review.json. No compartir cuenta administrativa ni MFA.
+- Face ID confirmado por el titular. Pruebas previas de build, lint, biometría y aislamiento aprobadas; validación y compilación firmada de iPhone completadas en CI.
+- Migración 010 aplicada en producción: RLS activo, acceso anónimo denegado. No se eliminaron cuentas ni registros reales.
 
-1. Completar y revisar política con identidad del responsable, prácticas y retenciones reales. No afirmar que la app no recopila datos. Inventario en `PRIVACIDAD-APP-STORE.md`.
-2. Desplegar páginas y versión web actualizada; verificar URL pública de soporte y privacidad sin inicio de sesión.
-3. Generar y verificar nuevo binario de App Store con las páginas definitivas; seleccionar ese binario en la versión 1.0.
-4. Descargar y revisar capturas; adjuntar iPhone e iPad en tamaños aceptados. No usar fotografías de alumnos ni información clínica real.
-5. Completar categoría, clasificación por edad, disponibilidad, precio, privacidad y contacto de revisión; entregar únicamente las credenciales de la cuenta ficticia.
-6. Guardar notas de revisión adaptadas al estado final. La app tiene funciones de administración privadas con MFA; no compartir la cuenta administrativa real ni desactivar su seguridad.
-7. Revisar resumen con el titular antes del envío definitivo. La aprobación corresponde a Apple; no está garantizada.
+## Próximo paso
+
+Responder a la solicitud de información con evidencia de la versión actual. Revisar la modalidad de publicación antes del reenvío; no afirmar que está publicada hasta comprobar su estado en Apple.
 
 ## Atención de solicitudes de privacidad
 
@@ -59,3 +54,5 @@ Para una eliminación, revisar los registros relacionados y cualquier conservaci
 Registrar la respuesta enviada y actuaciones en la solicitud, sin copiar datos clínicos. En una restauración de respaldo, volver a aplicar las eliminaciones para no reactivar datos suprimidos. Esta operación requiere acceso administrativo al proveedor; no hay un borrado masivo automático en la app.
 
 Fuentes: [Revisión de Apple](https://developer.apple.com/app-store/review/), [eliminación de cuentas](https://developer.apple.com/support/offering-account-deletion-in-your-app/), [derechos en Uruguay](https://www.gub.uy/unidad-reguladora-control-datos-personales/tramites-y-servicios/formularios/formulario-para-ejercer-derechos-rectificacion-actualizacion).
+
+

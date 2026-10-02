@@ -191,6 +191,44 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 .nutrition-plan-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; margin-block:1rem; }
 
+/* Fit the available viewport instead of clipping wide grid items on iPhone. */
+.cloud-entry, .cloud-portal, .cloud-student { min-width: 0; max-width: 100%; }
+.cloud-student [hidden] { display: none !important; }
+.student-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.student-toolbar .student-brand { min-width: 0; margin: 0; gap: 10px; }
+.student-toolbar .student-brand img { width: 52px; height: 52px; }
+.student-menu { position: relative; flex: none; z-index: 25; }
+.student-menu > summary { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #70613d; border-radius: 12px; color: #edcb84; cursor: pointer; list-style: none; }
+.student-menu > summary::-webkit-details-marker { display: none; }
+.student-menu > summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
+.student-menu nav { position: absolute; right: 0; top: calc(100% + 8px); width: min(280px, calc(100vw - 48px)); padding: 8px; background: #1c2119; border: 1px solid #70613d; border-radius: 14px; box-shadow: 0 12px 30px #0008; }
+.student-menu nav button { display: block; width: 100%; min-height: 48px; text-align: left; border: 0; background: transparent; color: #f4f3ee; }
+.student-menu nav button[aria-current] { background: #343925; color: #edcb84; }
+.student-menu nav small { display: block; margin-top: 5px; color: #c5c4b8; font-weight: 400; line-height: 1.4; }
+.cloud-student .student-nutrition-panel { background: transparent; }
+@media(max-width:650px) {
+ .app:has(.cloud-student) .topbar { padding: 12px 16px; min-height: 64px; }
+ .app:has(.cloud-student) .topbar .tag { display: none; }
+ .app:has(.cloud-student) .brand { min-width: 0; font-size: clamp(17px, 5vw, 22px); }
+ .content:has(.cloud-student) { padding: 12px 12px 36px; }
+ .cloud-entry .cloud-portal:has(.cloud-student) { margin: 0; padding: 0; }
+ .cloud-student { font-size: 15px; line-height: 1.5; margin: 0 0 24px; }
+ .cloud-student > h1 { font-size: clamp(24px, 6.5vw, 30px); line-height: 1.2; }
+ .cloud-student h2, .cloud-student .student-wellbeing h1 { font-size: 21px; line-height: 1.3; }
+ .cloud-student .student-today h2 { font-size: 30px; }
+ .cloud-student .student-today { padding: 16px 12px; margin: 20px 0 24px; }
+ .cloud-student .student-welcome { font-size: 15px; font-weight: 400; color: #c5c4b8; }
+ .cloud-student .student-start { margin: 16px 0; }
+ .cloud-student .student-exercises { margin-top: 16px; gap: 10px; }
+ .cloud-student .student-exercise { padding: 12px; }
+ .cloud-student .student-history { margin: 24px 0; }
+ .cloud-student .student-plan-details > summary { font-size: 17px; }
+ .cloud-student button { min-height: 44px; max-width: 100%; white-space: normal; }
+ .cloud-student input, .cloud-student select, .cloud-student textarea { font-size: 16px; }
+ .cloud-student .student-record, .cloud-student .student-day, .cloud-student .session-item, .cloud-student .nutrition-recipes { min-width: 0; }
+ .cloud-student img, .cloud-student svg { max-width: 100%; }
+}
+
 
 .room-month { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:6px; margin:16px 0; }
 .room-month button { padding:12px 4px; min-width:0; }

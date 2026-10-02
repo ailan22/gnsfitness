@@ -1,0 +1,86 @@
+BORRADOR LOCAL — NO ENVIAR HASTA COMPLETAR Y COMPROBAR LOS PENDIENTES
+GNS FITNESS — App ID 6817642980 — version 1.0 (13)
+
+Hello App Review team,
+
+Thank you for your request for additional information under Guideline 2.1.
+Below is an explanation of GNS FITNESS and its review flow.
+
+1. Physical-device recording
+[PENDING: attach an accessible video showing version 1.0 (13) on a physical iPhone;
+identify the iPhone model, installed iOS version and recording date. Do not state
+that it runs the latest iOS until checked on that device.]
+
+2. Purpose and audience
+GNS FITNESS supports the relationship between the GNS FITNESS gym and its members.
+Members can view assigned workouts, record exercise load and repetitions in reserve,
+review their progress and membership information, and request nutrition support.
+Authorized staff manage member records, plans, payments recorded by the gym, workouts,
+and appointments. Health intake and rehabilitation records are restricted to the
+administrator. The app is not a public social network and members do not browse
+other members' personal records.
+
+3. Access and main features
+There is no open self-registration. Gym administration creates/invites member access.
+Sign in with the demo credentials supplied through App Review Information, then open
+the assigned workout and its expandable exercise fields. Nutrition includes a request
+and approval flow; enabled members can view the educational guides, recipe library
+and their assigned nutrition plan. Biometric access is optional on supported devices.
+
+[PENDING: verify the demo credentials against the current build and ensure its
+workout, progress, nutrition content and membership are fictitious and populated.
+Provide separately tested access for any additional role Apple needs; do not supply
+the real administrator account, real member data or personal MFA credentials.]
+
+Account deletion can be requested inside the member panel under “Mi cuenta y mis
+datos” > “Eliminar mi cuenta y mis datos”. The user confirms the request in the app.
+Administration processes it and responds within five business days. A status change
+alone does not delete the account; the responsible operator must complete deletion
+and explain any records retained for a specific legal obligation.
+
+4. External services
+Supabase provides authentication, PostgreSQL data storage and the invitation Edge
+Function. Cloudflare hosts the web version and public support/privacy pages.
+Capacitor packages the iPhone client; the biometric plugin uses the device's biometric
+capabilities and protected credential storage. No face images or biometric templates
+are sent to the application server. Codemagic is used to build/sign/upload releases.
+The operator keeps encrypted recovery copies in Google Drive through a separate
+backup process. There is no integrated card processor or Apple in-app purchasing SDK.
+The routine text importer parses the supplied text; it does not send it to an external
+generative AI service. Automatic WhatsApp delivery is not yet connected.
+
+5. Pricing, content and regions
+The download is free. The app currently records gym plans and service add-ons, including
+nutrition at UYU 3,000/month and kinesiology at UYU 650/session. Administrative approval
+can enable nutrition content. There is no in-app checkout.
+The owner confirmed that nutrition is a monthly plan with attention from a professional.
+The app supports that service with educational material and the assigned nutrition plan.
+[PENDING: confirm whether professional consultations are in person or live one-to-one
+remotely, and whether digital material is also sold separately. Do not assume that a
+professional service automatically exempts every digital offering from IAP.]
+[PENDING: confirm the intended customer audience and availability in Uruguay, Argentina,
+Brazil and Mexico, and any regional differences. The interface is currently Spanish;
+do not claim Portuguese localization or international in-person service availability.]
+
+6. Content rights and health-related scope
+The owner has stated that the supplied branding and content are authorized. Supporting
+documentation can be supplied where requested. Workout and nutrition calculations are
+guidance for human review, not automated medical diagnosis. Rehabilitation records are
+used by authorized administration in the context of actual services.
+[PENDING: provide professional credentials/authorizations if Apple requests them for
+the regulated services actually offered. Do not invent qualifications or claim that
+this software is a certified medical device.]
+
+Support contact: gndevicciconde@gmail.com
+Responsible owner: Geronimo Vicciconde
+
+LOCAL NOTES
+Do not claim that the app has bank-level certification, an independent audit, a complete
+provider recovery test or guaranteed approval. The backup rehearsal does not verify
+Auth/MFA portability, email delivery or every physical-device workflow.
+Before submission, place the finalized factual text in Review Notes and attach the video.
+Do not send this draft with placeholders.
+
+References for preparing the final response:
+https://developer.apple.com/app-store/review/guidelines/
+https://developer.apple.com/support/offering-account-deletion-in-your-app/

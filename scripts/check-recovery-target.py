@@ -8,12 +8,39 @@ from pathlib import Path
 import queue
 import subprocess
 import threading
+import time
+import ssl
+import tempfile
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[2]
 TARGET = 'faylvxvfctcnwkkcwmlx'
 PRODUCTION = 'xwnbeuyywxbqrnlbnskg'
 STATUS = ROOT / '.backup-tools/recovery-target-status.json'
+
+
+def connection_environment(password):
+    # Session pooler endpoint shown by this target's Connect dialog. IPv4 avoids
+    # the interrupted direct IPv6 route without relaxing TLS or target checks.
+    env = {k: v for k, v in os.environ.items() if not k.upper().startswith('PG')}
+    context = ssl.create_default_context()
+    context.load_verify_locations(cafile=str(ROOT / '.backup-tools/supabase-ca.crt'))
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.crt', prefix='gns-public-ca-',
+                                     delete=False, encoding='ascii') as certificate:
+        for der in context.get_ca_certs(binary_form=True):
+            certificate.write(ssl.DER_cert_to_PEM_cert(der))
+    env.update(PGHOST='aws-0-us-west-2.pooler.supabase.com', PGPORT='5432',
+               PGUSER='postgres.' + TARGET, PGDATABASE='postgres', PGPASSWORD=password,
+               PGSSLMODE='verify-full', PGSSLROOTCERT=certificate.name,
+               PGCONNECT_TIMEOUT='20', PGKEEPALIVES='1', PGKEEPALIVESIDLE='20',
+               PGKEEPALIVESINTERVAL='10', PGKEEPALIVESCOUNT='3')
+    return env
+
+
+class ProbeError(RuntimeError):
+    def __init__(self, code, message):
+        self.code = code
+        super().__init__(message)
 SQL = """
 BEGIN READ ONLY;
 SELECT json_build_object(
@@ -31,25 +58,30 @@ ROLLBACK;
 def probe(password):
     if TARGET == PRODUCTION:
         raise RuntimeError('Destino de producción bloqueado.')
-    env = {k: v for k, v in os.environ.items() if not k.upper().startswith('PG')}
-    env.update(PGHOST=f'db.{TARGET}.supabase.co', PGPORT='5432', PGUSER='postgres',
-               PGDATABASE='postgres', PGPASSWORD=password, PGSSLMODE='verify-full',
-               PGSSLROOTCERT=str(ROOT / '.backup-tools/supabase-ca.crt'),
-               PGCONNECT_TIMEOUT='20', PGAPPNAME='GNS isolated recovery preflight',
+    env = connection_environment(password)
+    env.update(PGAPPNAME='GNS isolated recovery preflight',
                PGOPTIONS='-c default_transaction_read_only=on -c statement_timeout=15000')
     try:
-        result = subprocess.run([str(ROOT / '.backup-tools/pgsql/bin/psql.exe'),
+        for attempt in range(3):
+            result = subprocess.run([str(ROOT / '.backup-tools/pgsql/bin/psql.exe'),
                                  '-X', '-q', '-A', '-t', '-w', '-v', 'ON_ERROR_STOP=1'],
                                 input=SQL.encode(), stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 env=env, timeout=50,
                                 creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+            transient = any(phrase in result.stderr.lower() for phrase in (
+                b'could not translate host name', b'connection timed out',
+                b'network is unreachable', b'could not receive data'))
+            if result.returncode and transient and attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                continue
+            break
         if result.returncode:
             error = result.stderr.decode(errors='replace').lower()
             if 'password authentication failed' in error:
-                raise RuntimeError('Contraseña rechazada. Usá la del proyecto GNS recuperacion aislada.')
+                raise ProbeError('authentication_failed', 'Contraseña rechazada. Usá la del proyecto GNS recuperacion aislada.')
             if 'certificate' in error or 'ssl' in error:
-                raise RuntimeError('No se pudo verificar TLS. Hay que revisar el certificado antes de continuar.')
-            raise RuntimeError('No se pudo comprobar la conexión. Revisaremos red y configuración; no se modificó nada.')
+                raise ProbeError('tls_verification_failed', 'No se pudo verificar TLS. Hay que revisar el certificado antes de continuar.')
+            raise ProbeError('network_error' if transient else 'connection_error', 'No se pudo comprobar la conexión. Revisaremos red y configuración; no se modificó nada.')
         data = json.loads(result.stdout.decode().strip())
         if data.get('tls') is not True or data.get('database') != 'postgres':
             raise RuntimeError('No se cumplen las condiciones de conexión segura.')
@@ -60,6 +92,7 @@ def probe(password):
                 'fullProviderRestoreTested': False}
     finally:
         env.pop('PGPASSWORD', None)
+        Path(env['PGSSLROOTCERT']).unlink(missing_ok=True)
 
 
 def main():

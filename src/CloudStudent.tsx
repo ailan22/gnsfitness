@@ -35,6 +35,27 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   const savingRef = useRef(false)
   const recordForm = useRef<HTMLFormElement>(null)
   const [expected, setExpected] = useState<{ lastId: string | null; day: number; week: number } | null>(null)
+  const navigation = useRef<HTMLDetailsElement>(null)
+
+  function selectSection(nutrition: boolean) {
+    setNutritionOpen(nutrition)
+    if (navigation.current) navigation.current.open = false
+  }
+
+  useEffect(() => {
+    const dismiss = (event: PointerEvent) => {
+      if (navigation.current && !navigation.current.contains(event.target as Node)) navigation.current.open = false
+    }
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && navigation.current?.open) {
+        navigation.current.open = false
+        navigation.current.querySelector('summary')?.focus()
+      }
+    }
+    document.addEventListener('pointerdown', dismiss)
+    document.addEventListener('keydown', escape)
+    return () => { document.removeEventListener('pointerdown', dismiss); document.removeEventListener('keydown', escape) }
+  }, [])
 
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (recordingRef.current) event.preventDefault() }
@@ -171,22 +192,31 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   }
 
   return <section className="cloud-student" aria-label="Portal del alumno">
-    <div className="student-brand"><img src="/gns-logo-transparent.png" alt="GNS Fitness" width="100" height="100"/><p className="eyebrow">TU ESPACIO · GNS FITNESS</p></div>
+    <div className="student-toolbar">
+      <div className="student-brand"><img src="/gns-logo-transparent.png" alt="GNS Fitness" width="100" height="100"/><p className="eyebrow">TU ESPACIO</p></div>
+      <details className="student-menu" ref={navigation}>
+        <summary aria-label="Abrir menú del alumno"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></summary>
+        <nav aria-label="Secciones del alumno">
+          <button type="button" aria-current={!nutritionOpen ? 'page' : undefined} onClick={() => selectSection(false)}>Mi entrenamiento</button>
+          <button type="button" aria-current={nutritionOpen ? 'page' : undefined} onClick={() => selectSection(true)}>Nutrición <small>Plan personal, guías y recetario</small></button>
+        </nav>
+      </details>
+    </div>
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
       <PlanNotifications client={client} memberId={history.member.id}/><h1>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
-      <p className="muted">Acá tenés tu rutina y la guía para entrenar. {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
+      <p className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : 'Tu entrenamiento, paso a paso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}
-      <details className="student-nutrition-panel card" onToggle={event => setNutritionOpen(event.currentTarget.open)}>
-        <summary><strong>Nutrición</strong><span>Guías, recetas y alimentación</span></summary>
-        {nutritionOpen && <StudentWellbeing client={client} memberId={history.member.id} section="nutrition" onDirtyChange={ignoreNutritionDirty}/>}
-      </details>
-      <div>
+      {nutritionOpen && <section className="student-nutrition-panel" aria-label="Nutrición">
+        <button type="button" className="secondary" onClick={() => selectSection(false)}>← Volver a mi entrenamiento</button>
+        <StudentWellbeing client={client} memberId={history.member.id} section="nutrition" onDirtyChange={ignoreNutritionDirty}/>
+      </section>}
+      <div hidden={nutritionOpen}>
       {!routine || !progress ? <div className="card empty">Todavía no tenés una rutina asignada. Consultá con tu entrenador.</div> : <>
         <section ref={todayCard} className="card student-today">
           <div className="routine-heading"><p className="eyebrow">{isTestDay ? 'DÍA DE PRUEBA' : 'MI ENTRENAMIENTO DE HOY'}</p>{!progress.finished && exercises.length > 0 && <details className="routine-record-menu"><summary aria-label="Desplegar registro de kilos y RIR">Registrar kilos y RIR</summary><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => recording ? recordForm.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) : begin()}>{recording ? 'Continuar registro' : 'Abrir registro del entrenamiento'}</button></details>}</div>
           <h2>{progress.finished ? 'Programa completado' : isTestDay ? `Día de prueba · Día ${progress.nextDay}` : `Día ${progress.nextDay}`}</h2>
-          {!progress.finished && <p className="student-welcome">{isTestDay ? 'Hoy tenés una evaluación. Seguí las indicaciones de tu entrenador y registrá el resultado.' : history.member.welcome_form === 'Te damos la bienvenida' ? '¡Hoy es un buen día para entrenar!' : `¡${history.member.welcome_form} a tu día de entrenamiento!`} Te toca el Día {progress.nextDay}. Seguí la guía y anotá tus resultados mientras entrenás.</p>}
+          {!progress.finished && <p className="student-welcome">{isTestDay ? 'Seguí las indicaciones de tu entrenador y registrá tu prueba.' : 'Seguí tu rutina y anotá los kilos y RIR al terminar.'}</p>}
           <p>{routine.name} · {routine.level} · {routine.days_per_week} días por semana</p>
           <p className="student-progress">Bloque {progress.block}{detail?.name ? ` · ${detail.name}` : ''} · Semana {globalWeek} de {routine.program_rounds}</p>
           {progress.last && <p className="muted">Último día registrado: Día {progress.last.day} · {progress.last.performed_at}</p>}
@@ -251,7 +281,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
 
       </>}
       </div>
-      <details className="student-history-panel card" onToggle={event => setHistoryOpen(event.currentTarget.open)}><summary>Historial de entrenamientos</summary>{historyOpen && <section className="card" aria-label="Mi registro de entrenamientos"><h2>Mis entrenamientos</h2>
+      <details hidden={nutritionOpen} className="student-history-panel card" onToggle={event => setHistoryOpen(event.currentTarget.open)}><summary>Historial de entrenamientos</summary>{historyOpen && <section className="card" aria-label="Mi registro de entrenamientos"><h2>Mis entrenamientos</h2>
           {history.sessions.length === 0 ? <p>Todavía no registraste entrenamientos.</p> : <>
             <p className="muted">Últimos {Math.min(10, history.sessions.length)} de {history.sessions.length} entrenamientos guardados.</p>
             {history.sessions.slice(0, 10).map(session => <article key={session.id} className="student-feedback-item">

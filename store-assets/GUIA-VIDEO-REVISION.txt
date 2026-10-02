@@ -1,0 +1,41 @@
+GNS FITNESS — grabación para App Review
+Versión a demostrar: 1.0 (13), instalada desde TestFlight en un iPhone físico.
+
+Preparación
+Confirmar iOS actualizado y anotar modelo, versión de iOS, compilación y fecha.
+Utilizar únicamente cuentas y socios de demostración, con nombres y datos ficticios.
+Activar un modo de concentración para que no aparezcan mensajes personales.
+No mostrar QR, códigos MFA, contraseñas, claves ni fichas de socios reales.
+
+Recorrido propuesto (aproximadamente 3–5 minutos)
+1. Comenzar desde la pantalla de inicio y abrir GNS FITNESS.
+2. Mostrar la pantalla de acceso. Para demostrar el ingreso, usar una cuenta ficticia
+   preparada y el autorrelleno, manteniendo la contraseña oculta. Si fuera necesario
+   interrumpir la grabación para introducir datos privados, explicarlo al revisor.
+3. En el panel del alumno, abrir la rutina y desplegar el registro de kilos y RIR.
+   Guardar un entrenamiento ficticio y comprobar el resultado.
+4. Mostrar progreso, estado del plan y los avisos disponibles.
+5. Abrir Nutrición: mostrar el estado de solicitud o habilitación, una guía,
+   el recetario y un plan personalizado ficticio si la cuenta tiene uno asignado.
+6. Abrir «Mi cuenta y mis datos» y mostrar «Eliminar mi cuenta y mis datos».
+   Si se demuestra el envío de una solicitud, hacerlo con una cuenta ficticia
+   descartable; no dejar inutilizable la cuenta que Apple necesita revisar.
+7. Mostrar cierre de sesión y que ya no aparecen los datos de la cuenta.
+8. Si Apple requiere demostrar administración, usar un entorno con solo datos
+   ficticios. Mostrar ficha del socio, anamnesis y kinesiología plegadas, agenda,
+   planes y asignación de rutina. No grabar el listado de socios reales.
+
+La grabación debe mostrar el comportamiento real. No simular botones ni resultados.
+La creación de cuentas es por invitación de administración; no hay registro público.
+Para demostrarla, utilizar una dirección de prueba controlada y no enviar invitaciones
+a alumnos reales. No asegurar que el revisor dispone de un panel administrativo hasta
+haberle preparado y probado un acceso aislado.
+
+Guardar el video para adjuntarlo a App Store Connect o compartirlo mediante un enlace
+accesible al equipo de revisión. Verificar reproducción y acceso antes de enviarlo.
+Registrar por separado problemas detectados: pantalla, pasos, mensaje y hora.
+
+Prueba adicional fuera del video
+Cerrar y volver a abrir la app, probar Face ID, desconexión/reconexión y registro
+administrativo con doble factor. Verificar que reintentar no duplique un entrenamiento.
+La prueba física debe confirmarla quien usa el iPhone; la compilación correcta no basta.

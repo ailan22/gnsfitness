@@ -36,8 +36,9 @@ def module(name, filename):
 
 
 class DrillError(Exception):
-    def __init__(self, code):
+    def __init__(self, code, diagnostic=None):
         self.code = code
+        self.diagnostic = diagnostic
         super().__init__('No se completó el ensayo. Se conserva el respaldo original.')
 
 
@@ -50,6 +51,11 @@ def select_objects(listing):
         # Supabase creates this event-trigger function when automatic RLS is on.
         # Keep the destination's provider implementation and its event trigger.
         if re.search(r'\brls_auto_enable\(\)', item):
+            continue
+        # Managed-role default privileges belong to the destination provider.
+        # postgres cannot ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin.
+        # Application object ACLs and postgres defaults remain in the rehearsal.
+        if item.startswith('DEFAULT ACL ') and item.endswith(' supabase_admin'):
             continue
         # Preserve application ACLs and policies; managed schemas already exist.
         app = bool(re.match(r'^[A-Z ]+ (public|private) ', item))
@@ -82,7 +88,29 @@ def run_pg(args, data, env=None, timeout=240):
     if result.returncode:
         # Only PostgreSQL's fixed SQLSTATE is retained, never the message/data.
         found = re.search(rb'ERROR:\s+([0-9A-Z]{5})\b', result.stderr)
-        raise DrillError('sqlstate_' + found[1].decode() if found else 'postgres_operation_failed')
+        diagnostic = None
+        # Classify only known permission descriptions. Never store full stderr,
+        # SQL context, COPY rows, email addresses, JWTs or passwords.
+        for phrase, label in [
+            (b'could not translate host name', 'dns_resolution'),
+            (b'ssl connection has been closed unexpectedly', 'connection_interrupted'),
+            (b'server closed the connection unexpectedly', 'connection_interrupted'),
+            (b'connection timed out', 'connection_timeout'),
+            (b'network is unreachable', 'network_unreachable'),
+            (b'could not receive data', 'connection_interrupted'),
+            (b'could not send data', 'connection_interrupted'),
+            (b'permission denied to change default privileges', 'default_privileges'),
+            (b'permission denied to set parameter', 'parameter_permission'),
+            (b'permission denied for schema private', 'private_schema_permission'),
+            (b'permission denied for schema auth', 'auth_schema_permission'),
+            (b'permission denied for table users', 'auth_users_permission'),
+            (b'must be owner of', 'object_ownership'),
+            (b'permission denied to grant', 'role_grant_permission'),
+        ]:
+            if phrase in result.stderr.lower():
+                diagnostic = label
+                break
+        raise DrillError('sqlstate_' + found[1].decode() if found else 'postgres_operation_failed', diagnostic)
     return result.stdout
 
 
@@ -110,6 +138,8 @@ def rehearse(password):
         if checker.probe(password)['status'] != 'ready_empty':
             raise DrillError('target_not_empty')
         phase = 'archive_integrity'
+        report['phase'] = phase
+        write_report(report)
         auto = module('gns_auto_drill', 'automatic-backup.py')
         status = auto.read_status()
         if status.get('status') != 'verified' or not auto.intact_archive(status):
@@ -135,6 +165,8 @@ def rehearse(password):
         report.update(archiveSha256=status['sha256'], sourceCommit=manifest.get('sourceCommit'),
                       snapshotCreatedAt=manifest.get('createdAt'))
         phase = 'prepare_restore'
+        report['phase'] = phase
+        write_report(report)
         pg_restore = str(PRIVATE / 'pgsql/bin/pg_restore.exe')
         listing = run_pg([pg_restore, '--list'], archive).decode()
         with tempfile.TemporaryDirectory(prefix='gns-hosted-index-') as directory:
@@ -143,10 +175,8 @@ def rehearse(password):
             # Only object names go on disk. Actual SQL and data stay in memory.
             sql = run_pg([pg_restore, '--no-owner', '--use-list='+str(index), '--file=-'], archive).decode()
         counts = copy_counts(sql)
-        env = {k: v for k, v in os.environ.items() if not k.upper().startswith('PG')}
-        env.update(PGHOST=f'db.{TARGET}.supabase.co', PGPORT='5432', PGUSER='postgres', PGDATABASE='postgres',
-                   PGPASSWORD=password, PGSSLMODE='verify-full', PGSSLROOTCERT=str(PRIVATE/'supabase-ca.crt'),
-                   PGCONNECT_TIMEOUT='20', PGAPPNAME='GNS rollback-only recovery rehearsal',
+        env = checker.connection_environment(password)
+        env.update(PGAPPNAME='GNS rollback-only recovery rehearsal',
                    PGOPTIONS='-c statement_timeout=120000 -c lock_timeout=10000 -c idle_in_transaction_session_timeout=120000')
         guard = """
 BEGIN;
@@ -156,6 +186,13 @@ DO $$ BEGIN
  OR EXISTS(SELECT 1 FROM auth.users) OR EXISTS(SELECT 1 FROM storage.objects)
  THEN RAISE EXCEPTION USING ERRCODE='ZX001', MESSAGE='target_not_empty'; END IF;
 END $$;
+-- Supabase's empty target grants API roles default access to newly created
+-- public tables. pg_dump ACLs describe source grants, not arbitrary extra
+-- grants inherited from a different destination. Start app objects with no
+-- API defaults, then let archived per-object ACLs and defaults restore them.
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public REVOKE ALL ON TABLES FROM anon, authenticated;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public REVOKE ALL ON SEQUENCES FROM anon, authenticated;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public REVOKE ALL ON FUNCTIONS FROM anon, authenticated;
 SET LOCAL session_replication_role = replica;
 """
         checks = '\nSET LOCAL session_replication_role = origin;\nSET LOCAL row_security = on;\n'
@@ -165,8 +202,12 @@ SET LOCAL session_replication_role = replica;
 DO $$ BEGIN
  IF EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
   WHERE n.nspname IN ('public','private') AND c.relkind='r' AND
-  (NOT c.relrowsecurity OR has_table_privilege('anon',c.oid,'SELECT,INSERT,UPDATE,DELETE,TRUNCATE')))
- THEN RAISE EXCEPTION USING ERRCODE='ZX003', MESSAGE='unsafe_permissions'; END IF;
+  NOT c.relrowsecurity)
+ THEN RAISE EXCEPTION USING ERRCODE='ZX003', MESSAGE='rls_missing'; END IF;
+ IF EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+  WHERE n.nspname IN ('public','private') AND c.relkind='r' AND
+  has_table_privilege('anon',c.oid,'SELECT,INSERT,UPDATE,DELETE,TRUNCATE'))
+ THEN RAISE EXCEPTION USING ERRCODE='ZX006', MESSAGE='anonymous_grants_present'; END IF;
 END $$;
 """
         fake = str(uuid.uuid4())
@@ -181,8 +222,10 @@ RESET ROLE;
 ROLLBACK;
 """
         phase = 'transaction_restore_and_checks'
+        report['phase'] = phase
+        write_report(report)
         run_pg([str(PRIVATE/'pgsql/bin/psql.exe'), '-X', '-q', '-A', '-t', '-w',
-                '-v', 'ON_ERROR_STOP=1', '-v', 'VERBOSITY=sqlstate'], (guard+sql+checks).encode(), env, 420)
+                '-v', 'ON_ERROR_STOP=1', '-v', 'VERBOSITY=verbose'], (guard+sql+checks).encode(), env, 420)
         phase = 'verify_rollback'
         if checker.probe(password)['status'] != 'ready_empty':
             raise DrillError('rollback_not_confirmed')
@@ -193,7 +236,12 @@ ROLLBACK;
                       excluded=['Auth HTTP/login and MFA portability', 'Edge Functions and email',
                                 'Storage bytes', 'Physical iPhone on recovery environment', 'Permanent failover'])
     except Exception as exc:
-        report.update(status='failed', phase=phase, code=exc.code if isinstance(exc, DrillError) else 'local_or_connection_error')
+        safe_code = getattr(exc, 'code', None)
+        allowed_probe_codes = {'authentication_failed', 'tls_verification_failed', 'network_error', 'connection_error'}
+        report.update(status='failed', phase=phase, code=exc.code if isinstance(exc, DrillError)
+                      else safe_code if safe_code in allowed_probe_codes else 'local_or_connection_error')
+        if isinstance(exc, DrillError) and exc.diagnostic:
+            report['diagnostic'] = exc.diagnostic
         # Any error aborts psql and its uncommitted transaction. Check emptiness
         # independently; do not claim rollback verified without this result.
         try:
@@ -204,6 +252,7 @@ ROLLBACK;
     finally:
         if env is not None:
             env.pop('PGPASSWORD', None)
+            Path(env['PGSSLROOTCERT']).unlink(missing_ok=True)
         report.update(completedAt=datetime.now(timezone.utc).isoformat(), seconds=round(time.monotonic()-started, 2))
         write_report(report)
     return report
@@ -212,22 +261,35 @@ ROLLBACK;
 def main():
     import tkinter as tk
     root = tk.Tk()
-    root.title('GNS · Ensayo de recuperación en Supabase')
-    root.geometry('660x390')
+    root.title('GNS · Recuperación corregida · Versión 3')
+    root.geometry('680x430')
     root.attributes('-topmost', True)
     tk.Label(root, text='Probar el respaldo en recuperación aislada', font=('Segoe UI', 15, 'bold')).pack(pady=18)
     tk.Label(root, text='Se cargarán temporalmente los datos del respaldo verificado,\nse comprobarán conteos y permisos y se deshará toda la carga.\nLa app principal y el archivo original no se modifican.\n\nIngresá la contraseña de GNS recuperacion aislada.', wraplength=610).pack(pady=8)
     entry = tk.Entry(root, show='•', width=52, font=('Segoe UI', 12))
     entry.pack(pady=12)
-    status = tk.Label(root, text='La contraseña no se guarda. La clave del respaldo se usa internamente.', wraplength=610)
+    status = tk.Label(root, text='La contraseña queda solo en memoria mientras esta ventana esté abierta.\nPermite hasta 3 reintentos al corregir el auxiliar, siempre con rollback.', wraplength=630)
     status.pack(pady=10)
     mailbox = queue.Queue()
+    state = {'secret': None, 'busy': False, 'failed': False, 'retries': 0,
+             'revision': Path(__file__).stat().st_mtime_ns}
 
     def worker(password):
-        result = rehearse(password)
-        mailbox.put('Ensayo completado. Conteos y permisos verificados; carga deshecha.'
-                    if result['status'] == 'hosted_application_rollback_test_passed'
-                    else 'El ensayo detectó un punto a revisar. Avisá en el chat; el respaldo original se conserva.')
+        try:
+            # Reload reviewed code at each retry without persisting the password.
+            current = module('gns_current_drill_' + uuid.uuid4().hex, 'rehearse-hosted-recovery.py')
+            result = current.rehearse(password)
+            mailbox.put(result['status'] == 'hosted_application_rollback_test_passed')
+        except Exception:
+            mailbox.put(False)
+
+    def launch():
+        state['busy'] = True
+        state['failed'] = False
+        state['revision'] = Path(__file__).stat().st_mtime_ns
+        button.config(state='disabled')
+        status.config(text='Comprobando el ensayo corregido… Dejá esta ventana abierta.')
+        threading.Thread(target=worker, args=(state['secret'],), daemon=True).start()
 
     def submit():
         secret = entry.get()
@@ -235,16 +297,26 @@ def main():
             status.config(text='Ingresá la contraseña del proyecto de recuperación.')
             return
         entry.delete(0, tk.END)
-        button.config(state='disabled')
-        status.config(text='Comprobando y restaurando temporalmente… Dejá esta ventana abierta.')
-        threading.Thread(target=worker, args=(secret,), daemon=True).start()
+        state['secret'] = secret
+        state['retries'] = 0
+        launch()
 
     def poll():
         try:
-            status.config(text=mailbox.get_nowait())
+            passed = mailbox.get_nowait()
+            state['busy'] = False
+            state['failed'] = not passed
+            if passed:
+                state['secret'] = None
+            status.config(text='Ensayo completado. Conteos y permisos verificados; carga deshecha.' if passed
+                          else 'Punto pendiente de revisión. Dejá abierta esta ventana: puedo reintentar al corregir el auxiliar. El original se conserva.')
             button.config(state='normal')
         except queue.Empty:
             pass
+        if state['failed'] and not state['busy'] and state['secret'] and state['retries'] < 3:
+            if Path(__file__).stat().st_mtime_ns != state['revision']:
+                state['retries'] += 1
+                launch()
         root.after(300, poll)
 
     button = tk.Button(root, text='Iniciar ensayo y deshacer la carga', command=submit)

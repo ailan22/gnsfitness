@@ -7,9 +7,25 @@ from unittest.mock import patch
 spec = importlib.util.spec_from_file_location('drill', Path(__file__).resolve().parents[1]/'scripts/rehearse-hosted-recovery.py')
 drill = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(drill)
+probe = drill.module('probe_test', 'check-recovery-target.py')
 
 
 class HostedRecoveryTests(unittest.TestCase):
+    def test_read_only_probe_retries_transient_dns_failure(self):
+        failed = subprocess.CompletedProcess([], 2, b'', b'could not translate host name')
+        passed = subprocess.CompletedProcess([], 0, b'{"database":"postgres","tls":true,"applicationTables":0,"authUsers":0,"storageObjects":0}', b'')
+        with patch.object(probe.subprocess, 'run', side_effect=[failed, passed]) as call, patch.object(probe.time, 'sleep'):
+            self.assertEqual(probe.probe('synthetic')['status'], 'ready_empty')
+            self.assertEqual(call.call_count, 2)
+
+    def test_probe_never_retries_invalid_password(self):
+        failed = subprocess.CompletedProcess([], 2, b'', b'password authentication failed')
+        with patch.object(probe.subprocess, 'run', return_value=failed) as call:
+            with self.assertRaises(probe.ProbeError) as error:
+                probe.probe('synthetic')
+            self.assertEqual(error.exception.code, 'authentication_failed')
+            self.assertEqual(call.call_count, 1)
+
     def test_selection_preserves_app_acl_but_not_provider_objects(self):
         listing = '''1; 1 1 SCHEMA - public postgres
 2; 1 1 SCHEMA - private postgres
@@ -24,6 +40,7 @@ class HostedRecoveryTests(unittest.TestCase):
 11; 1 1 TABLE DATA storage objects supabase_storage_admin
 12; 1 1 DEFAULT ACL public DEFAULT PRIVILEGES FOR TABLES postgres
 13; 1 1 FUNCTION public rls_auto_enable() postgres
+14; 1 1 DEFAULT ACL public DEFAULT PRIVILEGES FOR TABLES supabase_admin
 '''
         selected = drill.select_objects(listing)
         self.assertEqual([line.split(';')[0] for line in selected.splitlines()], ['2','3','4','5','9','10','12'])
@@ -48,6 +65,14 @@ class HostedRecoveryTests(unittest.TestCase):
                 drill.run_pg(['psql'], b'')
         self.assertEqual(error.exception.code, 'sqlstate_42501')
         self.assertNotIn('patient', str(error.exception))
+
+    def test_permission_diagnostic_is_fixed_label_not_provider_message(self):
+        fake = subprocess.CompletedProcess([], 1, b'', b'ERROR:  42501: permission denied to change default privileges\nCONTEXT: sensitive row')
+        with patch.object(drill.subprocess, 'run', return_value=fake):
+            with self.assertRaises(drill.DrillError) as error:
+                drill.run_pg(['psql'], b'')
+        self.assertEqual(error.exception.diagnostic, 'default_privileges')
+        self.assertNotIn('sensitive', str(error.exception))
 
 
 if __name__ == '__main__':

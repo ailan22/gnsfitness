@@ -8,7 +8,7 @@ function canonical(value: unknown): string {
 
 // Caller retains the same ID until the form closes. Never overwrite a record
 // whose response was lost, and never treat a changed draft as already saved.
-export async function confirmedInsert(client: SupabaseClient, table: 'memberships' | 'routines' | 'sessions', row: Record<string, unknown> & { id: string; member_id: string }) {
+export async function confirmedInsert(client: SupabaseClient, table: 'memberships' | 'routines' | 'sessions', row: Record<string, unknown> & { id: string; member_id: string }, write?: () => PromiseLike<{ data: unknown; error: unknown }>) {
   const columns = Object.keys(row).join(',')
   const lookup = async () => {
     const result = await client.from(table).select(columns).eq('id', row.id).eq('member_id', row.member_id).maybeSingle()
@@ -20,8 +20,13 @@ export async function confirmedInsert(client: SupabaseClient, table: 'membership
   }
   if (await lookup()) return
   try {
-    const result = await client.from(table).insert(row).select('id').single()
-    if (!result.error && result.data?.id === row.id) return
+    if (write) {
+      const result = await write()
+      if (!result.error && result.data === row.id) return
+    } else {
+      const result = await client.from(table).insert(row).select('id').single()
+      if (!result.error && result.data?.id === row.id) return
+    }
   } catch { /* Reconcile the same ID after an interrupted response. */ }
   if (await lookup()) return
   throw new Error('No se pudo confirmar el guardado. Los datos siguen en el formulario; podés reintentar sin duplicar el registro.')

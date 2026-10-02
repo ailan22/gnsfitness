@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "test": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "security:check": "npm run test && npm run lint && npm audit --audit-level=low && npm run build",
+    "operations:check": "node scripts/check-operations.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

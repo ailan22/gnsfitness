@@ -9,7 +9,10 @@ vm.runInNewContext(ts.transpileModule(readFileSync(new URL('../src/confirmedInse
 function harness({ lostResponse = false, lookupFailure = false } = {}) {
   const states = []; let cursor = 0; let tree; let saved = 0; let inserts = 0; let stored = false
   const exports = {}
-  const client = { from() { return {
+  const client = { async rpc(name,args) {
+    assert.equal(name,'staff_register_session_checked');assert.equal(args.p_suggested,false)
+    inserts++;stored={...args.p_row};if(lostResponse)throw Error('response lost');return {data:stored.id,error:null}
+  }, from() { return {
     select() { return this }, eq() { return this },
     async maybeSingle() { if (lookupFailure) throw Error('offline'); return { data: stored || null, error: null } },
     insert(row) { inserts++; assert.equal(row.id, 'request-1'); stored = {...row}; return { select() { return { async single() { if (lostResponse) throw Error('response lost'); return { data: { id: row.id }, error: null } } } } } },

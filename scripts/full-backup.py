@@ -70,10 +70,11 @@ def capture(password, phrase, target):
             raise RuntimeError('La base no produjo un archivo PostgreSQL válido.')
         # Role passwords are not portable or needed for hosted platform roles.
         roles = command([str(BIN/'pg_dumpall.exe'), '--roles-only', '--no-role-passwords', '--no-password'], env)
-        source = command(['git', '-c', 'safe.directory='+str(MIRROR).replace('\\','/'), '-C', str(MIRROR),
-                          'archive', '--format=zip', 'HEAD'])
         revision = command(['git', '-c', 'safe.directory='+str(MIRROR).replace('\\','/'), '-C', str(MIRROR),
                             'rev-parse', 'HEAD']).decode().strip()
+        # Pin the archive to the recorded revision even if HEAD changes meanwhile.
+        source = command(['git', '-c', 'safe.directory='+str(MIRROR).replace('\\','/'), '-C', str(MIRROR),
+                          'archive', '--format=zip', revision])
         entries = {'database.dump': archive, 'roles-without-passwords.sql': roles, 'source.zip': source}
         metadata = {'createdAt': datetime.now(timezone.utc).isoformat(), 'project':'xwnbeuyywxbqrnlbnskg',
                     'serverVersion':version.decode(), 'sourceCommit':revision,

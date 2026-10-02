@@ -71,7 +71,9 @@ export default function CloudSessionRecorder({ client, memberId, routines, sessi
       routine_id: routine?.id ?? null, routine_name: routine?.name ?? '', day: day ? Number(day) : null,
       block: routine && day ? block : null, week: routine && day ? (block - 1) * routine.block_rounds + week : null,
       notes: notes.trim(), results: completedResults }
-    await confirmedInsert(client, 'sessions', row)
+    await confirmedInsert(client, 'sessions', row, () => client.rpc('staff_register_session_checked', {
+      p_row: row, p_suggested: suggested, p_expected_last_id: currentProgress?.last?.id ?? null,
+    }))
     onSaved()
     } catch (failure) {
       setError(failure instanceof Error ? failure.message : 'No se pudo confirmar el guardado. Conservá el formulario y revisá el historial antes de crear otro registro.')

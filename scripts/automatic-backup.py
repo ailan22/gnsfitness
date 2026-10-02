@@ -8,6 +8,7 @@ from ctypes import wintypes
 from datetime import datetime
 import importlib.util
 import json
+import hashlib
 import os
 from pathlib import Path
 import sys
@@ -75,7 +76,36 @@ def save_credentials(password, phrase):
 
 
 def write_status(data):
-    REPORT.write_text(json.dumps(data, indent=2), encoding='utf-8')
+    temp = REPORT.with_suffix('.' + uuid.uuid4().hex + '.tmp')
+    try:
+        with temp.open('x', encoding='utf-8') as output:
+            json.dump(data, output, indent=2)
+            output.flush()
+            os.fsync(output.fileno())
+        os.replace(temp, REPORT)
+    finally:
+        if temp.exists():
+            temp.unlink()
+
+
+def read_status():
+    try:
+        value = json.loads(REPORT.read_text(encoding='utf-8-sig'))
+        return value if isinstance(value, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def intact_archive(report):
+    """Inspect ciphertext only. A stale status file is not integrity evidence."""
+    try:
+        path = Path(report.get('path', ''))
+        if not path.is_file() or path.stat().st_size != report.get('bytes'):
+            return False
+        with path.open('rb') as source:
+            return hashlib.file_digest(source, 'sha256').hexdigest() == report.get('sha256')
+    except (OSError, TypeError):
+        return False
 
 
 def run(force=False):
@@ -90,16 +120,17 @@ def run(force=False):
             msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
         except OSError:
             return {'status': 'already_running'}
+        previous = read_status()
+        last_verified = previous if previous.get('status') == 'verified' else previous.get('lastVerified')
         try:
             today = datetime.now().astimezone().date().isoformat()
-            if REPORT.exists() and not force:
-                previous = json.loads(REPORT.read_text(encoding='utf-8'))
-                if previous.get('status') == 'verified' and previous.get('localDate') == today and Path(previous.get('path', '')).is_file():
+            if previous and not force:
+                if previous.get('status') == 'verified' and previous.get('localDate') == today and intact_archive(previous):
                     return {**previous, 'skipped': True}
             secret = json.loads(protect(CONFIG.read_bytes(), decrypt=True))
             ARCHIVES.mkdir(exist_ok=True)
             target = ARCHIVES / ('GNS-auto-' + datetime.now().strftime('%Y%m%d-%H%M%S') + '-' + uuid.uuid4().hex[:6] + '.gnsfull')
-            write_status({'status': 'running', 'startedAt': datetime.now().astimezone().isoformat()})
+            write_status({'status': 'running', 'startedAt': datetime.now().astimezone().isoformat(), 'lastVerified': last_verified})
             try:
                 backup.capture(secret['password'], secret['phrase'], str(target))
                 restored = verifier.restore_check(target, secret['phrase'])
@@ -124,7 +155,7 @@ def run(force=False):
                 'No se pudo verificar la conexión TLS; no se continuará sin validación.': 'database_tls',
                 'La herramienta de respaldo no completó la operación. No se guardó una copia parcial.': 'database_tool',
             }
-            report = {'status': 'failed', 'checkedAt': datetime.now().astimezone().isoformat(),
+            report = {'status': 'failed', 'checkedAt': datetime.now().astimezone().isoformat(), 'lastVerified': last_verified,
                       'reason': known.get(str(failure), 'verification_or_local_error'),
                       'message': 'No se completó el respaldo automático. Revisar conexión, claves y prueba de recuperación. Las copias anteriores se conservan.'}
             write_status(report)

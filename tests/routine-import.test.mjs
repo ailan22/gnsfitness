@@ -8,6 +8,18 @@ const compile=file=>ts.transpileModule(readFileSync(new URL('../src/'+file,impor
 const api={},training={}
 vm.runInNewContext(compile('routineImport.ts'),{exports:api,crypto:webcrypto})
 vm.runInNewContext(compile('cloudTraining.ts'),{exports:training})
+test('paste detects dimensions from actual routine without manual setup',()=>{
+ const dimensions=api.detectRoutineDimensions(readFileSync(new URL('./fixtures/macrocycle-12-weeks.txt',import.meta.url),'utf8'))
+ assert.equal(dimensions.weeks,12);assert.equal(dimensions.days,3)
+})
+test('annotated headers and a standalone test day preserve instructions',()=>{
+ const result=api.parseRoutine('**Semanas 1 a 4 (Adaptación)**\nDía 1 — Tren inferior\nSentadilla 3x10\nSemana 5\nDía 1 — Día de prueba\nPrueba: Movilidad supervisada y registro del resultado',5,1,4)
+ assert.deepEqual([...result.errors],[])
+ assert.equal(result.sessions.length,5)
+ assert.equal(result.sessions[0].guidance,'Tren inferior')
+ assert.equal(result.sessions[4].exercises.length,0)
+ assert.match(result.plan.sessionTests['5']['1'][0].details,/Movilidad/)
+})
 test('real supplied 12-week routine preserves all 276 exercises, deloads, sides, distances and RIR ranges',()=>{
  const text=readFileSync(new URL('./fixtures/macrocycle-12-weeks.txt',import.meta.url),'utf8')
  const result=api.parseRoutine(text,24,3,4)

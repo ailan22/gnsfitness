@@ -16,6 +16,18 @@ Día 2
 Peso muerto rumano 4x8`
 
 export type ImportedSession = { week:number; day:number; exercises:Exercise[]; guidance:string; tests:{id:string;title:string;details:string}[] }
+const normalizeLine = (line:string) => line.trim().replace(/\*\*/g,'').replace(/^#+\s*/, '').replace(/^[•*]\s*/, '').replace(/^\d+[.)]\s*/, '').replace(/^mes\s+\d+\s*[—–:-]\s*/i,'')
+const weekHeader = /^semanas?\s+([\d\s,yY–—-]+|\d+\s+a\s+\d+)\s*:?(?:\s*\([^)]*\))?$/i
+const dayHeader = /^d[ií]a\s+(\d+)\s*(?:[:—–-]\s*(.*))?$/i
+export function detectRoutineDimensions(text:string) {
+ let weeks=0,days=0
+ for(const raw of text.split(/\r?\n/)) {
+  const line=normalizeLine(raw), range=line.match(weekHeader),day=line.match(dayHeader)
+  if(range) for(const n of range[1].match(/\d+/g)??[]) weeks=Math.max(weeks,Number(n))
+  if(day) days=Math.max(days,Number(day[1]))
+ }
+ return {weeks,days}
+}
 export function parseRoutine(text:string, weeks:number, days:number, blockWeeks:number) {
  const errors:string[]=[], sessions=new Map<string,ImportedSession>()
  let selectedWeeks:number[]=[], day=0
@@ -23,13 +35,13 @@ export function parseRoutine(text:string, weeks:number, days:number, blockWeeks:
  if(text.length>200000) return {errors:['El texto supera los 200.000 caracteres.'],sessions:[],plan:{} as CloudPlan}
  const lines=text.split(/\r?\n/)
  for(let i=0;i<lines.length;i++){
-  const line=lines[i].trim().replace(/^#+\s*/, '').replace(/^[•*]\s*/, '').replace(/^\d+[.)]\s*/, '').replace(/^mes\s+\d+\s*[—–:-]\s*/i,'')
+  const line=normalizeLine(lines[i])
   if(!line)continue
   const fail=(message:string)=>errors.push(`Línea ${i+1}: ${message}`)
-  const range=line.match(/^semanas?\s+([\d\s,yY–—-]+|\d+\s+a\s+\d+)\s*:?$/i)
+  const range=line.match(weekHeader)
   if(range){day=0;selectedWeeks=[];for(const part of range[1].split(/\s*[,y]\s*/i)){const match=part.trim().match(/^(\d+)(?:\s*(?:-|–|—|a)\s*(\d+))?$/i);if(!match){fail('la lista de semanas no se reconoce.');continue}const from=Number(match[1]),to=Number(match[2]||match[1]);if(from<1||to<from||to>weeks){fail('el rango de semanas queda fuera del programa.');continue}selectedWeeks.push(...Array.from({length:to-from+1},(_,n)=>from+n))}selectedWeeks=[...new Set(selectedWeeks)];continue}
-  const dayMatch=line.match(/^d[ií]a\s+(\d+)\s*:?(?:\s*)$/i)
-  if(dayMatch){day=Number(dayMatch[1]);if(!selectedWeeks.length||day<1||day>days){fail('indicá primero la semana y un día válido.');day=0;continue}for(const week of selectedWeeks){const key=`${week}/${day}`;if(sessions.has(key)){fail(`la semana ${week}, día ${day}, está repetida.`)}else sessions.set(key,{week,day,exercises:[],guidance:'',tests:[]})}continue}
+  const dayMatch=line.match(dayHeader)
+  if(dayMatch){day=Number(dayMatch[1]);if(!selectedWeeks.length||day<1||day>days){fail('indicá primero la semana y un día válido.');day=0;continue}for(const week of selectedWeeks){const key=`${week}/${day}`;if(sessions.has(key)){fail(`la semana ${week}, día ${day}, está repetida.`)}else sessions.set(key,{week,day,exercises:[],guidance:dayMatch[2]?.trim()||'',tests:[]})}continue}
   if(!selectedWeeks.length||!day){fail('falta un encabezado «Semana 1» y «Día 1».');continue}
   const targets=selectedWeeks.map(week=>sessions.get(`${week}/${day}`)!)
   const note=line.match(/^indicaciones?\s*:\s*(.+)$/i)
@@ -46,7 +58,7 @@ export function parseRoutine(text:string, weeks:number, days:number, blockWeeks:
  }
  const result=[...sessions.values()].sort((a,b)=>a.week-b.week||a.day-b.day)
  if(!result.length) errors.push('No se encontraron sesiones para importar.')
- for(const session of result){if(!session.exercises.length)errors.push(`Semana ${session.week}, día ${session.day}: agregá al menos un ejercicio; la prueba puede acompañarlo.`)}
+ for(const session of result){if(!session.exercises.length&&!session.tests.length)errors.push(`Semana ${session.week}, día ${session.day}: agregá ejercicios o una prueba.`)}
  const plan:CloudPlan={exercisesByDay:{},blockExercises:{},weekExercises:{},sessionGuidance:{},sessionTests:{}}
  // Explicitly clear unspecified days: an import must never invent or inherit a future week.
  for(let absolute=1;absolute<=weeks;absolute++)for(let d=1;d<=days;d++){

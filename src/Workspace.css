@@ -1,5 +1,6 @@
 /* Extend the original dark-and-gold theme; shared colors stay in App.css. */
 .admin-workspace { isolation: isolate; position: relative; }
+.cloud-account { isolation: isolate; position: relative; }
 .botanical-corners { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
 .botanical-branch { position: absolute; width: clamp(110px,18vw,235px); opacity: .19; filter: saturate(.65); }
 .botanical-left { left: -45px; bottom: -35px; transform: rotate(-12deg); }
@@ -196,3 +197,12 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .room-day { display:block; margin:12px 0; }
 .room-day summary { cursor:pointer; color:#edcb84; padding:8px 0; }
 .room-booking { padding:14px 0; border-bottom:1px solid #494338; }
+.member-horizontal-sections { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin: 24px 0; }
+.member-horizontal-sections > details, .member-horizontal-sections .member-health-sections, .member-horizontal-sections .member-health-sections > details { display: contents; }
+.member-horizontal-sections summary { grid-row: 1; margin: 0 !important; padding: 16px 12px; border: 1px solid #51534a; border-radius: 10px; background: #1c1d19; overflow-wrap: anywhere; font-size: 14px; }
+.member-horizontal-sections details[open] > summary { border-color: #d3ac55; background: #28291f; }
+.member-horizontal-sections .member-section-content { grid-column: 1 / -1; min-width: 0; padding: 18px; border: 1px solid #51534a; border-radius: 10px; }
+.member-horizontal-sections details:not([open]) > .member-section-content { display: none; }
+.member-horizontal-sections details::details-content { grid-column: 1 / -1; min-width: 0; }
+.member-horizontal-sections details:not([open])::details-content { display: none; }
+@media(max-width:600px) { .member-horizontal-sections { gap: 6px; } .member-horizontal-sections summary { font-size: 12px; padding: 12px 7px; } .member-horizontal-sections .member-section-content { padding: 12px; } }

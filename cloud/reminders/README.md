@@ -1,7 +1,8 @@
 # Avisos por WhatsApp: base preparada, envío no activado
 
 El usuario eligió WhatsApp. Actualmente usa la aplicación común.
-Pendiente decidir si conservará ese número o utilizará otro para los avisos.
+El titular eligió conservar su número y descargar WhatsApp Business. La transferencia
+todavía no está confirmada. Descargar Business no activa la API ni los envíos automáticos.
 No se ha modificado, migrado ni desconectado su cuenta de WhatsApp.
 
 `select-reminders.mjs` contiene la selección pura de destinatarios y se ejecuta en el

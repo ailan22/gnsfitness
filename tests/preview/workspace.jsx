@@ -3,6 +3,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import CloudAdmin from '../../src/CloudAdmin'
 import CloudStudent from '../../src/CloudStudent'
+import BotanicalCorners from '../../src/BotanicalCorners'
 import '../../src/index.css'
 import '../../src/App.css'
 import '../../src/Workspace.css'
@@ -45,7 +46,8 @@ const client = {async rpc(_name,args){if(_name==='save_nutrition_draft'){tables.
   }; return query
 }}
 const mobile = new URLSearchParams(location.search).has('mobile')
-const student = <CloudStudent client={client} user={previewUser}/>
+if(studentMode && new URLSearchParams(location.search).has('test-day')) { tables.routines[0].plan.exercisesByDay[2]=[]; tables.routines[0].plan.sessionTests={1:{2:[{id:'test-example',title:'Evaluación de progreso',details:'Realizá la prueba supervisada y anotá el resultado.'}]}} }
+const student = <><BotanicalCorners/><CloudStudent client={client} user={previewUser}/></>
 createRoot(document.getElementById('root')).render(mobile ? <iframe title="Vista móvil" src={"/workspace-preview.html?" + new URLSearchParams([...new URLSearchParams(location.search)].filter(([key])=>key!=="mobile")).toString()} style={{width:390,height:844,border:0}}/> : <div className={studentMode ? "app" : "app app-admin"}><header className="topbar"><div className="brand">{!storeScreen && <img className="brand-logo" src="/gns-logo-transparent.png" alt=""/>}<span className="brand-copy"><span className="brand-title">GNS <span>FITNESS</span></span><span className="brand-motto">ENERGÍA · SALUD · BIENESTAR · VITALIDAD</span></span></div><span className="tag">{storeScreen ? 'Portal del alumno' : 'Vista de prueba · datos ficticios'}</span></header><main className="content">{studentMode ? storeScreen ? <div className="cloud-entry"><section className="card cloud-account cloud-portal">{student}</section></div> : student : <CloudAdmin client={client}/>}</main></div>)
 if (storeScreen && storeScreen !== 'training') {
   const timer = setInterval(() => {

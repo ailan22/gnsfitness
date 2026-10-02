@@ -132,10 +132,14 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   const blockWeeks = routine && progress ? Math.min(routine.block_rounds, routine.program_rounds - (progress.block - 1) * routine.block_rounds) : 0
   const messages = history?.reviews.filter(item => item.notes.trim()).sort((a, b) => b.reviewed_at.localeCompare(a.reviewed_at)) ?? []
 
+  const tests = routine?.plan.sessionTests?.[globalWeek]?.[progress?.nextDay ?? 1] ?? []
+  const isTestDay = tests.length > 0
+  const canRecord = exercises.length > 0 || isTestDay
+
   function begin(exerciseId?: string) {
     targetExercise.current = exerciseId ?? null
-    if (!routine || !progress || progress.finished || !exercises.length || recordingRef.current || history?.member.status !== 'Activo') return
-    setChecked([]); setPerformedAt(today()); setNotes(''); setError(''); setMessage(''); setSubmissionId(crypto.randomUUID())
+    if (!routine || !progress || progress.finished || !canRecord || recordingRef.current || history?.member.status !== 'Activo') return
+    setChecked([]); setPerformedAt(today()); setNotes(isTestDay ? `Día de prueba: ${tests.map(t=>t.title).join(', ')}\nResultado: ` : ''); setError(''); setMessage(''); setSubmissionId(crypto.randomUUID())
     setResults(exercises.map(item => ({ exerciseId: item.id, name: item.name, sets: '', reps: '', load: '', rir: '' })))
     setExpected({ lastId: progress.last?.id ?? null, day: progress.nextDay, week: globalWeek })
     recordingRef.current = true
@@ -180,34 +184,34 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       <div>
       {!routine || !progress ? <div className="card empty">Todavía no tenés una rutina asignada. Consultá con tu entrenador.</div> : <>
         <section ref={todayCard} className="card student-today">
-          <div className="routine-heading"><p className="eyebrow">MI ENTRENAMIENTO DE HOY</p>{!progress.finished && <details className="routine-record-menu"><summary aria-label="Desplegar registro de kilos y RIR">Registrar kilos y RIR</summary><button type="button" disabled={!exercises.length || history.member.status !== 'Activo'} onClick={() => recording ? recordForm.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) : begin()}>{recording ? 'Continuar registro' : 'Abrir registro del entrenamiento'}</button></details>}</div>
-          <h2>{progress.finished ? 'Programa completado' : `Día ${progress.nextDay}`}</h2>
-          {!progress.finished && <p className="student-welcome">{history.member.welcome_form === 'Te damos la bienvenida' ? '¡Hoy es un buen día para entrenar!' : `¡${history.member.welcome_form} a tu día de entrenamiento!`} Te toca el Día {progress.nextDay}. Seguí la guía y anotá tus resultados mientras entrenás.</p>}
+          <div className="routine-heading"><p className="eyebrow">{isTestDay ? 'DÍA DE PRUEBA' : 'MI ENTRENAMIENTO DE HOY'}</p>{!progress.finished && exercises.length > 0 && <details className="routine-record-menu"><summary aria-label="Desplegar registro de kilos y RIR">Registrar kilos y RIR</summary><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => recording ? recordForm.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) : begin()}>{recording ? 'Continuar registro' : 'Abrir registro del entrenamiento'}</button></details>}</div>
+          <h2>{progress.finished ? 'Programa completado' : isTestDay ? `Día de prueba · Día ${progress.nextDay}` : `Día ${progress.nextDay}`}</h2>
+          {!progress.finished && <p className="student-welcome">{isTestDay ? 'Hoy tenés una evaluación. Seguí las indicaciones de tu entrenador y registrá el resultado.' : history.member.welcome_form === 'Te damos la bienvenida' ? '¡Hoy es un buen día para entrenar!' : `¡${history.member.welcome_form} a tu día de entrenamiento!`} Te toca el Día {progress.nextDay}. Seguí la guía y anotá tus resultados mientras entrenás.</p>}
           <p>{routine.name} · {routine.level} · {routine.days_per_week} días por semana</p>
           <p className="student-progress">Bloque {progress.block}{detail?.name ? ` · ${detail.name}` : ''} · Semana {globalWeek} de {routine.program_rounds}</p>
           {progress.last && <p className="muted">Último día registrado: Día {progress.last.day} · {progress.last.performed_at}</p>}
-          {!progress.finished && <div className="actions student-start"><button type="button" disabled={!exercises.length || history.member.status !== 'Activo'} onClick={() => recording ? recordForm.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) : begin()}>{recording ? 'Continuar mi entrenamiento' : 'Empezar entrenamiento'}</button><span className="muted">{exercises.length} {exercises.length === 1 ? 'ejercicio' : 'ejercicios'}{recording ? ' · En curso' : ''}</span></div>}
+          {!progress.finished && <div className="actions student-start"><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => recording ? recordForm.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) : begin()}>{recording ? isTestDay ? 'Continuar mi prueba' : 'Continuar mi entrenamiento' : isTestDay ? 'Empezar prueba' : 'Empezar entrenamiento'}</button><span className="muted">{isTestDay && !exercises.length ? 'Evaluación programada' : `${exercises.length} ${exercises.length === 1 ? 'ejercicio' : 'ejercicios'}`}{recording ? ' · En curso' : ''}</span></div>}
           {detail?.warmup && <div className="block-note"><strong>Calentamiento del bloque</strong><p>{detail.warmup}</p></div>}
           {progress.finished ? <p>Consultá con tu entrenador antes de iniciar un programa nuevo.</p> : <>
             {exercises.length ? !recording && <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={item.id}>
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}
               <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
               
-            </div>)}</div> : <p>Este día no tiene ejercicios cargados. Consultá con tu entrenador.</p>}
+            </div>)}</div> : !isTestDay && <p>Este día no tiene ejercicios cargados. Consultá con tu entrenador.</p>}
             {guidance && <div className="session-guidance"><strong>Indicaciones para este día</strong><p>{guidance}</p></div>}
             {components.map(item => <div className="session-guidance" key={item.id}><strong>{item.title}</strong><p>{item.details}</p></div>)}
             {(routine.plan.sessionTests?.[(progress.block-1)*routine.block_rounds+progress.week]?.[progress.nextDay]??[]).map(item=><section className="student-test" key={item.id}><span>Prueba</span><h3>{item.title}</h3><p>{item.details}</p></section>)}
 
-            {!exercises.length && <p className="muted">Para habilitar este día, tu entrenador debe cargar sus ejercicios. Tu avance anterior queda guardado.</p>}
+            {!canRecord && <p className="muted">Para habilitar este día, tu entrenador debe cargar sus ejercicios. Tu avance anterior queda guardado.</p>}
             {history.member.status !== 'Activo' && <p className="notice">Tu ficha no está activa. Contactá al administrador para registrar entrenamientos.</p>}
           </>}
         </section>
         {recording && !progress.finished && <form ref={recordForm} tabIndex={-1} aria-label={`Registrar Día ${progress.nextDay}`} className="card student-record" onSubmit={event => void save(event)}>
           <fieldset disabled={saving} style={{ border: 0, margin: 0, padding: 0, minWidth: 0 }}>
           <div className="heading"><h2>Registrar Día {progress.nextDay}</h2><button type="button" className="secondary" disabled={saving} onClick={() => { if (!window.confirm('¿Descartar el entrenamiento en curso y sus resultados sin guardar?')) return; recordingRef.current = false; setRecording(false); setChecked([]); setRevision(value => value + 1) }}>Cancelar</button></div>
-          <p className="muted">Marcá cada ejercicio al terminar y anotá lo realizado. Solo «Guardar y completar día» registra la sesión y habilita el siguiente día.</p>
-          <div className="student-check-progress" role="status">{checked.length} de {exercises.length} ejercicios marcados</div>
-          <progress className="student-progress-bar" aria-label="Ejercicios marcados" value={checked.length} max={Math.max(1, exercises.length)}/>
+          <p className="muted">{isTestDay ? 'Anotá el resultado de la prueba.' : 'Marcá cada ejercicio al terminar y anotá lo realizado.'} Solo «Guardar y completar día» registra la sesión y habilita el siguiente día.</p>
+          {exercises.length > 0 && <><div className="student-check-progress" role="status">{checked.length} de {exercises.length} ejercicios marcados</div>
+          <progress className="student-progress-bar" aria-label="Ejercicios marcados" value={checked.length} max={Math.max(1, exercises.length)}/></>}
           <p className="muted">Podés bloquear el celular y volver mientras la app siga abierta. Guardá antes de cerrar o recargar: este registro todavía no está enviado.</p>
           <label>Fecha del entrenamiento<input type="date" required max={today()} value={performedAt} onChange={event => setPerformedAt(event.target.value)}/></label>
           {exercises.map(item => <div className={`session-exercise ${checked.includes(item.id) ? 'exercise-checked' : ''}`} key={item.id} id={`exercise-${item.id}`}><label className="exercise-check"><input type="checkbox" checked={checked.includes(item.id)} onChange={event => setChecked(current => event.target.checked ? [...current, item.id] : current.filter(id => id !== item.id))}/><strong>{item.name}</strong><span>{checked.includes(item.id) ? 'Completado' : 'Marcar al terminar'}</span></label><small>Planificado: {item.sets || '—'} series · {item.reps || '—'} repeticiones · Carga {item.load || '—'} · RIR {item.rir || '—'}</small>
@@ -215,7 +219,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             <details className="exercise-results"><summary>Registrar kilos y RIR</summary><div className="grid student-result-fields">{(['load', 'rir'] as const).map(field => <label key={field}>{field === 'load' ? 'Kilos utilizados' : 'RIR real'}
               <input type="number" min="0" max={field === 'rir' ? 10 : undefined} step={field === 'load' ? 'any' : '1'} inputMode={field === 'load' ? 'decimal' : 'numeric'} placeholder={field === 'load' ? 'Ej.: 22,5' : 'Ej.: 2'} value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => setResults(current => current.map(result => result.exerciseId === item.id ? { ...result, [field]: event.target.value } : result))}/></label>)}</div></details>
           </div>)}
-          <label>Comentario del entrenamiento (opcional)<textarea rows={2} maxLength={4000} value={notes} onChange={event => setNotes(event.target.value)}/></label>
+          <label>{isTestDay ? 'Resultado de la prueba y comentarios' : 'Comentario del entrenamiento (opcional)'}<textarea rows={2} maxLength={4000} value={notes} onChange={event => setNotes(event.target.value)}/></label>
           <button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar y completar día'}</button>
                   </fieldset>
         </form>}
@@ -231,14 +235,14 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             const current = !progress.finished && week === progress.week && day === progress.nextDay
             const future = !progress.finished && (week > progress.week || (week === progress.week && day > progress.nextDay))
             return <section className={`card student-day ${current ? 'student-day-next' : ''}`} key={day}>
-            <h4>Día {day}{current ? ' · Disponible' : future ? ' · Bloqueado' : ' · Anterior'}</h4>
+            <h4>{routine.plan.sessionTests?.[(progress.block-1)*routine.block_rounds+week]?.[day]?.length ? 'Día de prueba · ' : ''}Día {day}{current ? ' · Disponible' : future ? ' · Bloqueado' : ' · Anterior'}</h4>
             {plannedExercises(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds).map(item => <p key={item.id}><strong>{item.name}</strong> · {item.sets || '—'} × {item.reps || '—'}</p>)}
             {plannedGuidance(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds) && <div className="session-guidance"><strong>Indicaciones</strong><p>{plannedGuidance(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds)}</p></div>}
             {plannedComponents(routine.plan, day, progress.block, week, routine.block_rounds, routine.program_rounds).map(item => <div className="session-guidance" key={item.id}><strong>{item.title}</strong><p>{item.details}</p></div>)}
             {(routine.plan.sessionTests?.[(progress.block-1)*routine.block_rounds+week]?.[day]??[]).map(item=><section className="student-test" key={item.id}><span>Prueba</span><h4>{item.title}</h4><p>{item.details}</p></section>)}
             {current ? <>
-              <button type="button" disabled={recording || !exercises.length || history.member.status !== 'Activo'} onClick={() => begin()}>{recording ? 'Completá el registro abierto' : `Completar Día ${day}`}</button>
-              <p className="muted">{!exercises.length ? 'Faltan ejercicios para este día. Tu entrenador debe completar la rutina.' : 'Guardá el registro de este día para habilitar el siguiente.'}</p>
+              <button type="button" disabled={recording || !canRecord || history.member.status !== 'Activo'} onClick={() => begin()}>{recording ? 'Completá el registro abierto' : `Completar Día ${day}`}</button>
+              <p className="muted">{!canRecord ? 'Faltan ejercicios para este día. Tu entrenador debe completar la rutina.' : 'Guardá el registro de este día para habilitar el siguiente.'}</p>
             </> : future ? <><button type="button" disabled>Completar Día {day} · Bloqueado</button><p className="muted">Se habilita al completar los días anteriores en orden.</p></> : <p className="muted">Los entrenamientos guardados figuran en tu registro.</p>}
           </section>})}</div>
         </section>)}

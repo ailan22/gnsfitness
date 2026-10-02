@@ -23,6 +23,11 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
   const [requestId] = useState(() => crypto.randomUUID())
   const [error, setError] = useState('')
   const [editing, setEditing] = useState<{ block: number; week: number; day: number; exercise: Exercise } | null>(null)
+  const [testWeek, setTestWeek] = useState(5)
+  const [testDay, setTestDay] = useState(1)
+  const [testTitle, setTestTitle] = useState('Evaluación de progreso')
+  const [testInstructions, setTestInstructions] = useState('')
+  const [testMessage, setTestMessage] = useState('')
 
   const safeBlocks = Math.ceil(Math.min(104, Math.max(1, weeks || 1)) / Math.max(1, blockWeeks || 1))
   const planned = (day: number, block: number, week: number) => plannedExercises(plan, day, block, week, Math.max(1, blockWeeks), Math.max(1, weeks))
@@ -118,11 +123,20 @@ export default function CloudRoutineEditor({ client, memberId, initial, onSaved,
         <label>Nombre de la rutina *<input required maxLength={120} value={name} onChange={event => setName(event.target.value)}/></label>
         <label>Objetivo<input maxLength={4000} value={goal} onChange={event => setGoal(event.target.value)}/></label>
         <label>Nivel *<select required value={level} onChange={event => setLevel(event.target.value)}><option value="">Seleccionar</option><option>Principiante</option><option>Intermedio</option><option>Avanzado</option></select></label>
-        <label>Días por semana<select value={days} onChange={event => setDays(Number(event.target.value))}>{[...new Set([2,3,5,...(initial ? [initial.days_per_week] : [])])].sort((a,b) => a-b).map(n => <option key={n} value={n}>{n} {n === 1 ? 'día' : 'días'}</option>)}</select></label>
+        <label>Días por semana<select value={days} onChange={event => setDays(Number(event.target.value))}>{[...new Set([2,3,5,days,...(initial ? [initial.days_per_week] : [])])].sort((a,b) => a-b).map(n => <option key={n} value={n}>{n} {n === 1 ? 'día' : 'días'}</option>)}</select></label>
         <label>Semanas del programa *<input type="number" min="1" max="104" required value={weeks} onChange={event => setWeeks(Number(event.target.value))}/></label>
         <label>Semanas por bloque *<input type="number" min="1" max={weeks} required value={blockWeeks} onChange={event => setBlockWeeks(Number(event.target.value))}/></label>
       </div>
-      <RoutineImporter weeks={weeks} days={days} blockWeeks={blockWeeks} onApply={setPlan}/>
+      <RoutineImporter weeks={weeks} days={days} blockWeeks={blockWeeks} onApply={(next,dimensions)=>{setPlan(next);setWeeks(dimensions.weeks);setDays(dimensions.days);setBlockWeeks(dimensions.blockWeeks)}}/>
+      <details className="routine-tests"><summary>Programar un día de prueba</summary>
+        <p>Elegí la semana y el día de la rutina. Por ejemplo, semana 5 para evaluar después de cuatro semanas completadas. El alumno verá «Día de prueba» cuando llegue a ese día.</p>
+        <div className="grid"><label>Semana de la prueba<input type="text" inputMode="numeric" value={testWeek} onChange={e=>setTestWeek(Number(e.target.value))}/></label><label>Día de la prueba<select value={testDay} onChange={e=>setTestDay(Number(e.target.value))}>{Array.from({length:days},(_,i)=><option key={i} value={i+1}>Día {i+1}</option>)}</select></label></div>
+        <label>Nombre de la prueba<input maxLength={120} value={testTitle} onChange={e=>setTestTitle(e.target.value)}/></label>
+        <label>Indicaciones y qué resultado registrar<textarea maxLength={3000} value={testInstructions} onChange={e=>setTestInstructions(e.target.value)}/></label>
+        <button type="button" className="secondary" onClick={()=>{if(!Number.isInteger(testWeek)||testWeek<1||testWeek>weeks||testDay<1||testDay>days||!testTitle.trim()||!testInstructions.trim()){setTestMessage('Completá la semana, el día, el nombre y las indicaciones.');return}setPlan(current=>({...current,sessionTests:{...current.sessionTests,[testWeek]:{...current.sessionTests?.[testWeek],[testDay]:[...(current.sessionTests?.[testWeek]?.[testDay]??[]),{id:crypto.randomUUID(),title:testTitle.trim(),details:testInstructions.trim()}]}}}));setTestMessage(`Prueba incorporada a la semana ${testWeek}, día ${testDay}. Guardá los cambios para asignarla.`)}}>Agregar día de prueba</button>
+        {testMessage&&<p role="status">{testMessage}</p>}
+        <p className="muted">Los ejercicios del día se conservan; podés ajustarlos abajo. Una prueba también puede realizarse sin ejercicios. La semana indica avance en la rutina, no una fecha del calendario.</p>
+      </details>
       <p className="muted">Abrí un bloque y una semana para ajustar cada día. Las semanas sin cambios mantienen la planificación anterior.</p>
       {Array.from({ length: safeBlocks }, (_, index) => index + 1).map(block =>
         <details key={block} className="editor-block"><summary>Bloque {block} · semanas {(block - 1) * blockWeeks + 1}–{Math.min(block * blockWeeks, weeks)}{plan.blockDetails?.[block]?.name ? ` · ${plan.blockDetails[block].name}` : ''}</summary>

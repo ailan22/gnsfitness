@@ -239,8 +239,9 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
       <div className="cloud-profile-grid"><section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de alta: {selected.joined_at || 'Sin registrar'}</p><p>Saludo en su portal: {selected.welcome_form}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p></section>
         <details className="member-compact"><summary>Estado del socio · <strong>{selected.status}</strong></summary><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p></details></div>
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
-      <StudentAccess key={selected.id + selected.email} client={client} member={selected} />
+      <div className="member-horizontal-sections"><StudentAccess key={selected.id + selected.email} client={client} member={selected} />
       <MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/>
+      </div>
 
       </CloudMemberHistory>
     </>}

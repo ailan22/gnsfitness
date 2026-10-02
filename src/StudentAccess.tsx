@@ -28,6 +28,7 @@ export default function StudentAccess({ client, member }: { client: SupabaseClie
   }
   return <details className="member-compact" aria-label="Acceso del alumno">
     <summary>Acceso al panel del alumno</summary>
+    <div className="member-section-content">
     <p>El socio recibe un correo para establecer su contraseña y entrar a sus rutinas. Si ya tiene cuenta, se le envía un enlace para restablecerla.</p>
     <p><strong>Correo de la ficha:</strong> {email || 'Sin correo. Editá la ficha para agregarlo.'}</p>
     {!Capacitor.isNativePlatform() && window.location.hostname === 'localhost' && <p className="notice">Estás usando la versión local de prueba. Comprobá la dirección de destino antes de enviar invitaciones.</p>}
@@ -39,5 +40,6 @@ export default function StudentAccess({ client, member }: { client: SupabaseClie
       <div className="actions"><button type="button" disabled={busy} onClick={() => void invite()}>{busy ? 'Procesando…' : 'Confirmar y enviar correo'}</button>
         <button type="button" className="secondary" disabled={busy} onClick={() => setConfirming(false)}>Cancelar</button></div>
     </>}
+    </div>
   </details>
 }

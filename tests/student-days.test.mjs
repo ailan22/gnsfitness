@@ -50,6 +50,16 @@ test('assigned test is labelled and appears only on its exact planned day',()=>{
  assert.match(JSON.stringify(ui.cards()[1]),/Prueba/)
  assert.doesNotMatch(JSON.stringify(ui.cards()[2]),/Evaluación supervisada/)
 })
+test('standalone test day can be recorded and preserves its identity in history notes',async()=>{
+ const ui=harness({empty:true,sessionTests:{1:{1:[{id:'test',title:'Evaluación mensual',details:'Movilidad supervisada'}]}}})
+ assert.match(ui.text(),/Día de prueba/)
+ assert.equal(ui.nodes(ui.cards()[0]).find(n=>n.type==='button').props.disabled,false)
+ ui.begin(); await ui.save()
+ assert.equal(ui.calls.length,1)
+ assert.match(ui.calls[0].args.p_notes,/Día de prueba: Evaluación mensual/)
+ assert.equal(ui.calls[0].args.p_results.length,0)
+ assert.equal(ui.calls[0].args.p_expected_day,1)
+})
 test('first day can be completed from its card while later days remain locked', () => {
  const ui = harness()
  assert.match(JSON.stringify(ui.cards()[0]), /Disponible/)

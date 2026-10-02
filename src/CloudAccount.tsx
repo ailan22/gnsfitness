@@ -4,6 +4,7 @@ import { observeAccount } from './observeAccount'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
 import AccountPrivacy from './AccountPrivacy'
+import BotanicalCorners from './BotanicalCorners'
 import { closeSession } from './closeSession'
 import { biometricAvailability, nativePlatform, nativeSessionStorage } from './nativeBiometrics'
 
@@ -169,6 +170,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
   </section>
 
   return <section className={role === 'student' || !user ? 'card cloud-account cloud-portal' : role === 'admin' ? 'cloud-account cloud-admin-account' : 'card cloud-account'} aria-label="Acceso a GNS Fitness">
+    {role !== 'admin' && <BotanicalCorners/>}
     {role === 'student' || role === 'admin' ? null : !user ? <><img className="signin-logo" src="/gns-logo-transparent.png" alt="GNS Fitness" width="128" height="128"/><p className="eyebrow">TU ESPACIO · GNS FITNESS</p><h1>Entrá a tu espacio.</h1><p className="muted">Iniciá sesión con tu correo y contraseña para ver tu espacio personal.</p></> : <h2>Cuenta conectada</h2>}
     {!configured ? <p className="notice">Para activar la conexión, configurá la URL del proyecto y su clave publicable en <code>.env.local</code>, siguiendo <code>cloud/README.md</code>.</p> : loading ? <p>Comprobando cuenta…</p> : !user ?
       <form className="cloud-signin" onSubmit={signIn}>

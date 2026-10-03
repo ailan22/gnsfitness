@@ -31,7 +31,7 @@ export default function PlanNotifications({ client, memberId, revision = 0, onOp
   const people = new Map(snapshot?.people.filter(p => p.status === 'Activo').map(p => [p.id, p]))
   const notices = snapshot ? planReminders(snapshot.plans, snapshot.date).filter(n => people.has(n.memberId)) : []
   return <div className="plan-notification-corner"><details className="plan-notifications">
-    <summary>Avisos <span className="badge" role="status">{failed ? '!' : snapshot ? notices.length : '…'}</span></summary>
+    <summary><span className="plan-notification-label">Avisos</span> <span className="badge" role="status">{failed ? '!' : snapshot ? notices.length : '…'}</span></summary>
     <div className="plan-notification-list">
       {failed ? <p role="alert">No se pudieron actualizar los avisos. Revisá tu conexión.</p> : !snapshot ? <p>Cargando avisos…</p> : !notices.length ? <p>No hay avisos próximos.</p> : notices.map(n => <article key={n.key}>
         {!memberId && <strong>{people.get(n.memberId)?.first_name} {people.get(n.memberId)?.last_name}</strong>}

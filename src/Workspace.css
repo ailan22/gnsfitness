@@ -306,3 +306,24 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .student-top-actions { min-width: 0; }
 .student-top-actions .plan-notifications > summary { white-space: nowrap; padding: 10px 8px; }
 .cloud-student h1, .cloud-student h2, .cloud-student h3 { overflow-wrap: anywhere; }
+
+/* Compact mobile spacing; inputs retain 16px to prevent iOS focus zoom. */
+@media (max-width: 600px) {
+ .app:has(.cloud-student) .topbar { min-height: 58px; padding: 10px 12px; gap: 8px; }
+ .app:has(.cloud-student) .brand { font-size: 18px; gap: 8px; }
+ .app:has(.cloud-student) .brand-logo { width: 34px; height: 34px; }
+ .app:has(.cloud-student) .brand-motto { font-size: 8px; letter-spacing: .05em; }
+ .app:has(.cloud-student) .content { padding: 12px 12px 28px; }
+ .cloud-student { font-size: 14px; }
+ .cloud-student .student-toolbar { margin-bottom: 12px; align-items: center; }
+ .student-toolbar .student-brand img { flex-basis: 32px; width: 32px; height: 32px; }
+ .student-toolbar .student-brand .eyebrow { font-size: 10px; margin: 0; }
+ .student-home-menu nav { gap: 10px; max-width: 360px; }
+ .student-home-menu button { min-height: 58px; padding: 12px 10px; font-size: 13px; border-radius: 12px; letter-spacing: .015em; }
+ .cloud-student .student-content { gap: 12px; }
+ .cloud-student .student-content > .card, .cloud-student .student-today { padding: 14px; }
+ .cloud-student .student-today, .cloud-student .student-content { margin-top: 12px; }
+ .cloud-student .student-content h2, .cloud-student .student-wellbeing .student-today > h2 { font-size: 19px; margin-bottom: 12px; }
+ .cloud-student .student-wellbeing > .heading h1 { font-size: 22px; }
+ .cloud-student h3 { font-size: 16px; }
+}

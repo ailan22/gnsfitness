@@ -25,7 +25,6 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [recording, setRecording] = useState(false)
-  const [checked, setChecked] = useState<string[]>([])
   const [saving, setSaving] = useState(false)
   const [performedAt, setPerformedAt] = useState(today)
   const [notes, setNotes] = useState('')
@@ -36,27 +35,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   const savingRef = useRef(false)
   const recordForm = useRef<HTMLFormElement>(null)
   const [expected, setExpected] = useState<{ lastId: string | null; day: number; week: number } | null>(null)
-  const navigation = useRef<HTMLDetailsElement>(null)
-
-  function selectSection(next: typeof section) {
-    setSection(next)
-    if (navigation.current) navigation.current.open = false
-  }
-
-  useEffect(() => {
-    const dismiss = (event: PointerEvent) => {
-      if (navigation.current && !navigation.current.contains(event.target as Node)) navigation.current.open = false
-    }
-    const escape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && navigation.current?.open) {
-        navigation.current.open = false
-        navigation.current.querySelector('summary')?.focus()
-      }
-    }
-    document.addEventListener('pointerdown', dismiss)
-    document.addEventListener('keydown', escape)
-    return () => { document.removeEventListener('pointerdown', dismiss); document.removeEventListener('keydown', escape) }
-  }, [])
+  function selectSection(next: typeof section) { setSection(next) }
 
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (recordingRef.current) event.preventDefault() }
@@ -148,7 +127,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
 
   function begin() {
     if (!routine || !progress || progress.finished || !canRecord || recordingRef.current || history?.member.status !== 'Activo') return
-    setChecked([]); setPerformedAt(today()); setNotes(isTestDay ? `Día de prueba: ${tests.map(t=>t.title).join(', ')}\nResultado: ` : ''); setError(''); setMessage(''); setSubmissionId(crypto.randomUUID())
+    setPerformedAt(today()); setNotes(isTestDay ? `Día de prueba: ${tests.map(t=>t.title).join(', ')}\nResultado: ` : ''); setError(''); setMessage(''); setSubmissionId(crypto.randomUUID())
     setResults(exercises.map(item => ({ exerciseId: item.id, name: item.name, sets: '', reps: '', load: '', rir: '' })))
     setExpected({ lastId: progress.last?.id ?? null, day: progress.nextDay, week: globalWeek })
     recordingRef.current = true
@@ -157,7 +136,6 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!routine || !progress || !expected || saving || savingRef.current || !/^\d{4}-\d{2}-\d{2}$/.test(performedAt) || performedAt > today() || notes.length > 4000) return
-    if (checked.length < exercises.length && !window.confirm('Quedan ejercicios sin marcar. ¿Querés finalizar igualmente este día?')) return
     savingRef.current = true
     setSaving(true); setError('')
     const filled = results.filter(item => [item.load, item.rir].some(value => value.trim()))
@@ -173,7 +151,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       }
       awaitingNextDay.current = true
       recordingRef.current = false
-      setChecked([]); setResults([]); setExpected(null)
+      setResults([]); setExpected(null)
       setRecording(false); setMessage('Día completado. Cargando tu próximo entrenamiento…'); setRevision(value => value + 1)
     } catch {
       setError('No se pudo confirmar el guardado. Revisá tu conexión y volvé a intentar; la misma solicitud no se registrará dos veces.')
@@ -183,29 +161,20 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   return <section className="cloud-student" aria-label="Portal del alumno">
     <div className="student-toolbar">
       <div className="student-brand"><img src="/gns-logo-transparent.png" alt="GNS Fitness" width="100" height="100"/><p className="eyebrow">TU ESPACIO</p></div>
-      <details hidden={section === 'home'} className="student-menu" ref={navigation}>
-        <summary aria-label="Abrir menú del alumno"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></summary>
-        <nav aria-label="Secciones del alumno">
-          <button type="button" aria-current={section === 'training' ? 'page' : undefined} onClick={() => selectSection('training')}>Mi entrenamiento</button>
-          <button type="button" aria-current={nutritionOpen ? 'page' : undefined} onClick={() => selectSection('nutrition')}>Alimentación saludable <small>Tu plan y guía de alimentación</small></button>
-          <button type="button" aria-current={section === 'method' ? 'page' : undefined} onClick={() => selectSection('method')}>Método GNS <small>Cómo entrenamos y qué buscamos</small></button>
-          <button type="button" aria-current={section === 'results' ? 'page' : undefined} onClick={() => selectSection('results')}>Resultados del programa <small>Tu evolución con el entrenador</small></button>
-        </nav>
-      </details>
+      <div className="student-top-actions">{section !== 'home' && <button type="button" className="student-back" aria-label="Volver al inicio" onClick={() => selectSection('home')}>←</button>}{history && <PlanNotifications client={client} memberId={history.member.id}/>}</div>
     </div>
     {section === 'home' && <div className="student-home-menu">        <nav aria-label="Elegí una sección">
-          <button type="button" onClick={() => selectSection('training')}>Mi entrenamiento</button>
-          <button type="button" onClick={() => selectSection('nutrition')}>Alimentación saludable <small>Tu plan y guía de alimentación</small></button>
-          <button type="button" onClick={() => selectSection('method')}>Método GNS <small>Cómo entrenamos y qué buscamos</small></button>
-          <button type="button" onClick={() => selectSection('results')}>Resultados del programa <small>Tu evolución con el entrenador</small></button>
+          <button type="button" onClick={() => selectSection('training')}>MI ENTRENAMIENTO</button>
+          <button type="button" onClick={() => selectSection('nutrition')}>ALIMENTACIÓN SALUDABLE <small>Tu plan y guía de alimentación</small></button>
+          <button type="button" onClick={() => selectSection('method')}>MÉTODO GNS <small>Cómo entrenamos y qué buscamos</small></button>
+          <button type="button" onClick={() => selectSection('results')}>RESULTADOS DEL PROGRAMA <small>Tu evolución con el entrenador</small></button>
         </nav></div>}
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
-      <PlanNotifications client={client} memberId={history.member.id}/><h1 hidden={section === 'home'}>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
+      <h1 hidden={section === 'home'}>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
       <p hidden={section === 'home'} className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : section === 'training' ? 'Tu entrenamiento, paso a paso.' : section === 'method' ? 'Movimiento, constancia y acompañamiento.' : 'Los cambios observados en tu proceso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}
       {nutritionOpen && <section className="student-nutrition-panel" aria-label="Nutrición">
-        <button type="button" className="secondary" onClick={() => selectSection('training')}>← Volver a mi entrenamiento</button>
         <StudentWellbeing client={client} memberId={history.member.id} section="nutrition" onDirtyChange={ignoreNutritionDirty}/>
       </section>}
       {section === 'method' && <GnsMethod/>}
@@ -226,7 +195,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}
               <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
               <div className="exercise-inline-row">
-                <label className="exercise-inline-check"><input type="checkbox" disabled={saving || history.member.status !== 'Activo'} checked={checked.includes(item.id)} onChange={event => { begin(); const done = event.target.checked; setChecked(current => done ? [...new Set([...current, item.id])] : current.filter(id => id !== item.id)) }}/><span>Listo</span></label>
+
                 <details className="exercise-inline-entry" onToggle={event => { if(event.currentTarget.open) begin() }}>
                   <summary aria-label={`Registrar kilos y RIR de ${item.name}`}>‹</summary>
                   <div className="exercise-inline-fields">{(['load','rir'] as const).map(field => <label key={field}><span>{field === 'load' ? 'Kg' : 'RIR'}</span><input aria-label={`${field === 'load' ? 'Kilos utilizados' : 'RIR real'} · ${item.name}`} disabled={saving || history.member.status !== 'Activo'} type="number" min="0" max={field === 'rir' ? 10 : undefined} step={field === 'load' ? 'any' : '1'} inputMode={field === 'load' ? 'decimal' : 'numeric'} placeholder="—" value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => { begin(); const value = event.target.value; setResults(current => current.map(result => result.exerciseId === item.id ? {...result,[field]:value} : result)) }}/></label>)}</div>
@@ -240,11 +209,11 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             {!canRecord && <p className="muted">Para habilitar este día, tu entrenador debe cargar sus ejercicios. Tu avance anterior queda guardado.</p>}
             {history.member.status !== 'Activo' && <p className="notice">Tu ficha no está activa. Contactá al administrador para registrar entrenamientos.</p>}
           </>}
-          {recording && !progress.finished && <fieldset disabled={saving} className="student-inline-save">
-            <p className="muted" role="status">{checked.length} de {exercises.length} ejercicios marcados · Pendiente de guardar</p>
+          {!progress.finished && <fieldset disabled={saving || !recording} aria-hidden={!recording} style={{visibility: recording ? 'visible' : 'hidden'}} className="student-inline-save">
+            <p className="muted" role="status">Resultados pendientes de guardar</p>
             <details><summary>Fecha del entrenamiento</summary><label>Fecha<input type="date" required max={today()} value={performedAt} onChange={event => setPerformedAt(event.target.value)}/></label></details>
             {isTestDay && <label>Resultado de la prueba<textarea rows={2} maxLength={4000} value={notes} onChange={event => setNotes(event.target.value)}/></label>}
-            <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar y completar día'}</button><button type="button" className="secondary" onClick={() => { if (!window.confirm('¿Descartar los resultados sin guardar?')) return; recordingRef.current = false; setRecording(false); setChecked([]); setResults([]); setRevision(value => value + 1) }}>Cancelar</button></div>
+            <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Guardar y completar día'}</button><button type="button" className="secondary" onClick={() => { if (!window.confirm('¿Descartar los resultados sin guardar?')) return; recordingRef.current = false; setRecording(false); setResults([]); setRevision(value => value + 1) }}>Cancelar</button></div>
           </fieldset>}
         </form>
         <details className="student-plan-details"><summary>Ver mi planificación completa</summary><h2 className="student-program-title">Tu planificación · Bloque {progress.block}</h2>

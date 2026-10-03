@@ -377,3 +377,14 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
  .cloud-student { margin-bottom: 8px; }
  .cloud-portal:has(.cloud-student) .biometric-settings { margin: 4px 0; padding: 8px 0; }
 }
+
+/* Give the home screen a real viewport-height grid, including the native safe area. */
+.app:has(.student-home-menu) { height: 100vh; height: 100dvh; min-height: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.app:has(.student-home-menu) > .content { width: 100%; min-height: 0; padding: 12px 12px 8px; overflow-y: auto; }
+.content:has(.student-home-menu) .cloud-entry { height: 100%; min-height: 0; align-items: stretch; }
+.cloud-entry .cloud-portal:has(.student-home-menu) { height: 100%; min-height: 0; padding: 0; margin: 0; }
+.cloud-portal:has(.student-home-menu) > .student-account-layout { flex: 1 0 auto; }
+.student-account-layout > .cloud-student:has(.student-home-menu) { display: flex; flex-direction: column; flex: 1; margin: 0; }
+.student-home-menu { display: flex; flex-direction: column; flex: 1; }
+.student-home-menu .student-brand-signature { display: grid; place-items: center; flex: 1; min-height: 72px; padding: 16px 0; margin: 0; font-size: clamp(23px, 6.2vw, 28px); color: #d3ac55; }
+.cloud-portal:has(.student-home-menu) .student-account-bottom { margin-top: 0; padding-top: 0; }

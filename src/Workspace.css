@@ -481,15 +481,18 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 .cloud-portal:has(.student-home-menu):has(.biometric-settings[open]) > .student-account-layout { grid-template-rows: minmax(min-content, 1fr) auto; }
 
-/* White member typography with the menu centered in its available height. */
-.app:has(.cloud-student) { --student-gold: #ffffff; }
-.app:has(.cloud-student) .brand-motto,
-.cloud-student :is(h1, h2, h3, p, label, summary, a, .muted),
-.cloud-portal:has(.cloud-student) .biometric-settings,
-.cloud-portal:has(.cloud-student) .account-legal a { color: #ffffff; }
+/* Frame the gold menu on charcoal, keeping the botanical backdrop at its edges. */
 .cloud-student .student-home-menu {
   display: grid;
-  grid-template-rows: minmax(16px, 1fr) auto minmax(60px, 1fr);
+  grid-template-rows: minmax(16px, .7fr) auto minmax(60px, 1.3fr);
 }
-.cloud-student .student-home-menu nav { grid-row: 2; margin-top: 0; }
+.cloud-student .student-home-menu nav {
+  grid-row: 2;
+  margin-top: 0;
+  padding: 14px;
+  background: #151615;
+  border: 1px solid #76602f;
+  border-radius: 18px;
+}
+.cloud-student .student-home-menu nav button { background: #1c1d1b; }
 .cloud-student .student-home-menu .student-brand-signature { grid-row: 3; align-self: stretch; }

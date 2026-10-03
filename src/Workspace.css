@@ -434,7 +434,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 
 /* Warmer gold accents, scoped to the member panel. */
-.app:has(.cloud-student) { --student-gold: #f7c95c; --student-gold-line: #c99732; }
+.app:has(.cloud-student) { --student-gold: #d4b368; --student-gold-line: #aa8d4b; }
 .app:has(.cloud-student) .brand-title,
 .cloud-student .eyebrow,
 .cloud-student button,
@@ -512,13 +512,13 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 
 /* Match the approved 2A composition, not only its palette. */
-.app:has(.student-home-menu) { background: #111713; }
+.app:has(.student-home-menu) { background: #18251d; }
 .app:has(.student-home-menu) .topbar {
-  height: clamp(115px, 21svh, 195px); min-height: 0;
-  padding: clamp(38px, 8svh, 78px) 24px 18px;
-  border-bottom: 0; align-items: end; justify-content: center;
+  height: clamp(100px, 15svh, 135px); min-height: 0;
+  padding: 24px 16px 16px;
+  border-bottom: 0; align-items: center; justify-content: center;
 }
-.app:has(.student-home-menu) .brand { font-size: clamp(26px, 9vw, 37px); letter-spacing: .025em; font-weight: 800; text-align: center; }
+.app:has(.student-home-menu) .brand { font-size: clamp(26px, 9vw, 37px); letter-spacing: .025em; font-weight: 800; text-align: center; width: 100%; justify-content: center; margin: 0; }
 .app:has(.student-home-menu) .brand-copy { gap: 8px; align-items: center; }
 .app:has(.student-home-menu) .brand-motto { font-size: clamp(8px, 2.5vw, 10px); letter-spacing: .075em; max-width: none; }
 .app:has(.student-home-menu) > .content { padding: 0 18px 18px; }
@@ -544,7 +544,24 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .cloud-portal:has(.student-home-menu) .biometric-settings summary { font-weight: 400; }
 .cloud-portal:has(.student-home-menu) .cloud-signout { border: 0; background: transparent; color: #f4f3ee; }
 @media (max-height: 700px) {
-  .app:has(.student-home-menu) .topbar { height: 125px; padding-top: 32px; }
+  .app:has(.student-home-menu) .topbar { height: 100px; padding-top: 18px; }
   .cloud-student .student-home-menu nav { padding-block: 14px; gap: 10px; }
   .cloud-student .student-home-menu nav button { min-height: 44px; }
 }
+
+/* Keep the complete upper branch outside the scrolling account container. */
+.app:has(.cloud-student) { position: relative; isolation: isolate; }
+.app:has(.cloud-student)::before {
+  content: ''; position: fixed; pointer-events: none;
+  top: calc(env(safe-area-inset-top, 0px) + 4px);
+  right: max(8px, env(safe-area-inset-right, 0px));
+  width: clamp(78px, 21vw, 110px); aspect-ratio: 880 / 1792;
+  background: url('./assets/gns-botanical-branch.png') center / contain no-repeat;
+  transform: rotate(180deg); opacity: .16; z-index: 0;
+}
+.app:has(.cloud-student) > .topbar,
+.app:has(.cloud-student) > .content { position: relative; z-index: 1; }
+.app:has(.cloud-student) .botanical-right { display: none; }
+.app:has(.student-home-menu) .topbar .tag { display: none; }
+.app .cloud-student:not(:has(.student-home-menu)),
+.app .cloud-student:not(:has(.student-home-menu)) * { color: #f4f3ee; }

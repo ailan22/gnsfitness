@@ -3,7 +3,6 @@ import { createClient, type User } from '@supabase/supabase-js'
 import { observeAccount } from './observeAccount'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
-import AccountPrivacy from './AccountPrivacy'
 import BotanicalCorners from './BotanicalCorners'
 import { closeSession } from './closeSession'
 import { biometricAvailability, nativePlatform, nativeSessionStorage } from './nativeBiometrics'
@@ -186,7 +185,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
           {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</StaffMfa> : !role ? <p className="notice">Esta cuenta aún no tiene un rol asignado. Contactá al administrador.</p> : null}
         {role === 'student' && client && <CloudStudent client={client} user={user}/>}
         </Suspense>
-        {nativePlatform && <div className="biometric-settings">
+        {nativePlatform && <details className="biometric-settings"><summary>Acceso con Face ID o biometría</summary>
           <h3>Acceso rápido en este celular</h3>
           <p className="muted">{biometricEnabled
             ? 'Al volver a iniciar la app, podés ingresar con biometría. Cerrar sesión elimina este acceso guardado.'
@@ -195,9 +194,8 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
             {biometricEnabled ? 'Desactivar acceso biométrico' : `Activar ${biometry.label}`}
           </button> : <p className="muted">No hay biometría compatible configurada en este dispositivo. Podés seguir ingresando con contraseña.</p>}
           {biometricMessage && <p role="status">{biometricMessage}</p>}
-        </div>}
+        </details>}
         {role !== 'student' && <footer className="account-details"><p><strong>Cuenta:</strong> {user.email}</p><p><strong>Rol:</strong> {roleLabel}</p></footer>}
-        {client && role === 'student' && <AccountPrivacy client={client}/>}
         <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()}>Cerrar sesión</button>
       </div>}
     {error && <p className="error" role="alert">{error}</p>}

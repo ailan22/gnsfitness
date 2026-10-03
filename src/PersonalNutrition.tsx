@@ -16,7 +16,7 @@ export function StudentPersonalNutrition({client,memberId}:{client:SupabaseClien
   void load();const focus=()=>void load();window.addEventListener('focus',focus)
   return()=>{alive=false;window.removeEventListener('focus',focus)}
  },[client,memberId,open,revision])
- return <details className="card nutrition-personal" onToggle={e=>setOpen(e.currentTarget.open)}><summary><strong>Nutrición personalizada</strong></summary>{open&&<>{loading?<p role="status">Cargando tu plan…</p>:error?<p role="alert">{error}</p>:plan?<><h3>{plan.title}</h3><p className="muted">Actualizado el {new Date(plan.published_at).toLocaleDateString('es-UY')}</p><div className="nutrition-plan-text">{plan.body}</div></>:<p>Todavía no tenés una dieta asignada. Cuando el administrador la envíe, aparecerá acá.</p>}<button className="secondary" disabled={loading} onClick={()=>setRevision(n=>n+1)}>Actualizar mi plan</button></>}</details>
+ return <details className="card nutrition-personal" onToggle={e=>setOpen(e.currentTarget.open)}><summary><strong><span aria-hidden="true">🔒 </span>Nutrición personalizada</strong></summary>{open&&<>{loading?<p role="status">Cargando tu plan…</p>:error?<p role="alert">{error}</p>:plan?<><h3>{plan.title}</h3><p className="muted">Actualizado el {new Date(plan.published_at).toLocaleDateString('es-UY')}</p><div className="nutrition-plan-text">{plan.body}</div></>:<p>Todavía no tenés una dieta asignada. Cuando el administrador la envíe, aparecerá acá.</p>}<button className="secondary" disabled={loading} onClick={()=>setRevision(n=>n+1)} aria-label="Actualizar mi plan" title="Actualizar mi plan">↻</button></>}</details>
 }
 
 export default function PersonalNutrition({client,onDirtyChange}:{client:SupabaseClient;onDirtyChange:(value:boolean)=>void}) {

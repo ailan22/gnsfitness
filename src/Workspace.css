@@ -432,3 +432,27 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   .cloud-portal:has(.cloud-student) .account-legal { font-size: 13px; }
   .cloud-student .exercise-inline-fields label { font-size: 13px; }
 }
+
+/* Warmer gold accents, scoped to the member panel. */
+.app:has(.cloud-student) { --student-gold: #f2bd45; --student-gold-line: #c99732; }
+.app:has(.cloud-student) .brand-title,
+.cloud-student .eyebrow,
+.cloud-student button,
+.cloud-student .student-home-menu .student-brand-signature,
+.cloud-student .plan-notifications > summary,
+.cloud-student .student-nutrition-panel > summary,
+.cloud-student .student-history-panel > summary,
+.cloud-student .routine-record-menu > summary,
+.cloud-student .exercise-results > summary,
+.cloud-student .exercise-inline-entry > summary,
+.cloud-portal:has(.cloud-student) .cloud-signout {
+  color: var(--student-gold);
+}
+.cloud-student button,
+.cloud-student .plan-notifications > summary,
+.cloud-student .plan-notification-list,
+.cloud-student .exercise-inline-entry > summary,
+.cloud-portal:has(.cloud-student) .biometric-settings,
+.cloud-portal:has(.cloud-student) .cloud-signout {
+  border-color: var(--student-gold-line);
+}

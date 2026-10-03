@@ -1,5 +1,18 @@
 import UIKit
 import Capacitor
+import WebKit
+
+// Keep normal scrolling and keyboard accommodation, without elastic page movement.
+class GNSBridgeViewController: CAPBridgeViewController {
+    override func capacitorDidLoad() {
+        super.capacitorDidLoad()
+        guard let scrollView = webView?.scrollView else { return }
+        scrollView.bounces = false
+        scrollView.alwaysBounceHorizontal = false
+        scrollView.alwaysBounceVertical = false
+        scrollView.isDirectionalLockEnabled = true
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

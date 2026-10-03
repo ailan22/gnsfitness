@@ -123,3 +123,9 @@ test('historical comments and performed sets remain readable', () => {
  const ui = harness({sessions:[old]}); ui.history()
  assert.match(ui.text(), /Comentario anterior conservado/)
 })
+test('successful save clears exercise inputs so the next day cannot inherit old loads', async () => {
+ const ui = harness(); ui.begin(); ui.field('Kilos utilizados','25'); ui.field('RIR real','2'); await ui.save()
+ const inputs=ui.nodes().filter(n=>n.type==='input' && n.props['aria-label']?.includes(' · Sentadilla'))
+ assert.equal(inputs.length,2)
+ assert.ok(inputs.every(n=>n.props.value===''))
+})

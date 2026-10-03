@@ -173,6 +173,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       }
       awaitingNextDay.current = true
       recordingRef.current = false
+      setChecked([]); setResults([]); setExpected(null)
       setRecording(false); setMessage('Día completado. Cargando tu próximo entrenamiento…'); setRevision(value => value + 1)
     } catch {
       setError('No se pudo confirmar el guardado. Revisá tu conexión y volvé a intentar; la misma solicitud no se registrará dos veces.')
@@ -221,14 +222,14 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           {!progress.finished && isTestDay && <div className="actions student-start"><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => begin()}>{recording ? isTestDay ? 'Continuar mi prueba' : 'Continuar mi entrenamiento' : isTestDay ? 'Empezar prueba' : 'Empezar entrenamiento'}</button><span className="muted">{isTestDay && !exercises.length ? 'Evaluación programada' : `${exercises.length} ${exercises.length === 1 ? 'ejercicio' : 'ejercicios'}`}{recording ? ' · En curso' : ''}</span></div>}
           {detail?.warmup && <div className="block-note"><strong>Calentamiento del bloque</strong><p>{detail.warmup}</p></div>}
           {progress.finished ? <p>Consultá con tu entrenador antes de iniciar un programa nuevo.</p> : <>
-            {exercises.length ? <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={item.id}>
+            {exercises.length ? <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={`${globalWeek}-${progress.nextDay}-${item.id}`}>
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}
               <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
               <div className="exercise-inline-row">
                 <label className="exercise-inline-check"><input type="checkbox" disabled={saving || history.member.status !== 'Activo'} checked={checked.includes(item.id)} onChange={event => { begin(); const done = event.target.checked; setChecked(current => done ? [...new Set([...current, item.id])] : current.filter(id => id !== item.id)) }}/><span>Listo</span></label>
                 <details className="exercise-inline-entry" onToggle={event => { if(event.currentTarget.open) begin() }}>
                   <summary aria-label={`Registrar kilos y RIR de ${item.name}`}>‹</summary>
-                  <div className="exercise-inline-fields">{(['load','rir'] as const).map(field => <label key={field}><span>{field === 'load' ? 'Kg' : 'RIR'}</span><input aria-label={`${field === 'load' ? 'Kilos utilizados' : 'RIR real'} · ${item.name}`} disabled={saving || history.member.status !== 'Activo'} type="number" min="0" max={field === 'rir' ? 10 : undefined} step={field === 'load' ? 'any' : '1'} inputMode={field === 'load' ? 'decimal' : 'numeric'} placeholder="—" value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => setResults(current => current.map(result => result.exerciseId === item.id ? {...result,[field]:event.target.value} : result))}/></label>)}</div>
+                  <div className="exercise-inline-fields">{(['load','rir'] as const).map(field => <label key={field}><span>{field === 'load' ? 'Kg' : 'RIR'}</span><input aria-label={`${field === 'load' ? 'Kilos utilizados' : 'RIR real'} · ${item.name}`} disabled={saving || history.member.status !== 'Activo'} type="number" min="0" max={field === 'rir' ? 10 : undefined} step={field === 'load' ? 'any' : '1'} inputMode={field === 'load' ? 'decimal' : 'numeric'} placeholder="—" value={results.find(result => result.exerciseId === item.id)?.[field] ?? ''} onChange={event => { begin(); const value = event.target.value; setResults(current => current.map(result => result.exerciseId === item.id ? {...result,[field]:value} : result)) }}/></label>)}</div>
                 </details>
               </div>
             </div>)}</div> : !isTestDay && <p>Este día no tiene ejercicios cargados. Consultá con tu entrenador.</p>}

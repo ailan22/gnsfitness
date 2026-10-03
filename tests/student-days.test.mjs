@@ -38,7 +38,7 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
     cards: () => nodes().filter(n => n.type === 'section' && /card student-day/.test(n.props.className ?? '')),
     begin() { const button = nodes().find(n => n.type === 'button' && !n.props.disabled && text(n.props.children).includes('Completar Día')); assert.ok(button); button.props.onClick(); render() },
     history() { nodes().find(n => n.type === 'details' && n.props.className === 'student-history-panel card').props.onToggle({currentTarget:{open:true}}); render() },
-    field(label, value) { const wrapper = nodes().find(n => n.type === 'label' && text(n.props.children).includes(label)); const input = nodes(wrapper).find(n => n.type === 'input' || n.type === 'textarea'); input.props.onChange({ target: { value } }); render() },
+    field(label, value) { const input = nodes().find(n => n.type === 'input' && n.props['aria-label']?.startsWith(label)); input.props.onChange({ target: { value } }); render() },
     async save() { await nodes().find(n => n.type === 'form').props.onSubmit({preventDefault(){}}); await new Promise(resolve => setImmediate(resolve)); render() },
   }
 }

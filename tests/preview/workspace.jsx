@@ -11,7 +11,7 @@ const date = new Date().toISOString().slice(0,10)
 const endDate = new Date(Date.now()+5*86400000).toISOString().slice(0,10)
 const physioDate = new Date(Date.now()+2*86400000).toISOString().slice(0,10)
 const tables = {
-  room_appointments:[],
+  room_appointments:[],program_results:[],
   members: [
     {id:'00000000-0000-4000-8000-000000000001',first_name:'Lucía',last_name:'Ejemplo',birth_date:'1994-05-15',joined_at:date,status:'Activo',email:'lucia@example.test',phone:'',trainer_name:'Profesional de prueba',goal:'Mejorar fuerza',welcome_form:'Bienvenida'},
     {id:'00000000-0000-4000-8000-000000000002',first_name:'Mateo',last_name:'Demostración',birth_date:'1988-03-20',joined_at:date,status:'Activo',email:'mateo@example.test',phone:'',trainer_name:'',goal:'',welcome_form:'Bienvenido'},
@@ -51,7 +51,7 @@ const student = <><BotanicalCorners/><CloudStudent client={client} user={preview
 createRoot(document.getElementById('root')).render(mobile ? <iframe title="Vista móvil" src={"/workspace-preview.html?" + new URLSearchParams([...new URLSearchParams(location.search)].filter(([key])=>key!=="mobile")).toString()} style={{width:390,height:844,border:0}}/> : <div className={studentMode ? "app" : "app app-admin"}><header className="topbar"><div className="brand">{!storeScreen && <img className="brand-logo" src="/gns-logo-transparent.png" alt=""/>}<span className="brand-copy"><span className="brand-title">GNS <span>FITNESS</span></span><span className="brand-motto">ENERGÍA · SALUD · BIENESTAR · VITALIDAD</span></span></div><span className="tag">{storeScreen ? 'Portal del alumno' : 'Vista de prueba · datos ficticios'}</span></header><main className="content">{studentMode ? storeScreen ? <div className="cloud-entry"><section className="card cloud-account cloud-portal">{student}</section></div> : student : <CloudAdmin client={client}/>}</main></div>)
 if (storeScreen && storeScreen !== 'training') {
   const timer = setInterval(() => {
-    const selector = storeScreen === 'progress' ? '.student-history-panel > summary' : '.student-menu nav button:last-child'
+    const selector = storeScreen === 'progress' ? '.student-history-panel > summary' : '.student-menu nav button:nth-child(2)'
     const button = document.querySelector(selector)
     if (button) { button.click(); clearInterval(timer) }
   },100)

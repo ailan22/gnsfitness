@@ -1,7 +1,8 @@
 export const backupTables = ['user_roles','members','member_admin_notes','routines','memberships','payments','sessions','session_reviews','health_records','member_progress','service_requests','privacy_requests'] as const
 export const nutritionBackupTables = ['nutrition_drafts','nutrition_plans'] as const
 export const roomBackupTables = ['room_appointments'] as const
-export type ApplicationBackup = { format: 'gns-application-backup'; version: 1; schemaVersion: 13 | 14 | 15; createdAt: string; tables: Record<typeof backupTables[number], Record<string, unknown>[]> & Partial<Record<typeof nutritionBackupTables[number] | typeof roomBackupTables[number], Record<string, unknown>[]>> }
+export const programBackupTables = ['program_results'] as const
+export type ApplicationBackup = { format: 'gns-application-backup'; version: 1; schemaVersion: 13 | 14 | 15 | 18; createdAt: string; tables: Record<typeof backupTables[number], Record<string, unknown>[]> & Partial<Record<typeof nutritionBackupTables[number] | typeof roomBackupTables[number] | typeof programBackupTables[number], Record<string, unknown>[]>> }
 const maxBytes = 50_000_000
 const iterations = 600_000
 const aad = new TextEncoder().encode('GNS encrypted backup v1')
@@ -16,8 +17,8 @@ function decode(value: unknown, max: number) {
 }
 export function validateBackup(value: unknown): asserts value is ApplicationBackup {
   const data = value as ApplicationBackup
-  if (!data || data.format !== 'gns-application-backup' || data.version !== 1 || ![13,14,15].includes(data.schemaVersion) || !Number.isFinite(Date.parse(data.createdAt)) || !data.tables) throw Error('Formato de respaldo no compatible')
-  const tables = data.schemaVersion === 15 ? [...backupTables,...nutritionBackupTables,...roomBackupTables] : data.schemaVersion === 14 ? [...backupTables,...nutritionBackupTables] : backupTables
+  if (!data || data.format !== 'gns-application-backup' || data.version !== 1 || ![13,14,15,18].includes(data.schemaVersion) || !Number.isFinite(Date.parse(data.createdAt)) || !data.tables) throw Error('Formato de respaldo no compatible')
+  const tables = data.schemaVersion === 18 ? [...backupTables,...nutritionBackupTables,...roomBackupTables,...programBackupTables] : data.schemaVersion === 15 ? [...backupTables,...nutritionBackupTables,...roomBackupTables] : data.schemaVersion === 14 ? [...backupTables,...nutritionBackupTables] : backupTables
   if(Object.keys(data.tables).length !== tables.length) throw Error('Respaldo incompleto')
   for (const name of tables) {
     const rows = data.tables[name]

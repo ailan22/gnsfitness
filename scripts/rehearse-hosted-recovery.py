@@ -19,6 +19,7 @@ import uuid
 import zipfile
 from datetime import datetime, timezone
 import importlib.util
+import ctypes
 
 ROOT = Path(__file__).resolve().parents[2]
 PRIVATE = ROOT / '.backup-tools'
@@ -128,10 +129,16 @@ def rehearse(password):
     started = time.monotonic()
     report = {'status': 'running', 'targetProject': TARGET, 'productionProject': PRODUCTION,
               'startedAt': datetime.now(timezone.utc).isoformat(), 'fullProviderRestoreTested': False,
-              'rollbackOnly': True}
+              'rollbackOnly': True, 'connectionMethod': 'session_pooler', 'tlsMode': 'verify-full'}
     write_report(report)
     env = None
+    awake = False
     try:
+        if os.name == 'nt':
+            # A thread-scoped request; released below and by Windows on exit.
+            # It does not change power settings or prevent a manual suspension.
+            awake = bool(ctypes.windll.kernel32.SetThreadExecutionState(0x80000001))
+            report['automaticSleepPreventedDuringTrial'] = awake
         if TARGET == PRODUCTION or TARGET != 'faylvxvfctcnwkkcwmlx':
             raise DrillError('invalid_target')
         checker = module('gns_target', 'check-recovery-target.py')
@@ -240,6 +247,11 @@ ROLLBACK;
         allowed_probe_codes = {'authentication_failed', 'tls_verification_failed', 'network_error', 'connection_error'}
         report.update(status='failed', phase=phase, code=exc.code if isinstance(exc, DrillError)
                       else safe_code if safe_code in allowed_probe_codes else 'local_or_connection_error')
+        # Exception class only: never expose exception text, SQL or credentials.
+        report['exceptionType'] = type(exc).__name__ if type(exc).__name__ in {
+            'DrillError', 'ProbeError', 'TimeoutExpired', 'JSONDecodeError',
+            'SSLError', 'OSError', 'PermissionError', 'FileNotFoundError',
+            'UnicodeDecodeError', 'ValueError', 'RuntimeError'} else 'other'
         if isinstance(exc, DrillError) and exc.diagnostic:
             report['diagnostic'] = exc.diagnostic
         # Any error aborts psql and its uncommitted transaction. Check emptiness
@@ -250,6 +262,8 @@ ROLLBACK;
         except Exception:
             report['rollbackConfirmed'] = False
     finally:
+        if awake:
+            ctypes.windll.kernel32.SetThreadExecutionState(0x80000000)
         if env is not None:
             env.pop('PGPASSWORD', None)
             Path(env['PGSSLROOTCERT']).unlink(missing_ok=True)

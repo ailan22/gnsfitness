@@ -1,3 +1,5 @@
+import GnsMethod from './GnsMethod'
+import ProgramResults from './ProgramResults'
 import PlanNotifications from './PlanNotifications'
 import { StudentWellbeing } from './StudentWellbeing'
 import { readAllPages } from './readAllPages'
@@ -14,7 +16,8 @@ const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_00
 const ignoreNutritionDirty = () => {}
 
 export default function CloudStudent({ client, user }: { client: SupabaseClient; user: User }) {
-  const [nutritionOpen, setNutritionOpen] = useState(false)
+  const [section, setSection] = useState<'training' | 'nutrition' | 'method' | 'results'>('training')
+  const nutritionOpen = section === 'nutrition'
   const [historyOpen, setHistoryOpen] = useState(false)
   const [history, setHistory] = useState<History | null>(null)
   const [loading, setLoading] = useState(true)
@@ -37,8 +40,8 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
   const [expected, setExpected] = useState<{ lastId: string | null; day: number; week: number } | null>(null)
   const navigation = useRef<HTMLDetailsElement>(null)
 
-  function selectSection(nutrition: boolean) {
-    setNutritionOpen(nutrition)
+  function selectSection(next: typeof section) {
+    setSection(next)
     if (navigation.current) navigation.current.open = false
   }
 
@@ -197,21 +200,25 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       <details className="student-menu" ref={navigation}>
         <summary aria-label="Abrir menú del alumno"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></summary>
         <nav aria-label="Secciones del alumno">
-          <button type="button" aria-current={!nutritionOpen ? 'page' : undefined} onClick={() => selectSection(false)}>Mi entrenamiento</button>
-          <button type="button" aria-current={nutritionOpen ? 'page' : undefined} onClick={() => selectSection(true)}>Nutrición <small>Plan personal, guías y recetario</small></button>
+          <button type="button" aria-current={section === 'training' ? 'page' : undefined} onClick={() => selectSection('training')}>Mi entrenamiento</button>
+          <button type="button" aria-current={nutritionOpen ? 'page' : undefined} onClick={() => selectSection('nutrition')}>Nutrición aplicada al deporte <small>Tu plan y guía de alimentación</small></button>
+          <button type="button" aria-current={section === 'method' ? 'page' : undefined} onClick={() => selectSection('method')}>Método GNS <small>Cómo entrenamos y qué buscamos</small></button>
+          <button type="button" aria-current={section === 'results' ? 'page' : undefined} onClick={() => selectSection('results')}>Resultados del programa <small>Tu evolución con el entrenador</small></button>
         </nav>
       </details>
     </div>
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
       <PlanNotifications client={client} memberId={history.member.id}/><h1>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
-      <p className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : 'Tu entrenamiento, paso a paso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
+      <p className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : section === 'training' ? 'Tu entrenamiento, paso a paso.' : section === 'method' ? 'Movimiento, constancia y acompañamiento.' : 'Los cambios observados en tu proceso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}
       {nutritionOpen && <section className="student-nutrition-panel" aria-label="Nutrición">
-        <button type="button" className="secondary" onClick={() => selectSection(false)}>← Volver a mi entrenamiento</button>
+        <button type="button" className="secondary" onClick={() => selectSection('training')}>← Volver a mi entrenamiento</button>
         <StudentWellbeing client={client} memberId={history.member.id} section="nutrition" onDirtyChange={ignoreNutritionDirty}/>
       </section>}
-      <div hidden={nutritionOpen}>
+      {section === 'method' && <GnsMethod/>}
+      {section === 'results' && <ProgramResults client={client} memberId={history.member.id}/>}
+      <div hidden={section !== 'training'}>
       {!routine || !progress ? <div className="card empty">Todavía no tenés una rutina asignada. Consultá con tu entrenador.</div> : <>
         <section ref={todayCard} className="card student-today">
           <div className="routine-heading"><p className="eyebrow">{isTestDay ? 'DÍA DE PRUEBA' : 'MI ENTRENAMIENTO DE HOY'}</p>{!progress.finished && exercises.length > 0 && <details className="routine-record-menu"><summary aria-label="Desplegar registro de kilos y RIR">Registrar kilos y RIR</summary><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => recording ? recordForm.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) : begin()}>{recording ? 'Continuar registro' : 'Abrir registro del entrenamiento'}</button></details>}</div>
@@ -281,7 +288,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
 
       </>}
       </div>
-      <details hidden={nutritionOpen} className="student-history-panel card" onToggle={event => setHistoryOpen(event.currentTarget.open)}><summary>Historial de entrenamientos</summary>{historyOpen && <section className="card" aria-label="Mi registro de entrenamientos"><h2>Mis entrenamientos</h2>
+      <details hidden={section !== 'training'} className="student-history-panel card" onToggle={event => setHistoryOpen(event.currentTarget.open)}><summary>Historial de entrenamientos</summary>{historyOpen && <section className="card" aria-label="Mi registro de entrenamientos"><h2>Mis entrenamientos</h2>
           {history.sessions.length === 0 ? <p>Todavía no registraste entrenamientos.</p> : <>
             <p className="muted">Últimos {Math.min(10, history.sessions.length)} de {history.sessions.length} entrenamientos guardados.</p>
             {history.sessions.slice(0, 10).map(session => <article key={session.id} className="student-feedback-item">

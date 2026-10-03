@@ -1,3 +1,4 @@
+import ProgramResults from './ProgramResults'
 import MemberHealthSections from './MemberHealthSections'
 import StudentAccess from './StudentAccess'
 import { readAllPages } from './readAllPages'
@@ -53,6 +54,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const [intake, setIntake] = useState<HealthDraft | null>(null)
   const [dirty, setDirty] = useState(false)
   const [healthDirty, setHealthDirty] = useState(false)
+  const [resultDirty, setResultDirty] = useState(false)
   const intakeId = useRef(crypto.randomUUID())
   const newMemberId = useRef(crypto.randomUUID())
   const saveBusy = useRef(false)
@@ -67,7 +69,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(0)
-  useEffect(() => { onDirtyChange?.(dirty || healthDirty); return () => onDirtyChange?.(false) }, [dirty, healthDirty, onDirtyChange])
+  useEffect(() => { onDirtyChange?.(dirty || healthDirty || resultDirty); return () => onDirtyChange?.(false) }, [dirty, healthDirty, resultDirty, onDirtyChange])
   useEffect(() => {
     if (!dirty) return
     const warn = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = '' }
@@ -103,7 +105,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   }, [refresh])
 
   function edit(member: CloudMember) {
-    if (healthDirty && !window.confirm('¿Descartar los cambios de salud sin guardar?')) return
+    if ((healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return
     setIntake(null); setDirty(false); intakeId.current = crypto.randomUUID()
     setForm({ ...member, notes: notes[member.id] || '' })
     setSelectedId(member.id)
@@ -200,7 +202,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const pageMembers = visibleMembers.slice(currentPage * 50, (currentPage + 1) * 50)
 
   return <section className="cloud-members" id="socios-supabase" aria-label="Personas y socios">
-    {selected || open ? <button type="button" className="back" disabled={saving} onClick={() => { if ((dirty || healthDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); setOpen(false); setIntake(null); setDirty(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
+    {selected || open ? <button type="button" className="back" disabled={saving} onClick={() => { if ((dirty || healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); setOpen(false); setIntake(null); setDirty(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
     {message && <p role="status">{message}</p>}
     {error && <p className="error" role="alert">{error}</p>}
     {!selected && !open && <>
@@ -235,10 +237,11 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
       <div className="heading"><h2>{selected.first_name} {selected.last_name}</h2><button type="button" onClick={() => edit(selected)}>Editar datos</button></div>
       <CloudMemberHistory client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
-        onChanged={() => { onCountChange(members.length); onDirtyChange?.(dirty || healthDirty) }} onClose={() => { if (healthDirty && !window.confirm('¿Descartar los cambios de salud sin guardar?')) return; setHistoryId(null); void refresh() }}>
+        onChanged={() => { onCountChange(members.length); onDirtyChange?.(dirty || healthDirty || resultDirty) }} onClose={() => { if ((healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); void refresh() }}>
       <div className="cloud-profile-grid"><section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de alta: {selected.joined_at || 'Sin registrar'}</p><p>Saludo en su portal: {selected.welcome_form}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p></section>
         <details className="member-compact"><summary>Estado del socio · <strong>{selected.status}</strong></summary><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p></details></div>
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
+      <ProgramResults key={selected.id} client={client} memberId={selected.id} admin onDirtyChange={setResultDirty}/>
       <div className="member-horizontal-sections"><StudentAccess key={selected.id + selected.email} client={client} member={selected} />
       <MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/>
       </div>

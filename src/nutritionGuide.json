@@ -64,7 +64,7 @@
     },
     {
       "id": "desayunos",
-      "title": "Desayunos · 11 ideas",
+      "title": "Desayunos · 15 recetas",
       "intro": "Ideas para variar tus comidas. Las cantidades son para una persona; adaptalas a tu apetito y a tus necesidades.",
       "items": [
         {
@@ -187,12 +187,60 @@
             "/nutricion/alimentacion-08-1.webp"
           ],
           "page": 8
+        },
+        {
+          "title": "12 · Panqueques de banana y avena",
+          "paragraphs": [
+            "Ingredientes",
+            "1 banana chica, 1 huevo, 3 cucharadas de avena y canela. Para acompañar: 3 cucharadas de yogur natural.",
+            "Preparación",
+            "Pisá la banana y mezclá con el huevo, la avena y la canela. Dejá reposar 5 minutos. Cociná tres panqueques pequeños en una sartén apenas aceitada, a fuego medio-bajo, hasta que estén firmes y cocidos por dentro. Serví con el yogur.",
+            "1 desayuno · 15 minutos. Contiene huevo y leche; elegí avena certificada si necesitás evitar gluten."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "13 · Tostadas de ricota, pera y nueces",
+          "paragraphs": [
+            "Ingredientes",
+            "2 tostadas integrales, 4 cucharadas de ricota, 1 pera chica y 1 cucharada de nueces picadas.",
+            "Preparación",
+            "Untá las tostadas con ricota. Cortá la pera en láminas finas, distribuí por encima y terminá con las nueces y un toque de canela.",
+            "1 desayuno · 10 minutos. Contiene trigo, leche y nueces."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "14 · Revuelto de huevo con tomate y pan integral",
+          "paragraphs": [
+            "Ingredientes",
+            "2 huevos, 1 tomate, 1 rebanada grande de pan integral y 1 cucharadita de aceite de oliva.",
+            "Preparación",
+            "Salteá el tomate picado con el aceite. Agregá los huevos batidos y revolvé a fuego bajo hasta que estén completamente cuajados. Acompañá con el pan tostado.",
+            "1 desayuno · 12 minutos. Contiene huevo y trigo."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "15 · Avena cremosa con cacao y frutillas",
+          "paragraphs": [
+            "Ingredientes",
+            "½ taza de avena, ¾ taza de leche, 1 cucharadita de cacao sin azúcar y ½ taza de frutillas.",
+            "Preparación",
+            "Calentá la avena con la leche a fuego bajo durante 5 a 7 minutos, revolviendo. Incorporá el cacao y serví con las frutillas lavadas y cortadas. Agregá un poco más de leche si preferís una textura ligera.",
+            "1 desayuno · 10 minutos. Contiene leche; avena certificada si necesitás evitar gluten."
+          ],
+          "images": [],
+          "page": 0
         }
       ]
     },
     {
       "id": "almuerzos",
-      "title": "Almuerzos · 12 ideas",
+      "title": "Almuerzos · 15 recetas",
       "intro": "Ideas para variar tus comidas. Las cantidades son para una persona; adaptalas a tu apetito y a tus necesidades.",
       "items": [
         {
@@ -329,12 +377,48 @@
             "/nutricion/alimentacion-14-2.webp"
           ],
           "page": 14
+        },
+        {
+          "title": "13 · Pollo al limón con arroz y verduras",
+          "paragraphs": [
+            "Ingredientes",
+            "150 g de pollo crudo sin hueso, ¾ taza de arroz integral cocido, 1 taza de brócoli, ½ zanahoria, 1 cucharadita de aceite y limón.",
+            "Preparación",
+            "Cortá el pollo en tiras y cociná con el aceite. Sumá la zanahoria fina y el brócoli con un chorrito de agua; tapá hasta que se ablanden. Agregá el arroz y limón a gusto. El pollo debe alcanzar 74 °C en el centro.",
+            "1 almuerzo · 25 minutos con arroz ya cocido. Podés usar carne vacuna magra y ajustar la cocción."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "14 · Ensalada tibia de garbanzos y boniato",
+          "paragraphs": [
+            "Ingredientes",
+            "¾ taza de garbanzos cocidos, 1 boniato chico, 1 taza de hojas verdes, ½ tomate, 2 cucharadas de yogur natural y 1 cucharadita de aceite.",
+            "Preparación",
+            "Cortá el boniato en cubos, mezclá con el aceite y horneá a 200 °C unos 25 minutos. Sumá los garbanzos los últimos 5 minutos. Serví sobre las verduras lavadas y terminá con yogur y limón.",
+            "1 almuerzo · 35 minutos. Contiene leche; podés reemplazar el yogur por limón y aceite."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "15 · Carne salteada con vegetales y quinoa",
+          "paragraphs": [
+            "Ingredientes",
+            "150 g de carne vacuna magra cruda, ¾ taza de quinoa cocida, ½ morrón, ½ zucchini y 1 cucharadita de aceite.",
+            "Preparación",
+            "Cortá todo en tiras finas. Cociná la carne con el aceite; retirala y salteá las verduras. Volvé a unir, añadí la quinoa y calentá bien. Usá carne correctamente cocida; si elegís pollo, llevalo a 74 °C en el centro.",
+            "1 almuerzo · 25 minutos. Alternativa: pollo o tofu firme; este último contiene soja."
+          ],
+          "images": [],
+          "page": 0
         }
       ]
     },
     {
       "id": "meriendas",
-      "title": "Meriendas · 12 ideas",
+      "title": "Meriendas · 15 recetas",
       "intro": "Ideas para variar tus comidas. Las cantidades son para una persona; adaptalas a tu apetito y a tus necesidades.",
       "items": [
         {
@@ -469,12 +553,48 @@
             "/nutricion/alimentacion-20-2.webp"
           ],
           "page": 20
+        },
+        {
+          "title": "13 · Sándwich de ricota y zanahoria",
+          "paragraphs": [
+            "Ingredientes",
+            "2 rebanadas de pan integral, 4 cucharadas de ricota, ½ zanahoria rallada y unas hojas de rúcula lavadas.",
+            "Preparación",
+            "Mezclá la ricota con la zanahoria y unas gotas de limón. Rellená el pan, añadí la rúcula y serví. Podés tostarlo suavemente si te gusta crujiente.",
+            "1 merienda · 10 minutos. Contiene trigo y leche."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "14 · Licuado de frutilla con tostada de maní",
+          "paragraphs": [
+            "Ingredientes",
+            "1 taza de leche, ½ taza de frutillas, 1 rebanada de pan integral y 1 cucharada de pasta de maní sin azúcar agregada.",
+            "Preparación",
+            "Licuá la leche con las frutillas lavadas. Untá la tostada con pasta de maní y acompañá el licuado. Preparalo en el momento y mantenelo frío si no lo tomás enseguida.",
+            "1 merienda · 5 minutos. Contiene leche, trigo y maní."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "15 · Bowl de yogur, kiwi y semillas",
+          "paragraphs": [
+            "Ingredientes",
+            "¾ taza de yogur natural, 1 kiwi, 3 cucharadas de avena y 1 cucharadita de semillas de girasol sin sal.",
+            "Preparación",
+            "Serví el yogur con el kiwi pelado y cortado, la avena y las semillas. Para ablandar la avena, dejala 10 minutos en el yogur dentro de la heladera.",
+            "1 merienda · 10 minutos. Contiene leche; usá avena certificada si evitás gluten."
+          ],
+          "images": [],
+          "page": 0
         }
       ]
     },
     {
       "id": "cenas",
-      "title": "Cenas · 12 ideas",
+      "title": "Cenas · 15 recetas",
       "intro": "Ideas para variar tus comidas. Las cantidades son para una persona; adaptalas a tu apetito y a tus necesidades.",
       "items": [
         {
@@ -610,6 +730,42 @@
             "/nutricion/alimentacion-26-2.webp"
           ],
           "page": 26
+        },
+        {
+          "title": "13 · Tortilla de espinaca y ensalada de porotos",
+          "paragraphs": [
+            "Ingredientes",
+            "2 huevos, 1 taza de espinaca, ½ taza de porotos cocidos, 1 tomate y 1 cucharadita de aceite.",
+            "Preparación",
+            "Salteá la espinaca, agregá los huevos batidos y cociná de ambos lados hasta cuajar por completo. Acompañá con los porotos y el tomate, condimentados con limón.",
+            "1 cena · 20 minutos. Contiene huevo."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "14 · Pescado al horno con papas y verduras",
+          "paragraphs": [
+            "Ingredientes",
+            "150 g de pescado crudo sin espinas, 1 papa mediana, ½ zucchini, ½ morrón y 1 cucharadita de aceite.",
+            "Preparación",
+            "Horneá la papa en láminas con las verduras y el aceite a 200 °C durante 20 minutos. Sumá el pescado y continuá hasta alcanzar 63 °C en el centro. Terminá con limón.",
+            "1 cena · 35 minutos. Contiene pescado. También podés usar pollo, cocido a 74 °C, o carne vacuna magra con su cocción adecuada; el tiempo cambia."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "15 · Guiso suave de lentejas y verduras",
+          "paragraphs": [
+            "Ingredientes",
+            "¾ taza de lentejas cocidas, ½ taza de arroz cocido, ½ zanahoria, ½ taza de zapallo en cubos, ½ taza de tomate triturado y 1 cucharadita de aceite.",
+            "Preparación",
+            "Salteá la zanahoria con el aceite. Sumá el zapallo, el tomate y agua hasta cubrir. Cociná hasta ablandar, añadí lentejas y arroz y calentá 5 minutos más. Terminá con perejil lavado.",
+            "1 cena · 30 minutos. Para una textura más cremosa, aplastá parte del zapallo."
+          ],
+          "images": [],
+          "page": 0
         }
       ]
     },
@@ -700,7 +856,7 @@
     },
     {
       "id": "postres",
-      "title": "Postres saludables · 12 recetas",
+      "title": "Postres saludables · 15 recetas",
       "intro": "Dulces simples, ricos y para compartir.",
       "items": [
         {
@@ -858,6 +1014,42 @@
             "/nutricion/postres-12-1.webp"
           ],
           "page": 12
+        },
+        {
+          "title": "13 · Frutillas con crema de yogur y cacao",
+          "paragraphs": [
+            "Ingredientes",
+            "Para 2 porciones: 1 taza de frutillas, ¾ taza de yogur natural espeso y 2 cucharaditas de cacao sin azúcar.",
+            "Preparación",
+            "Lavá y cortá las frutillas. Mezclá la mitad del yogur con el cacao. Armá dos vasos alternando fruta, yogur natural y crema de cacao. Mantené en heladera hasta servir.",
+            "2 porciones · 10 minutos. Contiene leche."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "14 · Manzanas asadas con ricota y canela",
+          "paragraphs": [
+            "Ingredientes",
+            "Para 2 porciones: 2 manzanas, 4 cucharadas de ricota, 1 cucharada de pasas y canela.",
+            "Preparación",
+            "Retirá el centro de las manzanas sin perforar la base. Rellená con ricota, pasas y canela. Colocá en una fuente con un poco de agua y horneá a 180 °C entre 25 y 35 minutos, hasta que estén tiernas.",
+            "2 porciones · 40 minutos. Contiene leche."
+          ],
+          "images": [],
+          "page": 0
+        },
+        {
+          "title": "15 · Copas de naranja y crema de vainilla",
+          "paragraphs": [
+            "Ingredientes",
+            "Para 2 porciones: 1 taza de leche, 1 cucharada rasa de almidón de maíz, 1 naranja y unas gotas de esencia de vainilla.",
+            "Preparación",
+            "Disolvé el almidón en la leche fría. Calentá a fuego suave, revolviendo, hasta que hierva suavemente y espese; cociná 1 minuto más. Agregá vainilla, dividí en dos copas y enfriá en la heladera. Al servir, sumá gajos de naranja sin semillas.",
+            "2 porciones · 15 minutos más enfriado. Contiene leche. Si necesitás más dulzor, agregá una pequeña cantidad de azúcar a gusto."
+          ],
+          "images": [],
+          "page": 0
         }
       ]
     }

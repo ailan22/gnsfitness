@@ -244,3 +244,29 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .member-horizontal-sections details::details-content { grid-column: 1 / -1; min-width: 0; }
 .member-horizontal-sections details:not([open])::details-content { display: none; }
 @media(max-width:600px) { .member-horizontal-sections { gap: 6px; } .member-horizontal-sections summary { font-size: 12px; padding: 12px 7px; } .member-horizontal-sections .member-section-content { padding: 12px; } }
+
+/* Four focused student destinations, with comfortable reading on narrow phones. */
+.cloud-student .student-content { display: grid; gap: 18px; min-width: 0; }
+.cloud-student .student-content > .card { margin: 0; padding: 22px; }
+.cloud-student .student-content p { line-height: 1.65; max-width: 65ch; }
+.cloud-student summary { line-height: 1.5; cursor: pointer; overflow-wrap: anywhere; }
+.cloud-student .student-menu nav { width: min(320px, calc(100vw - 40px)); padding: 10px; }
+.cloud-student .student-menu nav button { padding: 14px 12px; border-radius: 9px; line-height: 1.45; }
+.cloud-student .student-menu nav button + button { margin-top: 5px; }
+.program-result p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.program-result summary small { display: block; font-weight: normal; opacity: .75; }
+.nutrition-recipes > details { padding: 16px; border: 1px solid #d3ac552b; border-radius: 12px; }
+.nutrition-recipes > details > summary { font-weight: 600; min-height: 32px; }
+.cloud-student .nutrition-recipes { grid-template-columns: 1fr; gap: 12px; }
+.cloud-student .student-wellbeing > .heading { align-items: flex-start; gap: 12px; }
+.cloud-student .student-wellbeing > .heading h1 { font-size: clamp(22px, 5.8vw, 28px); line-height: 1.25; }
+.cloud-student .student-wellbeing .student-today > h2 { font-size: 22px; line-height: 1.35; }
+@media(max-width:600px) {
+ .cloud-student .student-content > .card { padding: 18px; }
+ .cloud-student .student-wellbeing > .heading { flex-direction: column; }
+ .cloud-student .nutrition-guide > header { padding: 16px 0; }
+ .cloud-student .nutrition-chapter { padding: 16px 12px; }
+ .cloud-student .nutrition-recipe { padding: 12px; }
+ .cloud-student .student-today, .cloud-student .student-content { margin-top: 20px; }
+ .cloud-student .student-content h2 { font-size: 24px; line-height: 1.3; }
+}

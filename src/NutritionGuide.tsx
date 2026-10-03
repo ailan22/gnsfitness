@@ -7,11 +7,11 @@ function Chapter({ section }: { section: typeof guide.sections[number] }) {
     <summary>{section.title}</summary>
     {open && <>
       {section.intro && <p className="muted">{section.intro}</p>}
-      <div className="nutrition-recipes">{section.items.map(item => <article className="nutrition-recipe" key={item.title}>
-        <h3>{item.title}</h3>
+      <div className="nutrition-recipes">{section.items.map(item => <details className="nutrition-recipe" key={item.title}>
+        <summary>{item.title}</summary>
         {item.images.map((image, index) => <img className="nutrition-photo" key={image} src={image} alt={`${item.title}${item.images.length > 1 ? ` · imagen ${index + 1}` : ''}`} loading="lazy"/>)}
         {item.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-      </article>)}</div>
+      </details>)}</div>
     </>}
   </details>
 }

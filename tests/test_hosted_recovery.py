@@ -26,6 +26,15 @@ class HostedRecoveryTests(unittest.TestCase):
             self.assertEqual(error.exception.code, 'authentication_failed')
             self.assertEqual(call.call_count, 1)
 
+    def test_pooler_frontend_tls_is_distinct_from_provider_backend(self):
+        passed = subprocess.CompletedProcess([], 0, b'{"database":"postgres","tls":false,"applicationTables":0,"authUsers":0,"storageObjects":0}', b'')
+        with patch.object(probe.subprocess, 'run', return_value=passed) as call:
+            report = probe.probe('synthetic')
+            self.assertEqual(report['status'], 'ready_empty')
+            self.assertTrue(report['tlsVerifyFull'])
+            self.assertFalse(report['inventory']['providerBackendTls'])
+            self.assertEqual(call.call_args.kwargs['env']['PGSSLMODE'], 'verify-full')
+
     def test_selection_preserves_app_acl_but_not_provider_objects(self):
         listing = '''1; 1 1 SCHEMA - public postgres
 2; 1 1 SCHEMA - private postgres

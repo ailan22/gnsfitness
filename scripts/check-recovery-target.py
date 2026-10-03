@@ -83,12 +83,16 @@ def probe(password):
                 raise ProbeError('tls_verification_failed', 'No se pudo verificar TLS. Hay que revisar el certificado antes de continuar.')
             raise ProbeError('network_error' if transient else 'connection_error', 'No se pudo comprobar la conexión. Revisaremos red y configuración; no se modificó nada.')
         data = json.loads(result.stdout.decode().strip())
-        if data.get('tls') is not True or data.get('database') != 'postgres':
+        # pg_stat_ssl now describes pooler -> PostgreSQL, not this PC -> pooler.
+        # libpq verify-full rejects an unencrypted or unverified client link.
+        # Keep both facts distinct rather than misreporting the internal link.
+        if data.get('database') != 'postgres' or env['PGSSLMODE'] != 'verify-full':
             raise RuntimeError('No se cumplen las condiciones de conexión segura.')
+        data['providerBackendTls'] = data.pop('tls', None)
         empty = all(data.get(key) == 0 for key in ('applicationTables', 'authUsers', 'storageObjects'))
         return {'status': 'ready_empty' if empty else 'target_not_empty',
                 'targetProject': TARGET, 'checkedAt': datetime.now(timezone.utc).isoformat(),
-                'readOnly': True, 'tlsVerifyFull': True, 'inventory': data,
+                'readOnly': True, 'tlsVerifyFull': True, 'connectionMethod': 'session_pooler', 'inventory': data,
                 'fullProviderRestoreTested': False}
     finally:
         env.pop('PGPASSWORD', None)

@@ -489,10 +489,21 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .cloud-student .student-home-menu nav {
   grid-row: 2;
   margin-top: 0;
-  padding: 14px;
+  width: min(100%, 590px);
+  padding: 26px 18px;
   background: #151615;
   border: 1px solid #76602f;
   border-radius: 18px;
 }
 .cloud-student .student-home-menu nav button { background: #1c1d1b; }
 .cloud-student .student-home-menu .student-brand-signature { grid-row: 3; align-self: stretch; }
+
+/* Charcoal backdrop keeps the greener botanical accents visible. */
+.app:has(.cloud-student) {
+  background-color: #141516;
+  background-image: radial-gradient(ellipse at 50% 0%, #202223 0%, #141516 65%);
+}
+.app:has(.cloud-student) .botanical-branch { opacity: .3; filter: saturate(1.35) brightness(1.12); }
+@media (max-width: 600px) {
+  .cloud-student .student-home-menu nav { width: 100%; }
+}

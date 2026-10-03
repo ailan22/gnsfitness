@@ -2,13 +2,13 @@
 .admin-workspace { isolation: isolate; position: relative; }
 .cloud-account { isolation: isolate; position: relative; }
 .botanical-corners { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
-.botanical-branch { position: absolute; width: clamp(110px,18vw,235px); opacity: .19; filter: saturate(.65); }
+.botanical-branch { position: absolute; width: clamp(118px,19vw,249px); opacity: .23; filter: saturate(.7); }
 .botanical-left { left: -45px; bottom: -35px; transform: rotate(-12deg); }
 .botanical-right { right: -45px; top: 5px; transform: rotate(170deg); }
 .holistic-title { font-family: Georgia,serif; font-weight: 500; font-size: clamp(27px,4vw,38px); color: #e4c782; }
 .therapy-choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 24px 0 12px; }
 .therapy-choice { min-height: 76px; background: #182219; border: 1px solid #617553; color: #d9dfc9; font-family: Georgia,serif; font-size: 23px; font-weight: 400; }
-.therapy-choice.active { background: #293729; border-color: #d3ac55; color: #f3d99f; box-shadow: inset 0 0 0 1px #d3ac5544; }
+.therapy-choice.active { background: #293729; border-color: #dfb960; color: #f3d99f; box-shadow: inset 0 0 0 1px #dfb96044; }
 .therapy-duration { color: #b9bfad; letter-spacing: .04em; margin-bottom: 26px; }
 .routine-import,.routine-tests { border: 1px solid #526247; border-radius: 12px; padding: 18px; margin: 22px 0; background: #182018; }
 .routine-import summary { cursor: pointer; color: #dfc585; font-weight: 600; }
@@ -16,23 +16,23 @@
 .import-preview { max-height: 460px; overflow: auto; }
 .import-preview article { border-bottom: 1px solid #46513b; padding: 16px 0; }
 .import-preview p { margin: 6px 0; }
-.student-test { border: 1px solid #9c8650; border-left: 4px solid #d3ac55; border-radius: 10px; background: #25291b; padding: 18px; margin: 18px 0; }
+.student-test { border: 1px solid #9c8650; border-left: 4px solid #dfb960; border-radius: 10px; background: #25291b; padding: 18px; margin: 18px 0; }
 .student-test > span { display: inline-block; text-transform: uppercase; font-size: 11px; letter-spacing: .12em; color: #e9ca80; }
 .student-test p { white-space: pre-wrap; }
-@media(max-width:600px) { .botanical-branch { width: 118px; opacity: .14; } .therapy-choice { font-size: 19px; padding: 12px; } }
+@media(max-width:600px) { .botanical-branch { width: 126px; opacity: .18; } .therapy-choice { font-size: 19px; padding: 12px; } }
 .admin-workspace { display: grid; gap: 32px; }
 .workspace-sidebar nav { display: flex; flex-wrap: wrap; gap: 10px; padding-bottom: 22px; border-bottom: 1px solid #45463c; }
-.workspace-nav { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: #d3ac55; border-color: #51534a; }
-.workspace-nav.active { background: #d3ac55; color: #15140e; border-color: #d3ac55; }
+.workspace-nav { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: #dfb960; border-color: #51534a; }
+.workspace-nav.active { background: #dfb960; color: #15140e; border-color: #dfb960; }
 .workspace-nav strong { font-size: 14px; }
 .workspace-main { min-width: 0; }
 .workspace-shortcuts { display: flex; gap: 12px; flex-wrap: wrap; }
-.workspace-shortcuts > button { text-align: left; color: #d3ac55; }
+.workspace-shortcuts > button { text-align: left; color: #dfb960; }
 .workspace-shortcuts small { display: block; margin-top: 8px; color: #b3b2a8; font-weight: 400; }
 .dashboard-primary { grid-template-columns: repeat(4,minmax(0,1fr)); }
 .dashboard-primary small { display: block; color: #aba99d; margin-top: 10px; font-size: 12px; }
 .additional-metrics { margin-bottom: 26px; }
-.additional-metrics > summary { cursor: pointer; color: #d3ac55; }
+.additional-metrics > summary { cursor: pointer; color: #dfb960; }
 .app-admin .cloud-members { margin-top: 0; padding-top: 0; border-top: 0; }
 summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .plain-fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
@@ -47,7 +47,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .health-person-picker .grid { margin: 0; }
 .health-person-picker p { margin-bottom: 0; font-size: 12px; }
 .workspace-empty { text-align: center; padding: 68px 22px; color: #aba99d; }
-.workspace-empty > span { display: block; color: #d3ac55; font-size: 38px; margin-bottom: 18px; }
+.workspace-empty > span { display: block; color: #dfb960; font-size: 38px; margin-bottom: 18px; }
 .workspace-empty p { max-width: 430px; margin: 0 auto; font-size: 14px; }
 .health-person-heading { margin-top: 30px; }
 .health-person-heading p { margin-bottom: 0; font-size: 12px; }
@@ -55,14 +55,14 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .health-fields > .muted { font-size: 12px; margin-top: 24px; }
 .health-group { border: 0; border-top: 1px solid #45463c; padding: 22px 0 8px; margin: 28px 0 0; min-width: 0; }
 .health-group legend { font-size: 17px; font-weight: 600; padding: 0 14px 0 0; }
-.health-group legend span { color: #d3ac55; font-size: 12px; margin-right: 10px; }
+.health-group legend span { color: #dfb960; font-size: 12px; margin-right: 10px; }
 .health-field-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 18px; }
 .health-wide { grid-column: 1 / -1; }
 .health-private { font-size: 11px; line-height: 1.6; color: #aba99d; border-top: 1px solid #45463c; padding-top: 20px; margin-top: 24px; }
 .form-save-bar { display: flex; gap: 16px; justify-content: space-between; align-items: center; margin-top: 22px; font-size: 12px; }
 .clinical-timeline { display: grid; gap: 14px; margin-bottom: 24px; }
 .clinical-record summary { display: flex; gap: 16px; align-items: center; cursor: pointer; list-style: none; }
-.clinical-record summary::before { content: '▸'; color: #d3ac55; }
+.clinical-record summary::before { content: '▸'; color: #dfb960; }
 .clinical-record[open] summary::before { content: '▾'; }
 .clinical-record summary > span:first-of-type { flex: 1; }
 .clinical-record summary strong { font-size: 14px; }
@@ -98,7 +98,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .intake-choice legend { font-weight: 600; margin-bottom: 10px; }
 .intake-choice-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-bottom: 12px; }
 .intake-choice-options label { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid #51534a; border-radius: 8px; }
-.intake-choice-options input { width: 18px; height: 18px; flex: 0 0 18px; accent-color: #d3ac55; }
+.intake-choice-options input { width: 18px; height: 18px; flex: 0 0 18px; accent-color: #dfb960; }
 
 .member-compact { border: 1px solid var(--border, #494338); border-radius: 12px; padding: 14px 18px; margin: 12px 0; }
 .member-compact > summary { cursor: pointer; color: var(--gold, #dfb568); font-weight: 600; }
@@ -115,22 +115,22 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .nutrition-practice { border-left:3px solid #c8a15e; padding:12px 16px; margin:18px 0; background:#ffffff06; }
 .schedule-options { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 20px; }
 .schedule-options label, .schedule-calendar label { display:flex; align-items:center; gap:8px; padding:10px; border:1px solid #565247; border-radius:9px; margin:0; }
-.schedule-options input, .schedule-calendar input { width:18px; height:18px; flex:none; accent-color:#d3ac55; }
+.schedule-options input, .schedule-calendar input { width:18px; height:18px; flex:none; accent-color:#dfb960; }
 .schedule-calendar { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:7px; margin:16px 0; }
-.plan-cost-summary { padding:20px; border:1px solid #a48249; border-radius:12px; background:#d3ac5509; }
+.plan-cost-summary { padding:20px; border:1px solid #a48249; border-radius:12px; background:#dfb96009; }
 .plan-cost-summary p { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-.plan-grand-total { border-top:1px solid #685639; padding-top:16px; color:#edcb84; font-size:1.1rem; }
-.service-reminders { margin-bottom:24px; border-left:3px solid #d3ac55; }
+.plan-grand-total { border-top:1px solid #685639; padding-top:16px; color:#f2d48f; font-size:1.1rem; }
+.service-reminders { margin-bottom:24px; border-left:3px solid #dfb960; }
 @media(max-width:550px) { .schedule-calendar { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 
 .cloud-student .student-nutrition-panel, .cloud-student .student-history-panel { margin: 20px 0; background: #191c16; }
-.student-nutrition-panel > summary, .student-history-panel > summary { cursor: pointer; color: #edcb84; padding: 6px 0; }
+.student-nutrition-panel > summary, .student-history-panel > summary { cursor: pointer; color: #f2d48f; padding: 6px 0; }
 .student-nutrition-panel > summary span { margin-left: 12px; font-size: .9rem; color: #c5c4b8; }
 .student-nutrition-panel[open] > summary, .student-history-panel[open] > summary { margin-bottom: 20px; }
 .nutrition-recipes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin-top: 20px; }
 .nutrition-recipe { min-width: 0; padding: 18px; background: #141710; border: 1px solid #4a4838; border-radius: 14px; }
 .nutrition-recipe:only-child { grid-column: 1 / -1; }
-.nutrition-recipe h3 { color: #edcb84; line-height: 1.4; }
+.nutrition-recipe h3 { color: #f2d48f; line-height: 1.4; }
 .nutrition-recipe p { line-height: 1.75; font-size: 1rem; }
 .nutrition-guide .nutrition-photo { max-height: none; object-fit: contain; }
 @media(max-width:700px) {
@@ -173,14 +173,14 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .content:has(.cloud-student), .content:has(.admin-workspace) { width:100%; max-width:none; }
 .cloud-entry .cloud-portal:has(.cloud-student), .cloud-entry .cloud-portal:has(.admin-workspace) { width:100%; max-width:none; }
 .plan-notification-corner { display:flex; justify-content:flex-end; position:relative; margin-bottom:12px; }
-.plan-notifications > summary { cursor:pointer; color:#edcb84; padding:10px 12px; border:1px solid #62533b; border-radius:12px; }
+.plan-notifications > summary { cursor:pointer; color:#f2d48f; padding:10px 12px; border:1px solid #62533b; border-radius:12px; }
 .plan-notification-list { position:absolute; top:100%; right:0; z-index:20; width:min(380px, calc(100vw - 32px)); max-height:65vh; overflow:auto; padding:16px; border:1px solid #62533b; border-radius:12px; background:#191c16; box-shadow:0 12px 30px #0008; }
 .plan-notification-list article { padding:12px 0; border-bottom:1px solid #494338; }
 .plan-notification-list article p { margin:8px 0; }
 .plan-notification-list > small { display:block; margin-top:14px; }
 .routine-heading { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; }
 .routine-record-menu { margin-left:auto; max-width:100%; text-align:right; }
-.routine-record-menu > summary, .exercise-results > summary { cursor:pointer; color:#edcb84; padding:10px 0; }
+.routine-record-menu > summary, .exercise-results > summary { cursor:pointer; color:#f2d48f; padding:10px 0; }
 .routine-record-menu > button { margin-top:8px; }
 .exercise-results > summary { text-align:right; }
 .exercise-results .student-result-fields { margin-top:12px; }
@@ -198,12 +198,12 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .student-toolbar .student-brand { min-width: 0; margin: 0; gap: 10px; }
 .student-toolbar .student-brand img { width: 52px; height: 52px; }
 .student-menu { position: relative; flex: none; z-index: 25; }
-.student-menu > summary { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #70613d; border-radius: 12px; color: #edcb84; cursor: pointer; list-style: none; }
+.student-menu > summary { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #897345; border-radius: 12px; color: #f2d48f; cursor: pointer; list-style: none; }
 .student-menu > summary::-webkit-details-marker { display: none; }
 .student-menu > summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
-.student-menu nav { position: absolute; right: 0; top: calc(100% + 8px); width: min(280px, calc(100vw - 48px)); padding: 8px; background: #1c2119; border: 1px solid #70613d; border-radius: 14px; box-shadow: 0 12px 30px #0008; }
+.student-menu nav { position: absolute; right: 0; top: calc(100% + 8px); width: min(280px, calc(100vw - 48px)); padding: 8px; background: #1c2119; border: 1px solid #897345; border-radius: 14px; box-shadow: 0 12px 30px #0008; }
 .student-menu nav button { display: block; width: 100%; min-height: 48px; text-align: left; border: 0; background: transparent; color: #f4f3ee; }
-.student-menu nav button[aria-current] { background: #343925; color: #edcb84; }
+.student-menu nav button[aria-current] { background: #343925; color: #f2d48f; }
 .student-menu nav small { display: block; margin-top: 5px; color: #c5c4b8; font-weight: 400; line-height: 1.4; }
 .cloud-student .student-nutrition-panel { background: transparent; }
 @media(max-width:650px) {
@@ -233,12 +233,12 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .room-month { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:6px; margin:16px 0; }
 .room-month button { padding:12px 4px; min-width:0; }
 .room-day { display:block; margin:12px 0; }
-.room-day summary { cursor:pointer; color:#edcb84; padding:8px 0; }
+.room-day summary { cursor:pointer; color:#f2d48f; padding:8px 0; }
 .room-booking { padding:14px 0; border-bottom:1px solid #494338; }
 .member-horizontal-sections { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin: 24px 0; }
 .member-horizontal-sections > details, .member-horizontal-sections .member-health-sections, .member-horizontal-sections .member-health-sections > details { display: contents; }
 .member-horizontal-sections summary { grid-row: 1; margin: 0 !important; padding: 16px 12px; border: 1px solid #51534a; border-radius: 10px; background: #1c1d19; overflow-wrap: anywhere; font-size: 14px; }
-.member-horizontal-sections details[open] > summary { border-color: #d3ac55; background: #28291f; }
+.member-horizontal-sections details[open] > summary { border-color: #dfb960; background: #28291f; }
 .member-horizontal-sections .member-section-content { grid-column: 1 / -1; min-width: 0; padding: 18px; border: 1px solid #51534a; border-radius: 10px; }
 .member-horizontal-sections details:not([open]) > .member-section-content { display: none; }
 .member-horizontal-sections details::details-content { grid-column: 1 / -1; min-width: 0; }
@@ -255,7 +255,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .cloud-student .student-menu nav button + button { margin-top: 5px; }
 .program-result p { white-space: pre-wrap; overflow-wrap: anywhere; }
 .program-result summary small { display: block; font-weight: normal; opacity: .75; }
-.nutrition-recipes > details { padding: 16px; border: 1px solid #d3ac552b; border-radius: 12px; }
+.nutrition-recipes > details { padding: 16px; border: 1px solid #dfb9602b; border-radius: 12px; }
 .nutrition-recipes > details > summary { font-weight: 600; min-height: 32px; }
 .cloud-student .nutrition-recipes { grid-template-columns: 1fr; gap: 12px; }
 .cloud-student .student-wellbeing > .heading { align-items: flex-start; gap: 12px; }
@@ -271,14 +271,14 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
  .cloud-student .student-content h2 { font-size: 24px; line-height: 1.3; }
 }
 .student-home-menu nav { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; width: min(100%, 560px); margin-inline: auto; }
-.student-home-menu button { display: block; width: 100%; min-width: 0; min-height: 76px; padding: 18px 14px; text-align: center; background: #1c1c1c; color: #edcb84; border: 1px solid #70613d; border-radius: 16px; font-size: 15px; letter-spacing: .025em; overflow-wrap: anywhere; }
+.student-home-menu button { display: block; width: 100%; min-width: 0; min-height: 76px; padding: 18px 14px; text-align: center; background: #1c1c1c; color: #f2d48f; border: 1px solid #897345; border-radius: 16px; font-size: 15px; letter-spacing: .025em; overflow-wrap: anywhere; }
 @media (hover: hover) { .student-home-menu button:hover { background: #272727; } }
 .student-home-menu button:active { background: #272727; }
 .cloud-student .exercise-inline-row { display: flex; align-items: center; justify-content: flex-end; min-height: 76px; gap: 8px; }
 .cloud-student .exercise-inline-check { display: flex; align-items: center; gap: 6px; font-size: 13px; }
 .cloud-student .exercise-inline-check input { width: 20px; min-height: 20px; margin: 0; }
 .exercise-inline-entry { position: relative; width: 176px; height: 70px; flex: 0 0 176px; }
-.exercise-inline-entry > summary { position: absolute; right: 0; top: 16px; width: 40px; height: 44px; display: grid; place-items: center; list-style: none; cursor: pointer; border: 1px solid #70613d; border-radius: 9px; font-size: 25px; }
+.exercise-inline-entry > summary { position: absolute; right: 0; top: 16px; width: 40px; height: 44px; display: grid; place-items: center; list-style: none; cursor: pointer; border: 1px solid #897345; border-radius: 9px; font-size: 25px; }
 .exercise-inline-entry > summary::-webkit-details-marker { display: none; }
 .exercise-inline-entry[open] > summary { transform: rotate(180deg); }
 .cloud-student .exercise-inline-fields { position: absolute; right: 46px; top: 0; display: flex; gap: 6px; width: 126px; }
@@ -288,7 +288,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .student-inline-save .actions { margin-top: 16px; }
 .student-top-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .student-top-actions .plan-notification-corner { margin: 0; }
-.student-back { min-width: 44px; min-height: 44px; padding: 6px; font-size: 24px; background: transparent; color: #edcb84; border: 1px solid #70613d; border-radius: 10px; }
+.student-back { min-width: 44px; min-height: 44px; padding: 6px; font-size: 24px; background: transparent; color: #f2d48f; border: 1px solid #897345; border-radius: 10px; }
 .cloud-student .student-top-actions .plan-notification-list { width: min(320px,calc(100vw - 36px)); }
 .cloud-student { overflow-anchor: none; }
 .cloud-student .student-toolbar { align-items: flex-start; }
@@ -351,7 +351,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .cloud-student .student-wellbeing > .student-nutrition-heading h1 { flex: 1 1 0; min-width: 0; font-size: 18px; }
 .cloud-student .nutrition-personal > summary strong > span { display: inline; font-size: inherit; margin: 0; opacity: 1; }
 
-.student-brand-signature { text-align: center; color: #d3ac55; font-size: 12px; letter-spacing: .15em; margin: 22px 0 0; }
+.student-brand-signature { text-align: center; color: #dfb960; font-size: 12px; letter-spacing: .15em; margin: 22px 0 0; }
 .cloud-portal:has(.cloud-student) { display: flex; flex-direction: column; min-height: calc(100svh - 130px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
 .cloud-portal > .student-account-layout { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .student-account-bottom { margin-top: auto; padding-top: 24px; }
@@ -386,13 +386,14 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .cloud-portal:has(.student-home-menu) > .student-account-layout { flex: 1 0 auto; }
 .student-account-layout > .cloud-student:has(.student-home-menu) { display: flex; flex-direction: column; flex: 1; margin: 0; }
 .student-home-menu { display: flex; flex-direction: column; flex: 1; }
-.student-home-menu .student-brand-signature { display: grid; place-items: center; flex: 1; min-height: 72px; padding: 16px 0; margin: 0; font-size: clamp(23px, 6.2vw, 28px); color: #d3ac55; }
+.student-home-menu .student-brand-signature { display: grid; place-items: center; flex: 1; min-height: 72px; padding: 16px 0; margin: 0; font-size: clamp(23px, 6.2vw, 28px); color: #dfb960; }
 .cloud-portal:has(.student-home-menu) .student-account-bottom { margin-top: 0; padding-top: 0; }
 
 /* Share the administrator card surface and keep account controls in a bottom row. */
 .app:has(.cloud-student) .botanical-right {
   right: max(8px, env(safe-area-inset-right, 0px));
-  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  /* Keep the entire branch below the header and its scrolling-content clip. */
+  top: calc(env(safe-area-inset-top, 0px) + 92px);
   transform: rotate(180deg);
 }
 .cloud-portal:has(.cloud-student) { --student-surface: #1c1d19; }
@@ -404,7 +405,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .cloud-portal:has(.cloud-student) .cloud-signout {
   background: var(--student-surface, #1c1d19);
 }
-.cloud-student button { color: #edcb84; }
+.cloud-student button { color: #f2d48f; }
 .cloud-portal:has(.student-home-menu) { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
 .cloud-portal:has(.student-home-menu) > .student-account-layout {
   display: grid; grid-template-rows: minmax(min-content, 1fr) auto; min-height: 0;

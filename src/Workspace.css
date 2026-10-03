@@ -347,3 +347,6 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
  .cloud-student .nutrition-personal { padding: 12px; margin-top: 12px; }
  .cloud-student .nutrition-personal > summary { font-size: 14px; }
 }
+.cloud-student .student-wellbeing > .student-nutrition-heading { flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; }
+.cloud-student .student-wellbeing > .student-nutrition-heading h1 { flex: 1 1 0; min-width: 0; font-size: 18px; }
+.cloud-student .nutrition-personal > summary strong > span { display: inline; font-size: inherit; margin: 0; opacity: 1; }

@@ -493,18 +493,20 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   width: min(100%, 590px);
   padding: 26px 18px;
   background: #151615;
-  border: 1px solid #76602f;
+  border: 1px solid var(--student-gold);
   border-radius: 18px;
 }
-.cloud-student .student-home-menu nav button { background: #1c1d1b; }
+.cloud-student .student-home-menu nav button { background: #1c1d1b; color: #f4f3ee; border-color: var(--student-gold); }
 .cloud-student .student-home-menu .student-brand-signature { grid-row: 3; align-self: stretch; }
 
-/* Charcoal backdrop keeps the greener botanical accents visible. */
+/* Selected 2A palette: charcoal, white menu text and watermark foliage. */
 .app:has(.cloud-student) {
-  background-color: #263329;
-  background-image: linear-gradient(90deg, #263329 0%, #141516 7%, #141516 93%, #263329 100%);
+  background-color: #141516;
+  background-image: radial-gradient(ellipse at 50% 0%, #202223 0%, #141516 65%);
 }
-.app:has(.cloud-student) .botanical-branch { opacity: .3; filter: saturate(1.35) brightness(1.12); }
+.app:has(.cloud-student) .botanical-branch { opacity: .13; filter: saturate(.9) brightness(1); }
+.app:has(.cloud-student) .brand-title,
+.app:has(.cloud-student) .brand-title > span { font-size: inherit; font-weight: inherit; }
 @media (max-width: 600px) {
   .cloud-student .student-home-menu nav { width: 100%; }
 }

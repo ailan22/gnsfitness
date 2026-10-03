@@ -179,12 +179,13 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         <label>Contraseña<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)}/></label>
         <button type="submit" disabled={pending}>{pending ? 'Ingresando…' : 'Iniciar sesión'}</button>
         <a href="/reset-password?request=1">Olvidé mi contraseña</a>
-      </form> : <div>
+      </form> : <div className={role === 'student' ? 'student-account-layout' : undefined}>
         <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>
         {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudAdmin client={client}/>
           {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</StaffMfa> : !role ? <p className="notice">Esta cuenta aún no tiene un rol asignado. Contactá al administrador.</p> : null}
         {role === 'student' && client && <CloudStudent client={client} user={user}/>}
         </Suspense>
+        <div className={role === 'student' ? 'student-account-bottom' : undefined}>
         {nativePlatform && <details className="biometric-settings"><summary>Acceso con Face ID o biometría</summary>
           <h3>Acceso rápido en este celular</h3>
           <p className="muted">{biometricEnabled
@@ -196,7 +197,8 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
           {biometricMessage && <p role="status">{biometricMessage}</p>}
         </details>}
         {role !== 'student' && <footer className="account-details"><p><strong>Cuenta:</strong> {user.email}</p><p><strong>Rol:</strong> {roleLabel}</p></footer>}
-        <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()}>Cerrar sesión</button>
+        <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()} aria-label="Cerrar sesión" title="Cerrar sesión">{role === 'student' ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M9 4H4v16h5M14 8l4 4-4 4M8 12h11"/></svg> : 'Cerrar sesión'}</button>
+        </div>
       </div>}
     {error && <p className="error" role="alert">{error}</p>}
     <nav className="account-legal" aria-label="Privacidad y ayuda"><a href="/privacidad.html">Privacidad</a><a href="/soporte.html">Ayuda y soporte</a></nav>

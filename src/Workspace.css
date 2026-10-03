@@ -350,3 +350,15 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .cloud-student .student-wellbeing > .student-nutrition-heading { flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; }
 .cloud-student .student-wellbeing > .student-nutrition-heading h1 { flex: 1 1 0; min-width: 0; font-size: 18px; }
 .cloud-student .nutrition-personal > summary strong > span { display: inline; font-size: inherit; margin: 0; opacity: 1; }
+
+.student-brand-signature { text-align: center; color: #d3ac55; font-size: 12px; letter-spacing: .15em; margin: 22px 0 0; }
+.cloud-portal:has(.cloud-student) { display: flex; flex-direction: column; min-height: calc(100svh - 130px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
+.cloud-portal > .student-account-layout { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.student-account-bottom { margin-top: auto; padding-top: 24px; }
+.student-account-bottom .cloud-signout { display: grid; place-items: center; width: 44px; min-height: 44px; padding: 8px; margin: 8px 0 0 auto; }
+.cloud-portal:has(.cloud-student) .account-legal { justify-content: center; margin: 14px 0 0; }
+@media(max-width:600px) {
+ .cloud-student, .cloud-portal:has(.cloud-student) { font-size: 14px; }
+ .student-home-menu button { font-size: 13px; }
+ .cloud-portal:has(.cloud-student) .biometric-settings { font-size: 14px; }
+}

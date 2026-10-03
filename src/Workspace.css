@@ -434,7 +434,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 
 /* Warmer gold accents, scoped to the member panel. */
-.app:has(.cloud-student) { --student-gold: #d4b368; --student-gold-line: #aa8d4b; }
+.app:has(.cloud-student) { --student-gold: #dfbd72; --student-gold-line: #aa8d4b; }
 .app:has(.cloud-student) .brand-title,
 .cloud-student .eyebrow,
 .cloud-student button,
@@ -504,7 +504,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   background-color: #141516;
   background-image: radial-gradient(ellipse at 50% 0%, #202223 0%, #141516 65%);
 }
-.app:has(.cloud-student) .botanical-branch { opacity: .13; filter: saturate(.9) brightness(1); }
+.app:has(.cloud-student) .botanical-branch { opacity: .28; filter: hue-rotate(22deg) saturate(1.25) brightness(.85); }
 .app:has(.cloud-student) .brand-title,
 .app:has(.cloud-student) .brand-title > span { font-size: inherit; font-weight: inherit; }
 @media (max-width: 600px) {
@@ -512,7 +512,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 
 /* Match the approved 2A composition, not only its palette. */
-.app:has(.student-home-menu) { background: #18251d; }
+.app:has(.student-home-menu) { background: #142018; }
 .app:has(.student-home-menu) .topbar {
   height: clamp(100px, 15svh, 135px); min-height: 0;
   padding: 24px 16px 16px;
@@ -557,7 +557,8 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   right: max(8px, env(safe-area-inset-right, 0px));
   width: clamp(78px, 21vw, 110px); aspect-ratio: 880 / 1792;
   background: url('./assets/gns-botanical-branch.png') center / contain no-repeat;
-  transform: rotate(180deg); opacity: .16; z-index: 0;
+  transform: rotate(180deg); opacity: .3; z-index: 0;
+  filter: hue-rotate(22deg) saturate(1.25) brightness(.85);
 }
 .app:has(.cloud-student) > .topbar,
 .app:has(.cloud-student) > .content { position: relative; z-index: 1; }
@@ -565,3 +566,11 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .app:has(.student-home-menu) .topbar .tag { display: none; }
 .app .cloud-student:not(:has(.student-home-menu)),
 .app .cloud-student:not(:has(.student-home-menu)) * { color: #f4f3ee; }
+
+/* Restrained gold sheen and a crisp white motto. */
+.app:has(.cloud-student) .brand-title,
+.cloud-student .student-home-menu .student-brand-signature {
+  text-shadow: 0 0 7px rgb(223 189 114 / 18%);
+}
+.app:has(.cloud-student) .brand-title > span { text-shadow: none; }
+.app:has(.cloud-student) .brand-motto { color: #ffffff; font-weight: 650; }

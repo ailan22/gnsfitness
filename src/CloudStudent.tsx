@@ -160,7 +160,6 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
 
   return <section className="cloud-student" aria-label="Portal del alumno">
     <div className="student-toolbar">
-      <div className="student-brand"><img src="/gns-logo-transparent.png" alt="GNS Fitness" width="100" height="100"/><p className="eyebrow">TU ESPACIO</p></div>
       <div className="student-top-actions">{section !== 'home' && <button type="button" className="student-back" aria-label="Volver al inicio" onClick={() => selectSection('home')}>←</button>}{history && <PlanNotifications client={client} memberId={history.member.id}/>}</div>
     </div>
     {section === 'home' && <div className="student-home-menu">        <nav aria-label="Elegí una sección">

@@ -303,7 +303,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .student-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
 .student-toolbar .student-brand img { flex: 0 0 44px; width: 44px; height: 44px; }
 .student-toolbar .student-brand .eyebrow { font-size: 11px; letter-spacing: .1em; overflow-wrap: anywhere; }
-.student-top-actions { min-width: 0; }
+.student-top-actions { min-width: 0; grid-column: 2; }
 .student-top-actions .plan-notifications > summary { white-space: nowrap; padding: 10px 8px; }
 .cloud-student h1, .cloud-student h2, .cloud-student h3 { overflow-wrap: anywhere; }
 
@@ -434,7 +434,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 
 /* Warmer gold accents, scoped to the member panel. */
-.app:has(.cloud-student) { --student-gold: #f2bd45; --student-gold-line: #c99732; }
+.app:has(.cloud-student) { --student-gold: #f7c95c; --student-gold-line: #c99732; }
 .app:has(.cloud-student) .brand-title,
 .cloud-student .eyebrow,
 .cloud-student button,
@@ -461,7 +461,8 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 @media (max-width: 600px) {
   .app:has(.cloud-student) { overflow-x: clip; }
   .cloud-student, .cloud-portal:has(.cloud-student) { font-size: 14px; }
-  .app:has(.cloud-student) .brand { font-size: 19px; }
+  .app:has(.cloud-student) .brand { font-size: 21px; }
+  .app:has(.cloud-student) .brand-motto { font-size: 10px; max-width: none; }
   .student-toolbar .student-brand img { width: 34px; height: 34px; flex-basis: 34px; }
   .cloud-student .student-top-actions .plan-notifications > summary { padding: 8px; }
   .cloud-student .student-home-menu nav { margin-top: clamp(30px, 5svh, 44px); gap: 8px; width: min(100%, 350px); }
@@ -500,8 +501,8 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 
 /* Charcoal backdrop keeps the greener botanical accents visible. */
 .app:has(.cloud-student) {
-  background-color: #141516;
-  background-image: radial-gradient(ellipse at 50% 0%, #202223 0%, #141516 65%);
+  background-color: #263329;
+  background-image: linear-gradient(90deg, #263329 0%, #141516 7%, #141516 93%, #263329 100%);
 }
 .app:has(.cloud-student) .botanical-branch { opacity: .3; filter: saturate(1.35) brightness(1.12); }
 @media (max-width: 600px) {

@@ -1,12 +1,12 @@
 {
   "source": {
-    "sha256": "1e1dd857f49fd2eff6025503ff220aaa28892532543c763deae8d9ffd251ceb5",
-    "pages": 75
+    "sha256": "bb914572cbfa3801ae480fd379c765a0aeec6f7c9fd07d50f6875f139614319f",
+    "pages": 66
   },
   "sections": [
     {
-      "id": "consejos",
-      "title": "Alimentación saludable: tips y consejos",
+      "id": "plato",
+      "title": "Cómo armar un plato saludable",
       "items": [
         {
           "page": 1,
@@ -35,124 +35,147 @@
             {
               "heading": false,
               "text": "Aceite de oliva, palta, nueces, semillas o las grasas presentes en huevos, pescado y lácteos. No siempre hace falta agregar aceite."
-            },
-            {
-              "heading": false,
-              "text": "Verduras y frutas"
-            },
-            {
-              "heading": false,
-              "text": "Sumá variedad y color. En almuerzo y cena, una orientación es medio plato de verduras, un cuarto de fuente de proteína y un cuarto de fuente de carbohidratos. Completá con grasas según los ingredientes."
-            },
-            {
-              "heading": false,
-              "text": "Las legumbres aportan carbohidratos y proteína. Las cantidades se adaptan a tu hambre y actividad. En desayunos y meriendas, combiná también los tres grupos: por ejemplo, avena + yogur + nueces."
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-01-0.webp"
+            "/nutricion/alimentacion/bb914572cb-01-0.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nutrientes",
+      "title": "Carbohidratos, proteínas y grasas saludables",
+      "items": [
+        {
+          "page": 2,
+          "title": "Carbohidratos",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-02-0.webp"
           ]
         },
         {
-          "page": 2,
-          "title": "Tips para gestionar una alimentación saludable y deliciosa",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Variedad sin complicarte"
-            },
-            {
-              "heading": false,
-              "text": "Rotá frutas, verduras, legumbres, cereales, fuentes de proteína y grasas. La combinación del día importa más que buscar un alimento perfecto."
-            },
-            {
-              "heading": false,
-              "text": "Sabor desde el principio"
-            },
-            {
-              "heading": false,
-              "text": "Dorar, asar y saltear cambia el sabor y la textura. Después agregá hierbas, especias y un toque ácido. Probá antes de sumar más sal."
-            },
-            {
-              "heading": false,
-              "text": "Combiná texturas"
-            },
-            {
-              "heading": false,
-              "text": "Algo cremoso, algo crocante y un ingrediente fresco hacen más disfrutable una comida. Por ejemplo: puré de zapallo, garbanzos tostados y ensalada."
-            },
-            {
-              "heading": false,
-              "text": "Organización práctica"
-            },
-            {
-              "heading": false,
-              "text": "Dejá cocidas dos bases, una proteína y verduras lavadas. Combiná de distintas formas durante la semana. Refrigerá pronto lo que preparás y recalentá bien."
-            },
-            {
-              "heading": false,
-              "text": "Flexibilidad"
-            },
-            {
-              "heading": false,
-              "text": "Comer saludable también puede incluir pan, pasta, postres y comidas compartidas. Buscá un patrón que puedas sostener y que te guste."
-            }
-          ],
-          "images": []
-        },
-        {
           "page": 3,
-          "title": "Lámina de alimentación saludable: tips y consejos · 3",
+          "title": "Proteínas",
           "blocks": [],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-03-0.webp"
+            "/nutricion/alimentacion/bb914572cb-03-0.webp"
           ]
         },
         {
           "page": 4,
-          "title": "Lámina de alimentación saludable: tips y consejos · 4",
+          "title": "Grasas saludables",
           "blocks": [],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-04-0.webp"
+            "/nutricion/alimentacion/bb914572cb-04-0.webp"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "combinaciones",
+      "title": "Condimentos y combinaciones de alimentos",
+      "items": [
         {
           "page": 5,
-          "title": "Lámina de alimentación saludable: tips y consejos · 5",
+          "title": "Pollo: tres maneras de condimentarlo",
           "blocks": [],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-05-0.webp"
+            "/nutricion/alimentacion/bb914572cb-05-0.webp"
           ]
         },
         {
           "page": 6,
-          "title": "Lámina de alimentación saludable: tips y consejos · 6",
+          "title": "Papas: romero, pimentón o ricota",
           "blocks": [],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-06-0.webp"
+            "/nutricion/alimentacion/bb914572cb-06-0.webp"
           ]
         },
         {
           "page": 7,
-          "title": "Lámina de alimentación saludable: tips y consejos · 7",
+          "title": "Pescado, lentejas y tofu: ideas para sazonar",
           "blocks": [],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-07-0.webp"
+            "/nutricion/alimentacion/bb914572cb-07-0.webp"
+          ]
+        },
+        {
+          "page": 8,
+          "title": "Combinaciones con papa, huevo, queso y atún",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-08-0.webp"
+          ]
+        },
+        {
+          "page": 9,
+          "title": "Combinaciones con arroz, garbanzos y avena",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-09-0.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cinco-dias",
+      "title": "Menú de ejemplo para cinco días",
+      "items": [
+        {
+          "page": 10,
+          "title": "Día 1 · Lunes",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-10-0.webp"
+          ]
+        },
+        {
+          "page": 11,
+          "title": "Día 2 · Martes",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-11-0.webp"
+          ]
+        },
+        {
+          "page": 12,
+          "title": "Día 3 · Miércoles",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-12-0.webp"
+          ]
+        },
+        {
+          "page": 13,
+          "title": "Día 4 · Jueves",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-13-0.webp"
+          ]
+        },
+        {
+          "page": 14,
+          "title": "Día 5 · Viernes",
+          "blocks": [],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-14-0.webp"
           ]
         }
       ]
     },
     {
       "id": "desayunos",
-      "title": "Desayunos",
+      "title": "Desayunos · 10 recetas",
       "items": [
         {
-          "page": 8,
+          "page": 15,
           "title": "Tostadas con palta y huevo",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 01/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 01/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -172,16 +195,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-08-0.webp"
+            "/nutricion/alimentacion/bb914572cb-15-0.webp"
           ]
         },
         {
-          "page": 9,
+          "page": 16,
           "title": "Tostadas de ricota y frutos rojos",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 02/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 02/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -201,16 +224,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-09-0.webp"
+            "/nutricion/alimentacion/bb914572cb-16-0.webp"
           ]
         },
         {
-          "page": 10,
+          "page": 17,
           "title": "Tortitas de avena, banana y frutilla",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 03/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 03/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -230,16 +253,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-10-0.webp"
+            "/nutricion/alimentacion/bb914572cb-17-0.webp"
           ]
         },
         {
-          "page": 11,
+          "page": 18,
           "title": "Wrap de huevo, espinaca y palta",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 04/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 04/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -259,16 +282,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-11-0.webp"
+            "/nutricion/alimentacion/bb914572cb-18-0.webp"
           ]
         },
         {
-          "page": 12,
+          "page": 19,
           "title": "Avena de la noche con frutos rojos",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 05/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 05/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -288,16 +311,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-12-0.webp"
+            "/nutricion/alimentacion/bb914572cb-19-0.webp"
           ]
         },
         {
-          "page": 13,
+          "page": 20,
           "title": "Panqueques de ricota y naranja",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 06/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 06/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -317,16 +340,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-13-0.webp"
+            "/nutricion/alimentacion/bb914572cb-20-0.webp"
           ]
         },
         {
-          "page": 14,
+          "page": 21,
           "title": "Muffins de huevo y verduras",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 07/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 07/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -346,16 +369,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-14-0.webp"
+            "/nutricion/alimentacion/bb914572cb-21-0.webp"
           ]
         },
         {
-          "page": 15,
+          "page": 22,
           "title": "Tostadas de ricota, pera y nueces",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 08/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 08/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -375,16 +398,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-15-0.webp"
+            "/nutricion/alimentacion/bb914572cb-22-0.webp"
           ]
         },
         {
-          "page": 16,
+          "page": 23,
           "title": "Waffles de yogur y frutillas",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 09/10 · 2 PORCIONES"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 09/10 · 2 PORCIONES"
             },
             {
               "heading": true,
@@ -404,16 +427,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-16-0.webp"
+            "/nutricion/alimentacion/bb914572cb-23-0.webp"
           ]
         },
         {
-          "page": 17,
+          "page": 24,
           "title": "Tostado de queso, tomate y huevo",
           "blocks": [
             {
               "heading": false,
-              "text": "DESAYUNOS · OPCIÓN 10/10 · 1 PORCIÓN"
+              "text": "IDEAS DE DESAYUNOS · OPCIÓN 10/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -433,22 +456,22 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-17-0.webp"
+            "/nutricion/alimentacion/bb914572cb-24-0.webp"
           ]
         }
       ]
     },
     {
       "id": "almuerzos",
-      "title": "Almuerzos",
+      "title": "Almuerzos · 10 recetas",
       "items": [
         {
-          "page": 18,
+          "page": 25,
           "title": "Pasta con salsa de carne y verduras",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 01/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 01/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -468,16 +491,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-18-0.webp"
+            "/nutricion/alimentacion/bb914572cb-25-0.webp"
           ]
         },
         {
-          "page": 19,
+          "page": 26,
           "title": "Tacos de pescado y mango",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 02/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 02/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -497,16 +520,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-19-0.webp"
+            "/nutricion/alimentacion/bb914572cb-26-0.webp"
           ]
         },
         {
-          "page": 20,
+          "page": 27,
           "title": "Hamburguesa de lentejas y nueces",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 03/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 03/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -526,16 +549,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-20-0.webp"
+            "/nutricion/alimentacion/bb914572cb-27-0.webp"
           ]
         },
         {
-          "page": 21,
+          "page": 28,
           "title": "Pasta mediterránea con atún y porotos",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 04/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 04/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -555,16 +578,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-21-0.webp"
+            "/nutricion/alimentacion/bb914572cb-28-0.webp"
           ]
         },
         {
-          "page": 22,
+          "page": 29,
           "title": "Ñoquis de ricota con tomate",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 05/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 05/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -584,16 +607,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-22-0.webp"
+            "/nutricion/alimentacion/bb914572cb-29-0.webp"
           ]
         },
         {
-          "page": 23,
+          "page": 30,
           "title": "Arroz con mariscos y arvejas",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 06/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 06/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -613,16 +636,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-23-0.webp"
+            "/nutricion/alimentacion/bb914572cb-30-0.webp"
           ]
         },
         {
-          "page": 24,
+          "page": 31,
           "title": "Morrón relleno de quinoa y lentejas",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 07/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 07/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -642,16 +665,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-24-0.webp"
+            "/nutricion/alimentacion/bb914572cb-31-0.webp"
           ]
         },
         {
-          "page": 25,
+          "page": 32,
           "title": "Pollo cítrico con cuscús",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 08/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 08/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -671,16 +694,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-25-0.webp"
+            "/nutricion/alimentacion/bb914572cb-32-0.webp"
           ]
         },
         {
-          "page": 26,
+          "page": 33,
           "title": "Bowl de tofu con salsa de maní",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 09/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 09/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -700,16 +723,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-26-0.webp"
+            "/nutricion/alimentacion/bb914572cb-33-0.webp"
           ]
         },
         {
-          "page": 27,
+          "page": 34,
           "title": "Empanadas integrales de carne y zapallo",
           "blocks": [
             {
               "heading": false,
-              "text": "ALMUERZOS · OPCIÓN 10/10 · 1 PORCIÓN"
+              "text": "IDEAS DE ALMUERZOS · OPCIÓN 10/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -729,22 +752,22 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-27-0.webp"
+            "/nutricion/alimentacion/bb914572cb-34-0.webp"
           ]
         }
       ]
     },
     {
       "id": "meriendas",
-      "title": "Meriendas",
+      "title": "Meriendas · 10 recetas",
       "items": [
         {
-          "page": 28,
+          "page": 35,
           "title": "Galletas de avena con yogur",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 01/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 01/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -764,16 +787,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-28-0.webp"
+            "/nutricion/alimentacion/bb914572cb-35-0.webp"
           ]
         },
         {
-          "page": 29,
+          "page": 36,
           "title": "Rollitos de pollo, espinaca y queso",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 02/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 02/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -793,16 +816,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-29-0.webp"
+            "/nutricion/alimentacion/bb914572cb-36-0.webp"
           ]
         },
         {
-          "page": 30,
+          "page": 37,
           "title": "Tostadas de ricota y frutillas",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 03/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 03/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -822,16 +845,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-30-0.webp"
+            "/nutricion/alimentacion/bb914572cb-37-0.webp"
           ]
         },
         {
-          "page": 31,
+          "page": 38,
           "title": "Vaso de yogur durazno y chía",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 04/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 04/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -851,16 +874,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-31-0.webp"
+            "/nutricion/alimentacion/bb914572cb-38-0.webp"
           ]
         },
         {
-          "page": 32,
+          "page": 39,
           "title": "Cheesecake en vaso con arándanos",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 05/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 05/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -880,16 +903,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-32-0.webp"
+            "/nutricion/alimentacion/bb914572cb-39-0.webp"
           ]
         },
         {
-          "page": 33,
+          "page": 40,
           "title": "Muffins de zanahoria y avena",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 06/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 06/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -909,16 +932,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-33-0.webp"
+            "/nutricion/alimentacion/bb914572cb-40-0.webp"
           ]
         },
         {
-          "page": 34,
+          "page": 41,
           "title": "Crepe con yogur, frutas y maní",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 07/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 07/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -938,16 +961,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-34-0.webp"
+            "/nutricion/alimentacion/bb914572cb-41-0.webp"
           ]
         },
         {
-          "page": 35,
+          "page": 42,
           "title": "Wrap cremoso de garbanzos y palta",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 08/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 08/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -967,16 +990,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-35-0.webp"
+            "/nutricion/alimentacion/bb914572cb-42-0.webp"
           ]
         },
         {
-          "page": 36,
+          "page": 43,
           "title": "Helado cremoso de banana y cacao",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 09/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 09/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -996,16 +1019,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-36-0.webp"
+            "/nutricion/alimentacion/bb914572cb-43-0.webp"
           ]
         },
         {
-          "page": 37,
+          "page": 44,
           "title": "Mini pizza de pita y champiñones",
           "blocks": [
             {
               "heading": false,
-              "text": "MERIENDAS · OPCIÓN 10/10 · 1 PORCIÓN"
+              "text": "IDEAS DE MERIENDAS · OPCIÓN 10/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1025,22 +1048,22 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-37-0.webp"
+            "/nutricion/alimentacion/bb914572cb-44-0.webp"
           ]
         }
       ]
     },
     {
       "id": "cenas",
-      "title": "Cenas",
+      "title": "Cenas · 10 recetas",
       "items": [
         {
-          "page": 38,
+          "page": 45,
           "title": "Pizza integral de berenjena",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 01/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 01/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1060,16 +1083,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-38-0.webp"
+            "/nutricion/alimentacion/bb914572cb-45-0.webp"
           ]
         },
         {
-          "page": 39,
+          "page": 46,
           "title": "Crema de zapallo y lentejas",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 02/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 02/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1089,16 +1112,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-39-0.webp"
+            "/nutricion/alimentacion/bb914572cb-46-0.webp"
           ]
         },
         {
-          "page": 40,
+          "page": 47,
           "title": "Boniato relleno de porotos negros",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 03/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 03/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1118,16 +1141,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-40-0.webp"
+            "/nutricion/alimentacion/bb914572cb-47-0.webp"
           ]
         },
         {
-          "page": 41,
+          "page": 48,
           "title": "Albóndigas con puré de zapallo",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 04/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 04/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1147,16 +1170,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-41-0.webp"
+            "/nutricion/alimentacion/bb914572cb-48-0.webp"
           ]
         },
         {
-          "page": 42,
+          "page": 49,
           "title": "Tarta rústica de espinaca y ricota",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 05/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 05/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1176,16 +1199,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-42-0.webp"
+            "/nutricion/alimentacion/bb914572cb-49-0.webp"
           ]
         },
         {
-          "page": 43,
+          "page": 50,
           "title": "Zucchini relleno con carne y arroz",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 06/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 06/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1205,16 +1228,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-43-0.webp"
+            "/nutricion/alimentacion/bb914572cb-50-0.webp"
           ]
         },
         {
-          "page": 44,
+          "page": 51,
           "title": "Salmón con quinoa y naranja",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 07/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 07/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1234,16 +1257,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-44-0.webp"
+            "/nutricion/alimentacion/bb914572cb-51-0.webp"
           ]
         },
         {
-          "page": 45,
+          "page": 52,
           "title": "Frittata de champiñones y porotos",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 08/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 08/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1263,16 +1286,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-45-0.webp"
+            "/nutricion/alimentacion/bb914572cb-52-0.webp"
           ]
         },
         {
-          "page": 46,
+          "page": 53,
           "title": "Curry de lentejas rojas y zapallo",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 09/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 09/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1292,16 +1315,16 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-46-0.webp"
+            "/nutricion/alimentacion/bb914572cb-53-0.webp"
           ]
         },
         {
-          "page": 47,
+          "page": 54,
           "title": "Brochetas de tofu con cuscús",
           "blocks": [
             {
               "heading": false,
-              "text": "CENAS · OPCIÓN 10/10 · 1 PORCIÓN"
+              "text": "IDEAS DE CENAS · OPCIÓN 10/10 · 1 PORCIÓN"
             },
             {
               "heading": true,
@@ -1321,163 +1344,15 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-47-0.webp"
+            "/nutricion/alimentacion/bb914572cb-54-0.webp"
           ]
         }
       ]
     },
     {
-      "id": "cinco-dias",
-      "title": "Cinco días de alimentación",
+      "id": "infusiones",
+      "title": "Infusiones y tés",
       "items": [
-        {
-          "page": 48,
-          "title": "Cinco días para organizarte",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "De lunes a viernes"
-            },
-            {
-              "heading": false,
-              "text": "Las cinco láminas siguientes recuperan los menús que compartiste, en su orden original. Son ejemplos orientados a ganar músculo, con desayuno, comida, pre o post entreno y cena."
-            },
-            {
-              "heading": false,
-              "text": "Porciones que se adaptan a vos"
-            },
-            {
-              "heading": false,
-              "text": "Las cantidades de las láminas son una referencia, no una dieta personalizada. Ajustá energía y porciones a tu actividad, objetivo, apetito y necesidades; las personas que no entrenan pueden necesitar otra distribución."
-            },
-            {
-              "heading": false,
-              "text": "Cómo leer los ingredientes"
-            },
-            {
-              "heading": false,
-              "text": "El arroz, la quinoa, las legumbres y la pasta se indican cocidos cuando así figura. Prestá atención a esa diferencia al pesar los alimentos. La proteína en polvo es opcional: no es imprescindible para ganar músculo."
-            },
-            {
-              "heading": false,
-              "text": "Agua y descanso"
-            },
-            {
-              "heading": false,
-              "text": "Las cifras de agua de las imágenes no son una obligación universal. Tomá líquidos regularmente y ajustá según calor, ejercicio y pérdidas de sudor. Acompañá la alimentación con entrenamiento progresivo y descanso."
-            },
-            {
-              "heading": false,
-              "text": "Un punto de partida"
-            },
-            {
-              "heading": false,
-              "text": "Podés intercambiar comidas con las opciones de esta guía. Conservá una fuente de carbohidratos, otra de proteína y alguna grasa; sumá verduras y fruta a lo largo del día."
-            }
-          ],
-          "images": []
-        },
-        {
-          "page": 49,
-          "title": "Lámina de cinco días de alimentación · 49",
-          "blocks": [],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-49-0.webp"
-          ]
-        },
-        {
-          "page": 50,
-          "title": "Lámina de cinco días de alimentación · 50",
-          "blocks": [],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-50-0.webp"
-          ]
-        },
-        {
-          "page": 51,
-          "title": "Lámina de cinco días de alimentación · 51",
-          "blocks": [],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-51-0.webp"
-          ]
-        },
-        {
-          "page": 52,
-          "title": "Lámina de cinco días de alimentación · 52",
-          "blocks": [],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-52-0.webp"
-          ]
-        },
-        {
-          "page": 53,
-          "title": "Lámina de cinco días de alimentación · 53",
-          "blocks": [],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-53-0.webp"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "bebidas",
-      "title": "Infusiones y aguas con ingredientes",
-      "items": [
-        {
-          "page": 54,
-          "title": "Infusiones y aguas con ingredientes",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Infusiones de hierbas"
-            },
-            {
-              "heading": false,
-              "text": "Menta y manzanilla tienen usos tradicionales para molestias digestivas leves; la melisa, para estrés leve y descanso. La evidencia clínica es limitada."
-            },
-            {
-              "heading": false,
-              "text": "Aguas con frutas y semillas"
-            },
-            {
-              "heading": false,
-              "text": "También recuperamos las combinaciones de las imágenes: frutas, agua de coco, limón, menta y chía. Son bebidas distintas de un té de hierbas y se preparan sin licuar."
-            },
-            {
-              "heading": false,
-              "text": "Elegí según el momento"
-            },
-            {
-              "heading": false,
-              "text": "Una infusión digestiva puede acompañar el final de una comida; la melisa, una rutina nocturna. Reservá el té verde para horas en que la cafeína no te quite el sueño."
-            },
-            {
-              "heading": false,
-              "text": "Aportes que dependen de lo que consumís"
-            },
-            {
-              "heading": false,
-              "text": "El agua hidrata. Para aprovechar la fibra y parte de los nutrientes de las frutas o semillas, también tenés que consumir esos ingredientes. Aromatizar agua no la convierte en multivitamínico."
-            },
-            {
-              "heading": false,
-              "text": "Preparación y conservación"
-            },
-            {
-              "heading": false,
-              "text": "Respetá el envase de las hierbas. Lavá las frutas y mantené las aguas preparadas en la heladera; consumilas en el día."
-            },
-            {
-              "heading": false,
-              "text": "Cuidados concretos"
-            },
-            {
-              "heading": false,
-              "text": "La menta puede empeorar el reflujo y la manzanilla puede provocar alergias. Consultá antes de usar hierbas habitualmente si tomás medicación, estás embarazada o amamantando."
-            }
-          ],
-          "images": []
-        },
         {
           "page": 55,
           "title": "Menta: confort digestivo",
@@ -1516,7 +1391,7 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-55-0.webp"
+            "/nutricion/alimentacion/bb914572cb-55-0.webp"
           ]
         },
         {
@@ -1557,7 +1432,7 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-56-0.webp"
+            "/nutricion/alimentacion/bb914572cb-56-0.webp"
           ]
         },
         {
@@ -1598,7 +1473,7 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-57-0.webp"
+            "/nutricion/alimentacion/bb914572cb-57-0.webp"
           ]
         },
         {
@@ -1639,7 +1514,7 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-58-0.webp"
+            "/nutricion/alimentacion/bb914572cb-58-0.webp"
           ]
         },
         {
@@ -1680,171 +1555,7 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-59-0.webp"
-          ]
-        },
-        {
-          "page": 60,
-          "title": "Frambuesa, limón y romero",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "AGUA CON INGREDIENTES"
-            },
-            {
-              "heading": false,
-              "text": "Ingredientes"
-            },
-            {
-              "heading": false,
-              "text": "400 ml de agua, 60 g de frambuesas, 2 rodajas de limón y una ramita pequeña de romero."
-            },
-            {
-              "heading": false,
-              "text": "Qué aporta"
-            },
-            {
-              "heading": false,
-              "text": "Una opción para sumar líquido y sabor. Las frambuesas aportan fibra y compuestos vegetales si también comés la fruta."
-            },
-            {
-              "heading": false,
-              "text": "Preparación"
-            },
-            {
-              "heading": false,
-              "text": "Lavá los ingredientes, agregalos al agua y dejá reposar 30 minutos en la heladera."
-            },
-            {
-              "heading": false,
-              "text": "Beber solo el agua no aporta la misma fibra que comer la fruta."
-            }
-          ],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-60-0.webp"
-          ]
-        },
-        {
-          "page": 61,
-          "title": "Coco, sandía y lima",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "AGUA CON INGREDIENTES"
-            },
-            {
-              "heading": false,
-              "text": "Ingredientes"
-            },
-            {
-              "heading": false,
-              "text": "200 ml de agua de coco sin azúcar añadida, 200 ml de agua, 80 g de sandía en cubos y 2 rodajas de lima."
-            },
-            {
-              "heading": false,
-              "text": "Qué aporta"
-            },
-            {
-              "heading": false,
-              "text": "Aporta líquido y algo de carbohidratos. El agua de coco contiene potasio; la cantidad depende del producto y la porción."
-            },
-            {
-              "heading": false,
-              "text": "Preparación"
-            },
-            {
-              "heading": false,
-              "text": "Mezclá los líquidos y agregá la fruta lavada. Conservá en frío y consumí en el día."
-            },
-            {
-              "heading": false,
-              "text": "Puede acompañar la comida después de entrenar; no reemplaza la proteína ni una comida de recuperación."
-            }
-          ],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-61-0.webp"
-          ]
-        },
-        {
-          "page": 62,
-          "title": "Coco, kiwi, limón y chía",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "AGUA CON INGREDIENTES"
-            },
-            {
-              "heading": false,
-              "text": "Ingredientes"
-            },
-            {
-              "heading": false,
-              "text": "200 ml de agua de coco sin azúcar añadida, 200 ml de agua, 1 kiwi, 1 rodaja de limón y 1 cucharadita de chía."
-            },
-            {
-              "heading": false,
-              "text": "Qué aporta"
-            },
-            {
-              "heading": false,
-              "text": "El kiwi aporta vitamina C. La chía aporta fibra y omega 3 vegetal si consumís también las semillas; el aporte de la fruta requiere comerla."
-            },
-            {
-              "heading": false,
-              "text": "Preparación"
-            },
-            {
-              "heading": false,
-              "text": "Lavá y cortá la fruta. Mezclá todo y dejá hidratar la chía al menos 20 minutos en frío."
-            },
-            {
-              "heading": false,
-              "text": "Su contenido de electrolitos varía: no equivale a una bebida deportiva formulada."
-            }
-          ],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-62-0.webp"
-          ]
-        },
-        {
-          "page": 63,
-          "title": "Chía, limón y menta",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "AGUA CON INGREDIENTES"
-            },
-            {
-              "heading": false,
-              "text": "Ingredientes"
-            },
-            {
-              "heading": false,
-              "text": "400 ml de agua, 1 cucharadita de chía, 2 rodajas de limón y 4 hojas de menta."
-            },
-            {
-              "heading": false,
-              "text": "Qué aporta"
-            },
-            {
-              "heading": false,
-              "text": "El agua hidrata. Al consumir las semillas, la chía suma fibra y ácido alfa-linolénico, un omega 3 vegetal."
-            },
-            {
-              "heading": false,
-              "text": "Preparación"
-            },
-            {
-              "heading": false,
-              "text": "Mezclá y dejá hidratar la chía al menos 20 minutos. Revolvé antes de tomar."
-            },
-            {
-              "heading": false,
-              "text": "No produce una hidratación especial ni sustituye una alimentación variada."
-            }
-          ],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-63-0.webp"
+            "/nutricion/alimentacion/bb914572cb-59-0.webp"
           ]
         },
         {
@@ -1885,7 +1596,177 @@
             }
           ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-64-0.webp"
+            "/nutricion/alimentacion/bb914572cb-64-0.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aguas",
+      "title": "Aguas con frutas, semillas y hierbas",
+      "items": [
+        {
+          "page": 60,
+          "title": "Frambuesa, limón y romero",
+          "blocks": [
+            {
+              "heading": false,
+              "text": "AGUA CON INGREDIENTES"
+            },
+            {
+              "heading": false,
+              "text": "Ingredientes"
+            },
+            {
+              "heading": false,
+              "text": "400 ml de agua, 60 g de frambuesas, 2 rodajas de limón y una ramita pequeña de romero."
+            },
+            {
+              "heading": false,
+              "text": "Qué aporta"
+            },
+            {
+              "heading": false,
+              "text": "Una opción para sumar líquido y sabor. Las frambuesas aportan fibra y compuestos vegetales si también comés la fruta."
+            },
+            {
+              "heading": false,
+              "text": "Preparación"
+            },
+            {
+              "heading": false,
+              "text": "Lavá los ingredientes, agregalos al agua y dejá reposar 30 minutos en la heladera."
+            },
+            {
+              "heading": false,
+              "text": "Beber solo el agua no aporta la misma fibra que comer la fruta."
+            }
+          ],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-60-0.webp"
+          ]
+        },
+        {
+          "page": 61,
+          "title": "Coco, sandía y lima",
+          "blocks": [
+            {
+              "heading": false,
+              "text": "AGUA CON INGREDIENTES"
+            },
+            {
+              "heading": false,
+              "text": "Ingredientes"
+            },
+            {
+              "heading": false,
+              "text": "200 ml de agua de coco sin azúcar añadida, 200 ml de agua, 80 g de sandía en cubos y 2 rodajas de lima."
+            },
+            {
+              "heading": false,
+              "text": "Qué aporta"
+            },
+            {
+              "heading": false,
+              "text": "Aporta líquido y algo de carbohidratos. El agua de coco contiene potasio; la cantidad depende del producto y la porción."
+            },
+            {
+              "heading": false,
+              "text": "Preparación"
+            },
+            {
+              "heading": false,
+              "text": "Mezclá los líquidos y agregá la fruta lavada. Conservá en frío y consumí en el día."
+            },
+            {
+              "heading": false,
+              "text": "Puede acompañar la comida después de entrenar; no reemplaza la proteína ni una comida de recuperación."
+            }
+          ],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-61-0.webp"
+          ]
+        },
+        {
+          "page": 62,
+          "title": "Coco, kiwi, limón y chía",
+          "blocks": [
+            {
+              "heading": false,
+              "text": "AGUA CON INGREDIENTES"
+            },
+            {
+              "heading": false,
+              "text": "Ingredientes"
+            },
+            {
+              "heading": false,
+              "text": "200 ml de agua de coco sin azúcar añadida, 200 ml de agua, 1 kiwi, 1 rodaja de limón y 1 cucharadita de chía."
+            },
+            {
+              "heading": false,
+              "text": "Qué aporta"
+            },
+            {
+              "heading": false,
+              "text": "El kiwi aporta vitamina C. La chía aporta fibra y omega 3 vegetal si consumís también las semillas; el aporte de la fruta requiere comerla."
+            },
+            {
+              "heading": false,
+              "text": "Preparación"
+            },
+            {
+              "heading": false,
+              "text": "Lavá y cortá la fruta. Mezclá todo y dejá hidratar la chía al menos 20 minutos en frío."
+            },
+            {
+              "heading": false,
+              "text": "Su contenido de electrolitos varía: no equivale a una bebida deportiva formulada."
+            }
+          ],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-62-0.webp"
+          ]
+        },
+        {
+          "page": 63,
+          "title": "Chía, limón y menta",
+          "blocks": [
+            {
+              "heading": false,
+              "text": "AGUA CON INGREDIENTES"
+            },
+            {
+              "heading": false,
+              "text": "Ingredientes"
+            },
+            {
+              "heading": false,
+              "text": "400 ml de agua, 1 cucharadita de chía, 2 rodajas de limón y 4 hojas de menta."
+            },
+            {
+              "heading": false,
+              "text": "Qué aporta"
+            },
+            {
+              "heading": false,
+              "text": "El agua hidrata. Al consumir las semillas, la chía suma fibra y ácido alfa-linolénico, un omega 3 vegetal."
+            },
+            {
+              "heading": false,
+              "text": "Preparación"
+            },
+            {
+              "heading": false,
+              "text": "Mezclá y dejá hidratar la chía al menos 20 minutos. Revolvé antes de tomar."
+            },
+            {
+              "heading": false,
+              "text": "No produce una hidratación especial ni sustituye una alimentación variada."
+            }
+          ],
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-63-0.webp"
           ]
         }
       ]
@@ -1896,361 +1777,133 @@
       "items": [
         {
           "page": 65,
-          "title": "Alimentación y salud hormonal",
+          "title": "Alimentación y hormonas en el hombre",
           "blocks": [
             {
-              "heading": false,
-              "text": "El aporte de la alimentación"
+              "heading": true,
+              "text": "Testosterona: apoyo nutricional"
             },
             {
               "heading": false,
-              "text": "Las hormonas participan en el metabolismo, el crecimiento y la reproducción. Comer suficiente y cubrir nutrientes ayuda al funcionamiento normal del cuerpo. Una dieta no permite decidir, por sí sola, qué hormona está alta o baja."
+              "text": "Carne magra, mariscos y semillas"
             },
             {
               "heading": false,
-              "text": "Tiroides: yodo y selenio"
+              "text": "Zinc: nutriente para la función hormonal normal."
+            },
+            {
+              "heading": true,
+              "text": "Testosterona y estradiol: nutrición suficiente"
             },
             {
               "heading": false,
-              "text": "Pescado, huevos, lácteos y pequeñas cantidades de sal yodada pueden aportar yodo. Pescado, huevos, carnes y cereales aportan selenio. Ambos nutrientes intervienen en la función tiroidea. Más cantidad no significa mejores resultados; evitá megadosis y algas concentradas sin indicación."
+              "text": "Palta, aceite de oliva y nueces"
             },
             {
               "heading": false,
-              "text": "Energía, descanso y recuperación"
+              "text": "Grasas insaturadas y energía."
+            },
+            {
+              "heading": true,
+              "text": "GH / IGF-1: crecimiento y mantenimiento"
             },
             {
               "heading": false,
-              "text": "Una restricción importante de comida junto con mucho ejercicio puede afectar la función reproductiva, especialmente el ciclo menstrual. No elimines grupos enteros de alimentos para intentar equilibrar hormonas."
+              "text": "Pescado, huevos, yogur y legumbres"
             },
             {
               "heading": false,
-              "text": "Ejemplos para el día"
+              "text": "Proteínas para mantener y reparar tejidos."
+            },
+            {
+              "heading": true,
+              "text": "T3 y T4: síntesis normal"
             },
             {
               "heading": false,
-              "text": "Yogur con avena y nueces; lentejas con verduras y huevo; pescado con papa y ensalada. Son combinaciones de carbohidratos, proteína, grasas y micronutrientes, no tratamientos hormonales."
+              "text": "Pescado, lácteos, huevos y sal yodada"
+            },
+            {
+              "heading": false,
+              "text": "Yodo para fabricar hormonas tiroideas; sal con moderación."
+            },
+            {
+              "heading": false,
+              "text": "Apoyo nutricional no significa aumento hormonal garantizado."
+            },
+            {
+              "heading": false,
+              "text": "NIH: zinc NIH: yodo Endocrine Society"
             }
           ],
-          "images": []
+          "images": [
+            "/nutricion/alimentacion/bb914572cb-65-0.webp"
+          ]
         },
         {
           "page": 66,
-          "title": "Lámina de alimentación y salud hormonal · 66",
-          "blocks": [],
+          "title": "Alimentación y hormonas en la mujer",
+          "blocks": [
+            {
+              "heading": true,
+              "text": "Estradiol y progesterona: apoyo al ciclo"
+            },
+            {
+              "heading": false,
+              "text": "Avena, arroz, papa, legumbres y palta"
+            },
+            {
+              "heading": false,
+              "text": "Energía suficiente para acompañar el ciclo."
+            },
+            {
+              "heading": true,
+              "text": "Testosterona: apoyo nutricional"
+            },
+            {
+              "heading": false,
+              "text": "Carne magra, mariscos y semillas"
+            },
+            {
+              "heading": false,
+              "text": "Zinc y proteínas dentro de una dieta variada."
+            },
+            {
+              "heading": true,
+              "text": "GH / IGF-1: crecimiento y mantenimiento"
+            },
+            {
+              "heading": false,
+              "text": "Pescado, huevos, yogur y legumbres"
+            },
+            {
+              "heading": false,
+              "text": "Proteínas para mantener y reparar tejidos."
+            },
+            {
+              "heading": true,
+              "text": "T3 y T4: síntesis normal"
+            },
+            {
+              "heading": false,
+              "text": "Pescado, lácteos, huevos y sal yodada"
+            },
+            {
+              "heading": false,
+              "text": "Yodo para fabricar hormonas tiroideas; sal con moderación."
+            },
+            {
+              "heading": false,
+              "text": "Apoyo nutricional no significa aumento hormonal garantizado."
+            },
+            {
+              "heading": false,
+              "text": "NIH: zinc NIH: yodo Endocrine Society"
+            }
+          ],
           "images": [
-            "/nutricion/alimentacion/1e1dd857f4-66-0.webp"
+            "/nutricion/alimentacion/bb914572cb-66-0.webp"
           ]
-        },
-        {
-          "page": 67,
-          "title": "Mujeres: distintas etapas, distintos cuidados",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Menstruación"
-            },
-            {
-              "heading": false,
-              "text": "Carne magra, lentejas, garbanzos y otros alimentos con hierro ayudan a cubrir las necesidades. Combiná legumbres con morrón, tomate o cítricos: la vitamina C facilita la absorción del hierro vegetal. Sangrados muy abundantes o cansancio persistente requieren valoración."
-            },
-            {
-              "heading": false,
-              "text": "Planificación de embarazo"
-            },
-            {
-              "heading": false,
-              "text": "Espinaca, legumbres, palta y alimentos fortificados aportan folato. Si podés quedar embarazada, se recomienda ácido fólico además del folato de los alimentos; la indicación y dosis deben ajustarse con el equipo de salud."
-            },
-            {
-              "heading": false,
-              "text": "Embarazo y lactancia"
-            },
-            {
-              "heading": false,
-              "text": "Las necesidades nutricionales cambian. Conviene organizar energía suficiente, proteína y fuentes de hierro, yodo y calcio. Una guía general no sustituye una planificación para esta etapa."
-            },
-            {
-              "heading": false,
-              "text": "Perimenopausia y menopausia"
-            },
-            {
-              "heading": false,
-              "text": "Yogur, leche y alternativas fortificadas aportan calcio; pescado, huevos, tofu y legumbres ayudan a cubrir proteína. Cuidá los huesos con alimentación y ejercicio de fuerza. No hace falta prometer que un alimento suba el estrógeno para que sea útil."
-            }
-          ],
-          "images": []
-        },
-        {
-          "page": 68,
-          "title": "Lámina de alimentación y salud hormonal · 68",
-          "blocks": [],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-68-0.webp"
-          ]
-        },
-        {
-          "page": 69,
-          "title": "Hombres: nutrientes y hábitos que suman",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Zinc"
-            },
-            {
-              "heading": false,
-              "text": "Carne, mariscos, lácteos, legumbres y semillas aportan zinc. Participa en muchas funciones del cuerpo, incluida la reproducción. Corregir una carencia es distinto de tomar zinc para subir testosterona."
-            },
-            {
-              "heading": false,
-              "text": "Selenio"
-            },
-            {
-              "heading": false,
-              "text": "Pescado, huevos y otros alimentos proteicos aportan selenio. Es importante para la tiroides y la reproducción. Los suplementos no garantizan mejorar la fertilidad cuando ya se cubren las necesidades."
-            },
-            {
-              "heading": false,
-              "text": "El conjunto de la dieta"
-            },
-            {
-              "heading": false,
-              "text": "Combiná proteína, carbohidratos y grasas; evitá vivir con dietas extremas. Aceite de oliva, palta y frutos secos permiten incorporar grasas insaturadas, mientras cereales y legumbres sostienen la variedad."
-            },
-            {
-              "heading": false,
-              "text": "Cómo interpretar los ejemplos"
-            },
-            {
-              "heading": false,
-              "text": "Ningún alimento de estas páginas garantiza aumentar testosterona o corregir una alteración hormonal. Si hay síntomas persistentes, la evaluación clínica y los análisis orientan qué corresponde hacer."
-            }
-          ],
-          "images": []
-        },
-        {
-          "page": 70,
-          "title": "Hombres: qué hormonas intervienen",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Testosterona: señal y producción"
-            },
-            {
-              "heading": false,
-              "text": "La LH, liberada por la hipófisis, estimula a los testículos para producir testosterona. Esta participa en la función sexual, la masa muscular y la salud ósea. Un alimento no activa por sí solo este circuito."
-            },
-            {
-              "heading": false,
-              "text": "FSH: fertilidad"
-            },
-            {
-              "heading": false,
-              "text": "La FSH, junto con la testosterona dentro del testículo, participa en la producción de espermatozoides. Tener más testosterona en sangre no garantiza mayor fertilidad."
-            },
-            {
-              "heading": false,
-              "text": "Estradiol: también es importante"
-            },
-            {
-              "heading": false,
-              "text": "Parte de la testosterona se transforma en estradiol. En el hombre contribuye a la salud ósea y sexual; reducirlo indiscriminadamente no mejora la salud hormonal."
-            },
-            {
-              "heading": false,
-              "text": "Qué podés favorecer con tus hábitos"
-            },
-            {
-              "heading": false,
-              "text": "Comé suficiente para tu actividad; incluí proteínas, carbohidratos y grasas variadas. Dormí bien, entrená con recuperación y limitá el alcohol. El exceso de peso y algunos trastornos del sueño pueden asociarse a testosterona baja."
-            },
-            {
-              "heading": false,
-              "text": "Cuándo evaluar"
-            },
-            {
-              "heading": false,
-              "text": "Si persisten baja libido, dificultades sexuales o cansancio, consultá. El diagnóstico de déficit de testosterona requiere síntomas y mediciones adecuadas; ningún menú sustituye esa evaluación."
-            }
-          ],
-          "images": []
-        },
-        {
-          "page": 71,
-          "title": "Mujeres: ciclo y señales hormonales",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "FSH y LH: coordinar el ciclo"
-            },
-            {
-              "heading": false,
-              "text": "La FSH favorece el desarrollo de los folículos ováricos. El aumento de LH desencadena la ovulación y favorece la formación del cuerpo lúteo. Estas señales cambian durante el ciclo."
-            },
-            {
-              "heading": false,
-              "text": "Estradiol: reproducción y huesos"
-            },
-            {
-              "heading": false,
-              "text": "El estradiol interviene en el ciclo menstrual y en la salud ósea. Sus niveles cambian con la edad y la etapa reproductiva; no se busca elevarlos sin evaluar la situación."
-            },
-            {
-              "heading": false,
-              "text": "Progesterona: después de ovular"
-            },
-            {
-              "heading": false,
-              "text": "La produce principalmente el cuerpo lúteo después de la ovulación y prepara el endometrio. Comer una semilla o una infusión no garantiza aumentar la progesterona ni corregir un ciclo irregular."
-            },
-            {
-              "heading": false,
-              "text": "Energía suficiente para el cuerpo"
-            },
-            {
-              "heading": false,
-              "text": "Comer menos de lo necesario de forma sostenida, especialmente con mucho ejercicio, puede alterar las señales del ciclo. Recuperar una disponibilidad energética adecuada es parte del tratamiento de la amenorrea hipotalámica, tras evaluar otras causas."
-            },
-            {
-              "heading": false,
-              "text": "Una base práctica"
-            },
-            {
-              "heading": false,
-              "text": "Repartí carbohidratos, proteínas y grasas; añadí verduras, fruta y alimentos con hierro y calcio. Si la menstruación desaparece, cambia mucho o aparecen síntomas persistentes, consultá para conocer la causa."
-            }
-          ],
-          "images": []
-        },
-        {
-          "page": 72,
-          "title": "Otras hormonas que también cuentan",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Insulina: utilizar la energía"
-            },
-            {
-              "heading": false,
-              "text": "Ayuda a que las células utilicen y almacenen la glucosa. El objetivo es una respuesta adecuada, no producir más insulina. Comidas con fibra, actividad física y una alimentación acorde a las necesidades favorecen la salud metabólica."
-            },
-            {
-              "heading": false,
-              "text": "Tiroides: T3 y T4"
-            },
-            {
-              "heading": false,
-              "text": "Estas hormonas participan en el metabolismo. El yodo es necesario para fabricarlas: lo aportan pescado, lácteos, huevos y sal yodada usada con moderación. El exceso de yodo también puede perjudicar la tiroides."
-            },
-            {
-              "heading": false,
-              "text": "Cortisol: respuesta al estrés"
-            },
-            {
-              "heading": false,
-              "text": "Es necesario para responder al estrés y regular procesos del cuerpo. No se trata de eliminarlo: cuidá el descanso, la recuperación y las rutinas. Un té no trata un trastorno del cortisol."
-            },
-            {
-              "heading": false,
-              "text": "Nutrientes, no promesas"
-            },
-            {
-              "heading": false,
-              "text": "Combiná huevos o pescado, legumbres, carnes magras, lácteos o alternativas adecuadas, frutos secos y vegetales. Cubrir necesidades nutricionales ayuda al funcionamiento normal; tomar más suplementos no asegura producir más hormonas."
-            },
-            {
-              "heading": false,
-              "text": "La idea central"
-            },
-            {
-              "heading": false,
-              "text": "La salud hormonal consiste en tener señales apropiadas para la etapa de vida y las necesidades del cuerpo. No significa aumentar todas las hormonas. La alimentación acompaña; los trastornos hormonales necesitan evaluación específica."
-            }
-          ],
-          "images": []
-        }
-      ]
-    },
-    {
-      "id": "antojos",
-      "title": "Antojos y postres",
-      "items": [
-        {
-          "page": 73,
-          "title": "Antojos: interpretar antes de reemplazar",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Hambre y antojo"
-            },
-            {
-              "heading": false,
-              "text": "El hambre suele admitir distintos alimentos; un antojo se centra en algo específico. Pueden coincidir. Antes de responder, fijate cuándo comiste, cómo descansaste y si hay aburrimiento, estrés o una costumbre de por medio."
-            },
-            {
-              "heading": false,
-              "text": "Lo que no se puede diagnosticar"
-            },
-            {
-              "heading": false,
-              "text": "Querer azúcar no demuestra falta de proteína. Querer chocolate no confirma falta de magnesio. Querer sal no prueba falta de electrolitos. Los antojos no son un análisis de nutrientes."
-            },
-            {
-              "heading": false,
-              "text": "Si tenés hambre"
-            },
-            {
-              "heading": false,
-              "text": "Elegí una comida o merienda que combine una fuente de carbohidratos, proteína y, cuando corresponda, fruta o verduras. No hace falta quitar todos los carbohidratos."
-            },
-            {
-              "heading": false,
-              "text": "Si querés disfrutar algo puntual"
-            },
-            {
-              "heading": false,
-              "text": "Podés servir una porción del alimento que te gusta y comerla con atención. Las opciones de la siguiente lámina ayudan a combinar; no son obligaciones ni remedios para una carencia."
-            }
-          ],
-          "images": []
-        },
-        {
-          "page": 74,
-          "title": "Lámina de antojos y postres · 74",
-          "blocks": [],
-          "images": [
-            "/nutricion/alimentacion/1e1dd857f4-74-0.webp"
-          ]
-        },
-        {
-          "page": 75,
-          "title": "Postres y antojos en una alimentación flexible",
-          "blocks": [
-            {
-              "heading": false,
-              "text": "Sin todo o nada"
-            },
-            {
-              "heading": false,
-              "text": "Un postre no arruina el día. Elegí uno que disfrutes, serví una cantidad cómoda y seguí con tus comidas habituales."
-            },
-            {
-              "heading": false,
-              "text": "Opciones que también nutren"
-            },
-            {
-              "heading": false,
-              "text": "Yogur con fruta y nueces, manzana horneada con canela, ricota con cacao o las meriendas de este recetario. Podés elegir según gusto, hambre y disponibilidad."
-            },
-            {
-              "heading": false,
-              "text": "Cuándo pedir ayuda"
-            },
-            {
-              "heading": false,
-              "text": "Si se repiten atracones, culpa intensa o restricciones para compensar, conviene buscar acompañamiento. La solución no consiste en prohibir más alimentos."
-            }
-          ],
-          "images": []
         }
       ]
     }

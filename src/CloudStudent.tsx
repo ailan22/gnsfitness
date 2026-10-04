@@ -188,7 +188,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           <p className="student-progress">Bloque {progress.block}{detail?.name ? ` · ${detail.name}` : ''} · Semana {globalWeek} de {routine.program_rounds}</p>
           {progress.last && <p className="muted">Último día registrado: Día {progress.last.day} · {progress.last.performed_at}</p>}
           {!progress.finished && isTestDay && <div className="actions student-start"><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => begin()}>{recording ? isTestDay ? 'Continuar mi prueba' : 'Continuar mi entrenamiento' : isTestDay ? 'Empezar prueba' : 'Empezar entrenamiento'}</button><span className="muted">{isTestDay && !exercises.length ? 'Evaluación programada' : `${exercises.length} ${exercises.length === 1 ? 'ejercicio' : 'ejercicios'}`}{recording ? ' · En curso' : ''}</span></div>}
-          {detail?.warmup && <div className="block-note"><strong>Calentamiento del bloque</strong><p>{detail.warmup}</p></div>}
+          {detail?.warmup && <div className="block-note student-warmup"><strong>Calentamiento del bloque</strong><p>{detail.warmup}</p></div>}
           {progress.finished ? <p>Consultá con tu entrenador antes de iniciar un programa nuevo.</p> : <>
             {exercises.length ? <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={`${globalWeek}-${progress.nextDay}-${item.id}`}>
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}
@@ -216,7 +216,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           </fieldset>}
         </form>
         <details className="student-plan-details"><summary>Ver mi planificación completa</summary><h2 className="student-program-title">Tu planificación · Bloque {progress.block}</h2>
-        {detail?.warmup && <section className="card block-note"><h3>Calentamiento específico del bloque</h3><p>{detail.warmup}</p></section>}
+        {detail?.warmup && <section className="card block-note student-warmup"><h3>Calentamiento específico del bloque</h3><p>{detail.warmup}</p></section>}
         {Array.from({ length: blockWeeks }, (_, index) => index + 1).map(week => <section className="program-week" key={week}>
           <h3>Semana {(progress.block - 1) * routine.block_rounds + week} · Bloque {progress.block}{week === progress.week ? ' · Actual' : ''}</h3>
           <div className="student-program">{Array.from({ length: routine.days_per_week }, (_, index) => index + 1).map(day => {

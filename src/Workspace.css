@@ -578,3 +578,18 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 .app:has(.cloud-student) .brand-title > span { text-shadow: none; }
 .app:has(.cloud-student) .brand-motto { color: #ffffff; font-weight: 650; }
+
+/* Student titles share the gold accent; exercise and warm-up content stays white. */
+.app:has(.cloud-student) .brand-title,
+.app:has(.cloud-student) .brand-title > span,
+.app:has(.cloud-student) .brand-motto,
+.app .cloud-student .student-home-menu nav button,
+.app .cloud-student:not(:has(.student-home-menu)) :is(h1, h2, h3, h4, summary),
+.app .cloud-student:not(:has(.student-home-menu)) :is(h1, h2, h3, h4, summary) *,
+.app:has(.cloud-student) .biometric-settings summary {
+  color: var(--student-gold);
+}
+.app .cloud-student:not(:has(.student-home-menu)) .student-warmup,
+.app .cloud-student:not(:has(.student-home-menu)) .student-warmup * {
+  color: #f4f3ee;
+}

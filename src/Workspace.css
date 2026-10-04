@@ -593,3 +593,35 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .app .cloud-student:not(:has(.student-home-menu)) .student-warmup * {
   color: #f4f3ee;
 }
+
+/* Approved palette: administrator charcoal, gold frames and white menu labels. */
+.app:has(.cloud-student) {
+  --student-gold: #dfb960;
+  --student-gold-line: #aa8d4b;
+  background: #10110f;
+}
+.app:has(.cloud-student) .brand-title > span,
+.app .cloud-student .student-home-menu nav button,
+.app:has(.cloud-student) .biometric-settings summary {
+  color: #f4f3ee;
+}
+.app .cloud-student .student-home-menu nav {
+  background: #101212;
+  border-color: var(--student-gold-line);
+}
+.app .cloud-student .student-home-menu nav button {
+  background: #171919;
+  border-color: var(--student-gold-line);
+}
+.app .cloud-student:not(:has(.student-home-menu)) :is(.card, .student-exercise, .student-test, .session-guidance, .block-note) {
+  background: #1c1d19;
+  border-color: var(--student-gold-line);
+}
+.app .cloud-student:not(:has(.student-home-menu)) :is(button, input, textarea, select) {
+  background: #171919;
+  color: #f4f3ee;
+  border-color: var(--student-gold-line);
+}
+.app .cloud-student:not(:has(.student-home-menu)) .eyebrow {
+  color: var(--student-gold);
+}

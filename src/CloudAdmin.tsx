@@ -4,6 +4,7 @@ import PlanNotifications from './PlanNotifications'
 import AdminRecipeLibrary from './AdminRecipeLibrary'
 import AdminFoodGuide from './AdminFoodGuide'
 import PersonalNutrition from './PersonalNutrition'
+import NutritionMaterials from './NutritionMaterials'
 import BackupPanel from './BackupPanel'
 import PhysioDirectory from './PhysioDirectory'
 import { ServiceNotifications } from './StudentWellbeing'
@@ -43,7 +44,7 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
       {section === 'people' && <CloudMembers client={client} onCountChange={countChanged} initialNew={newPerson} initialMemberId={memberId || null} onDirtyChange={setDirty}/>}
       {section === 'physio' && <PhysioDirectory client={client} onOpen={id => navigate('people', id)}/>} 
       {section === 'holistic' && <HolisticSchedule client={client} onOpen={id=>navigate('people',id)}/>}
-      {section === 'nutrition' && <><PersonalNutrition client={client} onDirtyChange={setDirty}/><ServiceNotifications client={client}/><AdminFoodGuide/><AdminRecipeLibrary/></>}
+      {section === 'nutrition' && <><NutritionMaterials client={client}/><ServiceNotifications client={client}/><PersonalNutrition client={client} onDirtyChange={setDirty}/><AdminFoodGuide/><AdminRecipeLibrary/></>}
       {section === 'overview' && <><AccountPrivacy client={client} admin/><BackupPanel client={client}/></>}
     </Suspense></div>
   </div>

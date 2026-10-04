@@ -26,7 +26,6 @@ export default function NutritionMaterials({ client }: { client: SupabaseClient 
   useEffect(() => {
     if (!open) return
     let active = true
-    setLoading(true); setError('')
     void readAllPages((a, b) => client.from('members').select('id,first_name,last_name,user_id', { count: 'exact' }).order('last_name').order('id').range(a, b))
       .then(result => { if (!active) return; if (result.error) throw result.error; setPeople(result.data as Person[]) })
       .catch(() => { if (active) setError('No se pudo cargar la lista de socios. Volvé a intentar.') })
@@ -44,7 +43,7 @@ export default function NutritionMaterials({ client }: { client: SupabaseClient 
     } catch { setError('No se pudo confirmar el envío. Podés reintentar: no se duplican las guías.') }
     finally { setBusy(false) }
   }
-  return <details className="card nutrition-materials" onToggle={event => setOpen(event.currentTarget.open)}>
+  return <details className="card nutrition-materials" onToggle={event => { setOpen(event.currentTarget.open); setLoading(event.currentTarget.open); setError('') }}>
     <summary><strong>Enviar guías de alimentación al alumno</strong></summary>
     {open && <>
       <p>Habilitá los materiales ya preparados, sin completar la calculadora.</p>
@@ -56,7 +55,7 @@ export default function NutritionMaterials({ client }: { client: SupabaseClient 
       {loading && <p role="status">Cargando socios…</p>}
       {person && !person.user_id && <p>Primero vinculá la cuenta del alumno desde su ficha en Socios.</p>}
       <div className="actions"><button type="button" disabled={busy || loading || !person?.user_id} onClick={() => void send()}>{busy ? 'Enviando…' : 'Enviar guías al panel del alumno'}</button>
-        <button type="button" className="secondary" disabled={busy || loading} onClick={() => setRevision(value => value + 1)}>Actualizar socios</button></div>
+        <button type="button" className="secondary" disabled={busy || loading} onClick={() => { setLoading(true); setError(''); setRevision(value => value + 1) }}>Actualizar socios</button></div>
       <p className="muted">Habilita el acceso a Nutrición; no registra un pago. Podés retirarlo desde Solicitudes de Nutrición.</p>
       {error && <p role="alert" className="error">{error}</p>}{message && <p role="status">{message}</p>}
     </>}

@@ -625,3 +625,41 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .app .cloud-student:not(:has(.student-home-menu)) .eyebrow {
   color: var(--student-gold);
 }
+
+/* Approved administrator palette: warm gold with white information. */
+.app.app-admin { background: #10110f; color: #dfb960; }
+.app-admin .brand-title, .app-admin .brand-motto,
+.app-admin :is(h1, h2, h3, summary, .eyebrow, .tag),
+.app-admin .stats strong, .app-admin .stats strong.red, .app-admin .workspace-shortcuts strong {
+  color: #dfb960;
+}
+.app-admin .brand-title > span,
+.app-admin .cloud-dashboard > .muted,
+.app-admin .dashboard-primary :is(span, small),
+.app-admin .workspace-shortcuts small,
+.app-admin .dashboard-details :is(p, ul, li, span, strong, small) {
+  color: #f4f3ee;
+}
+.app-admin :is(.card, .workspace-nav, .plan-notifications) {
+  background: #1c1d19;
+  border-color: #aa8d4b;
+}
+.app-admin .workspace-sidebar nav {
+  background: #101212;
+  border: 1px solid #aa8d4b;
+  border-radius: 17px;
+  padding: 14px;
+  gap: 12px;
+}
+.app-admin .workspace-nav {
+  color: #dfb960;
+  background: #171919;
+}
+.app-admin .workspace-nav.active {
+  box-shadow: inset 0 -3px #dfb960;
+  color: #dfb960;
+  border-color: #aa8d4b;
+}
+.app-admin .botanical-right { right: 6px; top: 5px; transform: rotate(180deg); }
+.app-admin .botanical-left { left: 0; bottom: 5px; }
+.app-admin .botanical-branch { opacity: .23; }

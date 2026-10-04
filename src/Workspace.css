@@ -512,7 +512,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 }
 
 /* Match the approved 2A composition, not only its palette. */
-.app:has(.student-home-menu) { background: #142018; }
+.app:has(.student-home-menu) { background: #101a13; }
 .app:has(.student-home-menu) .topbar {
   height: clamp(100px, 15svh, 135px); min-height: 0;
   padding: 24px 16px 16px;
@@ -566,6 +566,10 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .app:has(.student-home-menu) .topbar .tag { display: none; }
 .app .cloud-student:not(:has(.student-home-menu)),
 .app .cloud-student:not(:has(.student-home-menu)) * { color: #f4f3ee; }
+.app .cloud-student:not(:has(.student-home-menu)) .student-today > h2,
+.app .cloud-student:not(:has(.student-home-menu)) .student-day > h4 {
+  color: var(--student-gold);
+}
 
 /* Restrained gold sheen and a crisp white motto. */
 .app:has(.cloud-student) .brand-title,

@@ -663,3 +663,21 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .app-admin .botanical-right { right: 6px; top: 5px; transform: rotate(180deg); }
 .app-admin .botanical-left { left: 0; bottom: 5px; }
 .app-admin .botanical-branch { opacity: .23; }
+
+/* Approved student branding: metallic gold with white FITNESS and SOUL. */
+.app:has(.cloud-student) .brand-title,
+.app .cloud-student .student-brand-signature {
+  color: #dfb960;
+  text-shadow: none;
+  background: linear-gradient(174deg, #f7e8bb 4%, #e2bd68 30%, #bc9147 45%, #fff0c6 53%, #e0b760 64%, #c39c50 92%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.app:has(.cloud-student) .brand-motto { color: #e5c477; text-shadow: none; }
+.app:has(.cloud-student) .brand-title > span,
+.app .cloud-student .student-brand-signature .signature-white {
+  color: #f4f3ee;
+  -webkit-text-fill-color: #f4f3ee;
+}
+.app .cloud-student .student-brand-signature { font-weight: 900; }

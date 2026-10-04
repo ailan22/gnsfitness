@@ -167,7 +167,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           <button type="button" onClick={() => selectSection('nutrition')}>ALIMENTACIÓN SALUDABLE</button>
           <button type="button" onClick={() => selectSection('method')}>MÉTODO GNS</button>
           <button type="button" onClick={() => selectSection('results')}>RESULTADOS DEL PROGRAMA</button>
-        </nav><p className="student-brand-signature">GYM NATURE SOUL</p></div>}
+        </nav><p className="student-brand-signature"><span>GYM NATURE <span className="signature-white">SOUL</span></span></p></div>}
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
       <h1 hidden={section === 'home'}>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
       <p hidden={section === 'home'} className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : section === 'training' ? 'Tu entrenamiento, paso a paso.' : section === 'method' ? 'Movimiento, constancia y acompañamiento.' : 'Los cambios observados en tu proceso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>

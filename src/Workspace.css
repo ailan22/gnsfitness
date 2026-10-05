@@ -721,3 +721,45 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 /* Final home spacing and an entirely gold signature. */
 .app .cloud-student .student-home-menu nav { padding-top: 24px; }
 .app .cloud-student .student-brand-signature { background: none; color: #dfb960; -webkit-text-fill-color: #dfb960; }
+
+/* Approved metallic finish. The original green foliage in the logo stays untouched. */
+.app:has(.cloud-student) {
+  --student-metallic: linear-gradient(174deg, #f7e8bb 4%, #e2bd68 30%, #bc9147 45%, #fff0c6 53%, #e0b760 64%, #c39c50 92%);
+}
+.app:has(.student-home-menu) .brand { font-size: clamp(25px, 8.1vw, 34px); }
+.app:has(.cloud-student) :is(.brand-title, .brand-motto),
+.app .cloud-student :is(.student-space-label > span, .student-home-menu nav button > span, .student-brand-signature > span) {
+  color: #dfb960;
+  background-image: var(--student-metallic);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+.app:has(.cloud-student) .brand-title > span {
+  color: #deddd7;
+  -webkit-text-fill-color: #deddd7;
+  font-size: 1.04em;
+}
+.app .cloud-student .student-home-menu nav button {
+  border: 1px solid transparent;
+  background: linear-gradient(120deg, #171919, #101212) padding-box, var(--student-metallic) border-box;
+}
+.app .cloud-student .student-home-menu nav button:focus-visible {
+  outline: 2px solid #f7e8bb;
+  outline-offset: 3px;
+}
+.app .cloud-student .plan-notifications > summary .badge {
+  border: 1px solid transparent;
+  background: linear-gradient(#10110f, #10110f) padding-box, var(--student-metallic) border-box;
+  color: #deddd7;
+  font-size: 13px;
+}
+.app .cloud-student .plan-notifications > summary::marker { color: #e2bd68; }
+.app:has(.cloud-student) .biometric-settings { font-size: 14px; }
+.app:has(.cloud-student) .account-legal { font-size: 13px; }
+@media (max-width: 600px) {
+  .app .cloud-student:not(:has(.student-home-menu)) { font-size: 15px; }
+  .app .cloud-student .exercise-inline-fields label { font-size: 14px; }
+  .app .cloud-student :is(input, select, textarea) { font-size: 17px; }
+}

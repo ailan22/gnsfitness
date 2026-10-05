@@ -726,6 +726,14 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .app:has(.cloud-student) {
   --student-metallic: linear-gradient(174deg, #f7e8bb 4%, #e2bd68 30%, #bc9147 45%, #fff0c6 53%, #e0b760 64%, #c39c50 92%);
 }
+
+/* Slightly quieter reflections, without dimming labels or changing the logo. */
+.app .cloud-student .student-home-menu nav {
+  --student-metallic: linear-gradient(174deg, #eddfb5 4%, #dfba66 30%, #bc9147 45%, #f0e2bc 53%, #dcb45e 64%, #c39c50 92%);
+}
+.app .cloud-student .student-brand-signature {
+  --student-metallic: linear-gradient(174deg, #e6d8af 4%, #d6b362 30%, #b68e46 45%, #e9dbb5 53%, #d5ae5b 64%, #bd984e 92%);
+}
 .app:has(.student-home-menu) .brand { font-size: clamp(25px, 8.1vw, 34px); }
 .app:has(.cloud-student) :is(.brand-title, .brand-motto),
 .app .cloud-student :is(.student-space-label > span, .student-home-menu nav button > span, .student-brand-signature > span) {

@@ -4,59 +4,80 @@ import { readAllPages } from './readAllPages'
 
 const FoodGuide = lazy(() => import('./AdminFoodGuide'))
 const RecipeLibrary = lazy(() => import('./AdminRecipeLibrary'))
+const guides = [{ id: 'food', title: 'GNS · Alimentación saludable' }, { id: 'recipes', title: 'Recetario GNS' }]
 type Person = { id: string; first_name: string; last_name: string; user_id: string | null }
+type Access = { member_id: string; status: string; nutrition_guides: string[] }
 
-export function StudentNutritionMaterials() {
+export function StudentNutritionMaterials({ assigned = [] }: { assigned?: string[] }) {
+  if (!assigned.some(id => guides.some(guide => guide.id === id))) return null
   return <section className="nutrition-materials" aria-label="Guías de alimentación habilitadas">
     <h2>Mis guías de alimentación</h2>
-    <p>Consultá las guías del gimnasio por secciones.</p>
-    <Suspense fallback={<p role="status">Cargando guías…</p>}><FoodGuide/><RecipeLibrary/></Suspense>
+    <p>Estas son las guías que el administrador habilitó para vos.</p>
+    <Suspense fallback={<p role="status">Cargando guías…</p>}>{assigned.includes('food') && <FoodGuide/>}{assigned.includes('recipes') && <RecipeLibrary/>}</Suspense>
   </section>
 }
 
 export default function NutritionMaterials({ client }: { client: SupabaseClient }) {
   const [people, setPeople] = useState<Person[]>([])
+  const [access, setAccess] = useState<Access[]>([])
   const [member, setMember] = useState('')
+  const [selected, setSelected] = useState<string[] | null>(null)
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [loadFailed, setLoadFailed] = useState(false)
   const [message, setMessage] = useState('')
   const [revision, setRevision] = useState(0)
   useEffect(() => {
     if (!open) return
     let active = true
-    void readAllPages((a, b) => client.from('members').select('id,first_name,last_name,user_id', { count: 'exact' }).order('last_name').order('id').range(a, b))
-      .then(result => { if (!active) return; if (result.error) throw result.error; setPeople(result.data as Person[]) })
-      .catch(() => { if (active) setError('No se pudo cargar la lista de socios. Volvé a intentar.') })
+    void Promise.all([
+      readAllPages((a, b) => client.from('members').select('id,first_name,last_name,user_id', { count: 'exact' }).order('last_name').order('id').range(a, b)),
+      readAllPages((a, b) => client.from('service_requests').select('member_id,status,nutrition_guides', { count: 'exact' }).eq('service', 'nutrition').order('id').range(a, b)),
+    ]).then(([members, requests]) => {
+      if (!active) return
+      if (members.error || requests.error) throw members.error || requests.error
+      setPeople(members.data as Person[]); setAccess(requests.data as Access[]); setLoadFailed(false)
+    }).catch(() => { if (active) { setLoadFailed(true); setError('No se pudieron cargar las asignaciones. Actualizá antes de enviar.') } })
       .finally(() => { if (active) setLoading(false) })
     return () => { active = false }
   }, [client, open, revision])
   const person = people.find(item => item.id === member)
+  const request = access.find(item => item.member_id === member)
+  const saved = request?.nutrition_guides ?? []
+  const chosen = selected ?? saved
+  const eligible = request?.status === 'pending' || request?.status === 'enabled'
   async function send() {
-    if (busy || loading || !person?.user_id) return
+    if (busy || loading || loadFailed || !person?.user_id || !eligible) return
     setBusy(true); setError(''); setMessage('')
     try {
-      const result = await client.rpc('enable_personal_nutrition', { p_member: person.id })
+      const result = await client.rpc('assign_nutrition_guides', { p_member: person.id, p_guides: chosen, p_expected: saved })
       if (result.error) throw result.error
-      setMessage(`Guías habilitadas para ${person.first_name} ${person.last_name}. Puede verlas en Alimentación saludable. Su dieta personalizada no se modificó.`)
-    } catch { setError('No se pudo confirmar el envío. Podés reintentar: no se duplican las guías.') }
+      const next = [...chosen].sort()
+      setAccess(rows => rows.map(row => row.member_id === member ? { ...row, nutrition_guides: next, status: next.length ? 'enabled' : row.status } : row)); setSelected(null)
+      setMessage(next.length ? `Selección guardada para ${person.first_name}: ${guides.filter(g => next.includes(g.id)).map(g => g.title).join(' y ')}.` : `Se retiraron las guías de ${person.first_name}. Su dieta personalizada no se modificó.`)
+    } catch { setError('No se pudo guardar. Actualizá las asignaciones y revisá la selección antes de reintentar.') }
     finally { setBusy(false) }
   }
-  return <details className="card nutrition-materials" onToggle={event => { setOpen(event.currentTarget.open); setLoading(event.currentTarget.open); setError('') }}>
+  return <details className="card nutrition-materials" onToggle={event => { setOpen(event.currentTarget.open); setLoading(event.currentTarget.open); setSelected(null); setError('') }}>
     <summary><strong>Enviar guías de alimentación al alumno</strong></summary>
     {open && <>
-      <p>Habilitá los materiales ya preparados, sin completar la calculadora.</p>
-      <p>Incluye <strong>GNS · Alimentación saludable</strong> y <strong>Recetario GNS</strong>. Se consultan dentro de la app, sin botón de descarga.</p>
-      <label>Alumno destinatario<select value={member} disabled={busy || loading} onChange={event => { setMember(event.target.value); setMessage(''); setError('') }}>
+      <p>Después de su solicitud, elegí qué guías habilitarle. La calculadora y la dieta personalizada se gestionan por separado.</p>
+      <label>Alumno destinatario<select value={member} disabled={busy || loading} onChange={event => { setMember(event.target.value); setSelected(null); setMessage(''); setError('') }}>
         <option value="">Seleccioná un socio</option>
         {people.map(item => <option key={item.id} value={item.id}>{item.last_name}, {item.first_name}</option>)}
       </select></label>
-      {loading && <p role="status">Cargando socios…</p>}
+      {loading && <p role="status">Cargando asignaciones…</p>}
       {person && !person.user_id && <p>Primero vinculá la cuenta del alumno desde su ficha en Socios.</p>}
-      <div className="actions"><button type="button" disabled={busy || loading || !person?.user_id} onClick={() => void send()}>{busy ? 'Enviando…' : 'Enviar guías al panel del alumno'}</button>
-        <button type="button" className="secondary" disabled={busy || loading} onClick={() => { setLoading(true); setError(''); setRevision(value => value + 1) }}>Actualizar socios</button></div>
-      <p className="muted">Habilita el acceso a Nutrición; no registra un pago. Podés retirarlo desde Solicitudes de Nutrición.</p>
+      {person?.user_id && !eligible && !loading && <p>El alumno todavía no tiene una solicitud pendiente o un acceso habilitado. Debe solicitar Nutrición desde Alimentación saludable.</p>}
+      {person && eligible && <fieldset className="nutrition-guide-choices" disabled={busy || loading || loadFailed}>
+        <legend>Guías para este alumno</legend>
+        {guides.map(guide => <label key={guide.id}><input type="checkbox" checked={chosen.includes(guide.id)} onChange={event => { setSelected(event.target.checked ? [...chosen, guide.id] : chosen.filter(id => id !== guide.id)); setMessage('') }}/><span>{guide.title}</span></label>)}
+      </fieldset>}
+      <div className="actions"><button type="button" disabled={busy || loading || loadFailed || !person?.user_id || !eligible} onClick={() => void send()}>{busy ? 'Guardando…' : 'Guardar guías seleccionadas'}</button>
+        <button type="button" className="secondary" disabled={busy || loading} onClick={() => { setLoading(true); setSelected(null); setError(''); setRevision(value => value + 1) }}>Actualizar asignaciones</button></div>
+      <p className="muted">Solo verá las guías marcadas. Para retirar una, desmarcala y guardá. No modifica su dieta ni registra pagos.</p>
       {error && <p role="alert" className="error">{error}</p>}{message && <p role="status">{message}</p>}
     </>}
   </details>

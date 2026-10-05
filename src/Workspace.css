@@ -681,3 +681,21 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   -webkit-text-fill-color: #f4f3ee;
 }
 .app .cloud-student .student-brand-signature { font-weight: 900; }
+
+/* Same restrained metallic finish as the student brand. Keep white data intact. */
+.app-admin .brand-title,
+.app-admin :is(h1, h2, h3, .eyebrow),
+.app-admin .workspace-nav > span,
+.app-admin .workspace-shortcuts strong,
+.app-admin summary > strong {
+  color: #dfb960;
+  text-shadow: none;
+  background-image: linear-gradient(174deg, #f7e8bb 4%, #e2bd68 30%, #bc9147 45%, #fff0c6 53%, #e0b760 64%, #c39c50 92%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.app-admin .brand-title > span { color: #f4f3ee; -webkit-text-fill-color: #f4f3ee; }
+.nutrition-guide-choices { margin: 20px 0; border: 1px solid #aa8d4b; border-radius: 12px; padding: 16px; display: grid; gap: 14px; }
+.nutrition-guide-choices label { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.nutrition-guide-choices input { width: 20px; height: 20px; accent-color: #dfb960; }

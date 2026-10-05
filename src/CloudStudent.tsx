@@ -160,6 +160,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
 
   return <section className="cloud-student" aria-label="Portal del alumno">
     <div className="student-toolbar">
+      {section === 'home' && <div className="student-space-label"><img src="/gns-logo-transparent.png" alt="" width="30" height="30"/><span>TU ESPACIO</span></div>}
       <div className="student-top-actions">{section !== 'home' && <button type="button" className="student-back" aria-label="Volver al inicio" onClick={() => selectSection('home')}>←</button>}{history && <PlanNotifications client={client} memberId={history.member.id}/>}</div>
     </div>
     {section === 'home' && <div className="student-home-menu">        <nav aria-label="Elegí una sección">
@@ -167,7 +168,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           <button type="button" onClick={() => selectSection('nutrition')}>ALIMENTACIÓN SALUDABLE</button>
           <button type="button" onClick={() => selectSection('method')}>MÉTODO GNS</button>
           <button type="button" onClick={() => selectSection('results')}>RESULTADOS DEL PROGRAMA</button>
-        </nav><p className="student-brand-signature"><span>GYM NATURE <span className="signature-white">SOUL</span></span></p></div>}
+        </nav><p className="student-brand-signature"><span>GYM NATURE SOUL</span></p></div>}
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
       <h1 hidden={section === 'home'}>¡{history.member.welcome_form}, {history.member.first_name}!</h1>
       <p hidden={section === 'home'} className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : section === 'training' ? 'Tu entrenamiento, paso a paso.' : section === 'method' ? 'Movimiento, constancia y acompañamiento.' : 'Los cambios observados en tu proceso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>

@@ -699,3 +699,21 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .nutrition-guide-choices { margin: 20px 0; border: 1px solid #aa8d4b; border-radius: 12px; padding: 16px; display: grid; gap: 14px; }
 .nutrition-guide-choices label { display: flex; align-items: center; gap: 12px; cursor: pointer; }
 .nutrition-guide-choices input { width: 20px; height: 20px; accent-color: #dfb960; }
+
+/* Student home: individual cards, left-aligned branding and a quieter white. */
+.app:has(.student-home-menu) .topbar { justify-content: flex-start; }
+.app:has(.student-home-menu) .brand { justify-content: flex-start; text-align: left; }
+.app:has(.student-home-menu) .brand-copy { align-items: flex-start; }
+.app .cloud-student .student-space-label { display: flex; align-items: center; gap: 10px; color: var(--student-gold); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+.app .cloud-student .student-space-label img { width: 30px; height: 30px; object-fit: contain; flex: none; }
+.app .cloud-student .student-home-menu nav { border: 0; background: transparent; box-shadow: none; padding: 8px 0; }
+.app .cloud-student .student-home-menu nav button { color: var(--student-gold); }
+.app .cloud-student:not(:has(.student-home-menu)),
+.app .cloud-student:not(:has(.student-home-menu)) * { color: #deddd7; }
+.app .cloud-student:not(:has(.student-home-menu)) :is(h1, h2, h3, h4, summary),
+.app .cloud-student:not(:has(.student-home-menu)) :is(h1, h2, h3, h4, summary) *,
+.app .cloud-student:not(:has(.student-home-menu)) .eyebrow { color: var(--student-gold); }
+.app .cloud-student:not(:has(.student-home-menu)) .student-warmup,
+.app .cloud-student:not(:has(.student-home-menu)) .student-warmup * { color: #deddd7; }
+.app:has(.cloud-student) .brand-title > span { color: #deddd7; -webkit-text-fill-color: #deddd7; }
+.app:has(.cloud-student) :is(.biometric-settings summary, .account-legal a, .cloud-signout) { color: #deddd7; }

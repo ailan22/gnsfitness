@@ -724,12 +724,13 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 
 /* Approved metallic finish. The original green foliage in the logo stays untouched. */
 .app:has(.cloud-student) {
+  --student-gold-line: #a58949;
   --student-metallic: linear-gradient(174deg, #f7e8bb 4%, #e2bd68 30%, #bc9147 45%, #fff0c6 53%, #e0b760 64%, #c39c50 92%);
 }
 
 /* Slightly quieter reflections, without dimming labels or changing the logo. */
 .app .cloud-student .student-home-menu nav {
-  --student-metallic: linear-gradient(174deg, #eddfb5 4%, #dfba66 30%, #bc9147 45%, #f0e2bc 53%, #dcb45e 64%, #c39c50 92%);
+  --student-metallic: linear-gradient(174deg, #e6d8af 4%, #d8b463 30%, #b68d45 45%, #e9dbb6 53%, #d5ae5b 64%, #bd974d 92%);
 }
 .app .cloud-student .student-home-menu nav button > span {
   --student-metallic: linear-gradient(174deg, #e6d8af 4%, #d8b463 30%, #b68d45 45%, #e9dbb6 53%, #d5ae5b 64%, #bd974d 92%);

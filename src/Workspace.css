@@ -717,3 +717,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .app .cloud-student:not(:has(.student-home-menu)) .student-warmup * { color: #deddd7; }
 .app:has(.cloud-student) .brand-title > span { color: #deddd7; -webkit-text-fill-color: #deddd7; }
 .app:has(.cloud-student) :is(.biometric-settings summary, .account-legal a, .cloud-signout) { color: #deddd7; }
+
+/* Final home spacing and an entirely gold signature. */
+.app .cloud-student .student-home-menu nav { padding-top: 24px; }
+.app .cloud-student .student-brand-signature { background: none; color: #dfb960; -webkit-text-fill-color: #dfb960; }

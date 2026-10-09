@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {readFileSync,readdirSync,writeFileSync} from 'node:fs'
+import {readFileSync,readdirSync,writeFileSync,mkdirSync} from 'node:fs'
 import {PGlite} from '@electric-sql/pglite'
 
 test('dashboard handles 2000 members and 120000 sessions without exporting histories; MFA and RLS remain enforced',async()=>{
@@ -33,6 +33,7 @@ test('dashboard handles 2000 members and 120000 sessions without exporting histo
  assert.equal((await db.query('select admin_dashboard(80) data')).rows[0].data.pendingMembers.length,0)
  for(const n of [-1,null,100001])await assert.rejects(db.query('select admin_dashboard($1)',[n]),/Página/)
  const bytes=Buffer.byteLength(JSON.stringify(first));assert.ok(bytes<12000)
+ mkdirSync(new URL('../output/',import.meta.url),{recursive:true})
  writeFileSync(new URL('../output/dashboard-scale-result.json',import.meta.url),JSON.stringify({engine:'PGlite isolated PostgreSQL',members:2000,routines:2000,sessions:120000,firstQueryMs:Math.round(ms),responseBytes:bytes,permissions:'admin MFA only; student isolation verified',productionLoadTest:false},null,2))
  }finally{await db.close()}
 })

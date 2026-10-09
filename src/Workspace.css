@@ -825,3 +825,43 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .gns-method-copy { line-height:1.65; }
 .gns-method-copy li { margin:10px 0; }
 .gns-signature { text-align:center; letter-spacing:.12em; }
+
+/* Shared, restrained metallic finish across account, student and admin views. */
+.app {
+  --gns-metallic: linear-gradient(174deg, #e6d8af 4%, #d8b463 30%, #b68d45 45%, #e9dbb6 53%, #d5ae5b 64%, #bd974d 92%);
+}
+.app:has(.cloud-student),
+.app .cloud-student .student-home-menu nav,
+.app .cloud-student .student-home-menu nav button > span,
+.app .cloud-student .student-brand-signature {
+  --student-metallic: var(--gns-metallic);
+}
+.app .brand-title,
+.app .brand-motto,
+.app-admin :is(h1, h2, h3, .eyebrow),
+.app-admin .workspace-nav > span,
+.app-admin .workspace-shortcuts strong,
+.app-admin summary > strong,
+.app .cloud-student:not(:has(.student-home-menu)) :is(h1, h2, h3, h4, .eyebrow),
+.app .cloud-student .gns-signature {
+  color: #d8b463;
+  background-image: var(--gns-metallic);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+.app .cloud-student .gns-signature { font-weight: 800; }
+.app .cloud-student:not(:has(.student-home-menu)) .student-warmup :is(h1, h2, h3, h4) {
+  background-image: none;
+  color: #deddd7;
+  -webkit-text-fill-color: #deddd7;
+}
+.app .brand-title > span { color: #deddd7; -webkit-text-fill-color: #deddd7; }
+/* Identical source image and width; keep the upper branch inside the viewport. */
+.app:has(.cloud-student) { --student-branch-width: clamp(118px, 19vw, 249px); }
+.app:has(.cloud-student)::before,
+.app:has(.cloud-student) .botanical-branch { width: var(--student-branch-width); }
+@media (max-width: 600px) {
+  .app:has(.cloud-student) { --student-branch-width: 126px; }
+}

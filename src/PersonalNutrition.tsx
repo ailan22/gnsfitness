@@ -1,4 +1,4 @@
-import MealPlanEditor from './MealPlanEditor'
+import MealPlanEditor, {MealPlanView} from './MealPlanEditor'
 import {useEffect, useState} from 'react'
 import type {SupabaseClient} from '@supabase/supabase-js'
 import {readAllPages} from './readAllPages'
@@ -17,7 +17,7 @@ export function StudentPersonalNutrition({client,memberId}:{client:SupabaseClien
   return()=>{alive=false;window.removeEventListener('focus',focus)}
  },[client,memberId,revision])
  if(!plan&&!error)return null
- return <details className="card nutrition-personal" onToggle={e=>setOpen(e.currentTarget.open)}><summary><strong><span aria-hidden="true">🔒 </span>Nutrición personalizada</strong></summary>{open&&<>{loading?<p role="status">Cargando tu plan…</p>:error?<p role="alert">{error}</p>:plan?<><h3>{plan.title}</h3><p className="muted">Actualizado el {new Date(plan.published_at).toLocaleDateString('es-UY')}</p><div className="nutrition-plan-text">{plan.body}</div></>:<p>Todavía no tenés una dieta asignada. Cuando el administrador la envíe, aparecerá acá.</p>}<button className="secondary" disabled={loading} onClick={()=>setRevision(n=>n+1)} aria-label="Actualizar mi plan" title="Actualizar mi plan">↻</button></>}</details>
+ return <details className="card nutrition-personal" onToggle={e=>setOpen(e.currentTarget.open)}><summary><strong><span aria-hidden="true">🔒 </span>Nutrición personalizada</strong></summary>{open&&<>{loading?<p role="status">Cargando tu plan…</p>:error?<p role="alert">{error}</p>:plan?<><h3>{plan.title}</h3><p className="muted">Actualizado el {new Date(plan.published_at).toLocaleDateString('es-UY')}</p><MealPlanView value={plan.body}/></>:<p>Todavía no tenés una dieta asignada. Cuando el administrador la envíe, aparecerá acá.</p>}<button className="secondary" disabled={loading} onClick={()=>setRevision(n=>n+1)} aria-label="Actualizar mi plan" title="Actualizar mi plan">↻</button></>}</details>
 }
 
 export default function PersonalNutrition({client,onDirtyChange}:{client:SupabaseClient;onDirtyChange:(value:boolean)=>void}) {

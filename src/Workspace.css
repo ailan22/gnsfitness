@@ -818,6 +818,10 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .meal-plan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:16px; }
 .meal-plan-editor textarea { width:100%; box-sizing:border-box; resize:vertical; }
 .meal-plan-grid fieldset { min-width:0; margin:0; }
+.meal-week > summary, .meal-day > summary { cursor:pointer; padding:8px 0; }
+.meal-week .meal-day { margin:12px 0; }
+.meal-day > .meal-plan-grid { margin-top:16px; }
+.meal-plan-view .nutrition-plan-text { overflow-wrap:anywhere; }
 .gns-method-copy { line-height:1.65; }
 .gns-method-copy li { margin:10px 0; }
 .gns-signature { text-align:center; letter-spacing:.12em; }

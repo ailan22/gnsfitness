@@ -1,4 +1,4 @@
-const meals = ['Desayuno','Almuerzo','Merienda','Cena','Antes y después de entrenar','Hidratación e indicaciones']
+const meals = ['Desayuno','Almuerzo','Merienda','Cena','Antes de entrenar','Después de entrenar','Hidratación e indicaciones']
 function splitMeals(value:string) {
  const parts=value.split(/(?:^|\n\n)\[([^\]\n]+)\]\n/)
  const sections:Record<string,string>={}

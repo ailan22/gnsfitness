@@ -6,6 +6,7 @@ const uid = n => `00000000-0000-4000-8000-${String(n).padStart(12,'0')}`
 test('PostgreSQL: permissions, payment integrity and stale training requests', async t => {
  const db = new PGlite()
  try {
+  await db.exec("set timezone = 'America/Montevideo'")
   await db.exec(`create role anon; create role authenticated; create schema auth;
    create table auth.users(id uuid primary key, email text);
    create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;

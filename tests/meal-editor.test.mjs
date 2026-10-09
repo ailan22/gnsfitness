@@ -15,4 +15,5 @@ test('meal editor keeps the first meal in its own box and preserves legacy instr
  const e=editor();e.fill(1,'Yogur 200 g');e.fill(2,'Arroz y pollo');e.fill(1,'Yogur 250 g');assert.equal(e.values()[0],'');assert.equal(e.values()[1],'Yogur 250 g');assert.equal(e.values()[2],'Arroz y pollo')
  const restored=editor(e.body());assert.deepEqual(restored.values(),e.values());restored.fill(1,'');assert.equal(restored.values()[2],'Arroz y pollo')
  const legacy=editor('Plan anterior\nIndicaciones importantes');legacy.fill(4,'Cena nueva');assert.equal(legacy.values()[0],'Plan anterior\nIndicaciones importantes');assert.equal(editor(legacy.body()).values()[4],'Cena nueva')
+ const around=editor('[Antes y después de entrenar]\nIndicaciones anteriores');around.fill(5,'Antes: fruta');around.fill(6,'Después: comida habitual');const reload=editor(around.body());assert.ok(reload.values()[0].includes('Indicaciones anteriores'));assert.equal(reload.values()[5],'Antes: fruta');assert.equal(reload.values()[6],'Después: comida habitual')
 })

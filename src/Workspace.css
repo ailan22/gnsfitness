@@ -865,3 +865,15 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 @media (max-width: 600px) {
   .app:has(.cloud-student) { --student-branch-width: 126px; }
 }
+
+/* Slightly cooler accents; the GNS FITNESS brand keeps its approved finish. */
+.app .cloud-student {
+  --gns-metallic: linear-gradient(174deg, #ded7bd 4%, #ccba85 30%, #a99a6e 45%, #e1dac2 53%, #c9b780 64%, #b5a374 92%);
+  --student-metallic: var(--gns-metallic);
+}
+.app:has(.cloud-student) { --student-branch-width: clamp(106px, 17vw, 224px); }
+.app:has(.cloud-student)::before { right: max(10px, env(safe-area-inset-right, 0px)); top: calc(env(safe-area-inset-top, 0px) + 10px); }
+.app:has(.cloud-student) .botanical-left { left: max(10px, env(safe-area-inset-left, 0px)); bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); transform: none; }
+@media (max-width: 600px) {
+  .app:has(.cloud-student) { --student-branch-width: 112px; }
+}

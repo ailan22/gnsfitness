@@ -1,3 +1,4 @@
+import DeleteStudentAccount from './DeleteStudentAccount'
 import ProgramResults from './ProgramResults'
 import MemberHealthSections from './MemberHealthSections'
 import StudentAccess from './StudentAccess'
@@ -233,6 +234,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
       <ProgramResults key={selected.id} client={client} memberId={selected.id} admin onDirtyChange={setResultDirty}/>
       <div className="member-horizontal-sections"><StudentAccess key={selected.id + selected.email} client={client} member={selected} />
+      <DeleteStudentAccount key={`delete-${selected.id}`} client={client} memberId={selected.id} name={`${selected.first_name} ${selected.last_name}`} onDeleted={() => void refresh()}/>
       <MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/>
       </div>
 

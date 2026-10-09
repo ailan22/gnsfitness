@@ -335,7 +335,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     </form></div>}
     {!error && !history && <p role="status">Cargando historial de Supabase…</p>}
     {history && <>
-      <div className="heading"><h2>Plan y pagos</h2><div className="actions">{latestPlan && <button type="button" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(true)}>Renovar plan</button>}<button type="button" className="secondary" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(false)}>+ Asignar otro plan</button></div></div>
+      <div className="heading"><h2>Plan y pagos</h2><div className="actions">{latestPlan && <button type="button" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(true)}>Renovar plan</button>}{!latestPlan && <button type="button" className="secondary" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(false)}>Asignar plan</button>}</div></div>
 
       {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
         <h2>{renewing ? 'Renovar plan' : 'Asignar plan'}</h2><p>Elegí la duración y revisá las fechas. El período y el pago se guardan juntos. Si recibís una parte, la diferencia queda pendiente.</p><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => changePlan(event.target.value, planForm.startsAt)}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>

@@ -877,3 +877,46 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 @media (max-width: 600px) {
   .app:has(.cloud-student) { --student-branch-width: 112px; }
 }
+
+/* Shared natural foliage: keep the original administrator asset and tint. */
+.app:has(.cloud-student)::before,
+.app:has(.cloud-student) .botanical-branch {
+  opacity: .23;
+  filter: saturate(.7);
+}
+.app .cloud-student .student-home-menu nav button {
+  border-color: #a9956238;
+  background: linear-gradient(120deg, #171919, #101212) padding-box;
+  box-shadow: none;
+}
+
+/* Individual member record — original sidebar proposal, existing web brand. */
+.cloud-members:has(.member-workspace) > .heading { display: none; }
+.member-workspace { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 20px; align-items: start; }
+.member-workspace-sidebar, .member-workspace-content { background: linear-gradient(135deg, #1a1c1b, #121514); border: 1px solid #ffffff20; border-radius: 12px; min-width: 0; }
+.member-workspace-sidebar { position: sticky; top: 20px; padding: 24px 0; }
+.member-workspace-identity { text-align: center; padding: 8px 18px 24px; margin: 0 16px 16px; border-bottom: 1px solid #aa956455; }
+.member-initials { display: grid; place-items: center; width: 80px; height: 80px; margin: 0 auto 18px; border-radius: 50%; color: #f0f0eb; background: #343c31; border: 1px solid #a5aa8770; font-size: 28px; }
+.member-workspace-identity h2 { font-size: 20px; line-height: 1.4; overflow-wrap: anywhere; margin: 0; }
+.member-workspace-sidebar nav { display: grid; gap: 5px; }
+.app-admin .member-workspace-sidebar nav button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 48px; border: 0; border-left: 3px solid transparent; border-radius: 0; padding: 12px 18px; background: transparent; color: #e7e7e1; text-align: left; font-size: 14px; font-weight: 500; }
+.app-admin .member-workspace-sidebar nav button[aria-current] { border-left-color: #bfa36a; background: #bfa36a15; }
+.member-workspace-sidebar nav button:focus-visible { outline: 2px solid #cab176; outline-offset: -3px; }
+.member-workspace-content { padding: clamp(16px, 2.5vw, 32px); }
+.member-workspace-content .cloud-history { margin-top: 0; }
+.member-workspace-content .card { border: 1px solid #ffffff22; border-radius: 10px; padding: 20px; background: #171a18; margin: 16px 0; box-shadow: none; }
+.member-workspace-content .heading { gap: 16px; flex-wrap: wrap; }
+.member-workspace-content .heading h2 { font-size: 22px; }
+.member-workspace-content [data-member-section] { scroll-margin-top: 24px; }
+.member-workspace-details, .member-workspace-content .intake-accordion, .member-workspace-content .student-access, .member-workspace-content .delete-student-account { border: 1px solid #ffffff22; border-radius: 10px; background: #151816; padding: 18px; margin: 16px 0; }
+.member-workspace-details > summary { cursor: pointer; font-weight: 600; color: #eeeee8; }
+.app-admin .member-workspace-identity h2, .app-admin .member-workspace-content p { color: #e7e7e1; background: none; -webkit-text-fill-color: #e7e7e1; }
+.member-workspace-signature { text-align: center; letter-spacing: .3em; font-size: 13px; color: #bfa36a; margin: 32px auto 10px; }
+@media (max-width: 850px) {
+  .member-workspace { grid-template-columns: 1fr; }
+  .member-workspace-sidebar { position: static; padding: 16px; }
+  .member-workspace-identity { display: flex; align-items: center; gap: 14px; text-align: left; margin: 0 0 12px; padding: 0 0 14px; }
+  .member-initials { flex-shrink: 0; width: 48px; height: 48px; font-size: 20px; margin: 0; }
+  .member-workspace-sidebar nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-admin .member-workspace-sidebar nav button { font-size: 13px; padding: 10px; }
+}

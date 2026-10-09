@@ -1,4 +1,5 @@
 import DeleteStudentAccount from './DeleteStudentAccount'
+import MemberWorkspace from './MemberWorkspace'
 import ProgramResults from './ProgramResults'
 import MemberHealthSections from './MemberHealthSections'
 import StudentAccess from './StudentAccess'
@@ -227,18 +228,23 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     {selected && !open && <>
       <p className="eyebrow">FICHA PERSONAL · {selected.id.slice(0, 8).toUpperCase()}</p>
       <div className="heading"><h2>{selected.first_name} {selected.last_name}</h2><button type="button" onClick={() => edit(selected)}>Editar datos</button></div>
+      <MemberWorkspace key={selected.id} name={`${selected.first_name} ${selected.last_name}`}>
       <CloudMemberHistory client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
         onChanged={() => { onCountChange(members.length); onDirtyChange?.(dirty || healthDirty || resultDirty) }} onClose={() => { if ((healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); void refresh() }}>
-      <section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de inicio: {selected.joined_at || 'Sin registrar'}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p></section>
+      <details className="member-workspace-details" data-member-section="personal" tabIndex={-1}><summary>Datos personales</summary>
+      <section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de inicio: {selected.joined_at || 'Sin registrar'}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p><button type="button" className="secondary" onClick={() => edit(selected)}>Editar datos</button></section>
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
-      <ProgramResults key={selected.id} client={client} memberId={selected.id} admin onDirtyChange={setResultDirty}/>
-      <div className="member-horizontal-sections"><StudentAccess key={selected.id + selected.email} client={client} member={selected} />
+      </details>
+      <div data-member-section="health" tabIndex={-1}><MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/></div>
+      <div data-member-section="access" tabIndex={-1}><StudentAccess key={selected.id + selected.email} client={client} member={selected} /></div>
+      <div data-member-section="account" tabIndex={-1}>
       <DeleteStudentAccount key={`delete-${selected.id}`} client={client} memberId={selected.id} name={`${selected.first_name} ${selected.last_name}`} onDeleted={() => void refresh()}/>
-      <MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/>
       </div>
+      <div data-member-section="results" tabIndex={-1}><ProgramResults key={selected.id} client={client} memberId={selected.id} admin onDirtyChange={setResultDirty}/></div>
 
       </CloudMemberHistory>
+      </MemberWorkspace>
     </>}
     {open && <><p className="eyebrow">PERSONAS · FICHAS Y ENTRENAMIENTO</p><h2>{selectedId ? 'Editar datos del socio' : 'Nuevo socio'}</h2><form className="card form cloud-member-form" onInvalidCapture={event => { const detail = (event.target as HTMLElement).closest('details'); if (detail) detail.open = true }} onSubmit={event => void save(event)}><fieldset className="plain-fieldset member-form-fields" disabled={saving}>
       <div className="grid">

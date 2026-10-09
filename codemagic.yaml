@@ -19,7 +19,7 @@ workflows:
           node normalize-ios-paths.mjs
       - name: Compilar para simulador
         script: xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build/store-screenshots CODE_SIGNING_ALLOWED=NO build
-      - name: Capturar iPhone y iPad
+      - name: Capturar iPhone
         script: node scripts/capture-ios-screenshots.mjs
     artifacts:
       - store-screenshots/*.png
@@ -119,7 +119,8 @@ workflows:
           set -e
           node scripts/check-ios-environment.mjs
           npm run lint
-          node --test tests/biometric-session.test.mjs tests/privacy-requests.test.mjs tests/student-services.test.mjs
+          npm run test
+          npm audit --audit-level=low
       - name: Preparar version de distribucion
         script: |
           set -e

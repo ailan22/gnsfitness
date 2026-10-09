@@ -7,16 +7,15 @@ const app=path.resolve('build/store-screenshots/Build/Products/Debug-iphonesimul
 if(!fs.existsSync(app)) throw Error('Simulator build missing')
 const devices=Object.values(JSON.parse(run(['simctl','list','devices','available','--json'])).devices).flat()
 const phone=devices.find(d=>d.name.includes('iPhone')&&d.name.includes('Pro Max'))
-const pad=devices.find(d=>d.name.includes('iPad Pro')&&d.name.includes('13-inch'))
-if(!phone||!pad) throw Error('Required iPhone and iPad simulators unavailable')
+if(!phone) throw Error('Required iPhone simulator unavailable')
 fs.mkdirSync('store-screenshots',{recursive:true})
 execFileSync('swiftc',['scripts/check-store-screenshot.swift','-o','build/check-store-screenshot'])
-for(const [kind,device] of [['iphone',phone],['ipad',pad]]) {
+for(const [kind,device] of [['iphone',phone]]) {
  console.log('Capture device:',device.name)
  if(device.state!=='Booted')run(['simctl','boot',device.udid])
  run(['simctl','bootstatus',device.udid,'-b'])
  run(['simctl','status_bar',device.udid,'override','--time','9:41','--dataNetwork','wifi','--wifiMode','active','--wifiBars','3','--batteryState','charged','--batteryLevel','100'])
- for(const screen of ['training','progress','nutrition']) {
+ for(const screen of ['home','training','nutrition','results']) {
   fs.writeFileSync(path.join(app,'public','screenshot-config.json'),JSON.stringify({screen}))
   run(['simctl','install',device.udid,app])
   run(['simctl','launch',device.udid,'uy.gnsfitness.app'])

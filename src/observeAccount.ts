@@ -10,7 +10,7 @@ type Callbacks = {
 
 // One loader per mounted account view. Repeated SIGNED_IN events must not
 // unmount the portal or repeat all its queries when the browser gains focus.
-export function observeAccount(client: SupabaseClient, callbacks: Callbacks, initiallyRecovering = false) {
+export function observeAccount(client: SupabaseClient, callbacks: Callbacks, initiallyRecovering = false, verificationTimeoutMs = 15000) {
   let active = true
   let currentId: string | null = null
   let generation = 0
@@ -49,11 +49,14 @@ export function observeAccount(client: SupabaseClient, callbacks: Callbacks, ini
     timer = setTimeout(() => {
       if (!active || request !== generation) return
       void (async () => {
+        let deadline: ReturnType<typeof setTimeout> | undefined
         try {
-          const [account, role] = await Promise.all([
+          const [account, role] = await Promise.race([Promise.all([
             client.auth.getUser(),
             recovering ? Promise.resolve(null) : client.from('user_roles').select('role').eq('user_id', id).maybeSingle(),
-          ])
+          ]), new Promise<never>((_, reject) => {
+            deadline = setTimeout(() => reject(new Error('Access verification timed out')), verificationTimeoutMs)
+          })])
           if (!active || request !== generation) return
           if (account.error || !account.data.user || account.data.user.id !== id) {
             ready = false
@@ -73,6 +76,7 @@ export function observeAccount(client: SupabaseClient, callbacks: Callbacks, ini
             callbacks.error('No se pudo conectar para comprobar tu acceso. Revisá tu conexión e intentá nuevamente.')
           }
         } finally {
+          clearTimeout(deadline)
           if (active && request === generation) inFlight = false
         }
       })()

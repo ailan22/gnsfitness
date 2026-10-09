@@ -2,7 +2,7 @@
   "name": "GNS FITNESS",
   "subtitle": "Tu entrenamiento, paso a paso",
   "promotionalText": "Consultá tu rutina, registrá tus entrenamientos y seguí tu progreso en tu espacio personal de GNS FITNESS.",
-  "description": "GNS FITNESS conecta a los alumnos del gimnasio con su programa de entrenamiento y el seguimiento de su entrenador.\n\nTU ENTRENAMIENTO\nConsultá el día que te corresponde, los ejercicios, las series, las repeticiones, las cargas y las indicaciones de tu entrenador. Registrá lo que realizaste y avanzá por tu planificación.\n\nTU PROGRESO\nGuardá tus registros de peso y medidas corporales. Consultá su evolución y tu historial de entrenamientos.\n\nACOMPAÑAMIENTO\nRevisá las observaciones de tu entrenador y solicitá acceso al servicio de Nutrición. La administración confirma su habilitación. Los servicios y su disponibilidad se coordinan con GNS FITNESS.\n\nACCESO PERSONAL\nIngresá con tu cuenta habilitada por el gimnasio. En dispositivos compatibles, podés activar Face ID para desbloquear tu acceso guardado.\n\nGESTIÓN PARA LA ADMINISTRACIÓN\nEl personal autorizado dispone de gestión de socios, planes, pagos y rutinas, y de registros privados de anamnesis y kinesiología. El acceso administrativo requiere doble factor.\n\nLa app requiere conexión a internet y una cuenta habilitada por GNS FITNESS. No interpreta tus medidas ni realiza diagnósticos; las indicaciones y atenciones corresponden a los profesionales del gimnasio.",
+  "description": "GNS FITNESS conecta a los alumnos del gimnasio con su programa de entrenamiento y el seguimiento profesional.\n\nTU ENTRENAMIENTO\nConsultá tu planificación, los ejercicios, series, repeticiones y descansos. Registrá los kilos utilizados y las repeticiones en reserva (RIR), y consultá tu historial.\n\nALIMENTACIÓN SALUDABLE\nAccedé a las guías gratuitas que te habilita el gimnasio. La atención nutricional personalizada es un servicio profesional independiente, presencial u online; el profesional puede compartir tu plan en la app. No se realizan compras ni cobros dentro de la aplicación.\n\nRESULTADOS DEL PROGRAMA\nConsultá las evaluaciones que tu entrenador publica al finalizar cada programa, con los cambios observados y los próximos pasos.\n\nACCESO PERSONAL\nIngresá con la cuenta habilitada por el gimnasio. En dispositivos compatibles, podés activar el acceso biométrico.\n\nGESTIÓN DEL GIMNASIO\nLa administración gestiona socios, planes, pagos, rutinas y agenda. Los registros de anamnesis y kinesiología están reservados al administrador, con doble factor de autenticación.\n\nLa app requiere conexión a internet y una cuenta habilitada por GNS FITNESS. No realiza diagnósticos ni sustituye la atención de un profesional.",
   "keywords": "gimnasio,entrenamiento,rutinas,ejercicios,fuerza,progreso,bienestar,socios",
   "supportUrl": "https://still-disk-e7b3.gndevicciconde.workers.dev/soporte.html",
   "privacyPolicyUrl": "https://still-disk-e7b3.gndevicciconde.workers.dev/privacidad.html",
@@ -17,9 +17,19 @@
   },
   "distribution": {
     "downloadPrice": 0,
-    "territories": ["URY", "ARG", "BRA", "MEX"],
-    "countries": ["Uruguay", "Argentina", "Brasil", "México"],
+    "territories": [
+      "URY",
+      "ARG",
+      "BRA",
+      "MEX"
+    ],
+    "countries": [
+      "Uruguay",
+      "Argentina",
+      "Brasil",
+      "México"
+    ],
     "includeFutureTerritories": false
   },
-  "reviewNotes": "GNS FITNESS is a companion app for gym members. Accounts are enabled by gym administration; there is no public self-registration or in-app checkout. The student account provided for review must contain fictional data only. Face ID is optional: sign in with email/password and enable it at the bottom of the account screen on a compatible device. Relaunching the app allows biometric unlock; explicitly signing out removes stored biometric access. Student privacy requests are available under 'Mi cuenta y mis datos'. Nutrition is an access request managed by gym administration, not an automated diet generator. Administrative health records require an administrator role and MFA. No HealthKit, advertising or tracking SDK is used."
+  "reviewNotes": "GNS FITNESS is a companion app for gym members and its administrator. There is no public self-registration or in-app checkout. Gym administration provisions accounts. Please use the supplied demo credentials; review data must be fictional. Students can access assigned training, record exercise loads and RIR, read assigned free nutrition guides and view trainer evaluations. Personalized nutrition is a separate professional service delivered in person or online; guides are free and are not sold separately. The app displays the plan assigned by the professional. Face ID is optional. Administrative health records are restricted to the administrator with MFA. External services: Supabase (authentication, database and backend functions), Cloudflare (web hosting and support pages), Capacitor/native biometric integration, and Codemagic (build delivery). No HealthKit, advertising, tracking SDK or in-app payment processor is used. The same features are offered in Uruguay, Argentina, Brazil and Mexico. Account deletion is currently handled by administration, not initiated through an in-app deletion control. A physical iPhone 12 demonstration video and final build details remain pending before resubmission."
 }

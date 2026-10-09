@@ -1,5 +1,7 @@
 GNS FITNESS — grabación para App Review
-Versión a demostrar: 1.0 (13), instalada desde TestFlight en un iPhone físico.
+Dispositivo confirmado: iPhone 12.
+Versión de iOS y número de la compilación candidata: confirmar antes de grabar.
+Usar la compilación definitiva instalada desde TestFlight.
 
 Preparación
 Confirmar iOS actualizado y anotar modelo, versión de iOS, compilación y fecha.
@@ -14,12 +16,12 @@ Recorrido propuesto (aproximadamente 3–5 minutos)
    interrumpir la grabación para introducir datos privados, explicarlo al revisor.
 3. En el panel del alumno, abrir la rutina y desplegar el registro de kilos y RIR.
    Guardar un entrenamiento ficticio y comprobar el resultado.
-4. Mostrar progreso, estado del plan y los avisos disponibles.
+4. Abrir Resultados del programa y mostrar una evaluación ficticia si está publicada; mostrar también los avisos disponibles.
 5. Abrir Nutrición: mostrar el estado de solicitud o habilitación, una guía,
    el recetario y un plan personalizado ficticio si la cuenta tiene uno asignado.
-6. Abrir «Mi cuenta y mis datos» y mostrar «Eliminar mi cuenta y mis datos».
-   Si se demuestra el envío de una solicitud, hacerlo con una cuenta ficticia
-   descartable; no dejar inutilizable la cuenta que Apple necesita revisar.
+6. Abrir Ayuda y soporte. La versión actual NO incluye solicitud de eliminación
+   de cuenta dentro del panel: no simularla ni afirmar que existe. Este punto
+   debe explicarse a Apple y sigue siendo un riesgo de rechazo.
 7. Mostrar cierre de sesión y que ya no aparecen los datos de la cuenta.
 8. Si Apple requiere demostrar administración, usar un entorno con solo datos
    ficticios. Mostrar ficha del socio, anamnesis y kinesiología plegadas, agenda,

@@ -16,7 +16,7 @@ const { trainingProgress } = load('cloudTraining.ts')
 const tick = () => new Promise(resolve => setTimeout(resolve, 10))
 function deferred() { let resolve; const promise = new Promise(done => { resolve = done }); return { promise, resolve } }
 
-function authHarness({ delayedRole, invalid = false, recovery = false } = {}) {
+function authHarness({ delayedRole, invalid = false, recovery = false, timeout = 15000 } = {}) {
   let listener
   let id
   let authCalls = 0
@@ -37,7 +37,7 @@ function authHarness({ delayedRole, invalid = false, recovery = false } = {}) {
     },
   }
   const callbacks = Object.fromEntries(['loading', 'signedOut', 'account', 'recovery', 'error'].map(name => [name, (...args) => events.push({ name, args })]))
-  const stop = observeAccount(client, callbacks, recovery)
+  const stop = observeAccount(client, callbacks, recovery, timeout)
   return {
     emit(event, userId) { id = userId; listener(event, userId ? { user: { id: userId } } : null) },
     stop, events,
@@ -136,4 +136,20 @@ test('completing all weeks finishes the program', () => {
 })
 test('time alone does not advance the training day', () => {
   assert.equal(trainingProgress(routine, [routine], sessions([1]), '2026-10-30').nextDay, 2)
+})
+
+
+test('hung access verification fails closed and ignores its late role response', async () => {
+  const wait = deferred()
+  const h = authHarness({ delayedRole: wait, timeout: 15 })
+  h.emit('SIGNED_IN', 'admin')
+  await new Promise(resolve => setTimeout(resolve, 50))
+  assert.equal(h.events.at(-1).name, 'error')
+  assert.equal(h.events.filter(event => event.name === 'account').length, 0)
+  wait.resolve({ data: { role: 'admin' }, error: null })
+  await tick()
+  assert.equal(h.events.filter(event => event.name === 'account').length, 0)
+  h.emit('SIGNED_IN', 'admin'); await tick()
+  assert.equal(h.events.at(-1).name, 'account')
+  h.stop()
 })

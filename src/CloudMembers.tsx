@@ -37,10 +37,11 @@ const blank = (): MemberForm => ({ first_name: '', last_name: '', phone: '', ema
   joined_at: today(), status: 'Activo', welcome_form: 'Te damos la bienvenida', emergency_contact_name: '', emergency_contact_phone: '',
   goal: '', limitations: '', trainer_name: '', notes: '', health_provider: '' })
 
-export default function CloudMembers({ client, onCountChange, initialNew = false, initialMemberId = null, onDirtyChange }: {
+export default function CloudMembers({ client, onCountChange, initialNew = false, initialMemberId = null, initialFilter = 'all', onDirtyChange }: {
   client: SupabaseClient
   onCountChange: (count: number) => void
   initialNew?: boolean
+  initialFilter?: 'all' | 'expired' | 'pending'
   onDirtyChange?: (dirty: boolean) => void
   initialMemberId?: string | null
 }) {
@@ -61,8 +62,8 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const [historyId, setHistoryId] = useState<string | null>(initialMemberId)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('Todos')
-  const [planFilter, setPlanFilter] = useState<PlanFilter>('Todos')
-  const [paymentFilter, setPaymentFilter] = useState<PaymentFilter>('Todos')
+  const [planFilter, setPlanFilter] = useState<PlanFilter>(initialFilter === 'expired' ? 'Vencidos' : 'Todos')
+  const [paymentFilter, setPaymentFilter] = useState<PaymentFilter>(initialFilter === 'pending' ? 'Con saldo pendiente' : 'Todos')
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [statusSaving, setStatusSaving] = useState(false)
@@ -183,6 +184,8 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     (received.get(payment.membership_id) || 0) + Math.round(Number(payment.amount) * 100))
   const balanceFor = (plan: MembershipSummary | undefined) => plan
     ? Math.max(0, Math.round(Number(plan.price) * 100) - (received.get(plan.id) || 0)) : 0
+  const balances = new Map<string, number>()
+  for (const plan of memberships) balances.set(plan.member_id, (balances.get(plan.member_id) ?? 0) + balanceFor(plan))
   const visibleMembers = members.filter(member => {
     if (statusFilter !== 'Todos' && member.status !== statusFilter) return false
     if (query && ![member.first_name, member.last_name, member.phone, member.email, member.id]
@@ -193,8 +196,8 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     if (planFilter === 'Vencidos' && !(days !== null && days < 0)) return false
     if (planFilter === 'Por vencer' && !(days !== null && days >= 0 && days <= 10)) return false
     if (planFilter === 'Al día' && !(days !== null && days > 10)) return false
-    if (paymentFilter === 'Con saldo pendiente' && balanceFor(plan) === 0) return false
-    if (paymentFilter === 'Sin saldo pendiente' && balanceFor(plan) > 0) return false
+    if (paymentFilter === 'Con saldo pendiente' && (balances.get(member.id) ?? 0) === 0) return false
+    if (paymentFilter === 'Sin saldo pendiente' && (balances.get(member.id) ?? 0) > 0) return false
     return true
   })
   const lastPage = Math.max(0, Math.ceil(visibleMembers.length / 50) - 1)
@@ -220,7 +223,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
         <div className="list">{pageMembers.map(member => {
           const plan = currentPlans.get(member.id)
           const days = plan ? daysUntil(plan.ends_at, today()) : null
-          const balance = balanceFor(plan)
+          const balance = balances.get(member.id) ?? 0
           return <button type="button" className="list-item" key={member.id} onClick={() => { setHistoryId(member.id); setError(''); setMessage('') }}>
             <span><strong>{member.first_name} {member.last_name}</strong><small>{member.email || member.phone || 'Sin contacto registrado'}</small>{balance > 0 && <small className="balance-due">Saldo pendiente: {new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(balance / 100)}</small>}</span>
             <span className="status">{member.status}</span><span className={`badge ${days !== null && days < 0 ? 'danger' : days !== null && days <= 10 ? 'warning' : ''}`}>{!plan ? 'Sin plan' : days === null ? 'Fecha inválida' : days < 0 ? 'Vencido' : days <= 10 ? 'Por vencer' : 'Al día'}</span><span aria-hidden="true">→</span>
@@ -238,8 +241,8 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
       <CloudMemberHistory client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
         onChanged={() => { onCountChange(members.length); onDirtyChange?.(dirty || healthDirty || resultDirty) }} onClose={() => { if ((healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); void refresh() }}>
-      <div className="cloud-profile-grid"><section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de alta: {selected.joined_at || 'Sin registrar'}</p><p>Saludo en su portal: {selected.welcome_form}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p></section>
-        <details className="member-compact"><summary>Estado del socio · <strong>{selected.status}</strong></summary><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p></details></div>
+      <section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de inicio: {selected.joined_at || 'Sin registrar'}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p></section>
+        <details className="member-compact"><summary>Gestión de la ficha · <strong>{selected.status}</strong></summary><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p><button type="button" className="secondary" onClick={() => edit(selected)}>Configurar saludo y datos</button></details>
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
       <ProgramResults key={selected.id} client={client} memberId={selected.id} admin onDirtyChange={setResultDirty}/>
       <div className="member-horizontal-sections"><StudentAccess key={selected.id + selected.email} client={client} member={selected} />
@@ -254,16 +257,18 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
         <label>Apellido *<input required value={form.last_name} onChange={event => update('last_name', event.target.value)}/></label>
         <label>Teléfono<input type="tel" value={form.phone} onChange={event => update('phone', event.target.value)}/></label>
         <label>Correo<input type="email" value={form.email} onChange={event => update('email', event.target.value)}/></label>
-        <label>Alta *<input type="date" required max={today()} value={form.joined_at} onChange={event => update('joined_at', event.target.value)}/></label>
+        <label>Fecha de inicio *<input type="date" required max={today()} value={form.joined_at} onChange={event => update('joined_at', event.target.value)}/></label>
+        <label>Prestador de salud<input maxLength={160} placeholder="Mutualista, ASSE o seguro de salud" value={form.health_provider ?? ''} onChange={event => update('health_provider', event.target.value)}/></label>
+        <label>Contacto de emergencia<input value={form.emergency_contact_name} onChange={event => update('emergency_contact_name', event.target.value)}/></label>
+      </div>
+      <details className="member-compact"><summary>Gestión y preferencias del socio</summary><div className="grid">
         <label>Estado<select value={form.status} onChange={event => update('status', event.target.value as MemberForm['status'])}>
           <option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option>
         </select></label>
         <label>Saludo para el alumno<select value={form.welcome_form} onChange={event => update('welcome_form', event.target.value as MemberForm['welcome_form'])}>
           <option>Bienvenida</option><option>Bienvenido</option><option>Te damos la bienvenida</option>
         </select></label>
-        <label>Prestador de salud<input maxLength={160} placeholder="Mutualista, ASSE o seguro de salud" value={form.health_provider ?? ''} onChange={event => update('health_provider', event.target.value)}/></label>
-        <label>Contacto de emergencia<input value={form.emergency_contact_name} onChange={event => update('emergency_contact_name', event.target.value)}/></label>
-      </div>
+      </div></details>
       <label>Objetivo<input value={form.goal} onChange={event => update('goal', event.target.value)}/></label>
       <label>Limitaciones o cuidados<textarea value={form.limitations} onChange={event => update('limitations', event.target.value)}/></label>
       <details className="intake-accordion"><summary><span><strong>Anamnesis inicial de salud y entrenamiento</strong><small>Opcional al registrar · acceso privado</small></span></summary>

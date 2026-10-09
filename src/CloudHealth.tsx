@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { readAllPages } from './readAllPages'
 import HealthFormFields from './HealthFormFields'
+import HealthPrint from './HealthPrint'
 import { blankHealthDraft, validateHealthDraft, type HealthDraft } from './healthRecords'
 import { healthFields, healthTitles, sameHealthContent, type HealthKind, type HealthRecord } from './healthRecords'
 
@@ -14,6 +15,7 @@ export default function CloudHealth({ client, mode, initialMemberId = '', onDirt
   const [memberId, setMemberId] = useState(initialMemberId)
   const [search, setSearch] = useState('')
   const [records, setRecords] = useState<HealthRecord[]>([])
+  const [printRecords, setPrintRecords] = useState<HealthRecord[] | null>(null)
   const [loading, setLoading] = useState(true)
   const [peopleLoading, setPeopleLoading] = useState(true)
   const [error, setError] = useState('')
@@ -102,6 +104,7 @@ export default function CloudHealth({ client, mode, initialMemberId = '', onDirt
   const query = search.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
   const matches = people.filter(item => `${item.first_name} ${item.last_name}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(query))
   return <section className="health-workspace" aria-label={mode === 'intake' ? 'Anamnesis inicial de salud y entrenamiento' : 'Kinesiología'}>
+    {printRecords && person && <HealthPrint name={`${person.first_name} ${person.last_name}`} memberId={memberId} records={printRecords} superseded={superseded} onClose={() => setPrintRecords(null)}/>}
     {!embedded && <div className="heading"><div><p className="eyebrow">ATENCIÓN PERSONAL · ACCESO PRIVADO</p><h1>{mode === 'intake' ? 'Salud y entrenamiento' : 'Kinesiología'}</h1><p className="muted">{mode === 'intake' ? 'Una evaluación inicial clara para acompañar cada objetivo.' : 'Evaluación, atención y evolución en un mismo lugar.'}</p></div><span className="privacy-badge">Solo administrador</span></div>}
     {!embedded && <div className="card health-person-picker"><div className="grid"><label>Buscar persona<input type="search" placeholder="Nombre o apellido" value={search} onChange={e => setSearch(e.target.value)} disabled={saving}/></label>
       <label>Ficha de la persona<select value={memberId} disabled={saving || peopleLoading} onChange={e => {
@@ -124,12 +127,13 @@ export default function CloudHealth({ client, mode, initialMemberId = '', onDirt
         <HealthFormFields kind={kind} draft={draft} onChange={next => { setDraft(next); setDirty(true) }}/>
         <div className="form-save-bar"><span className="muted">{dirty ? 'Cambios sin guardar' : 'Completá la información necesaria'}</span><button type="submit">{saving ? 'Guardando…' : 'Guardar registro'}</button></div>
       </fieldset></form>}
-      <div className="heading"><h2>Historial de atención</h2><span className="muted">{records.length} {records.length === 1 ? 'registro' : 'registros'}</span></div>
+      <div className="heading"><h2>Historial de atención</h2><span className="muted">{records.length} {records.length === 1 ? 'registro' : 'registros'}</span><button type="button" className="secondary" disabled={loading || Boolean(error) || !person || !records.length || Boolean(draft)} onClick={() => setPrintRecords(records)}>Imprimir {mode === 'intake' ? 'anamnesis' : 'kinesiología'}</button></div>
       {loading ? <p role="status">Cargando historial…</p> : !records.length && !error ? <div className="card empty">Todavía no hay registros. Empezá con {mode === 'intake' ? 'la anamnesis inicial' : 'una evaluación inicial'}.</div> : <div className="clinical-timeline">{records.slice(page * 10, page * 10 + 10).map(row => <details className="card clinical-record" key={row.id}><summary><span><strong>{healthTitles[row.kind]}</strong><small>{displayDate(row.occurred_on)} · {row.professional}{row.payload.region ? ` · ${row.payload.region}` : ''}</small></span><span className="badge">{superseded.has(row.id) ? 'Rectificado' : row.correction_of ? 'Rectificación' : row.payload.status ?? 'Registrado'}</span></summary>
         <p className="muted">Registrado el {new Date(row.created_at).toLocaleString('es-UY')}{row.registration && ` · Registro profesional: ${row.registration}`}</p>
         {row.correction_reason && <p className="notice">Motivo de rectificación: {row.correction_reason}</p>}
         {row.episode_id && <p className="muted">Evaluación vinculada: {displayDate(records.find(item => item.id === row.episode_id)?.occurred_on ?? '')} · {row.episode_id.slice(0, 6)}</p>}
         <dl className="clinical-readout">{healthFields[row.kind].filter(field => row.payload[field.key]?.trim()).map(field => <div key={field.key}><dt>{field.label}</dt><dd>{row.payload[field.key]}</dd></div>)}</dl>
+        <button type="button" className="secondary" disabled={loading || Boolean(error) || !person || Boolean(draft)} onClick={() => setPrintRecords([row])}>Imprimir este registro</button>
         {!superseded.has(row.id) && <button type="button" className="secondary" disabled={saving} onClick={() => begin(row.kind, row)}>Rectificar conservando original</button>}
       </details>)}</div>}
       {records.length > 10 && <nav className="actions" aria-label="Páginas del historial"><button className="secondary" disabled={!page} onClick={() => setPage(value => value - 1)}>Anterior</button><span>Página {page + 1} de {Math.ceil(records.length / 10)}</span><button className="secondary" disabled={(page + 1) * 10 >= records.length} onClick={() => setPage(value => value + 1)}>Siguiente</button></nav>}

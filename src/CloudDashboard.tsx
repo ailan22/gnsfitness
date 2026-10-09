@@ -10,7 +10,7 @@ type Snapshot = {
 }
 const money = (value: number) => new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(value)
 
-export default function CloudDashboard({ client, revision, onOpenMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: (memberId?: string) => void }) {
+export default function CloudDashboard({ client, revision, onOpenMembers, onFilterMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: (memberId?: string) => void; onFilterMembers?: (filter: 'expired' | 'pending') => void }) {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
@@ -45,8 +45,8 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
     {snapshot && <><div className="stats dashboard-primary">
       <div className="card"><span>Socios activos</span><strong>{snapshot.active}</strong><small>{snapshot.members} personas registradas</small></div>
       <div className="card"><span>Ingresos del mes</span><strong className="amount">{money(snapshot.monthlyIncome)}</strong><small>Pagos registrados este mes</small></div>
-      <div className="card"><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong><small>{snapshot.expiring} vencen en los próximos 10 días</small></div>
-      <div className="card"><span>Saldo pendiente</span><strong className="amount">{money(snapshot.pending)}</strong><small>{snapshot.debtors} personas con saldo</small></div>
+      <button type="button" className="card stat-link" onClick={() => onFilterMembers?.('expired')}><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong><small>Ver socios vencidos →</small></button>
+      <button type="button" className="card stat-link" onClick={() => onFilterMembers?.('pending')}><span>Saldo pendiente</span><strong className="amount">{money(snapshot.pending)}</strong><small>{snapshot.debtors} personas con saldo · Ver lista →</small></button>
     </div>
     <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
       <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
@@ -64,10 +64,10 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
         </ul>
       </section>
       <section className="card" aria-labelledby="dashboard-pending-title"><h2 id="dashboard-pending-title">Pagos pendientes</h2>
-        <p className="muted">Saldo del plan más reciente. {snapshot.debtors} socios · {money(snapshot.pending)}.</p>
+        <p className="muted">Saldos de todos los períodos. {snapshot.debtors} socios · {money(snapshot.pending)}.</p>
         {snapshot.debtors === 0 ? <p>Sin saldos pendientes.</p> : <><ul className="dashboard-breakdown dashboard-pending-list">
           {snapshot.pendingMembers.map(member => <li key={member.id}>
-            <span><strong>{member.first_name} {member.last_name}</strong><small>{member.plan_name}</small></span>
+            <span><button type="button" className="text-button" onClick={() => onOpenMembers?.(member.id)}>{member.first_name} {member.last_name}</button><small>{member.plan_name}</small></span>
             <strong>{money(member.balance)}</strong></li>)}
         </ul><div className="actions" aria-label="Páginas de pagos pendientes">
           <button type="button" className="secondary" disabled={loading || page === 0} onClick={() => setPage(value => value - 1)}>Anterior</button>

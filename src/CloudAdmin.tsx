@@ -28,10 +28,11 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
   const [dirty, setDirty] = useState(false)
   const [memberId, setMemberId] = useState('')
   const [newPerson, setNewPerson] = useState(false)
+  const [memberFilter, setMemberFilter] = useState<'all' | 'expired' | 'pending'>('all')
   const countChanged = useCallback(() => { setRevision(value => value + 1) }, [])
-  function navigate(next: Section, person = '', create = false) {
+  function navigate(next: Section, person = '', create = false, filter: 'all' | 'expired' | 'pending' = 'all') {
     if (dirty && !window.confirm('Hay información sin guardar. ¿Querés descartarla y cambiar de sección?')) return
-    setDirty(false); setMemberId(person); setNewPerson(create); setSection(next)
+    setDirty(false); setMemberFilter(filter); setMemberId(person); setNewPerson(create); setSection(next)
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
   return <div className="admin-workspace">
@@ -40,8 +41,8 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.path}/></svg><span><strong>{item.title}</strong></span>
     </button>)}</nav></aside>
     <div className="workspace-main" onInputCapture={event => { if ((event.target as HTMLElement).closest('form')) setDirty(true) }}><Suspense fallback={<p role="status">Cargando sección…</p>}>
-      {section === 'overview' && <><CloudDashboard client={client} revision={revision} onOpenMembers={id => navigate('people', id)}/><div className="workspace-shortcuts"><button type="button" className="card" onClick={() => navigate('people', '', true)}><strong>Registrar una persona</strong><small>Datos básicos y anamnesis opcional →</small></button><button type="button" className="card" onClick={() => navigate('physio')}><strong>Kinesiología</strong><small>Ver rehabilitaciones activas →</small></button><button type="button" className="card" onClick={() => navigate('holistic')}><strong>Terapias holísticas</strong><small>Reiki y Registros Akáshicos · agendar →</small></button></div></>}
-      {section === 'people' && <CloudMembers client={client} onCountChange={countChanged} initialNew={newPerson} initialMemberId={memberId || null} onDirtyChange={setDirty}/>}
+      {section === 'overview' && <><CloudDashboard client={client} revision={revision} onOpenMembers={id => navigate('people', id)} onFilterMembers={filter => navigate('people', '', false, filter)}/><div className="workspace-shortcuts"><button type="button" className="card" onClick={() => navigate('people', '', true)}><strong>Registrar una persona</strong><small>Datos básicos y anamnesis opcional →</small></button><button type="button" className="card" onClick={() => navigate('physio')}><strong>Kinesiología</strong><small>Ver rehabilitaciones activas →</small></button><button type="button" className="card" onClick={() => navigate('holistic')}><strong>Terapias holísticas</strong><small>Reiki y Registros Akáshicos · agendar →</small></button></div></>}
+      {section === 'people' && <CloudMembers key={`${memberId}-${memberFilter}-${newPerson}`} initialFilter={memberFilter} client={client} onCountChange={countChanged} initialNew={newPerson} initialMemberId={memberId || null} onDirtyChange={setDirty}/>}
       {section === 'physio' && <PhysioDirectory client={client} onOpen={id => navigate('people', id)}/>} 
       {section === 'holistic' && <HolisticSchedule client={client} onOpen={id=>navigate('people',id)}/>}
       {section === 'nutrition' && <><NutritionMaterials client={client}/><ServiceNotifications client={client}/><PersonalNutrition client={client} onDirtyChange={setDirty}/><AdminFoodGuide/><AdminRecipeLibrary/></>}

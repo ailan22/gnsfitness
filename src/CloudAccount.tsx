@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { createClient, type User } from '@supabase/supabase-js'
 import { observeAccount } from './observeAccount'
+import { loginIdentifier } from './loginIdentifier'
+import PhoneAccess from './PhoneAccess'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
 import BotanicalCorners from './BotanicalCorners'
@@ -9,6 +11,8 @@ import { biometricAvailability, nativePlatform, nativeSessionStorage } from './n
 
 const CloudAdmin = lazy(() => import('./CloudAdmin'))
 const CloudStudent = lazy(() => import('./CloudStudent'))
+// Enable only after the SMS provider and phone confirmation are configured and tested.
+const phoneAccessEnabled = import.meta.env.VITE_PHONE_ACCESS_ENABLED === 'true'
 
 // Read only the callback kind before the SDK consumes the URL fragment.
 const callbackParameters = new URLSearchParams(window.location.hash.slice(1))
@@ -93,6 +97,9 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
   async function signIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!client || pending) return
+    const identifier = loginIdentifier(email)
+    if (!identifier) { setError('Ingresá un correo válido o un celular con código de país, por ejemplo +598 99 123 456.'); return }
+    if ('phone' in identifier && !phoneAccessEnabled) { setError('El ingreso por celular todavía está en preparación. Por ahora ingresá con tu correo.'); return }
     setPending(true); setError('')
     try {
       // Explicit password login starts a new account context, never inherits
@@ -101,11 +108,11 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         await nativeStorage.disable()
         setBiometricSaved(false); setBiometricEnabled(false); setBiometricMessage('')
       }
-      const { error: authError } = await client.auth.signInWithPassword({ email: email.trim(), password })
+      const { error: authError } = await client.auth.signInWithPassword({ ...identifier, password })
       if (authError) setError(authError.code === 'email_not_confirmed'
         ? 'Falta confirmar el correo de esta cuenta.'
         : authError.code === 'invalid_credentials'
-          ? 'El correo o la contraseña no coinciden. Podés recuperar tu acceso con «Olvidé mi contraseña».'
+          ? 'Los datos de acceso no coinciden. Podés recuperar tu acceso con «Olvidé mi contraseña».'
           : authError.status === 429
             ? 'Demasiados intentos. Esperá unos minutos antes de volver a intentar.'
             : 'No se pudo conectar o completar el ingreso. Intentá nuevamente en unos minutos.')
@@ -175,7 +182,8 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
       <form className="cloud-signin" onSubmit={signIn}>
         {new URLSearchParams(window.location.search).get('local-signout') === '1' && <p role="status">El acceso se cerró en este dispositivo. Sin conexión no se pudo confirmar la revocación en el servidor.</p>}
         {biometricSaved && <button type="button" disabled={pending} onClick={() => void unlockBiometrics()}>Ingresar con {biometry.label}</button>}
-        <label>Correo electrónico<input type="email" autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)}/></label>
+        <label>{phoneAccessEnabled ? 'Correo o celular' : 'Correo electrónico'}<input type={phoneAccessEnabled ? 'text' : 'email'} autoCapitalize="none" autoCorrect="off" spellCheck={false} autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)}/></label>
+        {phoneAccessEnabled && <small>Para celular, incluí el código de país. Primero vinculalo desde tu cuenta.</small>}
         <label>Contraseña<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)}/></label>
         <button type="submit" disabled={pending}>{pending ? 'Ingresando…' : 'Iniciar sesión'}</button>
         <a href="/reset-password?request=1">Olvidé mi contraseña</a>
@@ -186,6 +194,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         {role === 'student' && client && <CloudStudent client={client} user={user}/>}
         </Suspense>
         <div className={role === 'student' ? 'student-account-bottom' : undefined}>
+        {phoneAccessEnabled && client && <PhoneAccess key={user.id} client={client}/>}
         {nativePlatform && <details className="biometric-settings"><summary>Acceso con Face ID o biometría</summary>
           <h3>Acceso rápido en este celular</h3>
           <p className="muted">{biometricEnabled

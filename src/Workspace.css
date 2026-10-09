@@ -761,6 +761,24 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   outline: 2px solid #f7e8bb;
   outline-offset: 3px;
 }
+
+.dashboard-primary .stat-link { text-align: left; cursor: pointer; }
+.clinical-print-overlay { position: fixed; inset: 0; z-index: 1000; overflow: auto; background: #242424; padding: 20px; }
+.clinical-print-actions { max-width: 800px; margin: 0 auto 16px; display: flex; flex-wrap: wrap; gap: 12px; }
+.clinical-print-sheet { max-width: 800px; margin: auto; padding: 32px; color: #111; background: #fff; font-size: 14px; }
+.clinical-print-sheet :is(h1,h2,p,dt,dd) { color: #111; background: none; -webkit-text-fill-color: #111; }
+.clinical-print-sheet article { border-top: 1px solid #555; margin-top: 24px; padding-top: 16px; }
+.clinical-print-sheet dt { font-weight: 700; margin-top: 12px; }
+.clinical-print-sheet dd { margin: 4px 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media print {
+  body.printing-health > :not(.clinical-print-overlay) { display: none !important; }
+  body.printing-health .clinical-print-overlay { position: static; overflow: visible; background: white; padding: 0; }
+  body.printing-health .clinical-print-actions { display: none; }
+  body.printing-health .clinical-print-sheet { max-width: none; padding: 0; font-size: 11pt; }
+  body.printing-health .clinical-print-sheet article { break-before: auto; }
+  body.printing-health .clinical-print-sheet h2 { break-after: avoid; }
+  body.printing-health .clinical-print-sheet dl > div { break-inside: avoid; }
+}
 .app .cloud-student .plan-notifications > summary .badge {
   border: 1px solid transparent;
   background: linear-gradient(#10110f, #10110f) padding-box, var(--student-metallic) border-box;
@@ -774,4 +792,20 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   .app .cloud-student:not(:has(.student-home-menu)) { font-size: 15px; }
   .app .cloud-student .exercise-inline-fields label { font-size: 14px; }
   .app .cloud-student :is(input, select, textarea) { font-size: 17px; }
+}
+
+/* Compact mobile composition without scaling the page or disabling user zoom. */
+@media (max-width: 600px) {
+  .app:has(.cloud-portal) { min-width: 0; max-width: 100%; }
+  .app:has(.cloud-portal) :is(.content, .cloud-entry, .cloud-portal, .student-account-layout, .cloud-student, .brand-copy) { min-width: 0; max-width: 100%; }
+  .cloud-portal :is(input, select, textarea) { min-width: 0; max-width: 100%; font-size: 16px; }
+  .app:has(.student-home-menu) .brand { font-size: clamp(24px, 7.6vw, 32px); }
+  .app:has(.student-home-menu) > .content { padding: 0 14px max(8px, env(safe-area-inset-bottom)); }
+  .app .cloud-student .student-home-menu nav { padding-top: 18px; gap: 10px; }
+  .app .cloud-student .student-home-menu nav button { min-height: 44px; font-size: clamp(12px, 3.4vw, 14px); padding: 9px 6px; letter-spacing: .04em; }
+  .app .cloud-student .student-brand-signature { font-size: clamp(19px, 5.4vw, 24px); min-height: 44px; }
+  .cloud-portal .account-legal { flex-wrap: wrap; }
+  .cloud-portal .student-account-bottom { flex-wrap: wrap; }
+  .cloud-portal .phone-access { flex-basis: 100%; min-width: 0; }
+  .cloud-portal .phone-access input { width: 100%; }
 }

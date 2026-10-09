@@ -1,5 +1,11 @@
 const DAY = 86_400_000
 
+export function renewalStart(ends: string[], today: string): string | null {
+  if (!parseDay(today) || ends.some(end => !parseDay(end))) return null
+  const last = [...ends].sort().at(-1)
+  return last && last >= today ? new Date(parseDay(last)!.getTime() + DAY).toISOString().slice(0, 10) : today
+}
+
 export function parseDay(value: string): Date | null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null
   const [year, month, day] = value.split('-').map(Number)

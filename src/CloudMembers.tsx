@@ -66,7 +66,6 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const [paymentFilter, setPaymentFilter] = useState<PaymentFilter>(initialFilter === 'pending' ? 'Con saldo pendiente' : 'Todos')
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [statusSaving, setStatusSaving] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(0)
@@ -164,17 +163,6 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     finally { setSaving(false); saveBusy.current = false }
   }
 
-  async function changeStatus(member: CloudMember, status: CloudMember['status']) {
-    if (statusSaving || status === member.status) return
-    setStatusSaving(true); setError(''); setMessage('')
-    const { data, error: updateError } = await client.from('members').update({ status }).eq('id', member.id)
-      .eq('status', member.status).select('id').maybeSingle()
-    setStatusSaving(false)
-    if (updateError || !data) { setError('No se pudo actualizar el estado. Puede haber cambiado en otra sesión; actualizá la lista y volvé a intentarlo.'); return }
-    setMembers(current => current.map(item => item.id === member.id ? { ...item, status } : item))
-    setMessage('Estado del socio guardado en Supabase.')
-  }
-
   const selected = members.find(member => member.id === historyId)
   const query = search.trim().toLocaleLowerCase('es')
   const currentPlans = new Map<string, MembershipSummary>()
@@ -242,7 +230,6 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
         onChanged={() => { onCountChange(members.length); onDirtyChange?.(dirty || healthDirty || resultDirty) }} onClose={() => { if ((healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); void refresh() }}>
       <section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de inicio: {selected.joined_at || 'Sin registrar'}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p></section>
-        <details className="member-compact"><summary>Gestión de la ficha · <strong>{selected.status}</strong></summary><label>Estado<select value={selected.status} disabled={statusSaving} onChange={event => void changeStatus(selected, event.target.value as CloudMember['status'])}><option>Activo</option><option>Inactivo</option><option>Pausado</option><option>Baja</option></select></label><p className="muted">El estado del socio es independiente de los pagos y rutinas.</p><button type="button" className="secondary" onClick={() => edit(selected)}>Configurar saludo y datos</button></details>
       <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
       <ProgramResults key={selected.id} client={client} memberId={selected.id} admin onDirtyChange={setResultDirty}/>
       <div className="member-horizontal-sections"><StudentAccess key={selected.id + selected.email} client={client} member={selected} />

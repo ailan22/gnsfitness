@@ -1,3 +1,4 @@
+import ExpiredMembers from './ExpiredMembers'
 import { useEffect, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
@@ -10,12 +11,13 @@ type Snapshot = {
 }
 const money = (value: number) => new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(value)
 
-export default function CloudDashboard({ client, revision, onOpenMembers, onFilterMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: (memberId?: string) => void; onFilterMembers?: (filter: 'expired' | 'pending') => void }) {
+export default function CloudDashboard({ client, revision, onOpenMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: (memberId?: string) => void; onFilterMembers?: (filter: 'expired' | 'pending') => void }) {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
   const [refreshCount, setRefreshCount] = useState(0)
   const [page, setPage] = useState(0)
+  const [expiredOpen,setExpiredOpen]=useState(false)
   useEffect(() => {
     let active = true, busy = false
     const refresh = async () => {
@@ -45,15 +47,12 @@ export default function CloudDashboard({ client, revision, onOpenMembers, onFilt
     {snapshot && <><div className="stats dashboard-primary">
       <div className="card"><span>Socios activos</span><strong>{snapshot.active}</strong><small>{snapshot.members} personas registradas</small></div>
       <div className="card"><span>Ingresos del mes</span><strong className="amount">{money(snapshot.monthlyIncome)}</strong><small>Pagos registrados este mes</small></div>
-      <button type="button" className="card stat-link" onClick={() => onFilterMembers?.('expired')}><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong><small>Ver socios vencidos →</small></button>
-      <button type="button" className="card stat-link" onClick={() => onFilterMembers?.('pending')}><span>Saldo pendiente</span><strong className="amount">{money(snapshot.pending)}</strong><small>{snapshot.debtors} personas con saldo · Ver lista →</small></button>
+      <details className="card expired-card" onToggle={e=>setExpiredOpen(e.currentTarget.open)}><summary><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong></summary>{expiredOpen&&<ExpiredMembers key={`${revision}-${refreshCount}`} client={client} date={snapshot.date} onSelect={id=>onOpenMembers?.(id)}/>}</details>
     </div>
     <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
       <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
       <div className="card"><span>Bajas registradas</span><strong>{snapshot.inactive}</strong></div>
       <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
-      <div className="card"><span>Rutinas creadas</span><strong>{snapshot.routines}</strong></div>
-      <div className="card"><span>Entrenamientos del mes</span><strong>{snapshot.sessions}</strong></div>
     </div></details>
     <div className="dashboard-details">
       <section className="card" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>

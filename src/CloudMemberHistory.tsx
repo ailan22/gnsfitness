@@ -1,7 +1,6 @@
 import PhysioRoomTimes from './PhysioRoomTimes'
 import AdditionalPhysioSessions from './AdditionalPhysioSessions'
 import PlanSessionSchedule from './PlanSessionSchedule'
-import { confirmedInsert } from './confirmedInsert'
 import { NUTRITION_PRICE, PHYSIO_SESSION_PRICE, planTotal, summarizeServiceDates, type PlanServiceConfig } from './planServices'
 import { planCatalog } from './planCatalog'
 import { readAllPages } from './readAllPages'
@@ -77,6 +76,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
   const [paymentRequestId, setPaymentRequestId] = useState(() => crypto.randomUUID())
   const [activeForm, setActiveForm] = useState<'plan' | 'payment' | null>(null)
   const [renewing, setRenewing] = useState(false)
+  const [checkoutAmount,setCheckoutAmount]=useState<string|null>(null)
   const [viewPlanId, setViewPlanId] = useState('')
   const [routineEditor, setRoutineEditor] = useState<RoutineRow | 'new' | null>(null)
   const [copySourceId, setCopySourceId] = useState('')
@@ -134,6 +134,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     if (!start) { setError('Revisá las fechas de los planes anteriores antes de renovar.'); return }
     const previous = renew && latestPlan ? planCatalog.find(plan => latestPlan.plan_name.split(' + ')[0] === plan.name) : undefined
     planRequestId.current = crypto.randomUUID()
+    setCheckoutAmount(null); setPaymentForm({paidAt:today(),amount:'',method:'Efectivo'})
     setRenewing(renew); setActiveForm('plan'); setPhysioDates([]); setPhysioTimes({}); setError(''); setMessage('')
     setPlanForm({ planName: previous?.name ?? planCatalog[0].name, startsAt: start,
       extras: renew ? latestPlan?.service_extras ?? [] : [], details: '' })
@@ -245,13 +246,16 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
     }
     if (hasPhysio && (!physioDates.length || physioDates.some(d => !parseDay(d) || d < planForm.startsAt || d > endsAt))) { setError('Seleccioná las fechas de Kinesiología dentro de la vigencia del plan.'); return }
     if (hasPhysio && physioDates.some(d => !physioTimes[d])) { setError('Elegí la hora de cada sesión de kinesiología.'); return }
+    const collected=amountInCents(checkoutAmount??String(totalPlanPrice))
+    if(!Number.isSafeInteger(collected)||collected<=0||collected>price||!parseDay(paymentForm.paidAt)||paymentForm.paidAt>today()){setError('Revisá el importe recibido y la fecha del pago.');return}
     planBusy.current = true
     setSaving(true); setError(''); setMessage('')
     try {
     const row = { id: planRequestId.current, member_id: memberId,
       plan_name: [selectedPlan.name,...planForm.extras].join(' + '), service_extras: planForm.extras, service_details: planForm.details.trim(), service_config: { version: 1, nutritionMonthly: NUTRITION_PRICE, nutritionMonths: hasNutrition ? selectedPlan.months : 0, physioSessionPrice: PHYSIO_SESSION_PRICE, physioDates: hasPhysio ? physioDates : [], physioTimes: hasPhysio ? Object.fromEntries(physioDates.map(d=>[d,physioTimes[d]])) : {} }, months: selectedPlan.months, starts_at: planForm.startsAt, ends_at: endsAt, price: price / 100 }
-    await confirmedInsert(client, 'memberships', row, () => client.rpc('create_membership_period', { p_row: row, p_expected: latestPlan?.id ?? null }))
-    setActiveForm(null); setViewPlanId(''); setMessage(`${renewing ? 'Renovación guardada' : 'Plan guardado'}: ${readableDate(planForm.startsAt)} al ${readableDate(endsAt)}. El pago se registra por separado.`); setRevision(value => value + 1)
+    const checkout=await client.rpc('checkout_membership',{p_row:row,p_expected:latestPlan?.id??null,p_paid_at:paymentForm.paidAt,p_amount_cents:collected,p_method:paymentForm.method})
+    if(checkout.error||checkout.data!==row.id)throw new Error('No se pudo confirmar la renovación y el cobro. Conservá los datos y reintentá este mismo formulario; no se duplicará el pago.')
+    setActiveForm(null); setViewPlanId(''); setMessage(`${renewing ? 'Renovación guardada' : 'Plan guardado'}: ${readableDate(planForm.startsAt)} al ${readableDate(endsAt)}. Pago registrado: ${money(collected/100)}. Saldo: ${money((price-collected)/100)}.`); setRevision(value => value + 1)
     onChanged()
     } catch (error) { setError(error instanceof Error ? error.message : 'No se pudo confirmar el guardado. Conservamos el formulario.') }
     finally { planBusy.current = false; setSaving(false) }
@@ -334,7 +338,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
       <div className="heading"><h2>Plan y pagos</h2><div className="actions">{latestPlan && <button type="button" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(true)}>Renovar plan</button>}<button type="button" className="secondary" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(false)}>+ Asignar otro plan</button></div></div>
       {history.memberships.length > 1 && <label>Consultar período<select disabled={saving || Boolean(activeForm)} value={currentPlan?.id ?? ''} onChange={event => setViewPlanId(event.target.value)}>{history.memberships.map(plan => <option key={plan.id} value={plan.id}>{plan.plan_name} · {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)}</option>)}</select></label>}
       {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
-        <h2>{renewing ? 'Renovar plan' : 'Asignar plan'}</h2><p>Elegí la duración y revisá las fechas. Se conserva el historial; renovar no equivale a cobrar.</p><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => changePlan(event.target.value, planForm.startsAt)}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
+        <h2>{renewing ? 'Renovar plan' : 'Asignar plan'}</h2><p>Elegí la duración y revisá las fechas. El período y el pago se guardan juntos. Si recibís una parte, la diferencia queda pendiente.</p><div className="grid"><label>Plan *<select value={planForm.planName} onChange={event => changePlan(event.target.value, planForm.startsAt)}>{planOptions.map(option => <option key={option.name}>{option.name}</option>)}</select></label>
           <label>Fecha de inicio *<input type="date" required value={planForm.startsAt} onChange={event => changePlan(planForm.planName, event.target.value)}/></label>
           <label>Total del plan (UYU)<input readOnly value={money(totalPlanPrice)} aria-label="Total del plan (UYU)"/></label></div>
         <fieldset className="plan-extras"><legend>Complementos opcionales</legend>{['Kinesiología','Nutrición'].map(extra => <label key={extra} className="exercise-check"><input type="checkbox" checked={planForm.extras.includes(extra)} onChange={e => setPlanForm({...planForm, extras: e.target.checked ? [...planForm.extras, extra] : planForm.extras.filter(x => x !== extra)})}/>+ {extra} · {extra === 'Nutrición' ? '$3.000 por mes' : '$650 por sesión'}</label>)}</fieldset>
@@ -346,7 +350,8 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
           <p className="plan-grand-total">Total por la duración contratada: <strong>{money(totalPlanPrice)}</strong></p>
         </section>
         <p className="muted">Nutrición se suma por cada mes contratado. Kinesiología se suma por las fechas elegidas. El acceso a Nutrición se habilita desde las solicitudes del panel.</p>
-        <p className="muted">Vence el {endsAt ? readableDate(endsAt) : '—'}. Crear un plan nuevo no registra un pago.</p>
+        <p className="muted">Vence el {endsAt ? readableDate(endsAt) : '—'}. Revisá el cobro antes de confirmar.</p>
+        <fieldset className="card"><legend>Cobro del plan</legend><div className="grid"><label>Importe recibido (UYU)<input type="number" min="0.01" step="0.01" max={totalPlanPrice} required value={checkoutAmount??String(totalPlanPrice)} onChange={e=>setCheckoutAmount(e.target.value)}/></label><label>Fecha de pago<input type="date" required max={today()} value={paymentForm.paidAt} onChange={e=>setPaymentForm({...paymentForm,paidAt:e.target.value})}/></label><label>Medio de pago<select value={paymentForm.method} onChange={e=>setPaymentForm({...paymentForm,method:e.target.value})}><option>Efectivo</option><option>Transferencia</option><option>Tarjeta</option><option>Otro</option></select></label></div><p>Saldo luego del cobro: {money(Math.max(0,totalPlanPrice-Number(checkoutAmount??totalPlanPrice)))}</p></fieldset>
         <div className="actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : renewing ? 'Confirmar renovación' : 'Guardar plan'}</button><button type="button" className="secondary" disabled={saving} onClick={() => { setActiveForm(null); setError('') }}>Cancelar</button></div>
       </fieldset></form>}
       {!currentPlan ? <div className="card empty">Todavía no hay un plan asignado a este socio.</div> : <section className="card profile">
@@ -356,10 +361,10 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
           {currentPlan.service_config.physioDates.length > 0 && <><p>Kinesiología: {currentPlan.service_config.physioDates.length} sesión(es) × {money(currentPlan.service_config.physioSessionPrice)}</p><p>Fechas: {summarizeServiceDates(currentPlan.service_config.physioDates)}</p></>}
         </details>}<p>Duración: {currentPlan.months} {currentPlan.months === 1 ? 'mes' : 'meses'} · Inicio: {readableDate(currentPlan.starts_at)} · Vencimiento: {readableDate(currentPlan.ends_at)}</p><p>Precio: {money(currentPlan.price)}</p>
         <p>Pagado: {money(received / 100)} · Saldo pendiente: <strong>{money(pending / 100)}</strong></p>
-        {pending > 0 && activeForm === null && <button type="button" disabled={saving} onClick={() => { setPaymentRequestId(crypto.randomUUID()); setActiveForm('payment'); setPaymentForm({ paidAt: today(), amount: '', method: 'Efectivo' }); setError(''); setMessage('') }}>+ Registrar pago</button>}
+        {pending > 0 && activeForm === null && <details className="member-compact"><summary>Saldo pendiente · {money(pending/100)}</summary><button type="button" className="secondary" disabled={saving} onClick={()=>{setPaymentRequestId(crypto.randomUUID());setActiveForm('payment');setPaymentForm({paidAt:today(),amount:String(pending/100),method:'Efectivo'});setError('')}}>Completar saldo pendiente</button></details>}
         {activeForm === 'payment' && <form className="form cloud-payment-form" onSubmit={event => void savePayment(event)}>
           <fieldset disabled={saving} style={{ border: 0, margin: 0, padding: 0, minWidth: 0 }}>
-          <h3>Registrar pago</h3><p>Plan: {currentPlan.plan_name} · Saldo pendiente: {money(pending / 100)}</p>
+          <h3>Completar saldo pendiente</h3><p>Plan: {currentPlan.plan_name} · Saldo pendiente: {money(pending / 100)}</p>
           <div className="grid"><label>Fecha del pago *<input type="date" required max={today()} value={paymentForm.paidAt} onChange={event => setPaymentForm({ ...paymentForm, paidAt: event.target.value })}/></label>
             <label>Importe (pesos uruguayos) *<input type="number" required min="0.01" max={(pending / 100).toFixed(2)} step="0.01" value={paymentForm.amount} onChange={event => setPaymentForm({ ...paymentForm, amount: event.target.value })}/></label>
             <label>Medio de pago<select value={paymentForm.method} onChange={event => setPaymentForm({ ...paymentForm, method: event.target.value })}><option>Efectivo</option><option>Transferencia</option><option>Tarjeta</option><option>Otro</option></select></label></div>
@@ -368,7 +373,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
         </form>}
         <PhysioRoomTimes key={`times-${currentPlan.id}`} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Horarios guardados. La sala quedó reservada.'); setRevision(value => value + 1); onChanged() }}/><AdditionalPhysioSessions key={currentPlan.id} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Sesiones adicionales guardadas. Se actualizó el total y el saldo del plan.'); setRevision(value => value + 1); onChanged() }}/><h3>Pagos de este plan</h3>{history.payments.filter(payment => payment.membership_id === currentPlan.id).length === 0 ? <p className="muted">Todavía no hay pagos registrados.</p> : history.payments.filter(payment => payment.membership_id === currentPlan.id).map(payment => <p key={payment.id}>{readableDate(payment.paid_at)} · {payment.method} · {money(payment.amount)}</p>)}
       </section>}
-      {history.memberships.length > 1 && <section className="card profile"><h2>Historial de planes</h2>{history.memberships.filter(plan => plan.id !== currentPlan?.id).map(plan => <p key={plan.id}><button type="button" className="text-button" disabled={saving || Boolean(activeForm)} onClick={() => setViewPlanId(plan.id)}>Ver plan y registrar pago</button> · {plan.plan_name}: {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)} · {money(plan.price)} · pagado {money(history.payments.filter(payment => payment.membership_id === plan.id).reduce((total, payment) => total + Number(payment.amount), 0))}</p>)}</section>}
+      {history.memberships.length > 1 && <section className="card profile"><h2>Plan renovado</h2><p>{latestPlan?.plan_name} · {latestPlan?.months} mes(es)</p><p>{readableDate(latestPlan!.starts_at)} al {readableDate(latestPlan!.ends_at)}</p><details><summary>Períodos anteriores</summary>{history.memberships.filter(plan => plan.id !== currentPlan?.id).map(plan => <p key={plan.id}><button type="button" className="text-button" disabled={saving || Boolean(activeForm)} onClick={() => setViewPlanId(plan.id)}>Ver detalle</button> · {plan.plan_name}: {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)} · {money(plan.price)} · pagado {money(history.payments.filter(payment => payment.membership_id === plan.id).reduce((total, payment) => total + Number(payment.amount), 0))}</p>)}</details></section>}
     </>}
     {children}
     {history && <>

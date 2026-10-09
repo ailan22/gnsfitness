@@ -809,3 +809,15 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   .cloud-portal .phone-access { flex-basis: 100%; min-width: 0; }
   .cloud-portal .phone-access input { width: 100%; }
 }
+.expired-card summary { cursor:pointer; display:flex; align-items:center; gap:12px; }
+.expired-card summary::before { content:'▸'; }
+.expired-card[open] summary::before { content:'▾'; }
+.expired-member-list ul { list-style:none; padding:0; max-height:360px; overflow:auto; }
+.expired-member-list li { padding:10px 0; border-bottom:1px solid #ffffff24; }
+.expired-member-list small { display:block; }
+.meal-plan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:16px; }
+.meal-plan-editor textarea { width:100%; box-sizing:border-box; resize:vertical; }
+.meal-plan-grid fieldset { min-width:0; margin:0; }
+.gns-method-copy { line-height:1.65; }
+.gns-method-copy li { margin:10px 0; }
+.gns-signature { text-align:center; letter-spacing:.12em; }

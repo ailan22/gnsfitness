@@ -41,7 +41,14 @@ test('renewal preserves debts, rejects stale or overlapping periods and isolates
   assert.equal((await db.query('select count(*)::int n from payments')).rows[0].n,1)
   await assert.rejects(db.query('select register_membership_payment($1,$2,$3,$4,$5,$6)',[id(31),id(11),id(20),'2026-01-15',100,'Efectivo']),/pertenece/)
   await assert.rejects(db.query('select register_membership_payment($1,$2,$3,$4,$5,$6)',[id(32),id(10),id(20),'2026-01-15',110001,'Efectivo']),/supera/)
-  await as(2);await assert.rejects(payment(),/administrador/)
+  const checkoutRow={...renewed,id:id(40),starts_at:'2026-03-01',ends_at:'2026-03-31'}
+  const checkout=(amount=210000)=>db.query('select checkout_membership($1::jsonb,$2::uuid,$3::date,$4::bigint,$5::text)',[JSON.stringify(checkoutRow),id(22),'2026-02-01',amount,'Efectivo'])
+  await assert.rejects(checkout(210001),/supera/)
+  assert.equal((await db.query('select count(*)::int n from memberships where id=$1',[id(40)])).rows[0].n,0,'a rejected charge must roll back the renewal')
+  await checkout();await checkout()
+  assert.equal((await db.query('select count(*)::int n from payments where membership_id=$1',[id(40)])).rows[0].n,1,'retry must not charge twice')
+  await assert.rejects(checkout(10000),/otros datos/)
+  await as(2);await assert.rejects(checkout(),/doble factor/);await assert.rejects(payment(),/administrador/)
   await as(1,'aal2','anon');await assert.rejects(create(plan,null),/permission denied/)
  } finally {await db.close()}
 })

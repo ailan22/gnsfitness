@@ -105,7 +105,7 @@ workflows:
     max_build_duration: 45
     environment:
       node: 24
-      xcode: latest
+      xcode: 26.3
       groups:
         - gns_public_backend
       ios_signing:

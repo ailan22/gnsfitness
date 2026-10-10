@@ -940,7 +940,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .member-workspace-details > summary { min-height:24px; }
 .member-workspace-details[open] > summary { margin-bottom:16px; }
 .app .cloud-student .student-home-menu nav button > span,
-.app .cloud-student .student-brand-signature > span {
+.app .cloud-student .student-home-menu .student-brand-signature > span {
  background:linear-gradient(174deg,#d9b566 6%,#c49b4e 34%,#b78b3f 46%,#e6c77d 54%,#cba358 72%,#b88c42 96%);
  background-clip:text; -webkit-background-clip:text; color:#d1ac62; -webkit-text-fill-color:transparent;
 }

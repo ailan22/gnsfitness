@@ -9,6 +9,8 @@ test('dashboard handles 2000 members and 120000 sessions without exporting histo
  for(const file of readdirSync(new URL('../cloud/',import.meta.url)).filter(n=>/^0\d\d_.*\.sql$/.test(n)).sort())await db.exec(readFileSync(new URL('../cloud/'+file,import.meta.url),'utf8').replace(/^\uFEFF/,''))
  await db.exec(readFileSync(new URL('../cloud/020_dashboard_scale.sql',import.meta.url),'utf8'))
  // Fixture generation is owner-only and isolated. No real data or remote calls.
+ // Match the business date used by payment validation, including after UTC midnight.
+ await db.exec("set timezone = 'America/Montevideo'")
  await db.exec(`insert into auth.users values(md5('admin')::uuid,'admin@test'),(md5('student')::uuid,'student@test');insert into user_roles values(md5('admin')::uuid,'admin'),(md5('student')::uuid,'student');
  insert into members(id,user_id,first_name,last_name,joined_at,status) select md5('member'||n)::uuid,case when n=1 then md5('student')::uuid end,'Persona','Ejemplo '||n,current_date,'Activo' from generate_series(1,2000)n;
  insert into routines(id,member_id,name,level,days_per_week,program_rounds,block_rounds) select md5('routine'||n)::uuid,md5('member'||n)::uuid,'Plan ficticio','Inicial',3,52,4 from generate_series(1,2000)n;

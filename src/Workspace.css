@@ -1033,7 +1033,7 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
  .member-section-grid > details > summary, .member-section-grid > div > details > summary, .member-section-grid .intake-accordion > summary { min-height:68px; padding:16px; }
 }
 /* Saturated gold, without near-white stops in student titles. */
-.app:has(.cloud-student), .app .cloud-student { --gns-metallic:linear-gradient(174deg,#d9b65d 5%,#cba14e 34%,#b48c3d 46%,#e2bd65 56%,#c39a45 92%); --student-metallic:var(--gns-metallic); --student-gold:#d4ab55; }
+.app:has(.cloud-student), .app .cloud-student { --student-gold:#d4ab55; --gns-metallic:linear-gradient(var(--student-gold),var(--student-gold)); --student-metallic:var(--gns-metallic); }
 .app .cloud-student .student-home-menu nav button > span,
 .app .cloud-student .student-home-menu .student-brand-signature > span,
 .app .cloud-student .gns-signature,

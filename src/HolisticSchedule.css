@@ -1,0 +1,37 @@
+.holistic-columns { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:28px; align-items:start; }
+.holistic-booking-panel,.holistic-reservations { min-width:0; padding:24px; border:1px solid #74633f70; border-radius:18px; background:#1b1c19e8; }
+.holistic-schedule .holistic-title { margin-bottom:8px; }
+.holistic-schedule .therapy-duration { margin:0 0 18px; font-size:14px; }
+.holistic-schedule h3 { margin:0; font-size:20px; }
+.holistic-schedule .therapy-choices { gap:10px; margin:18px 0; }
+.holistic-schedule .therapy-choice { display:flex; align-items:center; justify-content:center; gap:10px; font-family:inherit; font-size:16px; font-weight:600; min-height:68px; padding:12px; background:#22241f; color:#d4ab55; border-color:#74633f80; }
+.holistic-schedule .therapy-choice.active { background:#30372a; border-color:#bf9b52; box-shadow:none; }
+.holistic-schedule svg { width:28px; height:28px; flex-shrink:0; }
+.holistic-booking-panel label { display:grid; gap:8px; margin:16px 0; }
+.holistic-weekdays { display:grid; grid-template-columns:repeat(7,1fr); text-align:center; color:#aaa99e; font-size:12px; margin-top:22px; }
+.holistic-schedule .room-month { margin:8px 0 18px; }
+.holistic-schedule .room-month button { font-size:14px; padding:8px 4px; min-height:36px; }
+.holistic-selected-date { color:#c4c3b9; font-size:14px; margin:12px 0 20px; text-transform:capitalize; }
+.holistic-time-group { margin:18px 0; }
+.holistic-time-group h4 { display:flex; justify-content:space-between; gap:10px; margin:0 0 10px; color:#d4ab55; font-size:15px; }
+.holistic-time-group h4 span { color:#b8b9ae; font-size:13px; font-weight:400; }
+.holistic-time-slots { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+.holistic-time-slots button { padding:10px 4px; font-size:14px; min-width:0; }
+.holistic-time-slots button.active,.holistic-schedule .room-month button.active { background:#d4ab55; color:#191b16; border-color:#d4ab55; }
+.holistic-time-slots button:disabled,.holistic-schedule .room-month button:disabled { opacity:.35; cursor:not-allowed; }
+.holistic-time-groups small { color:#b8b9ae; display:block; font-size:12px; margin-top:10px; }
+.holistic-submit { width:100%; margin-top:22px; }
+.holistic-reservations .heading { gap:12px; flex-wrap:wrap; align-items:center; }
+.holistic-count { display:inline-block; font-size:13px; border:1px solid #74633f; border-radius:20px; padding:4px 8px; margin-left:6px; }
+.holistic-reservation { padding:20px; border:1px solid #74633f65; border-radius:14px; margin-top:14px; background:#242620; }
+.holistic-reservation-heading { display:flex; gap:14px; align-items:center; }
+.holistic-therapy-icon { color:#d4ab55; padding:10px; border:1px solid #74633f80; border-radius:12px; display:flex; }
+.holistic-reservation h4 { margin:0 0 5px; font-size:18px; color:#eeeae0; overflow-wrap:anywhere; }
+.holistic-reservation-heading p { margin:0; color:#d4ab55; font-size:14px; }
+.holistic-reservation-time { color:#d8d6cc; font-size:14px; padding:14px 0; border-bottom:1px solid #ffffff16; }
+.holistic-reservation-actions { display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.holistic-reservation-actions button { font-size:13px; }
+.holistic-empty { padding:20px; border:1px dashed #74633f60; border-radius:12px; color:#b8b9ae; font-size:14px; }
+.holistic-confirmation { border-left:3px solid #9ba77e; background:#293126; padding:14px 18px; border-radius:8px; }
+@media(max-width:850px) { .holistic-columns { grid-template-columns:1fr; gap:18px; } }
+@media(max-width:480px) { .holistic-booking-panel,.holistic-reservations { padding:16px; } .holistic-schedule .therapy-choice { font-size:14px; gap:7px; } }

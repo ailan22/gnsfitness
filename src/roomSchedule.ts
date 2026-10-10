@@ -4,7 +4,7 @@ export type RoomAppointment = { id: string; member_id: string; membership_id: st
 export function availableRoomTimes(date: string, appointments: RoomAppointment[], membershipId?: string): string[] {
   const occupied = appointments.filter(a => !a.cancelled && a.session_date === date && (!membershipId || a.membership_id !== membershipId))
   const choices: string[] = []
-  for (const [opening, closing] of ROOM_OPEN_WINDOWS) for (let minute = opening; minute + SESSION_MINUTES <= closing; minute += 5) {
+  for (const [opening, closing] of ROOM_OPEN_WINDOWS) for (let minute = opening; minute + SESSION_MINUTES <= closing; minute += SESSION_MINUTES) {
     const time = `${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')}`
     const start = Date.parse(`${date}T${time}:00-03:00`), end = start + SESSION_MINUTES * 60_000
     if (Number.isFinite(start) && !occupied.some(a => start < Date.parse(a.ends_at) && end > Date.parse(a.starts_at))) choices.push(time)

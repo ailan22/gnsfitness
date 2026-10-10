@@ -9,14 +9,14 @@ const api={};vm.runInNewContext(ts.transpileModule(readFileSync(new URL('../src/
 
 test('all 35-minute bookings fit completely inside opening hours',()=>{
  const times=api.availableRoomTimes('2030-10-01',[])
- for(const time of ['08:00','11:25','16:00','19:25']) assert.ok(times.includes(time))
+ for(const time of ['08:00','08:35','10:55','16:00','16:35','18:55']) assert.ok(times.includes(time))
  for(const time of ['07:55','11:30','12:00','15:55','19:30','20:00']) assert.ok(!times.includes(time))
- assert.equal(times.length,84)
+ assert.equal(times.length,12)
 })
 test('available times exclude the whole 35-minute interval and allow adjacent appointments',()=>{
  const row={id:id(20),session_date:'2030-10-01',starts_at:'2030-10-01T20:00:00Z',ends_at:'2030-10-01T20:35:00Z',cancelled:false,membership_id:id(10)}
- const times=api.availableRoomTimes('2030-10-01',[row]);assert.ok(!times.includes('16:30'));assert.ok(!times.includes('17:00'));assert.ok(!times.includes('17:30'));assert.ok(times.includes('16:25'));assert.ok(times.includes('17:35'))
- assert.ok(api.availableRoomTimes('2030-10-01',[row],id(10)).includes('17:00'))
+ const times=api.availableRoomTimes('2030-10-01',[row]);assert.ok(!times.includes('16:35'));assert.ok(!times.includes('17:10'));assert.ok(times.includes('16:00'));assert.ok(times.includes('17:45'))
+ assert.ok(api.availableRoomTimes('2030-10-01',[row],id(10)).includes('17:10'))
 })
 test('database enforces room overlap, permissions, atomic plan updates, retry and encrypted-export scope',async()=>{
  const db=new PGlite()

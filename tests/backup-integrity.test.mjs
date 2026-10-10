@@ -82,3 +82,14 @@ test('full schema: only MFA admin exports all app tables, dates validated, priva
  await db.exec('reset role');assert.equal((await db.query("select count(*)::int as n from private.security_audit where entity_table='privacy_requests'")).rows[0].n,1)
  }finally{await db.close()}
 })
+
+test('schema 26 preserves expenses and rejects missing audit history',async()=>{
+ const names=[...cryptoApi.backupTables,...cryptoApi.nutritionBackupTables,...cryptoApi.roomBackupTables,...cryptoApi.programBackupTables,...cryptoApi.expenseBackupTables]
+ const data={format:'gns-application-backup',version:1,schemaVersion:26,createdAt:new Date().toISOString(),tables:Object.fromEntries(names.map(n=>[n,[]]))}
+ data.tables.gym_expenses=[{id:id(90),amount_cents:12345}]
+ data.tables.gym_expense_history=[{id:id(91),expense_id:id(90),version:1}]
+ const file=await cryptoApi.encryptBackup(data,pass)
+ assert.deepEqual(JSON.parse(JSON.stringify(await cryptoApi.decryptBackup(file,pass))),data)
+ delete data.tables.gym_expense_history
+ await assert.rejects(cryptoApi.encryptBackup(data,pass))
+})

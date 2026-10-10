@@ -1,9 +1,9 @@
 /* Scoped to the administrator workspace; the student portal keeps its design. */
-.app-admin:has(.admin-sidebar-layout) {background:#111719}
+.app-admin:has(.admin-sidebar-layout) {background:#111510}
 .app-admin:has(.admin-sidebar-layout):not(:has(.member-record-view))>.topbar{display:none}
 .app-admin:has(.admin-sidebar-layout) .content{max-width:none;padding:28px 30px 70px}
 .admin-sidebar-layout{display:block;padding-left:230px;min-height:calc(100dvh - 98px)}
-.admin-sidebar-layout>.workspace-sidebar{position:fixed;left:0;top:0;bottom:0;width:224px;padding:28px 14px;background:linear-gradient(160deg,#151b1eeb,#111819eb);border-right:1px solid #ffffff12;z-index:3;display:flex;flex-direction:column;overflow-y:auto}
+.admin-sidebar-layout>.workspace-sidebar{position:fixed;left:0;top:0;bottom:0;width:224px;padding:28px 14px;background:linear-gradient(160deg,#1b1e19eb,#141712eb);border-right:1px solid #ffffff12;z-index:3;display:flex;flex-direction:column;overflow-y:auto}
 .sidebar-brand{padding:0 12px 32px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .sidebar-brand strong{font-size:48px;letter-spacing:.07em;line-height:1;color:#d4bb83;background:linear-gradient(115deg,#ae925d,#e1c78f,#b49a67);background-clip:text;-webkit-text-fill-color:transparent}
 .sidebar-brand>span{font-size:15px;letter-spacing:.45em;color:#eee;margin:6px 0 14px}
@@ -22,7 +22,7 @@
 .admin-sidebar-layout .dashboard-agenda-layout>.heading h1{font-size:32px;letter-spacing:-.02em;margin:0}
 .admin-sidebar-layout .dashboard-agenda-layout>.heading>button{font-size:12px;padding:8px 10px;border-color:#ffffff25;color:#c3cac5}
 .admin-sidebar-layout .dashboard-agenda-layout>.muted{margin:4px 0 26px;font-size:14px;color:#acb7b0}
-.app-admin .admin-sidebar-layout .dashboard-agenda-layout .card{background:linear-gradient(125deg,#1a2225,#151d20);border:1px solid #ffffff12;border-radius:8px}
+.app-admin .admin-sidebar-layout .dashboard-agenda-layout .card{background:linear-gradient(125deg,#1e2220,#171b19);border:1px solid #ffffff12;border-radius:8px}
 .admin-sidebar-layout .dashboard-primary{margin:0 0 24px;gap:20px}
 .admin-sidebar-layout .dashboard-agenda-layout .dashboard-primary>.card{padding:28px 18px 24px 72px;min-height:150px}
 .admin-sidebar-layout .dashboard-agenda-layout .dashboard-symbol{left:20px;width:35px;height:35px;top:42px}

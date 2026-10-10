@@ -17,13 +17,13 @@ export function StudentNutritionMaterials({ assigned = [] }: { assigned?: string
   </section>
 }
 
-export default function NutritionMaterials({ client, expanded=false }: { client: SupabaseClient; expanded?:boolean }) {
+export default function NutritionMaterials({ client }: { client: SupabaseClient }) {
   const [people, setPeople] = useState<Person[]>([])
   const [access, setAccess] = useState<Access[]>([])
   const [member, setMember] = useState('')
   const [selected, setSelected] = useState<string[] | null>(null)
-  const [open, setOpen] = useState(expanded)
-  const [loading, setLoading] = useState(expanded)
+  const open = true
+  const [loading, setLoading] = useState(true)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [loadFailed, setLoadFailed] = useState(false)
@@ -60,25 +60,20 @@ export default function NutritionMaterials({ client, expanded=false }: { client:
     } catch { setError('No se pudo guardar. Actualizá las asignaciones y revisá la selección antes de reintentar.') }
     finally { setBusy(false) }
   }
-  return <details open={open} className="card nutrition-materials" onToggle={event => { if(event.currentTarget.open===open)return; setOpen(event.currentTarget.open); setLoading(event.currentTarget.open); setSelected(null); setError('') }}>
-    <summary><strong>Guías para compartir</strong></summary>
-    {open && <>
-      <p>Después de su solicitud, elegí qué guías habilitarle. La calculadora y la dieta personalizada se gestionan por separado.</p>
-      <div className="nutrition-share-grid"><div className="nutrition-share-person"><h3>Socio destinatario</h3><label>Alumno destinatario<select value={member} disabled={busy || loading} onChange={event => { setMember(event.target.value); setSelected(null); setMessage(''); setError('') }}>
-        <option value="">Seleccioná un socio</option>
-        {people.map(item => <option key={item.id} value={item.id}>{item.last_name}, {item.first_name}</option>)}
-      </select></label>
-      {loading && <p role="status">Cargando asignaciones…</p>}
-      {person && !person.user_id && <p>Primero vinculá la cuenta del alumno desde su ficha en Socios.</p>}
-      {person?.user_id && !eligible && !loading && <p>El alumno todavía no tiene una solicitud pendiente o un acceso habilitado. Debe solicitar Nutrición desde Alimentación saludable.</p>}
-      </div><div className="nutrition-share-guides"><h3>Guías para habilitar</h3>{!person&&<p>Seleccioná un socio para consultar y elegir sus guías.</p>}{person && eligible && <fieldset className="nutrition-guide-choices" disabled={busy || loading || loadFailed}>
-        <legend>Guías para este alumno</legend>
-        {guides.map(guide => <label key={guide.id}><input type="checkbox" checked={chosen.includes(guide.id)} onChange={event => { setSelected(event.target.checked ? [...chosen, guide.id] : chosen.filter(id => id !== guide.id)); setMessage('') }}/><span>{guide.title}</span></label>)}
-      </fieldset>}</div></div>
-      <div className="actions"><button type="button" disabled={busy || loading || loadFailed || !person?.user_id || !eligible} onClick={() => void send()}>{busy ? 'Guardando…' : 'Guardar guías seleccionadas'}</button>
-        <button type="button" className="secondary" disabled={busy || loading} onClick={() => { setLoading(true); setSelected(null); setError(''); setRevision(value => value + 1) }}>Actualizar asignaciones</button></div>
-      <p className="muted">Solo verá las guías marcadas. Para retirar una, desmarcala y guardá. No modifica su dieta ni registra pagos.</p>
-      {error && <p role="alert" className="error">{error}</p>}{message && <p role="status">{message}</p>}
-    </>}
-  </details>
+  return <section className="card nutrition-materials nutrition-share-panel" aria-label="Guías para compartir">
+    <header className="nutrition-share-heading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 5v15M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Z"/></svg><div><h3>Guías para compartir</h3><p>Seleccioná las guías que querés habilitar para un socio.</p></div></header>
+    <div className="nutrition-share-grid">
+      <div className="nutrition-share-guides"><h4>1. Seleccioná las guías</h4><fieldset className="nutrition-guide-choices" aria-label="Guías para este alumno" disabled={busy || loading || loadFailed || Boolean(person&&!eligible)}>
+        {guides.map(guide=><label key={guide.id}><input type="checkbox" checked={chosen.includes(guide.id)} onChange={event=>{setSelected(event.target.checked?[...chosen,guide.id]:chosen.filter(id=>id!==guide.id));setMessage('')}}/><span><strong>{guide.id==='food'?'Alimentación saludable':guide.title}</strong><small>{guide.id==='food'?'Principios, hábitos y recomendaciones.':'Recetas organizadas para cada comida.'}</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M5 2h9l5 5v15H5ZM14 2v6h5"/></svg></label>)}
+      </fieldset></div>
+      <div className="nutrition-share-person"><h4>2. Asigná al socio</h4><label>Seleccioná un socio existente.<select value={member} disabled={busy||loading} onChange={event=>{setMember(event.target.value);if(member)setSelected(null);setMessage('');setError('')}}><option value="">Seleccioná un socio</option>{people.map(item=><option key={item.id} value={item.id}>{item.first_name} {item.last_name}</option>)}</select></label>
+        <div className="nutrition-selection-status"><span aria-hidden="true">✓</span><div><strong>{chosen.length} {chosen.length===1?'guía seleccionada':'guías seleccionadas'}</strong><p>{person?`La selección se guardará para ${person.first_name} ${person.last_name}.`:'Elegí el destinatario para continuar.'}</p></div></div>
+        {loading&&<p role="status">Cargando asignaciones…</p>}
+        {person&&!person.user_id&&<p>Primero vinculá la cuenta del alumno desde su ficha.</p>}
+        {person?.user_id&&!eligible&&!loading&&<p>El alumno debe solicitar acceso a Nutrición antes de habilitar sus guías.</p>}
+        <div className="nutrition-share-actions"><button type="button" disabled={busy||loading||loadFailed||!person?.user_id||!eligible} onClick={()=>void send()}>{busy?'Guardando…':chosen.length===0?'Guardar selección':chosen.length===1?'Habilitar guía':'Habilitar guías'} <span aria-hidden="true">›</span></button><button type="button" className="text-button" disabled={busy||loading} onClick={()=>{setLoading(true);setSelected(null);setError('');setRevision(v=>v+1)}}>Actualizar asignaciones</button></div>
+      </div>
+    </div>
+    {error&&<p role="alert" className="error">{error}</p>}{message&&<p role="status">{message}</p>}
+  </section>
 }

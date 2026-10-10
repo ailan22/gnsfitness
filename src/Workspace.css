@@ -949,3 +949,23 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
  .member-workspace-identity { padding:18px 14px; gap:12px; }
  .member-workspace-content { padding:12px 14px; }
 }
+
+.registration-consent { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:14px; }
+.registration-consent input[type=checkbox] { width:18px; height:18px; flex:0 0 auto; }
+.registration-link { display:block; text-align:center; padding:12px; border:1px solid #b69a5b55; border-radius:10px; }
+.registration-request { padding:16px 0; border-bottom:1px solid #ffffff24; overflow-wrap:anywhere; }
+.registration-request h3 { margin-bottom:8px; }
+.registration-requests { margin-top:24px; }
+
+/* Every member section uses the same continuous row, with no boxed exceptions. */
+.member-workspace-content .member-compact,
+.member-workspace-content [data-member-section] > details,
+.member-workspace-content details[data-member-section],
+.member-workspace-content .member-training-section {
+ border:0; border-bottom:1px solid #ffffff24; border-radius:0;
+ background:transparent; box-shadow:none; margin:0; padding:20px 0;
+}
+.member-workspace-content details > summary { font-size:15px; font-weight:600; line-height:1.5; cursor:pointer; }
+.member-workspace-content details > summary:focus-visible { outline:2px solid #bea063; outline-offset:5px; }
+.member-workspace-content .member-health-sections { margin:0; gap:0; }
+.member-workspace-content details > summary { min-height:24px; }

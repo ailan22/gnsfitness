@@ -3,6 +3,7 @@ import { createClient, type User } from '@supabase/supabase-js'
 import { observeAccount } from './observeAccount'
 import { loginIdentifier } from './loginIdentifier'
 import PhoneAccess from './PhoneAccess'
+import { CreateAccount, PendingRegistration } from './Registration'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
 import BotanicalCorners from './BotanicalCorners'
@@ -18,6 +19,9 @@ const phoneAccessEnabled = import.meta.env.VITE_PHONE_ACCESS_ENABLED === 'true'
 const callbackParameters = new URLSearchParams(window.location.hash.slice(1))
 const callbackFailed = callbackParameters.has('error') || callbackParameters.has('error_code')
 const recoveryRequested = window.location.pathname === '/reset-password' || ['recovery', 'invite'].includes(callbackParameters.get('type') ?? '') || callbackFailed
+const registrationRequested = new URLSearchParams(window.location.search).get('registro') === '1'
+// Enable only after an external recipient has received and completed confirmation.
+const publicRegistrationEnabled = import.meta.env.VITE_PUBLIC_REGISTRATION_ENABLED === 'true'
 const requestOnly = new URLSearchParams(window.location.search).get('request') === '1'
 
 const url = import.meta.env.VITE_SUPABASE_URL?.trim()
@@ -175,6 +179,8 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
     {error && <p className="error" role="alert">{error}</p>}
   </section>
 
+  if (registrationRequested && !user && !loading && client && !recovering) return <section className="card cloud-account cloud-portal"><BotanicalCorners/>{publicRegistrationEnabled ? <CreateAccount client={client}/> : <><a className="back" href="/">← Volver al ingreso</a><h1>Crear cuenta</h1><p>El registro en línea estará disponible próximamente. Por ahora, contactá a GNS para solicitar tu acceso.</p></>}</section>
+
   return <section className={role === 'student' || !user ? 'card cloud-account cloud-portal' : role === 'admin' ? 'cloud-account cloud-admin-account' : 'card cloud-account'} aria-label="Acceso a GNS Fitness">
     {role !== 'admin' && <BotanicalCorners/>}
     {role === 'student' || role === 'admin' ? null : !user ? <><img className="signin-logo" src="/gns-logo-transparent.png" alt="GNS Fitness" width="128" height="128"/><h1>Entrá a tu espacio.</h1><p className="muted">Iniciá sesión con tu correo y contraseña para ver tu espacio personal.</p></> : <h2>Cuenta conectada</h2>}
@@ -186,11 +192,12 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         {phoneAccessEnabled && <small>Para celular, incluí el código de país. Primero vinculalo desde tu cuenta.</small>}
         <label>Contraseña<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)}/></label>
         <button type="submit" disabled={pending}>{pending ? 'Ingresando…' : 'Iniciar sesión'}</button>
+        {publicRegistrationEnabled && <a className="secondary registration-link" href="/?registro=1">Crear cuenta</a>}
         <a href="/reset-password?request=1">Olvidé mi contraseña</a>
       </form> : <div className={role === 'student' ? 'student-account-layout' : undefined}>
         <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>
         {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudAdmin client={client}/>
-          {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</StaffMfa> : !role ? <p className="notice">Esta cuenta aún no tiene un rol asignado. Contactá al administrador.</p> : null}
+          {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</StaffMfa> : !role && client ? <PendingRegistration key={user.id} client={client} user={user}/> : null}
         {role === 'student' && client && <CloudStudent client={client} user={user}/>}
         </Suspense>
         <div className={role === 'student' ? 'student-account-bottom' : undefined}>

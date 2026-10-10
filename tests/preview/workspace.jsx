@@ -11,7 +11,7 @@ const date = new Date().toISOString().slice(0,10)
 const endDate = new Date(Date.now()+5*86400000).toISOString().slice(0,10)
 const physioDate = new Date(Date.now()+2*86400000).toISOString().slice(0,10)
 const tables = {
-  room_appointments:[],program_results:[],
+  room_appointments:[],program_results:[],registration_requests:[],
   members: [
     {id:'00000000-0000-4000-8000-000000000001',first_name:'Lucía',last_name:'Ejemplo',birth_date:'1994-05-15',joined_at:date,status:'Activo',email:'lucia@example.test',phone:'',trainer_name:'Profesional de prueba',goal:'Mejorar fuerza',welcome_form:'Bienvenida'},
     {id:'00000000-0000-4000-8000-000000000002',first_name:'Mateo',last_name:'Demostración',birth_date:'1988-03-20',joined_at:date,status:'Activo',email:'mateo@example.test',phone:'',trainer_name:'',goal:'',welcome_form:'Bienvenido'},

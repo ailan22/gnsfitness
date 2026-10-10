@@ -1,3 +1,6 @@
+import './DashboardAgenda.css'
+import DashboardAgenda from './DashboardAgenda'
+import DashboardIcon from './DashboardIcon'
 import ExpiredMembers from './ExpiredMembers'
 import { useEffect, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
@@ -38,30 +41,19 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
     window.addEventListener('focus', whenReturning)
     return () => { active = false; clearTimeout(timer); clearInterval(reminderTimer); window.removeEventListener('focus', whenReturning) }
   }, [client, revision, refreshCount, page])
-  return <section className="cloud-dashboard" aria-label="Indicadores del gimnasio">
-    <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Panel de administración.</h1></div>
+  return <section className="cloud-dashboard dashboard-agenda-layout" aria-label="Indicadores del gimnasio">
+    <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Vista general</h1></div>
       <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar indicadores</button></div>
     <p className="muted">Socios, pagos y vencimientos.</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
     {snapshot && <><div className="stats dashboard-primary">
-      <div className="card"><span>Socios activos</span><strong>{snapshot.active}</strong><small>{snapshot.members} personas registradas</small></div>
-      <div className="card"><span>Ingresos del mes</span><strong className="amount">{money(snapshot.monthlyIncome)}</strong><small>Pagos registrados este mes</small></div>
-      <details className="card expired-card" onToggle={e=>setExpiredOpen(e.currentTarget.open)}><summary><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong></summary>{expiredOpen&&<ExpiredMembers key={`${revision}-${refreshCount}`} client={client} date={snapshot.date} onSelect={id=>onOpenMembers?.(id)}/>}</details>
+      <div className="card"><DashboardIcon kind="members"/><span>Socios activos</span><strong>{snapshot.active}</strong><small>{snapshot.members} personas registradas</small></div>
+      <div className="card"><DashboardIcon kind="income"/><span>Ingresos del mes</span><strong className="amount">{money(snapshot.monthlyIncome)}</strong><small>Pagos registrados este mes</small></div>
+      <details className="card expired-card" onToggle={e=>setExpiredOpen(e.currentTarget.open)}><summary><DashboardIcon kind="expired"/><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong></summary>{expiredOpen&&<ExpiredMembers key={`${revision}-${refreshCount}`} client={client} date={snapshot.date} onSelect={id=>onOpenMembers?.(id)}/>}</details>
     </div>
-    <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
-      <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
-      <div className="card"><span>Bajas registradas</span><strong>{snapshot.inactive}</strong></div>
-      <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
-    </div></details>
     <div className="dashboard-details">
-      <section className="card" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>
-        <p className="muted">Plan más reciente de cada socio.</p>
-        <ul className="dashboard-breakdown">
-          {snapshot.plans.map(item => <li key={item.name}><span>{item.name}</span><strong>{item.count}</strong></li>)}
-          <li><span>Sin plan</span><strong>{snapshot.withoutPlan}</strong></li>
-        </ul>
-      </section>
+      <DashboardAgenda client={client} revision={revision+refreshCount} onOpen={onOpenMembers}/>
       <section className="card" aria-labelledby="dashboard-pending-title"><h2 id="dashboard-pending-title">Pagos pendientes</h2>
         <p className="muted">Saldos de todos los períodos. {snapshot.debtors} socios · {money(snapshot.pending)}.</p>
         {snapshot.debtors === 0 ? <p>Sin saldos pendientes.</p> : <><ul className="dashboard-breakdown dashboard-pending-list">
@@ -74,6 +66,18 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
           <button type="button" className="secondary" disabled={loading || (page + 1) * snapshot.pageSize >= snapshot.debtors} onClick={() => setPage(value => value + 1)}>Siguiente</button>
         </div></>}
       </section>
-    </div><button type="button" className="text-button dashboard-members-link" onClick={() => onOpenMembers?.()}>Ver personas y fichas →</button></>}
+    </div>      <section className="card dashboard-plan-summary" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>
+        <p className="muted">Plan más reciente de cada socio.</p>
+        <ul className="dashboard-breakdown">
+          {snapshot.plans.map(item => <li key={item.name}><span>{item.name}</span><strong>{item.count}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={item.count} aria-label={`${item.name}: ${item.count} socios`}/></li>)}
+          {snapshot.withoutPlan>0&&<li><span>Sin plan</span><strong>{snapshot.withoutPlan}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={snapshot.withoutPlan} aria-label="Socios sin plan"/></li>}
+        </ul>
+      </section>
+    <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
+      <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
+      <div className="card"><span>Bajas registradas</span><strong>{snapshot.inactive}</strong></div>
+      <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
+    </div></details>
+<button type="button" className="text-button dashboard-members-link" onClick={() => onOpenMembers?.()}>Ver personas y fichas →</button></>}
   </section>
 }

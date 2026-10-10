@@ -1,0 +1,3 @@
+export default function DashboardIcon({kind}:{kind:'members'|'income'|'expired'}) {
+  return <svg className="dashboard-symbol" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{kind==='members'?<><circle cx="13" cy="9" r="4"/><path d="M4 27v-4a9 9 0 0 1 18 0v4ZM23 6a4 4 0 0 1 0 8M26 18c3 1 4 4 4 8"/></>:kind==='income'?<><ellipse cx="12" cy="8" rx="8" ry="4"/><path d="M4 8v6c0 5 16 5 16 0V8M4 14v6c0 4 9 5 14 3M4 20v5c0 4 10 5 15 3"/><circle cx="24" cy="21" r="7"/><path d="M24 17v8m3-6c-1-3-6-2-6 0s6 2 6 4-5 3-6 0"/></>:<><path d="M19 28H5V4h15l5 5v6M19 4v6h6M9 14h9M9 19h5"/><circle cx="24" cy="24" r="6"/><path d="M24 20v4l3 2"/></>}</svg>
+}

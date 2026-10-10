@@ -60,3 +60,5 @@
 .app-admin .admin-sidebar-layout .workspace-nav.active{box-shadow:none}
 .admin-sidebar-layout .dashboard-agenda-layout .dashboard-pending-list li{border:0;border-bottom:1px solid #ffffff12;border-radius:0;background:none;padding:16px 0;margin:0}
 .admin-sidebar-layout .dashboard-plan-summary .muted{font-size:12px;margin-bottom:14px}
+
+.app-admin .admin-sidebar-layout .dashboard-agenda-layout>.heading h1{color:#d7bc80;background:linear-gradient(110deg,#b7995e,#e5cf96,#c0a068);background-clip:text;-webkit-text-fill-color:transparent}

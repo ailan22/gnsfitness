@@ -6,6 +6,13 @@ import vm from 'node:vm'
 import ts from 'typescript'
 const id=n=>`00000000-0000-4000-8000-${String(n).padStart(12,'0')}`
 const api={};vm.runInNewContext(ts.transpileModule(readFileSync(new URL('../src/roomSchedule.ts',import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,{exports:api})
+
+test('all 35-minute bookings fit completely inside opening hours',()=>{
+ const times=api.availableRoomTimes('2030-10-01',[])
+ for(const time of ['08:00','11:25','16:00','19:25']) assert.ok(times.includes(time))
+ for(const time of ['07:55','11:30','12:00','15:55','19:30','20:00']) assert.ok(!times.includes(time))
+ assert.equal(times.length,84)
+})
 test('available times exclude the whole 35-minute interval and allow adjacent appointments',()=>{
  const row={id:id(20),session_date:'2030-10-01',starts_at:'2030-10-01T20:00:00Z',ends_at:'2030-10-01T20:35:00Z',cancelled:false,membership_id:id(10)}
  const times=api.availableRoomTimes('2030-10-01',[row]);assert.ok(!times.includes('16:30'));assert.ok(!times.includes('17:00'));assert.ok(!times.includes('17:30'));assert.ok(times.includes('16:25'));assert.ok(times.includes('17:35'))
@@ -25,6 +32,11 @@ test('database enforces room overlap, permissions, atomic plan updates, retry an
   const book=(request,time,kind='reiki',date='2030-10-01')=>db.query('select book_holistic_session($1,$2,$3,$4,$5)',[id(request),id(10),kind,date,time])
   for(const [user,aal,role] of [[1,'aal1','authenticated'],[2,'aal2','authenticated'],[null,'aal1','anon']]){await as(user,aal,role);await assert.rejects(book(30,'17:00'))}
   await as(1)
+  for(const time of ['07:55','11:30','12:00','15:55','19:30','20:00']) await assert.rejects(book(70,time),/sesión completa/)
+  for(const [n,time] of [[71,'08:00'],[72,'11:25'],[73,'16:00'],[74,'19:25']]) {
+   await book(n,time,'reiki','2030-11-01'); await db.query('select cancel_holistic_session($1)',[id(n)])
+  }
+  await db.exec('reset role');await db.exec("delete from room_appointments where session_date='2030-11-01'");await as(1)
   const config={version:1,nutritionMonthly:3000,nutritionMonths:0,physioSessionPrice:650,physioDates:['2030-10-01'],physioTimes:{'2030-10-01':'17:00'}}
   await db.query(`insert into memberships(id,member_id,plan_name,months,starts_at,ends_at,price,service_extras,service_config) values($1,$2,'Plan',1,'2030-10-01','2030-10-31',2400,array['Kinesiología'],$3)`,[id(20),id(10),JSON.stringify(config)])
   for(const time of ['16:30','17:00','17:30'])await assert.rejects(book(30,time),/room_no_overlap/)

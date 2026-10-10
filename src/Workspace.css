@@ -974,10 +974,10 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .member-workspace-unified .member-workspace-identity { display:block; padding:28px 24px 24px; }
 .member-workspace-unified .member-workspace-identity .eyebrow { margin:0 0 8px; }
 .member-workspace-unified .member-workspace-identity h2 { font-size:28px; }
-.member-personal-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 32px; margin:20px 0 12px; }
-.member-personal-grid > div { display:grid; grid-template-columns:minmax(125px,40%) minmax(0,1fr); gap:12px; }
-.member-personal-grid dt { color:#b8bbb4; font-size:14px; }
-.member-personal-grid dd { color:#e5e6df; margin:0; overflow-wrap:anywhere; font-size:14px; }
+.member-personal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; margin:20px 0 12px; border:1px solid #ffffff16; border-radius:12px; overflow:hidden; background:#11151288; }
+.member-personal-grid > div { display:flex; flex-direction:column; gap:6px; padding:16px 18px; border-bottom:1px solid #ffffff10; }
+.member-personal-grid dt { color:#aeb4ab; font-size:12px; line-height:1.4; }
+.member-personal-grid dd { color:#e5e6df; margin:0; overflow-wrap:anywhere; font-size:14px; line-height:1.5; font-weight:500; }
 .member-personal-actions { display:flex; align-items:start; flex-wrap:wrap; gap:16px; margin-top:16px; }
 .member-personal-actions details { flex:1; min-width:180px; }
 .member-personal-actions summary { cursor:pointer; font-size:14px; color:#c7a15c; padding:8px 0; }
@@ -1026,8 +1026,8 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
  .member-workspace-unified .member-workspace-identity { padding:22px 16px; }
  .member-workspace-unified .member-workspace-content { padding:16px; }
  .member-personal-grid, .member-section-grid { grid-template-columns:1fr; }
- .member-personal-grid { gap:10px; }
- .member-personal-grid > div { grid-template-columns:minmax(100px,40%) minmax(0,1fr); }
+ .member-personal-grid { gap:0; }
+ .member-personal-grid > div { padding:12px 14px; }
  .member-plan-block { padding:16px; }
  .member-routine-progress { grid-template-columns:1fr; gap:12px; padding:18px; }
  .member-section-grid > details > summary, .member-section-grid > div > details > summary, .member-section-grid .intake-accordion > summary { min-height:68px; padding:16px; }

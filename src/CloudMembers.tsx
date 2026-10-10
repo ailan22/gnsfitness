@@ -228,19 +228,22 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     {selected && !open && <>
       <p className="eyebrow">FICHA PERSONAL · {selected.id.slice(0, 8).toUpperCase()}</p>
       <div className="heading"><h2>{selected.first_name} {selected.last_name}</h2><button type="button" onClick={() => edit(selected)}>Editar datos</button></div>
-      <MemberWorkspace key={selected.id} name={`${selected.first_name} ${selected.last_name}`}>
-      <CloudMemberHistory client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
+      <MemberWorkspace key={selected.id} name={`${selected.first_name} ${selected.last_name}`} personal={<>
+        <dl className="member-personal-grid">
+          <div><dt>Correo</dt><dd>{selected.email || 'Sin registrar'}</dd></div>
+          <div><dt>Celular</dt><dd>{selected.phone || 'Sin registrar'}</dd></div>
+          <div><dt>Fecha de inicio</dt><dd>{selected.joined_at?.split('-').reverse().join('/') || 'Sin registrar'}</dd></div>
+          <div><dt>Contacto de emergencia</dt><dd>{selected.emergency_contact_name || 'Sin registrar'}</dd></div>
+          <div><dt>Prestador de salud</dt><dd>{selected.health_provider || 'Sin registrar'}</dd></div>
+        </dl>
+        <div className="member-personal-actions"><button type="button" className="text-button" onClick={() => edit(selected)}>Editar datos</button>
+          <details><summary>Perfil de entrenamiento</summary><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></details></div>
+      </>}>
+      <CloudMemberHistory accountActions={<DeleteStudentAccount key={`delete-${selected.id}`} client={client} memberId={selected.id} name={`${selected.first_name} ${selected.last_name}`} onDeleted={() => void refresh()}/>} client={client} memberId={selected.id} memberName={`${selected.first_name} ${selected.last_name}`} assignedTrainer={selected.trainer_name}
         memberOptions={members.map(member => ({ id: member.id, name: `${member.first_name} ${member.last_name}` }))}
         onChanged={() => { onCountChange(members.length); onDirtyChange?.(dirty || healthDirty || resultDirty) }} onClose={() => { if ((healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); void refresh() }}>
-      <details className="member-workspace-details" data-member-section="personal" tabIndex={-1}><summary>Datos personales</summary>
-      <section className="card"><h2>Datos personales</h2><p>Teléfono: {selected.phone || 'Sin registrar'}</p><p>Correo: {selected.email || 'Sin registrar'}</p><p>Fecha de inicio: {selected.joined_at || 'Sin registrar'}</p><p>Contacto de emergencia: {selected.emergency_contact_name || 'Sin registrar'}</p><p>Prestador de salud: {selected.health_provider || 'Sin registrar'}</p><button type="button" className="secondary" onClick={() => edit(selected)}>Editar datos</button></section>
-      <section className="card profile"><h2>Perfil de entrenamiento</h2><p>Objetivo: {selected.goal || 'Sin registrar'}</p><p>Limitaciones o cuidados: {selected.limitations || 'Sin registrar'}</p></section>
-      </details>
       <div data-member-section="health" tabIndex={-1}><MemberHealthSections key={selected.id} client={client} memberId={selected.id} onDirtyChange={setHealthDirty}/></div>
       <div data-member-section="access" tabIndex={-1}><StudentAccess key={selected.id + selected.email} client={client} member={selected} /></div>
-      <div data-member-section="account" tabIndex={-1}>
-      <DeleteStudentAccount key={`delete-${selected.id}`} client={client} memberId={selected.id} name={`${selected.first_name} ${selected.last_name}`} onDeleted={() => void refresh()}/>
-      </div>
       <div data-member-section="results" tabIndex={-1}><ProgramResults key={selected.id} client={client} memberId={selected.id} admin onDirtyChange={setResultDirty}/></div>
 
       </CloudMemberHistory>

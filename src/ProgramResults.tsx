@@ -1,3 +1,4 @@
+import MemberSectionTitle from './MemberSectionTitle'
 import { useEffect, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { readAllPages } from './readAllPages'
@@ -33,5 +34,5 @@ export default function ProgramResults({client,memberId,admin=false,onDirtyChang
     </fieldset></form>}
     {rows.length===0?<p>Todavía no hay evaluaciones publicadas.</p>:rows.map(r=><details className="card program-result" key={r.routine_id}><summary>{r.program_name} <small>Evaluación · {r.evaluated_on.split('-').reverse().join('/')}</small></summary><h3>Cambios observados</h3><p>{r.observations}</p>{r.comparison&&<><h3>Punto de partida y resultado</h3><p>{r.comparison}</p></>}{r.next_steps&&<><h3>Próximos pasos</h3><p>{r.next_steps}</p></>}</details>)}</>}
   </>
-  return admin?<details className="card"><summary>Resultados del programa · evaluar y compartir</summary>{content}</details>:<section className="student-content" aria-label="Resultados del programa"><header className="card"><p className="eyebrow">TU EVOLUCIÓN</p><h2>Resultados del programa</h2></header>{content}</section>
+  return admin?<details className="card"><summary><MemberSectionTitle kind="results">Resultados del programa</MemberSectionTitle></summary>{content}</details>:<section className="student-content" aria-label="Resultados del programa"><header className="card"><p className="eyebrow">TU EVOLUCIÓN</p><h2>Resultados del programa</h2></header>{content}</section>
 }

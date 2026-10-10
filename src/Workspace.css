@@ -969,3 +969,92 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .member-workspace-content details > summary:focus-visible { outline:2px solid #bea063; outline-offset:5px; }
 .member-workspace-content .member-health-sections { margin:0; gap:0; }
 .member-workspace-content details > summary { min-height:24px; }
+
+/* Approved member dossier: open personal data, matching two-column sections. */
+.member-workspace-unified .member-workspace-identity { display:block; padding:28px 24px 24px; }
+.member-workspace-unified .member-workspace-identity .eyebrow { margin:0 0 8px; }
+.member-workspace-unified .member-workspace-identity h2 { font-size:28px; }
+.member-personal-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 32px; margin:20px 0 12px; }
+.member-personal-grid > div { display:grid; grid-template-columns:minmax(125px,40%) minmax(0,1fr); gap:12px; }
+.member-personal-grid dt { color:#b8bbb4; font-size:14px; }
+.member-personal-grid dd { color:#e5e6df; margin:0; overflow-wrap:anywhere; font-size:14px; }
+.member-personal-actions { display:flex; align-items:start; flex-wrap:wrap; gap:16px; margin-top:16px; }
+.member-personal-actions details { flex:1; min-width:180px; }
+.member-personal-actions summary { cursor:pointer; font-size:14px; color:#c7a15c; padding:8px 0; }
+.member-workspace-unified .member-workspace-content { padding:18px 24px 24px; }
+.member-plan-block { border:1px solid #ae8c474d; border-radius:12px; padding:20px; margin-bottom:18px; background:#121514; }
+.member-plan-block > .heading { margin:0; }
+.member-plan-block > .card { border:0; padding-bottom:0; }
+.member-plan-block .heading h2 { font-size:18px; }
+.member-section-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; align-items:start; }
+.member-section-grid > * { min-width:0; }
+.member-section-grid > [data-member-section=access] { order:0; }
+.member-section-grid > [data-member-section=health] { order:1; }
+.member-section-grid > .member-training-section { order:2; }
+.member-section-grid > [data-member-section=results] { order:3; }
+.member-section-grid > :has(details[open]), .member-section-grid > details[open] { grid-column:1 / -1; }
+.member-workspace-unified .member-section-grid > details,
+.member-workspace-unified .member-section-grid > div > details,
+.member-workspace-unified .member-section-grid .intake-accordion { border:1px solid #ae8c474d; border-radius:12px; background:linear-gradient(120deg,#191d1a,#121514); padding:0; margin:0; }
+.member-section-grid > details > summary,
+.member-section-grid > div > details > summary,
+.member-section-grid .intake-accordion > summary { display:flex; align-items:center; justify-content:space-between; min-height:82px; padding:20px; gap:16px; list-style:none; cursor:pointer; }
+.member-section-grid summary::-webkit-details-marker { display:none; }
+.member-section-grid > details > summary::after,
+.member-section-grid > div > details > summary::after,
+.member-section-grid .intake-accordion > summary::after { content:'›'; color:#c7a15c; font-size:26px; transform:rotate(0); transition:transform .15s; }
+.member-section-grid details[open] > summary::after { transform:rotate(90deg); }
+.member-section-grid > details[open] > :not(summary),
+.member-section-grid > div > details[open] > :not(summary),
+.member-section-grid .intake-accordion[open] > :not(summary) { margin-left:20px; margin-right:20px; }
+.member-section-grid details[open] { padding-bottom:20px!important; }
+.member-section-grid > :is(div,details) > details > summary,
+.member-section-grid > details > summary { color:#e2e3dc; -webkit-text-fill-color:#e2e3dc; background:none; }
+.member-routine-progress { display:grid; grid-template-columns:minmax(180px,1fr) minmax(100px,2fr) auto; align-items:center; gap:24px; border:1px solid #ae8c474d; border-radius:12px; padding:22px; margin-top:18px; }
+.member-routine-progress h3 { font-size:17px; margin:0 0 8px; }
+.member-routine-progress p { font-size:14px; margin:5px 0; }
+.member-routine-progress small { color:#b8bbb4; }
+.member-routine-progress strong { color:#d4ae60; font-size:15px; }
+.member-routine-progress progress { width:100%; height:10px; border:0; border-radius:20px; overflow:hidden; accent-color:#caa559; background:#333a33; }
+.member-routine-progress progress::-webkit-progress-bar { background:#333a33; border-radius:20px; }
+.member-routine-progress progress::-webkit-progress-value { background:linear-gradient(90deg,#ad8743,#dfba62); border-radius:20px; }
+.member-routine-progress progress::-moz-progress-bar { background:#caa559; border-radius:20px; }
+.member-account-actions { margin:18px 0 4px auto; max-width:360px; }
+.member-workspace-unified .member-account-actions > details { border:1px solid #ffffff25; border-radius:10px; padding:12px 18px; }
+.member-workspace-unified .member-account-actions:has(details[open]) { max-width:none; }
+@media(max-width:700px) {
+ .member-workspace-unified .member-workspace-identity { padding:22px 16px; }
+ .member-workspace-unified .member-workspace-content { padding:16px; }
+ .member-personal-grid, .member-section-grid { grid-template-columns:1fr; }
+ .member-personal-grid { gap:10px; }
+ .member-personal-grid > div { grid-template-columns:minmax(100px,40%) minmax(0,1fr); }
+ .member-plan-block { padding:16px; }
+ .member-routine-progress { grid-template-columns:1fr; gap:12px; padding:18px; }
+ .member-section-grid > details > summary, .member-section-grid > div > details > summary, .member-section-grid .intake-accordion > summary { min-height:68px; padding:16px; }
+}
+/* Saturated gold, without near-white stops in student titles. */
+.app:has(.cloud-student), .app .cloud-student { --gns-metallic:linear-gradient(174deg,#d9b65d 5%,#cba14e 34%,#b48c3d 46%,#e2bd65 56%,#c39a45 92%); --student-metallic:var(--gns-metallic); --student-gold:#d4ab55; }
+.app .cloud-student .student-home-menu nav button > span,
+.app .cloud-student .student-home-menu .student-brand-signature > span,
+.app .cloud-student .gns-signature,
+.app .cloud-student:not(:has(.student-home-menu)) :is(h1,h2,h3,h4,h5,h6,.eyebrow,summary),
+.app .cloud-student:not(:has(.student-home-menu)) :is(h1,h2,h3,h4,h5,h6,summary) :is(span,strong),
+.app .cloud-student .student-space-label > span {
+ color:#d4ab55; background-image:var(--gns-metallic); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:none;
+}
+.app .cloud-student:not(:has(.student-home-menu)) .student-warmup :is(h1,h2,h3,h4,h5,h6) { background-image:none; color:#deddd7; -webkit-text-fill-color:#deddd7; }
+/* Smaller natural branched foliage, preserved inside each corner. */
+.app:has(.cloud-student) { --student-branch-width:clamp(96px,15vw,192px); }
+.app:has(.cloud-student)::before { background-image:url('./assets/gns-botanical-natural.png'); aspect-ratio:2 / 3; opacity:.36; filter:brightness(.8) saturate(.8); }
+.app:has(.cloud-student) .botanical-branch { content:url('./assets/gns-botanical-natural.png'); opacity:.36; filter:brightness(.8) saturate(.8); }
+@media(max-width:600px) { .app:has(.cloud-student) { --student-branch-width:104px; } }
+
+.member-section-title { display:flex; align-items:center; gap:16px; min-width:0; }
+.member-section-title > span:last-child { color:#e2e3dc; -webkit-text-fill-color:#e2e3dc; background:none; font-weight:600; }
+.member-section-icon { flex-shrink:0; display:grid; place-items:center; width:44px; height:44px; border-radius:50%; border:1px solid #ae8c4730; color:#cda858; background:#a68a3e10; }
+.member-section-icon svg { display:block; }
+.member-identity-heading { display:flex; align-items:center; gap:16px; }
+.member-identity-logo { width:60px; height:60px; object-fit:contain; flex-shrink:0; }
+.member-section-grid .intake-accordion > summary .member-section-title { display:flex; align-items:center; gap:16px; }
+.member-section-grid .intake-accordion > summary .member-section-icon { display:grid; place-items:center; }
+@media(max-width:600px) { .member-identity-logo { width:48px; height:48px; } }

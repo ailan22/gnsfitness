@@ -1,3 +1,4 @@
+import MemberSectionTitle from './MemberSectionTitle'
 import { useRef, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { Capacitor } from '@capacitor/core'
@@ -27,7 +28,7 @@ export default function StudentAccess({ client, member }: { client: SupabaseClie
     finally { pending.current = false; setBusy(false) }
   }
   return <details className="member-compact" aria-label="Acceso del alumno">
-    <summary>Acceso al panel del alumno</summary>
+    <summary><MemberSectionTitle kind="access">Acceso del alumno</MemberSectionTitle></summary>
     <div className="member-section-content">
     <p>El socio recibe un correo para establecer su contraseña y entrar a sus rutinas. Si ya tiene cuenta, se le envía un enlace para restablecerla.</p>
     <p><strong>Correo de la ficha:</strong> {email || 'Sin correo. Editá la ficha para agregarlo.'}</p>

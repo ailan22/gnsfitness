@@ -1,3 +1,4 @@
+import MemberSectionTitle from './MemberSectionTitle'
 import PhysioRoomTimes from './PhysioRoomTimes'
 import AdditionalPhysioSessions from './AdditionalPhysioSessions'
 import PlanSessionSchedule from './PlanSessionSchedule'
@@ -59,8 +60,8 @@ function RoutinePlanning({ plan, onEdit }: { plan: RoutinePlan; onEdit: (item: E
   </details>
 }
 
-export default function CloudMemberHistory({ client, memberId, memberName, assignedTrainer, memberOptions, onClose, onChanged, children }: {
-  client: SupabaseClient; memberId: string; memberName: string; assignedTrainer: string; memberOptions: { id: string; name: string }[]; onClose: () => void; onChanged: () => void; children?: ReactNode
+export default function CloudMemberHistory({ client, memberId, memberName, assignedTrainer, memberOptions, onClose, onChanged, children, accountActions }: {
+  client: SupabaseClient; memberId: string; memberName: string; assignedTrainer: string; memberOptions: { id: string; name: string }[]; onClose: () => void; onChanged: () => void; children?: ReactNode; accountActions?: ReactNode
 }) {
   const [history, setHistory] = useState<History | null>(null)
   const [error, setError] = useState('')
@@ -334,7 +335,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
         <button type="button" className="secondary" disabled={saving} onClick={() => { setEditing(null); setError('') }}>Cancelar</button></div>
     </form></div>}
     {!error && !history && <p role="status">Cargando historial de Supabase…</p>}
-    {history && <>
+    {history && <section className="member-plan-block">
       <div className="heading" data-member-section="plans" tabIndex={-1}><h2>Plan y pagos</h2><div className="actions">{latestPlan && <button type="button" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(true)}>Renovar plan</button>}{!latestPlan && <button type="button" className="secondary" disabled={saving || Boolean(activeForm)} onClick={() => openPlan(false)}>Asignar plan</button>}</div></div>
 
       {activeForm === 'plan' && <form className="card form" onSubmit={event => void savePlan(event)}><fieldset disabled={saving} className="plain-fieldset">
@@ -373,9 +374,9 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
         <PhysioRoomTimes key={`times-${currentPlan.id}`} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Horarios guardados. La sala quedó reservada.'); setRevision(value => value + 1); onChanged() }}/><AdditionalPhysioSessions key={currentPlan.id} client={client} plan={currentPlan} memberId={memberId} onSaved={() => { setMessage('Sesiones adicionales guardadas. Se actualizó el total y el saldo del plan.'); setRevision(value => value + 1); onChanged() }}/>
       </section>}
       {history.memberships.length > 1 && <section className="card profile"><h2>Plan renovado</h2><p>{latestPlan?.plan_name} · {latestPlan?.months} mes(es)</p><p><strong>Renovado hasta el {readableDate(latestPlan!.ends_at)}</strong> · Desde el {readableDate(latestPlan!.starts_at)}</p><details className="member-compact"><summary>Historial de planes</summary>{history.memberships.map(plan => <p key={plan.id}><button type="button" className="text-button" disabled={saving || Boolean(activeForm)} onClick={() => setViewPlanId(plan.id)}>Ver detalle</button> · {plan.plan_name}: {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)}</p>)}</details></section>}
-    </>}
-    {children}
-    {history && <details className="member-workspace-details member-training-section"><summary>Entrenamiento y rutinas</summary>
+    </section>}
+    <div className="member-section-grid">{children}
+    {history && <details className="member-workspace-details member-training-section"><summary><MemberSectionTitle kind="training">Entrenamiento y rutinas</MemberSectionTitle></summary>
       <div className="heading session-heading" data-member-section="training" tabIndex={-1}><h2>Entrenamiento y rutinas</h2><button type="button" onClick={() => { setRoutineEditor('new'); setRecording(null); setError(''); setMessage('') }}>+ Crear rutina</button></div>
       {history.routines.length > 0 && memberOptions.some(item => item.id !== memberId) && <form className="card copy-routine" onSubmit={event => void copyToMember(event)}>
         <h3>Copiar rutina a otro socio</h3><p className="muted">Se crea una rutina independiente para el socio elegido. La original queda en esta ficha.</p>
@@ -432,6 +433,12 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
           </article>
         })}</section>
     </details>}
+    </div>
+    {history && <section className="member-routine-progress" aria-label="Avance de la rutina">
+      <div><h3>Avance de la rutina</h3>{currentRoutine && progress ? <><p>{currentRoutine.name}</p><small>{Math.min(progress.completed, currentRoutine.program_rounds)} de {currentRoutine.program_rounds} semanas completadas</small></> : <p>Sin rutina asignada</p>}</div>
+      {currentRoutine && progress && <><progress aria-label="Semanas completadas del programa" value={Math.min(progress.completed, currentRoutine.program_rounds)} max={currentRoutine.program_rounds}/><strong>{Math.min(100, Math.floor(progress.completed / currentRoutine.program_rounds * 100))}% del programa</strong></>}
+    </section>}
+    {accountActions && <div className="member-account-actions">{accountActions}</div>}
     <button type="button" className="back" onClick={onClose}>← Volver a socios</button>
   </div>
 }

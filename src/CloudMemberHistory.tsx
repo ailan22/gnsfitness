@@ -375,7 +375,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
       {history.memberships.length > 1 && <section className="card profile"><h2>Plan renovado</h2><p>{latestPlan?.plan_name} · {latestPlan?.months} mes(es)</p><p><strong>Renovado hasta el {readableDate(latestPlan!.ends_at)}</strong> · Desde el {readableDate(latestPlan!.starts_at)}</p><details className="member-compact"><summary>Historial de planes</summary>{history.memberships.map(plan => <p key={plan.id}><button type="button" className="text-button" disabled={saving || Boolean(activeForm)} onClick={() => setViewPlanId(plan.id)}>Ver detalle</button> · {plan.plan_name}: {readableDate(plan.starts_at)} al {readableDate(plan.ends_at)}</p>)}</details></section>}
     </>}
     {children}
-    {history && <>
+    {history && <details className="member-workspace-details member-training-section"><summary>Entrenamiento y rutinas</summary>
       <div className="heading session-heading" data-member-section="training" tabIndex={-1}><h2>Entrenamiento y rutinas</h2><button type="button" onClick={() => { setRoutineEditor('new'); setRecording(null); setError(''); setMessage('') }}>+ Crear rutina</button></div>
       {history.routines.length > 0 && memberOptions.some(item => item.id !== memberId) && <form className="card copy-routine" onSubmit={event => void copyToMember(event)}>
         <h3>Copiar rutina a otro socio</h3><p className="muted">Se crea una rutina independiente para el socio elegido. La original queda en esta ficha.</p>
@@ -431,7 +431,7 @@ export default function CloudMemberHistory({ client, memberId, memberName, assig
             </form>}
           </article>
         })}</section>
-    </>}
+    </details>}
     <button type="button" className="back" onClick={onClose}>← Volver a socios</button>
   </div>
 }

@@ -920,3 +920,32 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
   .member-workspace-sidebar nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .app-admin .member-workspace-sidebar nav button { font-size: 13px; padding: 10px; }
 }
+
+/* Continuous full-width member record, returning through its back arrow. */
+.admin-workspace:has(.member-record-view) > .workspace-sidebar,
+.admin-workspace:has(.member-record-view) > .plan-notification-corner { display:none; }
+.admin-workspace:has(.member-record-view) { gap:0; min-height:calc(100dvh - 180px); }
+.cloud-members.member-record-view { width:100%; max-width:none; }
+.cloud-members:has(.member-workspace) > .eyebrow { display:none; }
+.member-workspace { display:block; width:100%; background:#171a18ed; border:1px solid #af975b32; border-radius:14px; overflow:clip; }
+.member-workspace-identity { display:flex; align-items:center; gap:18px; text-align:left; margin:0; padding:24px clamp(18px,3vw,40px); border-bottom:1px solid #ffffff20; }
+.member-initials { flex-shrink:0; width:60px; height:60px; margin:0; font-size:23px; }
+.member-workspace-identity h2 { font-size:clamp(22px,2.2vw,30px); }
+.member-workspace-content { padding:18px clamp(18px,3vw,40px); background:transparent; border:0; border-radius:0; }
+.member-workspace-content .card { border:0; border-bottom:1px solid #ffffff1c; border-radius:0; padding:20px 0; background:transparent; margin:0; box-shadow:none; }
+.member-workspace-details,
+.member-workspace-content .intake-accordion,
+.member-workspace-content .student-access,
+.member-workspace-content .delete-student-account { border:0; border-bottom:1px solid #ffffff24; border-radius:0; background:transparent; padding:20px 0; margin:0; box-shadow:none; }
+.member-workspace-details > summary { min-height:24px; }
+.member-workspace-details[open] > summary { margin-bottom:16px; }
+.app .cloud-student .student-home-menu nav button > span,
+.app .cloud-student .student-brand-signature > span {
+ background:linear-gradient(174deg,#d9b566 6%,#c49b4e 34%,#b78b3f 46%,#e6c77d 54%,#cba358 72%,#b88c42 96%);
+ background-clip:text; -webkit-background-clip:text; color:#d1ac62; -webkit-text-fill-color:transparent;
+}
+.app .cloud-student .student-home-menu nav button { border-color:#bd985b38; }
+@media(max-width:600px) {
+ .member-workspace-identity { padding:18px 14px; gap:12px; }
+ .member-workspace-content { padding:12px 14px; }
+}

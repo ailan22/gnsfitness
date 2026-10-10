@@ -194,7 +194,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
   const currentPage = Math.min(page, lastPage)
   const pageMembers = visibleMembers.slice(currentPage * 50, (currentPage + 1) * 50)
 
-  return <section className="cloud-members" id="socios-supabase" aria-label="Personas y socios">
+  return <section className={`cloud-members${selected || open ? ' member-record-view' : ''}`} id="socios-supabase" aria-label="Personas y socios">
     {selected || open ? <button type="button" className="back" disabled={saving} onClick={() => { if ((dirty || healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); setOpen(false); setIntake(null); setDirty(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
     {message && <p role="status">{message}</p>}
     {error && <p className="error" role="alert">{error}</p>}

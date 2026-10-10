@@ -1,0 +1,27 @@
+.nutrition-workspace-heading {display:flex;align-items:start;justify-content:space-between;gap:24px;margin-bottom:26px;flex-wrap:wrap}
+.nutrition-workspace-heading h2 {font-size:32px;margin:0 0 8px}
+.nutrition-workspace-heading p {margin:0;color:#c5c4bc}
+.nutrition-workspace-heading .service-notifications {margin:0;max-width:100%;padding:14px 18px}
+.nutrition-workspace-heading .service-notifications[open] {flex-basis:100%}
+.nutrition-workspace-cards {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:24px}
+.nutrition-workspace-card {display:flex;align-items:center;text-align:left;gap:16px;padding:24px 18px;border:1px solid #90774680;border-radius:16px;background:#20211d;color:#d4ab55;min-width:0}
+.nutrition-workspace-card.active {border-color:#d4ab55;background:#2b2d23;box-shadow:inset 0 0 0 1px #d4ab5530}
+.nutrition-workspace-card svg {width:34px;height:34px;flex-shrink:0}
+.nutrition-workspace-card>span:first-of-type {flex:1;min-width:0}
+.nutrition-workspace-card strong {display:block;font-size:15px;line-height:1.45}
+.nutrition-workspace-card small {display:block;font-size:13px;font-weight:400;color:#c5c4bc;margin-top:8px;line-height:1.5}
+.nutrition-workspace [hidden] {display:none!important}
+.nutrition-workspace .nutrition-materials>summary {font-size:22px}
+.nutrition-workspace .nutrition-materials {margin-top:0}
+.nutrition-workspace .nutrition-materials .nutrition-guide-choices {border:1px solid #71613f70;border-radius:12px;padding:20px}
+.nutrition-workspace .nutrition-materials .nutrition-guide-choices label {padding:12px;background:#252620;border-radius:8px;margin:8px 0}
+.nutrition-workspace .nutrition-library {margin-top:20px}
+.nutrition-share-grid {display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:24px 0}
+.nutrition-share-guides {grid-column:1;grid-row:1}
+.nutrition-share-person {grid-column:2;grid-row:1;border-left:1px solid #ffffff18;padding-left:28px}
+.nutrition-share-grid h3 {font-size:17px;margin:0 0 16px}
+@media(max-width:700px){.nutrition-share-grid{display:flex;flex-direction:column}.nutrition-share-person{padding:0;border:0}}
+.nutrition-tracking-list article {display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid #ffffff18}
+.nutrition-tracking-list p {margin:6px 0;color:#c5c4bc}
+.nutrition-tracking-list strong {color:#eeeae0}
+@media(max-width:950px){.nutrition-workspace-cards{grid-template-columns:1fr}.nutrition-workspace-card{padding:18px}.nutrition-workspace-card small{margin-top:4px}}

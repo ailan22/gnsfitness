@@ -44,7 +44,7 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
   return <section className="cloud-dashboard dashboard-agenda-layout" aria-label="Indicadores del gimnasio">
     <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Vista general</h1></div>
       <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar indicadores</button></div>
-    <p className="muted">Socios, pagos y vencimientos.</p>
+    <p className="muted">Bienvenido al centro GNS FITNESS</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
     {snapshot && <><div className="stats dashboard-primary">
@@ -53,22 +53,22 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
       <details className="card expired-card" onToggle={e=>setExpiredOpen(e.currentTarget.open)}><summary><DashboardIcon kind="expired"/><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong></summary>{expiredOpen&&<ExpiredMembers key={`${revision}-${refreshCount}`} client={client} date={snapshot.date} onSelect={id=>onOpenMembers?.(id)}/>}</details>
     </div>
     <div className="dashboard-details">
-      <DashboardAgenda client={client} revision={revision+refreshCount} onOpen={onOpenMembers}/>
-      <section className="card" aria-labelledby="dashboard-pending-title"><h2 id="dashboard-pending-title">Pagos pendientes</h2>
+      <section className="card dashboard-pending" aria-labelledby="dashboard-pending-title"><h2 id="dashboard-pending-title">Pagos pendientes</h2>
         <p className="muted">Saldos de todos los períodos. {snapshot.debtors} socios · {money(snapshot.pending)}.</p>
         {snapshot.debtors === 0 ? <p>Sin saldos pendientes.</p> : <><ul className="dashboard-breakdown dashboard-pending-list">
           {snapshot.pendingMembers.map(member => <li key={member.id}>
             <span><button type="button" className="text-button" onClick={() => onOpenMembers?.(member.id)}>{member.first_name} {member.last_name}</button><small>{member.plan_name}</small></span>
-            <strong>{money(member.balance)}</strong></li>)}
+            <strong>{money(member.balance)}</strong><button className="text-button pending-open" type="button" aria-label={`Abrir ficha de ${member.first_name} ${member.last_name}`} onClick={()=>onOpenMembers?.(member.id)}>›</button></li>)}
         </ul><div className="actions" aria-label="Páginas de pagos pendientes">
           <button type="button" className="secondary" disabled={loading || page === 0} onClick={() => setPage(value => value - 1)}>Anterior</button>
           <span>Página {page + 1} de {Math.max(1, Math.ceil(snapshot.debtors / snapshot.pageSize))}</span>
           <button type="button" className="secondary" disabled={loading || (page + 1) * snapshot.pageSize >= snapshot.debtors} onClick={() => setPage(value => value + 1)}>Siguiente</button>
         </div></>}
       </section>
+      <DashboardAgenda client={client} revision={revision+refreshCount} onOpen={onOpenMembers}/>
     </div>      <section className="card dashboard-plan-summary" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>
         <p className="muted">Plan más reciente de cada socio.</p>
-        <ul className="dashboard-breakdown">
+        <div className="dashboard-plan-bar" aria-hidden="true">{snapshot.plans.map((item,index)=><span key={item.name} style={{flex:item.count,background:['#c6b078','#a89965','#788363'][index%3]}}/>)}{snapshot.withoutPlan>0&&<span style={{flex:snapshot.withoutPlan,background:'#565f55'}}/>}</div><ul className="dashboard-breakdown">
           {snapshot.plans.map(item => <li key={item.name}><span>{item.name}</span><strong>{item.count}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={item.count} aria-label={`${item.name}: ${item.count} socios`}/></li>)}
           {snapshot.withoutPlan>0&&<li><span>Sin plan</span><strong>{snapshot.withoutPlan}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={snapshot.withoutPlan} aria-label="Socios sin plan"/></li>}
         </ul>

@@ -1,3 +1,5 @@
+import './MemberDirectory.css'
+import { uruguayToday } from './planReminders'
 import DeleteStudentAccount from './DeleteStudentAccount'
 import MemberWorkspace from './MemberWorkspace'
 import ProgramResults from './ProgramResults'
@@ -29,12 +31,12 @@ type CloudMember = {
   trainer_name: string
 }
 type MemberForm = Omit<CloudMember, 'id'> & { notes: string }
-type MembershipSummary = { id: string; member_id: string; starts_at: string; ends_at: string; price: number }
+type MembershipSummary = { id: string; member_id: string; starts_at: string; ends_at: string; price: number; plan_name: string }
 type PaymentSummary = { membership_id: string; amount: number }
 type PlanFilter = 'Todos' | 'Al día' | 'Por vencer' | 'Vencidos' | 'Sin plan'
 type PaymentFilter = 'Todos' | 'Con saldo pendiente' | 'Sin saldo pendiente'
 
-const today = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60_000).toISOString().slice(0, 10)
+const today = uruguayToday
 const blank = (): MemberForm => ({ first_name: '', last_name: '', phone: '', email: '', birth_date: null,
   joined_at: today(), status: 'Activo', welcome_form: 'Te damos la bienvenida', emergency_contact_name: '', emergency_contact_phone: '',
   goal: '', limitations: '', trainer_name: '', notes: '', health_provider: '' })
@@ -84,7 +86,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     const [memberResult, notesResult, plansResult, paymentsResult] = await Promise.all([
       readAllPages((from, to) => client.from('members').select('id,first_name,last_name,phone,email,birth_date,joined_at,status,welcome_form,emergency_contact_name,emergency_contact_phone,health_provider,goal,limitations,trainer_name', { count: 'exact' }).order('joined_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
       readAllPages((from, to) => client.from('member_admin_notes').select('member_id,notes', { count: 'exact' }).order('member_id', { ascending: true }).range(from, to)),
-      readAllPages((from, to) => client.from('memberships').select('id,member_id,starts_at,ends_at,price', { count: 'exact' }).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
+      readAllPages((from, to) => client.from('memberships').select('id,member_id,starts_at,ends_at,price,plan_name', { count: 'exact' }).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
       readAllPages((from, to) => client.from('payments').select('membership_id,amount', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
     ])
     setLoading(false)
@@ -198,33 +200,21 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
     {selected || open ? <button type="button" className="back" disabled={saving} onClick={() => { if ((dirty || healthDirty || resultDirty) && !window.confirm('¿Descartar los cambios sin guardar?')) return; setHistoryId(null); setOpen(false); setIntake(null); setDirty(false); setError(''); setMessage('') }}>← Volver a socios</button> : null}
     {message && <p role="status">{message}</p>}
     {error && <p className="error" role="alert">{error}</p>}
-    {!selected && !open && <>
-      <div className="heading"><div><p className="eyebrow">PERSONAS · FICHAS Y ENTRENAMIENTO</p><h2>Socios</h2></div>
-        <button type="button" onClick={() => { setOpen(true); setSelectedId(null); setForm(blank()); setIntake(null); setDirty(false); newMemberId.current = crypto.randomUUID(); intakeId.current = crypto.randomUUID(); setError(''); setMessage('') }}>+ Nuevo socio</button></div>
-      <p className="muted">Consultá cada ficha, administrá planes y rutinas o registrá una nueva persona.</p>
-      <div className="cloud-filters"><label>Buscar socio<input type="search" placeholder="Nombre, teléfono, correo o ID" value={search} onChange={event => { setSearch(event.target.value); setPage(0) }}/></label>
-        <label>Estado<select value={statusFilter} onChange={event => { setStatusFilter(event.target.value); setPage(0) }}>{['Todos', 'Activo', 'Inactivo', 'Pausado', 'Baja'].map(status => <option key={status}>{status}</option>)}</select></label>
-        <label>Plan<select value={planFilter} onChange={event => { setPlanFilter(event.target.value as PlanFilter); setPage(0) }}>{(['Todos', 'Al día', 'Por vencer', 'Vencidos', 'Sin plan'] as const).map(option => <option key={option}>{option}</option>)}</select></label>
-        <label>Pago<select value={paymentFilter} onChange={event => { setPaymentFilter(event.target.value as PaymentFilter); setPage(0) }}>{(['Todos', 'Con saldo pendiente', 'Sin saldo pendiente'] as const).map(option => <option key={option}>{option}</option>)}</select></label>
-        <button type="button" className="secondary" onClick={() => void refresh()} disabled={loading}>Actualizar lista</button></div>
-      {!loading && <p className="muted results-count">Mostrando {visibleMembers.length} de {members.length} socios</p>}
-      {loading ? <p>Cargando socios…</p> : members.length === 0 ? <div className="card empty">Todavía no hay socios cargados.</div> :
-        visibleMembers.length === 0 ? <div className="card empty">No hay socios que coincidan con la búsqueda o los filtros.</div> :
-        <div className="list">{pageMembers.map(member => {
-          const plan = currentPlans.get(member.id)
-          const days = plan ? daysUntil(plan.ends_at, today()) : null
-          const balance = balances.get(member.id) ?? 0
-          return <button type="button" className="list-item" key={member.id} onClick={() => { setHistoryId(member.id); setError(''); setMessage('') }}>
-            <span><strong>{member.first_name} {member.last_name}</strong><small>{member.email || member.phone || 'Sin contacto registrado'}</small>{balance > 0 && <small className="balance-due">Saldo pendiente: {new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(balance / 100)}</small>}</span>
-            <span className="status">{member.status}</span><span className={`badge ${days !== null && days < 0 ? 'danger' : days !== null && days <= 10 ? 'warning' : ''}`}>{!plan ? 'Sin plan' : days === null ? 'Fecha inválida' : days < 0 ? 'Vencido' : days <= 10 ? 'Por vencer' : 'Al día'}</span><span aria-hidden="true">→</span>
-          </button>
-        })}</div>}
-      {!loading && visibleMembers.length > 50 && <nav className="actions" aria-label="Páginas de socios">
-        <button type="button" className="secondary" disabled={currentPage === 0} onClick={() => setPage(currentPage - 1)}>Anterior</button>
-        <span>Página {currentPage + 1} de {lastPage + 1} · Hasta 50 socios por página</span>
-        <button type="button" className="secondary" disabled={currentPage === lastPage} onClick={() => setPage(currentPage + 1)}>Siguiente</button>
-      </nav>}
-    </>}
+    {!selected && !open && <div className="member-directory">
+      <div className="heading member-directory-heading"><div><h2>SOCIOS</h2><p>Toda la información esencial, en un solo lugar.</p></div><button type="button" onClick={()=>{setOpen(true);setSelectedId(null);setForm(blank());setIntake(null);setDirty(false);newMemberId.current=crypto.randomUUID();intakeId.current=crypto.randomUUID();setError('');setMessage('')}}>+ Nuevo socio</button></div>
+      <div className="member-directory-toolbar"><label className="member-directory-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg><input aria-label="Buscar socio" type="search" placeholder="Buscar por nombre, correo o celular" value={search} onChange={e=>{setSearch(e.target.value);setPage(0)}}/></label><nav aria-label="Filtrar socios por plan">{(['Todos','Al día','Por vencer','Vencidos'] as const).map(filter=><button type="button" key={filter} aria-pressed={planFilter===filter} className={planFilter===filter?'active':'secondary'} onClick={()=>{setPlanFilter(filter);setPage(0)}}>{filter}</button>)}</nav></div>
+      <details className="member-directory-extra"><summary>Más filtros{statusFilter!=='Todos'||paymentFilter!=='Todos'||planFilter==='Sin plan'?' · Aplicados':''}</summary><div className="cloud-filters"><label>Estado del socio<select value={statusFilter} onChange={e=>{setStatusFilter(e.target.value);setPage(0)}}>{['Todos','Activo','Inactivo','Pausado','Baja'].map(status=><option key={status}>{status}</option>)}</select></label><label>Plan<select value={planFilter} onChange={e=>{setPlanFilter(e.target.value as PlanFilter);setPage(0)}}>{(['Todos','Al día','Por vencer','Vencidos','Sin plan'] as const).map(option=><option key={option}>{option}</option>)}</select></label><label>Pago<select value={paymentFilter} onChange={e=>{setPaymentFilter(e.target.value as PaymentFilter);setPage(0)}}>{(['Todos','Con saldo pendiente','Sin saldo pendiente'] as const).map(option=><option key={option}>{option}</option>)}</select></label><button type="button" className="secondary" disabled={loading} onClick={()=>void refresh()}>Actualizar lista</button></div></details>
+      <div className="member-directory-table-frame"><div className="member-directory-scroll"><table className="member-directory-table"><thead><tr><th scope="col">Socio</th><th scope="col">Plan</th><th scope="col">Vencimiento</th><th scope="col">Estado</th><th scope="col"><span className="directory-visually-hidden">Abrir ficha</span></th></tr></thead><tbody>
+        {loading?<tr><td colSpan={5} role="status">Cargando socios…</td></tr>:pageMembers.length===0?<tr><td colSpan={5}>{members.length===0?'Todavía no hay socios cargados.':'No hay socios que coincidan con la búsqueda o los filtros.'}</td></tr>:pageMembers.map(member=>{
+          const plan=currentPlans.get(member.id),days=plan?daysUntil(plan.ends_at,today()):null
+          const label=!plan?'Sin plan':days===null?'Fecha inválida':days<0?'Vencido':days<=10?'Por vencer':'Al día'
+          const state=days===null?'neutral':days<0?'expired':days<=10?'expiring':'current'
+          const openRecord=()=>{setHistoryId(member.id);setError('');setMessage('');window.scrollTo({top:0,behavior:'instant'})}
+          return <tr key={member.id} onClick={openRecord}><td><button className="member-directory-person" type="button" onClick={event=>{event.stopPropagation();openRecord()}}><span className="member-directory-initials" aria-hidden="true">{member.first_name.slice(0,1)}{member.last_name.slice(0,1)}</span><span><strong>{member.first_name} {member.last_name}</strong><small>{member.email||member.phone||'Sin contacto registrado'}</small></span></button></td><td>{plan?.plan_name||'Sin plan'}</td><td>{plan?.ends_at?new Intl.DateTimeFormat('es-UY',{day:'2-digit',month:'short',year:'numeric',timeZone:'America/Montevideo'}).format(new Date(`${plan.ends_at}T12:00:00-03:00`)):'—'}</td><td><span className={`directory-plan-status ${state}`}><span aria-hidden="true">{state==='current'?'✓':state==='expired'?'!':state==='expiring'?'◷':'—'}</span>{label}</span></td><td><button type="button" className="member-directory-arrow" aria-label={`Abrir ficha de ${member.first_name} ${member.last_name}`} onClick={event=>{event.stopPropagation();openRecord()}}>›</button></td></tr>
+        })}
+      </tbody></table></div><footer className="member-directory-footer"><span>{visibleMembers.length} {visibleMembers.length===1?'socio':'socios'}{visibleMembers.length!==members.length?` de ${members.length}`:''}</span><nav aria-label="Páginas de socios"><button className="text-button" type="button" disabled={loading||currentPage===0} onClick={()=>setPage(currentPage-1)}>‹ Anterior</button><span className="directory-page" aria-label={`Página ${currentPage+1} de ${lastPage+1}`}>{currentPage+1}</span><button className="text-button" type="button" disabled={loading||currentPage===lastPage} onClick={()=>setPage(currentPage+1)}>Siguiente ›</button></nav></footer></div>
+      <p className="member-directory-hint">Seleccioná un socio para abrir su ficha</p><p className="member-directory-signature">GYM NATURE SOUL</p>
+    </div>}
     {selected && !open && <>
       <p className="eyebrow">FICHA PERSONAL · {selected.id.slice(0, 8).toUpperCase()}</p>
       <div className="heading"><h2>{selected.first_name} {selected.last_name}</h2><button type="button" onClick={() => edit(selected)}>Editar datos</button></div>

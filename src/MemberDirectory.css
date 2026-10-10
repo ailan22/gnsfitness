@@ -1,0 +1,41 @@
+.member-directory-heading h2 {font-size:clamp(32px,4vw,48px);letter-spacing:.025em;margin:0 0 8px}
+.member-directory-heading p {color:#bfc1bd;margin:0;font-size:18px}
+.member-directory-heading {align-items:center;margin-bottom:28px}
+.member-directory-heading>button {padding:15px 26px;border-radius:12px;background:linear-gradient(115deg,#d4b362,#e3c887,#c9a552);color:#171912}
+.member-directory-toolbar {display:flex;gap:22px;align-items:center;margin:24px 0 12px}
+.member-directory-search {display:flex;align-items:center;gap:12px;flex:1;min-width:240px;border:1px solid #727b7580;border-radius:12px;padding:0 16px;background:#1a1e1b}
+.member-directory-search svg {width:22px;height:22px;flex-shrink:0;color:#dedfd7}
+.member-directory .member-directory-search input {border:0;background:transparent;box-shadow:none;margin:0;width:100%;padding:15px 0;color:#e4e4dc;min-width:0}
+.member-directory-toolbar nav {display:flex;gap:8px;flex-wrap:wrap}
+.member-directory-toolbar nav button {padding:12px 20px;border-radius:30px;font-size:14px;font-weight:400;background:#1b1e1b;border:1px solid #73796b;color:#e4e4dc}
+.member-directory-toolbar nav button.active {border-color:#d4ab55;color:#e1bd6e;background:#373121}
+.member-directory-extra {margin:0 0 18px;color:#bebfb6;font-size:13px}
+.member-directory-extra summary {cursor:pointer;display:inline-block;padding:5px 0}
+.member-directory-table-frame {border:1px solid #5d665b90;border-radius:16px;overflow:hidden;background:#171b18}
+.member-directory-scroll {overflow-x:auto}
+.member-directory-table {border-collapse:collapse;width:100%;text-align:left;min-width:700px}
+.member-directory-table th {background:#222824;color:#c5c8c1;font-size:14px;font-weight:400;padding:18px 24px;border-bottom:1px solid #626b5c70}
+.member-directory-table td {padding:20px 24px;border-bottom:1px solid #626b5c45;color:#eeeee7;font-size:15px}
+.member-directory-table tbody tr {cursor:pointer}
+.member-directory-table tbody tr:hover {background:#282d25}
+.member-directory-table td:last-child {padding:12px;width:42px}
+.member-directory-table .member-directory-person {display:flex;align-items:center;gap:18px;text-align:left;background:transparent;border:0;padding:0;color:#eeeee7;box-shadow:none;font-weight:400}
+.member-directory-person strong {display:block;font-size:16px;font-weight:500;color:#eeeee7}
+.member-directory-person small {display:block;color:#aeb5ac;font-size:13px;margin-top:7px;overflow-wrap:anywhere}
+.member-directory-initials {width:48px;height:48px;display:grid;place-items:center;border:1px solid #afb5a480;border-radius:50%;background:#ffffff08;font-size:17px;flex-shrink:0}
+.directory-plan-status {display:inline-flex;align-items:center;gap:9px;border:1px solid;border-radius:12px;padding:8px 13px;font-size:13px;white-space:nowrap}
+.directory-plan-status.current {color:#a3d6a9;border-color:#587b50;background:#223a2750}
+.directory-plan-status.expiring {color:#e0bf67;border-color:#997831;background:#5a421940}
+.directory-plan-status.expired {color:#eb9b8e;border-color:#a15f51;background:#5e282140}
+.directory-plan-status.neutral {color:#bfc5b8;border-color:#6b7460}
+.member-directory-table .member-directory-arrow {background:transparent;border:0;color:#c6c9c0;font-size:26px;padding:8px}
+.member-directory-footer {display:flex;justify-content:space-between;align-items:center;padding:20px 24px;gap:16px;color:#bfc5b8;font-size:14px}
+.member-directory-footer nav {display:flex;gap:12px;align-items:center}
+.member-directory-footer .text-button {color:#c8ccc2;font-size:14px;font-weight:400}
+.member-directory-footer button:disabled {opacity:.35}
+.directory-page {border:1px solid #b39552;border-radius:8px;padding:8px 14px;color:#e2c579}
+.member-directory-hint {text-align:center;color:#c0c4ba;margin:28px 0;font-size:14px}
+.member-directory-signature {text-align:center;letter-spacing:.32em;font-size:12px;color:#d4ab55;margin:42px 0 10px}
+.directory-visually-hidden {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:1000px){.member-directory-toolbar{flex-direction:column;align-items:stretch}.member-directory-search{min-width:0}.member-directory-toolbar nav{justify-content:flex-start}}
+@media(max-width:600px){.member-directory-heading{align-items:start;gap:16px}.member-directory-heading p{font-size:15px}.member-directory-footer{flex-direction:column;align-items:start}.member-directory-table td,.member-directory-table th{padding:16px}.member-directory-toolbar nav button{padding:10px 14px}}

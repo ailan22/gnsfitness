@@ -46,7 +46,6 @@
 .app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-agenda li button{background:transparent;border:0;border-bottom:1px solid #b7a27620;border-radius:0;padding:12px 0}
 
 /* Header divider above the centered section navigation. */
-.app-admin:has(.admin-top-layout){background:#142019;background-image:radial-gradient(ellipse at 8% 40%,#24392966,transparent 65%)}
 .app-admin .admin-top-layout{--admin-metal:linear-gradient(115deg,#b59149 5%,#ead096 38%,#c5a25b 62%,#dec17b 90%)}
 .app-admin .admin-top-layout>.workspace-sidebar{flex-direction:column;align-items:stretch;gap:0;padding:0;border-bottom:0}
 .app-admin .admin-top-layout .sidebar-brand{width:100%;padding:0 0 20px;border-bottom:1px solid #b89b5c55;text-align:left}
@@ -66,26 +65,23 @@
 .app-admin .admin-top-layout .workspace-main :is(button.secondary,button:not([class]),.form-save-bar button,.holistic-submit){color:#d6b775}
 .app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-pending-list>li>strong,.app-admin .admin-top-layout .dashboard-agenda li time{color:#d6b775}
 @media(max-width:750px){.app-admin .admin-top-layout .sidebar-brand{text-align:center}.app-admin .admin-top-layout .workspace-sidebar nav{gap:8px}.app-admin .admin-top-layout .workspace-sidebar .workspace-nav{padding:10px 5px}.app-admin .admin-top-layout>.workspace-main{padding:14px;border-radius:12px}}
-.app.app-admin:has(.admin-top-layout){background:radial-gradient(ellipse at 8% 40%,#24392966,transparent 65%),#142019!important}
 
-/* Matte stone-green surround; restrained veins, no image download. */
-.app.app-admin:has(.admin-top-layout){background:linear-gradient(116deg,transparent 20%,#a7b4a608 20.2%,transparent 20.7%,transparent 65%,#a7b4a60a 65.3%,transparent 66%),radial-gradient(ellipse at 18% 22%,#58645940,transparent 58%),radial-gradient(ellipse at 86% 75%,#17291e66,transparent 65%),#28372d!important;background-attachment:fixed!important}
-.app-admin .admin-top-layout{--admin-metal:linear-gradient(115deg,#c49a48 5%,#f0d18a 38%,#d0a94f 62%,#e9c375 90%)}
+/* Metallic navigation and compact notices. */
+.app-admin .admin-top-layout{--admin-metal:linear-gradient(115deg,#cda350 5%,#f6d994 38%,#dab45a 62%,#efcc80 90%)}
 .app-admin .admin-top-layout .workspace-sidebar .workspace-nav{border:1px solid #c8a75960;background:#1b211be0;border-radius:10px;min-width:112px}
 .app-admin .admin-top-layout .workspace-sidebar .workspace-nav.active{border-color:#d6b467;background:#b4974d2b}
 .app-admin .admin-top-layout .workspace-sidebar .workspace-nav:hover{border-color:#d6b467;filter:brightness(1.07)}
-.app-admin .admin-top-layout .workspace-main :is(.member-section-title>span:last-child,.physio-section summary,.health-group legend,.additional-metrics>summary){background:var(--admin-metal);background-clip:text;-webkit-text-fill-color:transparent;color:#e0bc70}
-.app-admin .admin-top-layout .workspace-main :is(button.secondary,button:not([class]),.physio-files-toggle,.form-save-bar button,.holistic-submit,.member-section-icon,.status,.eyebrow){color:#e0bc70}
-.app-admin .admin-top-layout :is(.workspace-nav svg,.dashboard-symbol,.sidebar-signature){color:#e0bc70}
-.app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-pending-list>li>strong,.app-admin .admin-top-layout .dashboard-agenda li time{color:#e0bc70}
-.app-admin .admin-top-layout .plan-notifications>summary{display:list-item;list-style:disclosure-closed;min-width:44px;min-height:44px;padding:10px 12px;color:#e0bc70;border:1px solid #c8a75950;border-radius:10px;background:#1b211b}
+.app-admin .admin-top-layout .workspace-main :is(.member-section-title>span:last-child,.physio-section summary,.health-group legend,.additional-metrics>summary){background:var(--admin-metal);background-clip:text;-webkit-text-fill-color:transparent;color:#e8c67b}
+.app-admin .admin-top-layout .workspace-main :is(button.secondary,button:not([class]),.physio-files-toggle,.form-save-bar button,.holistic-submit,.member-section-icon,.status,.eyebrow){color:#e8c67b}
+.app-admin .admin-top-layout :is(.workspace-nav svg,.dashboard-symbol,.sidebar-signature){color:#e8c67b}
+.app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-pending-list>li>strong,.app-admin .admin-top-layout .dashboard-agenda li time{color:#e8c67b}
+.app-admin .admin-top-layout .plan-notifications>summary{display:list-item;list-style:disclosure-closed;min-width:44px;min-height:44px;padding:10px 12px;color:#e8c67b;border:1px solid #c8a75950;border-radius:10px;background:#1b211b}
 .app-admin .admin-top-layout .plan-notifications[open]>summary{list-style:disclosure-open}
 .app-admin .admin-top-layout .plan-notifications>summary :is(.plan-notification-label,.badge){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 @media(max-width:750px){.app-admin .admin-top-layout .workspace-sidebar .workspace-nav{min-width:0}}
-.app-admin .admin-top-layout .plan-notifications>summary{list-style-position:inside;text-align:center}.app-admin .admin-top-layout .workspace-main summary::marker{color:#e0bc70;-webkit-text-fill-color:#e0bc70}
+.app-admin .admin-top-layout .plan-notifications>summary{list-style-position:inside;text-align:center}.app-admin .admin-top-layout .workspace-main summary::marker{color:#e8c67b;-webkit-text-fill-color:#e8c67b}
 
-/* Dark marble stays behind the working surface. Sections use the available width. */
-.app.app-admin:has(.admin-top-layout){background:#14251d url('./assets/gns-marble-green.svg') center/cover fixed!important}
+/* Sections use the available width. */
 .app-admin:has(.admin-top-layout) .content{max-width:none;width:100%;padding:18px 22px 28px}
 .app-admin .admin-top-layout>.workspace-main{width:100%;min-width:0;padding:20px;min-height:calc(100dvh - 235px)}
 .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar .sidebar-brand{display:none}
@@ -93,7 +89,22 @@
 .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main{min-height:calc(100dvh - 146px)}
 .app-admin .admin-top-layout .workspace-main>:is(section,div){max-width:none}
 
-/* Near-black green stone and dimensional foliage, without changing the layout. */
-.app.app-admin:has(.admin-top-layout){background:linear-gradient(#020504b8,#020504b8),#14251d url('./assets/gns-marble-green.svg') center/cover fixed!important;background-attachment:fixed!important}
+/* Dimensional foliage, without changing the layout. */
 .app-admin .admin-top-layout .botanical-branch{opacity:.57;filter:brightness(1.04) contrast(1.22) saturate(.88) drop-shadow(3px 8px 5px #000c) drop-shadow(-1px -1px 1px #b2c69a22)}
 @media(max-width:750px){.app-admin:has(.admin-top-layout) .content{padding:12px 10px 24px}.app-admin .admin-top-layout>.workspace-main{padding:14px;min-height:0}.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main{min-height:calc(100dvh - 220px)}}
+
+/* Smooth near-black green surround and fuller branches from the original artwork. */
+.app.app-admin:has(.admin-top-layout){background:#0c1711!important}
+.app-admin .admin-top-layout .botanical-right{width:190px;right:8px;top:8px}
+.app-admin .admin-top-layout .botanical-left{width:240px;left:4px;bottom:8px}
+.app-admin .admin-top-layout .botanical-corners::before,
+.app-admin .admin-top-layout .botanical-corners::after{content:"";position:absolute;width:190px;height:350px;background:url('./assets/gns-botanical-branch.png') center/contain no-repeat;opacity:.48;filter:brightness(1.04) contrast(1.22) saturate(.88) drop-shadow(3px 8px 5px #000c) drop-shadow(-1px -1px 1px #b2c69a22)}
+.app-admin .admin-top-layout .botanical-corners::before{right:65px;top:18px;transform:rotate(154deg)}
+.app-admin .admin-top-layout .botanical-corners::after{left:70px;bottom:10px;transform:rotate(18deg)}
+@media(max-width:750px){
+ .app-admin .admin-top-layout .botanical-right{width:140px}
+ .app-admin .admin-top-layout .botanical-left{width:165px}
+ .app-admin .admin-top-layout .botanical-corners::before,.app-admin .admin-top-layout .botanical-corners::after{width:125px;height:230px}
+ .app-admin .admin-top-layout .botanical-corners::before{right:45px}
+ .app-admin .admin-top-layout .botanical-corners::after{left:45px}
+}

@@ -1058,3 +1058,4 @@ summary:focus-visible { outline: 2px solid #f8dc96; outline-offset: 3px; }
 .member-section-grid .intake-accordion > summary .member-section-title { display:flex; align-items:center; gap:16px; }
 .member-section-grid .intake-accordion > summary .member-section-icon { display:grid; place-items:center; }
 @media(max-width:600px) { .member-identity-logo { width:48px; height:48px; } }
+.app:has(.cloud-student),.app .cloud-student{--student-gold:#e0b85e;--gns-metallic:linear-gradient(115deg,#c49a48 5%,#f0d18a 38%,#d0a94f 62%,#e9c375 90%);--student-metallic:var(--gns-metallic)}

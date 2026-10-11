@@ -62,3 +62,17 @@
 .admin-sidebar-layout .dashboard-plan-summary .muted{font-size:12px;margin-bottom:14px}
 
 .app-admin .admin-sidebar-layout .dashboard-agenda-layout>.heading h1{color:#d7bc80;background:linear-gradient(110deg,#b7995e,#e5cf96,#c0a068);background-clip:text;-webkit-text-fill-color:transparent}
+
+@media(min-width:751px){.app-admin:has(.admin-sidebar-layout) .content{padding:20px 24px 30px}.admin-sidebar-layout{padding-left:210px}.admin-sidebar-layout>.workspace-sidebar{width:204px;padding:22px 12px}.app-admin .admin-sidebar-layout .workspace-nav{padding:13px 12px;min-height:46px}.sidebar-brand{padding-bottom:23px}.admin-sidebar-layout .dashboard-agenda-layout>.heading h1{font-size:28px}.admin-sidebar-layout .dashboard-agenda-layout .dashboard-primary>.card{min-height:105px;padding-top:20px;padding-bottom:20px}.admin-sidebar-layout .dashboard-agenda-layout .dashboard-primary strong{font-size:29px}.admin-sidebar-layout .dashboard-details>.card{padding:18px}.admin-sidebar-layout .dashboard-agenda-layout .dashboard-details{gap:14px;margin-bottom:16px}.admin-sidebar-layout .dashboard-pending-list li,.admin-sidebar-layout .dashboard-agenda li button{padding:11px 0}.admin-sidebar-layout .dashboard-plan-summary{padding:18px}.admin-sidebar-layout .dashboard-plan-summary .dashboard-breakdown strong{font-size:25px}.dashboard-plan-bar{margin:14px 0;height:14px}.admin-sidebar-layout:has(.member-record-view){padding-left:0}}
+
+/* Keep alerts in normal flow so they never cover forms or actions. */
+.app-admin .admin-sidebar-layout>.plan-notification-corner{position:relative;inset:auto;display:flex;justify-content:flex-end;margin:0 0 10px;z-index:2;min-height:36px}
+.app-admin .admin-sidebar-layout .plan-notifications>summary{padding:7px 11px;font-size:13px;background:#1c1d19;color:#d8bd80}
+.app-admin .admin-sidebar-layout .plan-notification-list{position:relative;inset:auto;width:min(380px,calc(100vw - 48px));box-sizing:border-box;margin-top:8px;background:#1c1d19;border-color:#8a7547;box-shadow:none}
+.app-admin .admin-sidebar-layout .dashboard-agenda-layout>.heading{padding-right:0}
+.app-admin .admin-workspace :is(input,select,textarea){color-scheme:dark;background-color:#151612;color:#e6e3d9;border-color:#81745180;accent-color:#c9ac6b;font-family:inherit}
+.app-admin .admin-workspace :is(input,select,textarea):focus{outline:2px solid #c9ac6b;outline-offset:2px;box-shadow:none}
+.app-admin .admin-workspace option{background:#1b1c18;color:#eee8db}
+.app-admin .admin-workspace :is(.card,.expense-form,.nutrition-share-panel,.holistic-reservation){background:linear-gradient(125deg,#20211d,#191b18);border-color:#8d7b4d40}
+.app-admin .admin-workspace ::selection{background:#77633c;color:#fff8e8}
+.app-admin .admin-workspace input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #151612 inset;-webkit-text-fill-color:#e6e3d9}

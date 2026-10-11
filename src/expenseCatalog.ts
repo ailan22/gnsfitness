@@ -12,7 +12,7 @@ export const quickExpenseCategories=['Luz','Agua','Alquiler','BPS','Sueldos','In
 const aliases:Record<string,string>={'BPS y aportes':'BPS','Café y cafetería':'Café','Limpieza e higiene':'Limpieza','Contador y asesoría':'Contador','Seguridad y alarmas':'Seguridad'}
 export const expenseLabel=(value:string)=>aliases[value]??value
 export const expenseHelp:Record<string,string>={
-  BPS:'Ingresá el total de la factura de BPS una sola vez. Puede incluir aportes del titular, aportes patronales y personales del personal, Fonasa, FRL, fondo de garantía de créditos laborales e IRPF retenido, según corresponda. No cargues estos componentes nuevamente si ya están incluidos en el total.',
+  BPS:'Detallá cada concepto de la factura en su fila. El total calculado se registra como un único gasto; no vuelvas a cargar sus componentes por separado.',
   DGI:'Registrá el importe de la obligación real. IVA mínimo, IVA, IRAE, Patrimonio u otros conceptos dependen del régimen de la empresa; no son todos obligatorios a la vez. Usá la nota para identificar el impuesto y período. No repitas el IRPF ya incluido en BPS.',
   Sueldos:'Para este control de pagos, registrá el líquido a pagar al personal. Si las retenciones se ingresan dentro de BPS, no sumes además el sueldo nominal como otro pago. El costo laboral contable se determina por separado.',
   Aguinaldo:'Registrá el líquido a pagar de la liquidación correspondiente. No lo dupliques si ya está incluido en otro registro del personal.',

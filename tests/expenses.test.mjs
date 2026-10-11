@@ -23,8 +23,17 @@ test('expenses require admin MFA, reject stale edits, retry safely and export hi
  assert.equal((await configure(1,'Régimen general',2)).rows[0].v,2)
  assert.equal((await configure(1,'Régimen general',2)).rows[0].v,2)
  await assert.rejects(configure(1,'IVA mínimo',1),/cambió/)
+ const detail={period:'2026-10',reference:'PRUEBA',lines:[{label:'Jubilatorio del titular',amount_cents:500000},{label:'Créditos / bonificaciones',amount_cents:-49950}]}
+ const bps={...row,category:'BPS',bps_breakdown:detail}
+ await assert.rejects(save(2,{...bps,amount_cents:1}),/no coincide/)
+ await assert.rejects(save(2,{...bps,bps_breakdown:{...detail,lines:[...detail.lines,detail.lines[0]]}}),/duplicado/)
+ await assert.rejects(save(2,{...bps,bps_breakdown:{...detail,lines:[{label:'Otro',amount_cents:-10}]}}),/inválido/)
+ await assert.rejects(save(2,{...bps,bps_breakdown:{...detail,period:'2026-13'}}),/inválido/)
+ assert.equal((await save(2,bps)).rows[0].v,3)
+ assert.equal((await save(2,bps)).rows[0].v,3)
+ assert.equal((await save(3,{...bps,status:'paid',paid_date:'2026-01-01'})).rows[0].v,4)
  const backup=(await db.query('select export_application_backup() data')).rows[0].data
- assert.equal(backup.schemaVersion,27);assert.equal(backup.tables.gym_business_settings[0].employee_count,2);assert.equal(backup.tables.gym_expenses.length,1);assert.equal(backup.tables.gym_expense_history.length,2)
+ assert.equal(backup.schemaVersion,27);assert.equal(backup.tables.gym_business_settings[0].employee_count,2);assert.equal(backup.tables.gym_expenses.length,1);assert.equal(backup.tables.gym_expense_history.length,4);assert.deepEqual(backup.tables.gym_expenses[0].bps_breakdown,detail)
  await assert.rejects(db.exec('delete from gym_expenses'),/permission denied/)
  await as('admin','aal1');await assert.rejects(configure(2,'IVA mínimo',1),/doble factor/);await as('student','aal2');await assert.rejects(configure(2,'IVA mínimo',1),/doble factor/);assert.equal((await db.query('select count(*)::int n from gym_business_settings')).rows[0].n,0);assert.equal((await db.query('select count(*)::int n from gym_expenses')).rows[0].n,0);assert.equal((await db.query('select count(*)::int n from gym_expense_history')).rows[0].n,0)
  }finally{await db.close()}

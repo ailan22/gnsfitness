@@ -36,7 +36,7 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
     setDirty(false); setMemberFilter(filter); setMemberId(person); setNewPerson(create); setSection(next)
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
-  return <div className="admin-workspace admin-sidebar-layout admin-top-layout">
+  return <div className="admin-workspace admin-sidebar-layout admin-top-layout" data-section={section}>
     <BotanicalCorners/>
     <PlanNotifications client={client} revision={revision} onOpen={id => navigate('people', id)}/><aside className="workspace-sidebar"><div className="sidebar-brand"><strong>GNS</strong><span>FITNESS</span><small>ENERGÍA · SALUD · BIENESTAR · VITALIDAD</small></div><nav aria-label="Secciones de gestión">{sections.map(item => <button key={item.id} type="button" className={section === item.id ? 'workspace-nav active' : 'workspace-nav'} aria-current={section === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.path}/></svg><span><strong>{item.title}</strong></span>

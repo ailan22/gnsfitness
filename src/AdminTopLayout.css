@@ -83,3 +83,13 @@
 .app-admin .admin-top-layout .plan-notifications>summary :is(.plan-notification-label,.badge){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 @media(max-width:750px){.app-admin .admin-top-layout .workspace-sidebar .workspace-nav{min-width:0}}
 .app-admin .admin-top-layout .plan-notifications>summary{list-style-position:inside;text-align:center}.app-admin .admin-top-layout .workspace-main summary::marker{color:#e0bc70;-webkit-text-fill-color:#e0bc70}
+
+/* Dark marble stays behind the working surface. Sections use the available width. */
+.app.app-admin:has(.admin-top-layout){background:#14251d url('./assets/gns-marble-green.svg') center/cover fixed!important}
+.app-admin:has(.admin-top-layout) .content{max-width:none;width:100%;padding:18px 22px 28px}
+.app-admin .admin-top-layout>.workspace-main{width:100%;min-width:0;padding:20px;min-height:calc(100dvh - 235px)}
+.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar .sidebar-brand{display:none}
+.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar nav{padding:0 0 10px;border-bottom:1px solid #b89b5c40}
+.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main{min-height:calc(100dvh - 146px)}
+.app-admin .admin-top-layout .workspace-main>:is(section,div){max-width:none}
+@media(max-width:750px){.app-admin:has(.admin-top-layout) .content{padding:12px 10px 24px}.app-admin .admin-top-layout>.workspace-main{padding:14px;min-height:0}.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main{min-height:calc(100dvh - 220px)}}

@@ -117,3 +117,25 @@
  .app-admin .admin-top-layout[data-section="overview"] .botanical-corners::before{display:none}
  .app-admin .admin-top-layout[data-section="overview"] .botanical-corners::after{transform:scale(.55);transform-origin:top right;right:0}
 }
+
+/* Connected section tabs; existing forms and records remain untouched. */
+.app-admin .admin-top-layout{position:relative}
+.app-admin .admin-top-layout .sidebar-brand,
+.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar .sidebar-brand{display:block;position:relative;min-height:65px;padding:0 60px 17px 53px;text-align:left;border-bottom:1px solid #b89b5c55}
+.app-admin .admin-top-layout .admin-brand-logo{position:absolute;left:0;top:0;width:42px;height:42px;object-fit:contain}
+.app-admin .admin-top-layout .sidebar-brand strong,
+.app-admin .admin-top-layout .sidebar-brand>span{font-size:22px}
+.app-admin .admin-top-layout .sidebar-brand small{font-size:8px;margin-top:7px}
+.app-admin .admin-top-layout>.plan-notification-corner{position:absolute;right:0;top:0;margin:0;z-index:5}
+.app-admin .admin-top-layout .workspace-sidebar nav,
+.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar nav{padding:14px 52px 0;gap:10px;border-bottom:0;align-items:stretch}
+.app-admin .admin-top-layout .workspace-sidebar .workspace-nav{margin:0 0 10px;position:relative;min-height:48px}
+.app-admin .admin-top-layout .workspace-sidebar .workspace-nav.active{margin-bottom:-1px;padding-bottom:22px;background:#141813;border-color:#b89b5c88;border-bottom-color:#141813;border-radius:12px 12px 0 0;z-index:2}
+.app-admin .admin-top-layout>.workspace-main{border-color:#b89b5c88;background:#141813;min-height:calc(100dvh - 175px)}
+.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main{min-height:calc(100dvh - 175px)}
+@media(max-width:750px){
+ .app-admin .admin-top-layout .workspace-sidebar nav,
+ .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar nav{padding:12px 0 0;gap:6px}
+ .app-admin .admin-top-layout .workspace-sidebar .workspace-nav.active{padding-bottom:12px;margin-bottom:0;border-bottom-color:#b89b5c88;border-radius:10px}
+ .app-admin .admin-top-layout .workspace-sidebar .workspace-nav{margin-bottom:6px}
+}

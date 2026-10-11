@@ -52,6 +52,11 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
       <div className="card"><DashboardIcon kind="income"/><span>Ingresos del mes</span><strong className="amount">{money(snapshot.monthlyIncome)}</strong><small>Pagos registrados este mes</small></div>
       <details className="card expired-card" onToggle={e=>setExpiredOpen(e.currentTarget.open)}><summary><DashboardIcon kind="expired"/><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong></summary>{expiredOpen&&<ExpiredMembers key={`${revision}-${refreshCount}`} client={client} date={snapshot.date} onSelect={id=>onOpenMembers?.(id)}/>}</details>
     </div>
+    <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
+      <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
+      <div className="card"><span>Bajas registradas</span><strong>{snapshot.inactive}</strong></div>
+      <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
+    </div></details>
     <div className="dashboard-details">
       <section className="card dashboard-pending" aria-labelledby="dashboard-pending-title"><h2 id="dashboard-pending-title">Pagos pendientes</h2>
         <p className="muted">Saldos de todos los períodos. {snapshot.debtors} socios · {money(snapshot.pending)}.</p>
@@ -73,11 +78,7 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
           {snapshot.withoutPlan>0&&<li><span>Sin plan</span><strong>{snapshot.withoutPlan}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={snapshot.withoutPlan} aria-label="Socios sin plan"/></li>}
         </ul>
       </section>
-    <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
-      <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
-      <div className="card"><span>Bajas registradas</span><strong>{snapshot.inactive}</strong></div>
-      <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
-    </div></details>
-<button type="button" className="text-button dashboard-members-link" onClick={() => onOpenMembers?.()}>Ver personas y fichas →</button></>}
+
+</>}
   </section>
 }

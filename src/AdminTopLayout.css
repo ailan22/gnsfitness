@@ -44,3 +44,26 @@
 .app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-pending-list>li>strong,.app-admin .admin-top-layout .dashboard-agenda li time{color:#cdb078;-webkit-text-fill-color:currentColor}
 .app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-primary small{color:#a9a797}
 .app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-agenda li button{background:transparent;border:0;border-bottom:1px solid #b7a27620;border-radius:0;padding:12px 0}
+
+/* Header divider above the centered section navigation. */
+.app-admin:has(.admin-top-layout){background:#142019;background-image:radial-gradient(ellipse at 8% 40%,#24392966,transparent 65%)}
+.app-admin .admin-top-layout{--admin-metal:linear-gradient(115deg,#b59149 5%,#ead096 38%,#c5a25b 62%,#dec17b 90%)}
+.app-admin .admin-top-layout>.workspace-sidebar{flex-direction:column;align-items:stretch;gap:0;padding:0;border-bottom:0}
+.app-admin .admin-top-layout .sidebar-brand{width:100%;padding:0 0 20px;border-bottom:1px solid #b89b5c55;text-align:left}
+.app-admin .admin-top-layout .workspace-sidebar nav{width:100%;padding:16px 0 4px;justify-content:center;gap:14px;flex:none}
+.app-admin .admin-top-layout .workspace-sidebar .workspace-nav{padding:11px 17px}
+.app-admin .admin-top-layout .workspace-sidebar .workspace-nav svg{color:#d6b775}
+.app-admin .admin-top-layout>.workspace-main{background:#141813e8;border:1px solid #a68b5526;border-radius:16px;padding:22px}
+.app-admin .admin-top-layout>.plan-notification-corner{margin:8px 0 12px}
+.app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-details{gap:16px}
+.app-admin .admin-top-layout .dashboard-details>.card{padding:16px 18px}
+.app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-details h2{font-size:17px}
+.app-admin .admin-top-layout .dashboard-pending-list li,.app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-agenda li button{padding:9px 0}
+.app-admin .admin-top-layout .dashboard-agenda ul{gap:4px;max-height:270px}
+.app-admin .admin-top-layout .dashboard-pending-list{max-height:270px;overflow-y:auto}
+.app-admin .admin-top-layout .dashboard-agenda-layout .additional-metrics{margin:0 0 18px;padding:0 3px;color:#d6b775}
+.app-admin .admin-top-layout .workspace-main :is(.member-section-grid summary,.health-group legend,.physio-section summary,.physio-files-toggle){color:#d6b775}
+.app-admin .admin-top-layout .workspace-main :is(button.secondary,button:not([class]),.form-save-bar button,.holistic-submit){color:#d6b775}
+.app-admin .admin-top-layout .dashboard-agenda-layout .dashboard-pending-list>li>strong,.app-admin .admin-top-layout .dashboard-agenda li time{color:#d6b775}
+@media(max-width:750px){.app-admin .admin-top-layout .sidebar-brand{text-align:center}.app-admin .admin-top-layout .workspace-sidebar nav{gap:8px}.app-admin .admin-top-layout .workspace-sidebar .workspace-nav{padding:10px 5px}.app-admin .admin-top-layout>.workspace-main{padding:14px;border-radius:12px}}
+.app.app-admin:has(.admin-top-layout){background:radial-gradient(ellipse at 8% 40%,#24392966,transparent 65%),#142019!important}

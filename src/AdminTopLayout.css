@@ -154,3 +154,30 @@
  .app-admin .admin-top-layout .workspace-sidebar .workspace-nav.active{padding-bottom:12px;margin-bottom:6px}
  .app-admin .admin-top-layout .botanical-left{top:170px;width:140px;opacity:.62}
 }
+
+/* Dedicated opaque sidebar and a separate full-width content column. */
+@media(min-width:901px){
+ .app-admin:has(.admin-top-layout) .content{padding:0;max-width:none}
+ .app-admin .admin-top-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:0;min-height:100dvh;isolation:isolate}
+ .app-admin .admin-top-layout>.workspace-sidebar{grid-column:1;grid-row:1;position:sticky;top:0;align-self:start;width:220px;height:100dvh;min-height:0;overflow-y:auto;display:flex;flex-direction:column;background:#101810;border-right:1px solid #b89b5c77;padding:24px 16px;z-index:4}
+ .app-admin .admin-top-layout .sidebar-brand,
+ .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar .sidebar-brand{display:block;text-align:center;padding:0 0 20px;min-height:0;flex:none}
+ .app-admin .admin-top-layout .admin-brand-logo{position:static;display:block;width:108px;height:108px;margin:0 auto 14px;object-fit:contain}
+ .app-admin .admin-top-layout .sidebar-brand strong,.app-admin .admin-top-layout .sidebar-brand>span{font-size:22px}
+ .app-admin .admin-top-layout .sidebar-brand small{font-size:7px;line-height:1.6}
+ .app-admin .admin-top-layout .workspace-sidebar nav,
+ .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar nav{display:flex;flex-direction:column;flex:none;align-items:stretch;justify-content:flex-start;padding:18px 0 0;gap:8px;width:100%;border:0}
+ .app-admin .admin-top-layout .workspace-sidebar .workspace-nav,
+ .app-admin .admin-top-layout .workspace-sidebar .workspace-nav.active{width:100%;margin:0;padding:13px 12px;min-height:48px;justify-content:flex-start;text-align:left;border-radius:10px}
+ .app-admin .admin-top-layout .workspace-sidebar .workspace-nav:not(.active){background:transparent;border-color:transparent}
+ .app-admin .admin-top-layout .workspace-sidebar .workspace-nav strong{font-size:14px}
+ .app-admin .admin-top-layout>.workspace-main,
+ .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main,
+ .app-admin .admin-top-layout:not([data-section="overview"])>.workspace-main{grid-column:2;grid-row:1;align-self:stretch;width:100%;min-width:0;min-height:100dvh;margin:0;padding:82px 24px 28px;border:0;border-radius:0;background:#141813;box-sizing:border-box}
+ .app-admin .admin-top-layout>.plan-notification-corner{right:24px;top:20px}
+ .app-admin .admin-top-layout .botanical-corners{left:220px}
+ .app-admin .admin-top-layout .botanical-left{display:none}
+ .app-admin .admin-top-layout .botanical-corners::before{display:none!important}
+ .app-admin .admin-top-layout>.workspace-sidebar::after{content:"";display:block;position:relative;flex:0 0 170px;min-height:170px;width:100%;margin-top:auto;background:url('./assets/gns-botanical-full.png') left bottom/110px auto no-repeat;opacity:.45;pointer-events:none}
+}
+@media(min-width:751px) and (max-width:900px){.app-admin .admin-top-layout .workspace-sidebar nav{flex-wrap:wrap}}

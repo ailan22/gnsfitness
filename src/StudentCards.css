@@ -1,0 +1,60 @@
+/* Approved option 2: two wide photographic cards, two compact cards. */
+.app:has(.cloud-student.student-cards-design){background:#0d1912;color:#e6e5df}
+.app:has(.cloud-student.student-cards-design) .topbar{height:auto;min-height:0;padding:22px 18px 12px;border:0}
+.app:has(.cloud-student.student-cards-design) .brand{display:flex;justify-content:center;gap:12px;width:100%;margin:0;text-align:left}
+.app:has(.cloud-student.student-cards-design) .brand-logo{display:block;width:72px;height:80px;object-fit:contain}
+.app:has(.cloud-student.student-cards-design) .brand-title{font-size:30px;line-height:1.15}
+.app:has(.cloud-student.student-cards-design) .brand-motto{font-size:8px;letter-spacing:.07em;line-height:1.5;color:#deddd7;-webkit-text-fill-color:#deddd7;white-space:normal}
+.app:has(.cloud-student.student-cards-design) .content{max-width:900px;width:100%;margin:0 auto;padding:0 16px 12px;min-width:0}
+.app .cloud-student.student-cards-design .student-space-label{display:none}
+.app .cloud-student.student-cards-design .student-toolbar{min-height:30px;margin:0 0 10px;display:flex;justify-content:flex-end}
+.app .cloud-student.student-cards-design .student-top-actions{width:100%;display:flex;justify-content:space-between}
+.app .cloud-student.student-cards-design .student-top-actions>.plan-notification-corner{margin-left:auto}
+.app .cloud-student.student-cards-design .student-home-menu{display:flex;flex-direction:column;gap:18px;flex:1;min-height:0}
+.app .cloud-student.student-cards-design .student-home-menu nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0;margin:0;width:100%;background:none;border:0;border-radius:0;box-shadow:none}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:28px 1fr 12px;align-items:center;gap:10px;min-height:125px;padding:20px 16px;border:1px solid #b99b5b;border-radius:12px;background:#141a15;text-align:left;letter-spacing:.04em;box-shadow:none}
+.app .cloud-student.student-cards-design .student-menu-card:nth-child(-n+2){grid-column:1/-1}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card:nth-child(n+3){min-height:142px;grid-template-columns:1fr 12px;gap:12px;padding:17px 14px}
+.app .cloud-student.student-cards-design .student-menu-card:nth-child(n+3) .student-menu-icon{grid-column:1/-1}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-title{font-size:14px;font-weight:600;line-height:1.4;color:#f0eee7;-webkit-text-fill-color:#f0eee7;background:none;text-shadow:none;white-space:normal}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-arrow{font-size:27px;background:none;color:#d9b66b;-webkit-text-fill-color:#d9b66b}
+.app .cloud-student.student-cards-design .student-menu-icon{width:28px;height:28px;color:#d9b66b}
+.app .cloud-student.student-cards-design .student-menu-photo{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,#050d09b8,#07110a25),url('./assets/student-card-atlas.png');background-size:100% 100%,200% 200%;pointer-events:none}
+.app .cloud-student.student-cards-design .student-menu-training .student-menu-photo{background-position:center,0 0}
+.app .cloud-student.student-cards-design .student-menu-nutrition .student-menu-photo{background-position:center,100% 0}
+.app .cloud-student.student-cards-design .student-menu-method .student-menu-photo{background-position:center,0 100%}
+.app .cloud-student.student-cards-design .student-menu-results .student-menu-photo{background-position:center,100% 100%}
+.app .cloud-student.student-cards-design .student-brand-signature{margin:0;min-height:30px;padding:8px 0;font-size:15px;letter-spacing:.19em;flex:1;display:flex;justify-content:center;align-items:center}
+.app .cloud-student.student-cards-design .student-section-heading{padding:24px 16px;margin:4px 0 18px;border:1px solid #b99b5b66;border-radius:12px;background:#172219}
+.app .cloud-student.student-cards-design .student-section-heading h1{font-size:20px;margin:0;line-height:1.35;letter-spacing:.04em}
+.app .cloud-student.student-cards-design:not(:has(.student-home-menu)) :is(.card,.student-exercise,.block-note){border:1px solid #b99b5b45;background:#191c18;border-radius:12px;box-shadow:none}
+.app .cloud-student.student-cards-design:not(:has(.student-home-menu)) p{line-height:1.6}
+.app .cloud-student.student-cards-design .student-back{min-width:42px;min-height:42px}
+.app .cloud-student.student-cards-design .student-nutrition-heading>h1{font-size:17px}
+.app .cloud-student.student-cards-design .student-home-menu nav button:focus-visible{outline:2px solid #f1d396;outline-offset:3px}
+.protected-nutrition{position:relative;isolation:isolate;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.protected-nutrition input,.protected-nutrition textarea{-webkit-user-select:text;user-select:text}
+.protected-nutrition img{-webkit-user-drag:none;-webkit-touch-callout:none}
+.nutrition-watermarks{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2;display:flex;flex-direction:column;justify-content:space-around;gap:130px}
+.app .nutrition-watermarks span{display:block;transform:rotate(-22deg);text-align:center;font-size:13px;letter-spacing:.12em;color:#e4d2a3!important;-webkit-text-fill-color:#e4d2a3!important;opacity:.17}
+@media print{body.nutrition-reading #root{display:none!important}body.nutrition-reading::after{content:'GNS FITNESS · Material de consulta personal dentro de la app.'}}
+@media(max-width:600px){
+ .app:has(.student-cards-design[data-section="home"]){min-height:100svh;height:auto}
+ .app:has(.student-cards-design[data-section="home"]) .topbar{padding-top:max(18px,env(safe-area-inset-top))}
+ .app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card{min-height:clamp(100px,16svh,135px)}
+ .app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card:nth-child(n+3){min-height:clamp(122px,18svh,155px)}
+ .app:has(.cloud-student.student-cards-design) .account-legal{font-size:11px;padding-bottom:max(8px,env(safe-area-inset-bottom))}
+ .app:has(.cloud-student.student-cards-design) .biometric-settings{font-size:12px}
+ .app .cloud-student.student-cards-design .student-brand-signature{font-size:14px}
+}
+
+.app:has(.cloud-student.student-cards-design) > .topbar{display:none}
+.app .cloud-student.student-cards-design .student-menu-photo{background-clip:border-box!important;-webkit-background-clip:border-box!important}
+.app .cloud-student.student-cards-design .student-cards-brand{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 0 10px}
+.app .cloud-student.student-cards-design .student-cards-brand img{width:72px;height:80px;object-fit:contain}
+.app .cloud-student.student-cards-design .student-cards-brand strong{display:block;font-size:26px;color:#d9b66b;font-weight:750;letter-spacing:.02em;line-height:1.25}
+.app .cloud-student.student-cards-design .student-cards-brand strong span{color:#ecebe5;-webkit-text-fill-color:#ecebe5}
+.app .cloud-student.student-cards-design .student-cards-brand small{display:block;font-size:7px;letter-spacing:.055em;margin-top:8px;color:#dad9d2}
+.app .cloud-student.student-cards-design .student-space-label{display:none!important}
+.app .cloud-student.student-cards-design[data-section=home]{display:flex;flex-direction:column;min-height:0}
+.app .cloud-student.student-cards-design[data-section=method] .student-content>header,.app .cloud-student.student-cards-design[data-section=results] .student-content>header{display:none}

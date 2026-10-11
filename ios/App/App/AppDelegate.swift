@@ -3,15 +3,69 @@ import Capacitor
 import WebKit
 
 // Keep normal scrolling and keyboard accommodation, without elastic page movement.
+private final class GNSGuardMessageHandler: NSObject, WKScriptMessageHandler {
+    weak var controller: GNSBridgeViewController?
+    init(_ controller: GNSBridgeViewController) { self.controller = controller }
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard message.frameInfo.isMainFrame,
+              message.frameInfo.securityOrigin.host == "localhost",
+              let body = message.body as? [String: Any],
+              let enabled = body["enabled"] as? Bool else { return }
+        controller?.setNutritionProtected(enabled)
+    }
+}
+
 class GNSBridgeViewController: CAPBridgeViewController {
+    private var nutritionProtected = false
+    private var inactive = false
+    private var privacyCover: UIView?
+
     override func capacitorDidLoad() {
         super.capacitorDidLoad()
+        webView?.configuration.userContentController.add(GNSGuardMessageHandler(self), name: "gnsContentGuard")
+        NotificationCenter.default.addObserver(self, selector: #selector(captureChanged), name: UIScreen.capturedDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
         guard let scrollView = webView?.scrollView else { return }
         scrollView.bounces = false
         scrollView.alwaysBounceHorizontal = false
         scrollView.alwaysBounceVertical = false
         scrollView.isDirectionalLockEnabled = true
     }
+
+    func setNutritionProtected(_ enabled: Bool) {
+        nutritionProtected = enabled
+        updatePrivacyCover()
+        webView?.evaluateJavaScript("window.dispatchEvent(new Event('gns-guard-ready'))", completionHandler: nil)
+    }
+    @objc private func captureChanged() { updatePrivacyCover() }
+    @objc private func resignActive() { inactive = true; updatePrivacyCover() }
+    @objc private func becomeActive() { inactive = false; updatePrivacyCover() }
+    @objc private func screenshotTaken() {
+        // UIKit reports a still screenshot AFTER capture. This is a reminder, not a blocking claim.
+        if nutritionProtected { webView?.evaluateJavaScript("window.dispatchEvent(new Event('gns-screenshot'))", completionHandler: nil) }
+    }
+    private func updatePrivacyCover() {
+        let captured = view.window?.screen.isCaptured ?? UIScreen.main.isCaptured
+        guard inactive || (nutritionProtected && captured) else {
+            privacyCover?.removeFromSuperview(); privacyCover = nil; return
+        }
+        if privacyCover != nil { return }
+        let cover = UIView(frame: view.bounds)
+        cover.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        cover.backgroundColor = UIColor(red: 0.05, green: 0.09, blue: 0.06, alpha: 1)
+        let label = UILabel()
+        label.text = inactive ? "GNS FITNESS" : "GNS FITNESS\n\nPara leer este contenido, detené la grabación o duplicación de pantalla."
+        label.textColor = UIColor(red: 0.84, green: 0.70, blue: 0.42, alpha: 1)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.textAlignment = .center; label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        cover.addSubview(label)
+        NSLayoutConstraint.activate([label.centerYAnchor.constraint(equalTo: cover.centerYAnchor), label.leadingAnchor.constraint(equalTo: cover.leadingAnchor, constant: 28), label.trailingAnchor.constraint(equalTo: cover.trailingAnchor, constant: -28)])
+        view.addSubview(cover); privacyCover = cover
+    }
+    deinit { NotificationCenter.default.removeObserver(self) }
 }
 
 @UIApplicationMain

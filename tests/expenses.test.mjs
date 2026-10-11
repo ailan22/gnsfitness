@@ -17,9 +17,15 @@ test('expenses require admin MFA, reject stale edits, retry safely and export hi
  await assert.rejects(save(1,{...row,amount_cents:-1}),/check constraint/)
  assert.equal((await save(1,{...row,status:'paid',paid_date:'2026-01-01'})).rows[0].v,2)
  assert.equal((await db.query('select count(*)::int n from gym_expense_history')).rows[0].n,2)
+ const settings=await db.query('select * from gym_business_settings');assert.equal(settings.rows[0].employee_count,1)
+ const configure=(v,r,n)=>db.query('select save_gym_business_settings($1,$2,$3) v',[v,r,n])
+ await assert.rejects(configure(1,'IVA mínimo',-1),/check constraint/)
+ assert.equal((await configure(1,'Régimen general',2)).rows[0].v,2)
+ assert.equal((await configure(1,'Régimen general',2)).rows[0].v,2)
+ await assert.rejects(configure(1,'IVA mínimo',1),/cambió/)
  const backup=(await db.query('select export_application_backup() data')).rows[0].data
- assert.equal(backup.schemaVersion,26);assert.equal(backup.tables.gym_expenses.length,1);assert.equal(backup.tables.gym_expense_history.length,2)
+ assert.equal(backup.schemaVersion,27);assert.equal(backup.tables.gym_business_settings[0].employee_count,2);assert.equal(backup.tables.gym_expenses.length,1);assert.equal(backup.tables.gym_expense_history.length,2)
  await assert.rejects(db.exec('delete from gym_expenses'),/permission denied/)
- await as('student','aal2');assert.equal((await db.query('select count(*)::int n from gym_expenses')).rows[0].n,0);assert.equal((await db.query('select count(*)::int n from gym_expense_history')).rows[0].n,0)
+ await as('admin','aal1');await assert.rejects(configure(2,'IVA mínimo',1),/doble factor/);await as('student','aal2');await assert.rejects(configure(2,'IVA mínimo',1),/doble factor/);assert.equal((await db.query('select count(*)::int n from gym_business_settings')).rows[0].n,0);assert.equal((await db.query('select count(*)::int n from gym_expenses')).rows[0].n,0);assert.equal((await db.query('select count(*)::int n from gym_expense_history')).rows[0].n,0)
  }finally{await db.close()}
 })

@@ -93,3 +93,12 @@ test('schema 26 preserves expenses and rejects missing audit history',async()=>{
  delete data.tables.gym_expense_history
  await assert.rejects(cryptoApi.encryptBackup(data,pass))
 })
+
+test('schema 27 includes business configuration and refuses a missing table',async()=>{
+ const data={format:'gns-application-backup',version:1,schemaVersion:27,createdAt:new Date().toISOString(),tables:Object.fromEntries([...cryptoApi.backupTables,...cryptoApi.nutritionBackupTables,...cryptoApi.roomBackupTables,...cryptoApi.programBackupTables,...cryptoApi.expenseBackupTables,...cryptoApi.businessBackupTables].map(n=>[n,[]]))}
+ data.tables.gym_business_settings=[{id:'00000000-0000-0000-0000-000000000001',tax_regime:'IVA mínimo',employee_count:1,version:1}]
+ const encrypted=await cryptoApi.encryptBackup(data,pass)
+ assert.deepEqual(JSON.parse(JSON.stringify(await cryptoApi.decryptBackup(encrypted,pass))),data)
+ delete data.tables.gym_business_settings
+ await assert.rejects(cryptoApi.encryptBackup(data,pass))
+})

@@ -92,4 +92,8 @@
 .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-sidebar nav{padding:0 0 10px;border-bottom:1px solid #b89b5c40}
 .app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main{min-height:calc(100dvh - 146px)}
 .app-admin .admin-top-layout .workspace-main>:is(section,div){max-width:none}
+
+/* Near-black green stone and dimensional foliage, without changing the layout. */
+.app.app-admin:has(.admin-top-layout){background:linear-gradient(#020504b8,#020504b8),#14251d url('./assets/gns-marble-green.svg') center/cover fixed!important;background-attachment:fixed!important}
+.app-admin .admin-top-layout .botanical-branch{opacity:.57;filter:brightness(1.04) contrast(1.22) saturate(.88) drop-shadow(3px 8px 5px #000c) drop-shadow(-1px -1px 1px #b2c69a22)}
 @media(max-width:750px){.app-admin:has(.admin-top-layout) .content{padding:12px 10px 24px}.app-admin .admin-top-layout>.workspace-main{padding:14px;min-height:0}.app-admin .admin-top-layout[data-section]:not([data-section="overview"])>.workspace-main{min-height:calc(100dvh - 220px)}}

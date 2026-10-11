@@ -97,14 +97,12 @@
 .app.app-admin:has(.admin-top-layout){background:#0c1711!important}
 .app-admin .admin-top-layout .botanical-right{width:190px;right:8px;top:8px}
 .app-admin .admin-top-layout .botanical-left{width:240px;left:4px;bottom:8px}
-.app-admin .admin-top-layout .botanical-corners::before,
-.app-admin .admin-top-layout .botanical-corners::after{content:"";position:absolute;width:190px;height:350px;background:url('./assets/gns-botanical-branch.png') center/contain no-repeat;opacity:.48;filter:brightness(1.04) contrast(1.22) saturate(.88) drop-shadow(3px 8px 5px #000c) drop-shadow(-1px -1px 1px #b2c69a22)}
-.app-admin .admin-top-layout .botanical-corners::before{right:65px;top:18px;transform:rotate(154deg)}
-.app-admin .admin-top-layout .botanical-corners::after{left:70px;bottom:10px;transform:rotate(18deg)}
 @media(max-width:750px){
  .app-admin .admin-top-layout .botanical-right{width:140px}
  .app-admin .admin-top-layout .botanical-left{width:165px}
- .app-admin .admin-top-layout .botanical-corners::before,.app-admin .admin-top-layout .botanical-corners::after{width:125px;height:230px}
- .app-admin .admin-top-layout .botanical-corners::before{right:45px}
- .app-admin .admin-top-layout .botanical-corners::after{left:45px}
 }
+
+/* One connected fuller sprig per corner; no duplicated layers. */
+.app-admin .admin-top-layout .botanical-branch{content:url('./assets/gns-botanical-full.png')}
+.app-admin .admin-top-layout .member-workspace-unified :is(h2,h3,h4,summary,.member-section-title>span:last-child){color:#e8c67b;-webkit-text-fill-color:currentColor}
+.app-admin .admin-top-layout .member-workspace-unified .member-section-title>span:last-child{background:var(--admin-metal);background-clip:text;-webkit-text-fill-color:transparent}

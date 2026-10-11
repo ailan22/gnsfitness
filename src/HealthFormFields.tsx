@@ -1,4 +1,5 @@
 import { healthFields, todayHealth, type HealthKind, type HealthDraft } from './healthRecords'
+import PhysioAssessmentFields from './PhysioAssessmentFields'
 import IntakeChoiceField from './IntakeChoiceField'
 import { intakeChoices } from './intakeChoices'
 export default function HealthFormFields({ kind, draft, onChange }: { kind: HealthKind; draft: HealthDraft; onChange: (draft: HealthDraft) => void }) {
@@ -10,7 +11,7 @@ export default function HealthFormFields({ kind, draft, onChange }: { kind: Heal
       <label>Profesional responsable *<input required maxLength={160} autoComplete="off" value={draft.professional} onChange={e => onChange({ ...draft, professional: e.target.value })}/></label>
       {kind !== 'training_intake' && <label>Registro profesional / habilitación<input maxLength={100} value={draft.registration} onChange={e => onChange({ ...draft, registration: e.target.value })}/></label>}
     </div>
-    {groups.map((group, index) => <fieldset key={group} className="health-group"><legend><span>{String(index + 1).padStart(2, '0')}</span> {group}</legend>
+    {kind === 'physio_assessment' ? <PhysioAssessmentFields draft={draft} onChange={onChange}/> : groups.map((group, index) => <fieldset key={group} className="health-group"><legend><span>{String(index + 1).padStart(2, '0')}</span> {group}</legend>
       <div className="health-field-grid">{healthFields[kind].filter(field => field.group === group).map(field => {
         const value = draft.payload[field.key] ?? ''
         if (field.key === 'symptom_details' && draft.payload.symptoms !== 'Síntomas referidos' && !value) return null

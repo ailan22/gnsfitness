@@ -1,0 +1,26 @@
+.physio-assessment{margin-top:1.25rem;color:#eeeae2}
+.physio-consultation,.physio-two-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.5rem}
+.physio-consultation{padding:1.25rem;border:1px solid #b39a6038;border-radius:14px;background:#1c1d19;margin-bottom:1rem}
+.physio-assessment h3{color:#cfb77e;font-size:1rem;margin:0 0 1rem;font-weight:600}
+.physio-assessment label{display:grid;gap:.45rem;margin-bottom:.85rem;font-size:.88rem}
+.physio-assessment input,.physio-assessment textarea,.physio-assessment select{background:#141613!important;color:#eeeae2;border:1px solid #ffffff24;border-radius:8px;width:100%;min-width:0;box-sizing:border-box;font:inherit;padding:.65rem}
+.physio-assessment input:focus,.physio-assessment textarea:focus,.physio-assessment select:focus{outline:2px solid #bba16b;outline-offset:2px}
+.physio-assessment textarea{resize:vertical}
+.physio-pain{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.physio-section{border:1px solid #b39a6038;border-radius:12px;background:#1c1d19;margin:.7rem 0;overflow:hidden}
+.physio-section>summary{padding:1rem;cursor:pointer;font-weight:600;color:#dbc48e;font-size:.95rem}
+.physio-number{font-size:.8rem;opacity:.7;margin-right:.75rem}
+.physio-section[open]>summary{border-bottom:1px solid #ffffff15}
+.physio-section-content{padding:1.2rem}
+.physio-choice{border:0;padding:0;margin:0 0 1rem;min-width:0}
+.physio-choice legend{font-size:.88rem;margin-bottom:.6rem}
+.physio-choice-options,.physio-history-options{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem}
+.physio-choice-options label,.physio-history-options label{display:flex;align-items:center;gap:.45rem;border:1px solid #ffffff24;border-radius:8px;padding:.6rem;margin:0;background:#151713}
+.physio-choice-options input,.physio-history-options input{width:16px;height:16px;margin:0;accent-color:#c3a568}
+.physio-history-options label:has(:checked),.physio-choice-options label:has(:checked){border-color:#b79b62;background:#343526}
+.physio-workspace .health-person-heading{background:#1c1d19;border:1px solid #b39a6038;border-radius:14px;padding:1rem 1.25rem;margin:1rem 0}
+.physio-workspace .clinical-form{background:#181a16;border:1px solid #b39a6038;border-radius:16px}
+.physio-workspace .clinical-record{background:#1c1d19;border-color:#b39a6038}
+.physio-workspace .health-person-heading h2{color:#e5d1a0;margin:0}
+.physio-brand-footer{text-align:center;color:#c6aa6e;letter-spacing:.2em;font-size:.85rem;margin:2rem 0 1rem}
+@media(max-width:760px){.physio-consultation,.physio-two-columns{grid-template-columns:1fr;gap:1rem}.physio-consultation,.physio-section-content{padding:1rem}.physio-section>summary{font-size:.88rem}.physio-workspace .health-person-heading{padding:1rem}.physio-pain{gap:.5rem}}

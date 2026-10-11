@@ -103,10 +103,10 @@ export default function CloudHealth({ client, mode, initialMemberId = '', onDirt
   const assessments = records.filter(row => row.kind === 'physio_assessment' && !superseded.has(row.id))
   const query = search.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
   const matches = people.filter(item => `${item.first_name} ${item.last_name}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(query))
-  return <section className="health-workspace" aria-label={mode === 'intake' ? 'Anamnesis inicial de salud y entrenamiento' : 'Kinesiología'}>
+  return <section className={`health-workspace ${mode === 'physio' ? 'physio-workspace' : ''}`} aria-label={mode === 'intake' ? 'Anamnesis inicial de salud y entrenamiento' : 'Kinesiología'}>
     {printRecords && person && <HealthPrint name={`${person.first_name} ${person.last_name}`} memberId={memberId} records={printRecords} superseded={superseded} onClose={() => setPrintRecords(null)}/>}
     {!embedded && <div className="heading"><div><p className="eyebrow">ATENCIÓN PERSONAL · ACCESO PRIVADO</p><h1>{mode === 'intake' ? 'Salud y entrenamiento' : 'Kinesiología'}</h1><p className="muted">{mode === 'intake' ? 'Una evaluación inicial clara para acompañar cada objetivo.' : 'Evaluación, atención y evolución en un mismo lugar.'}</p></div><span className="privacy-badge">Solo administrador</span></div>}
-    {!embedded && <div className="card health-person-picker"><div className="grid"><label>Buscar persona<input type="search" placeholder="Nombre o apellido" value={search} onChange={e => setSearch(e.target.value)} disabled={saving}/></label>
+    {!embedded && !(mode === 'physio' && initialMemberId) && <div className="card health-person-picker"><div className="grid"><label>Buscar persona<input type="search" placeholder="Nombre o apellido" value={search} onChange={e => setSearch(e.target.value)} disabled={saving}/></label>
       <label>Ficha de la persona<select value={memberId} disabled={saving || peopleLoading} onChange={e => {
         if (!discard()) return
         setMemberId(e.target.value); setDraft(null); setDirty(false); setMessage(''); setPage(0)
@@ -116,11 +116,11 @@ export default function CloudHealth({ client, mode, initialMemberId = '', onDirt
     {error && <div className="error" role="alert">{error} <button className="secondary" type="button" disabled={saving} onClick={() => setRevision(value => value + 1)}>Reintentar carga</button></div>}
     {message && <p role="status" className="success-message">{message}</p>}
     {!memberId ? <div className="workspace-empty"><span aria-hidden="true">＋</span><h2>Primero, elegí una persona</h2><p>Sus registros se mostrarán aquí. No se comparten con alumnos ni entrenadores.</p></div> : <>
-      <div className="heading health-person-heading"><div><h2>{person?.first_name} {person?.last_name}</h2><p className="muted">{person?.birth_date ? `Nacimiento: ${displayDate(person.birth_date)}` : 'Nacimiento sin registrar'}</p></div>
+      <div className="heading health-person-heading"><div><h2>{person?.first_name} {person?.last_name}</h2><p className="muted">{mode === 'physio' ? 'Ficha clínica · evaluación y seguimiento' : person?.birth_date ? `Nacimiento: ${displayDate(person.birth_date)}` : 'Nacimiento sin registrar'}</p></div>
         {!draft && <div className="actions"><button type="button" disabled={loading || Boolean(error) || !person} onClick={() => begin(mode === 'intake' ? 'training_intake' : 'physio_assessment')}>{mode === 'intake' ? 'Nueva anamnesis' : 'Nueva evaluación'}</button>
           {mode === 'physio' && <button type="button" className="secondary" disabled={loading || Boolean(error) || !assessments.length} onClick={() => begin('physio_followup')}>Registrar sesión</button>}</div>}
       </div>
-      {draft && <form className="card clinical-form" onSubmit={e => void save(e)}><fieldset disabled={saving} className="plain-fieldset">
+      {draft && <form className="card clinical-form" onInvalidCapture={e => { let section = (e.target as HTMLElement).closest('details'); while (section) { section.open = true; section = section.parentElement?.closest('details') ?? null } }} onSubmit={e => void save(e)}><fieldset disabled={saving} className="plain-fieldset">
         <div className="heading"><h2>{correction ? 'Rectificar registro' : healthTitles[kind]}</h2><button type="button" className="secondary" onClick={() => { if (discard()) { setDraft(null); setDirty(false); setError('') } }}>Cancelar</button></div>
         {kind === 'physio_followup' && <label>Evaluación inicial *<select required disabled={Boolean(correction)} value={episodeId} onChange={e => { setEpisodeId(e.target.value); setDirty(true) }}><option value="">Elegir evaluación…</option>{records.filter(row => row.kind === 'physio_assessment' && (!superseded.has(row.id) || row.id === episodeId)).map(row => <option key={row.id} value={row.id}>{displayDate(row.occurred_on)} · {row.payload.region} · {row.id.slice(0, 6)}</option>)}</select></label>}
         {correction && <label>Motivo de la rectificación *<textarea required maxLength={1000} value={reason} onChange={e => { setReason(e.target.value); setDirty(true) }}/></label>}
@@ -138,5 +138,6 @@ export default function CloudHealth({ client, mode, initialMemberId = '', onDirt
       </details>)}</div>}
       {records.length > 10 && <nav className="actions" aria-label="Páginas del historial"><button className="secondary" disabled={!page} onClick={() => setPage(value => value - 1)}>Anterior</button><span>Página {page + 1} de {Math.ceil(records.length / 10)}</span><button className="secondary" disabled={(page + 1) * 10 >= records.length} onClick={() => setPage(value => value + 1)}>Siguiente</button></nav>}
     </>}
+    {mode === 'physio' && <p className="physio-brand-footer">GYM NATURE SOUL</p>}
   </section>
 }

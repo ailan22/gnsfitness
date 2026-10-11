@@ -1,5 +1,6 @@
 import GymExpenses from './GymExpenses'
 import './AdminSidebar.css'
+import './AdminConsistency.css'
 import HolisticSchedule from './HolisticSchedule'
 import BotanicalCorners from './BotanicalCorners'
 import PlanNotifications from './PlanNotifications'

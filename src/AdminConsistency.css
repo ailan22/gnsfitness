@@ -1,0 +1,34 @@
+/* Shared action treatment: gold accents, readable text, dark surfaces. */
+.app-admin .admin-workspace .workspace-main :is(button:not([class]),button.secondary,.form-save-bar button,.nutrition-share-actions>button:first-child,.holistic-submit){
+  background:#20221e;color:#e1d2ad;border:1px solid #a68b5559;box-shadow:none;-webkit-text-fill-color:currentColor;font-weight:600;
+}
+.app-admin .admin-workspace .workspace-main :is(button:not([class]),button.secondary,.form-save-bar button,.nutrition-share-actions>button:first-child,.holistic-submit):hover:not(:disabled){background:#2a2c25;border-color:#b89c63;filter:none}
+.app-admin .admin-workspace .workspace-main button:disabled{opacity:.48;cursor:not-allowed}
+.app-admin .admin-workspace .workspace-main :is(.actions,.heading,.form-save-bar){gap:12px}
+.app-admin .admin-workspace .workspace-main .actions{row-gap:12px}
+.app-admin .admin-workspace .workspace-main>.physio-directory{display:flex;flex-direction:column;gap:16px}
+.app-admin .physio-directory>.heading{margin:0}
+.app-admin .physio-directory>.card{margin:0}
+.app-admin .physio-directory>.physio-files-toggle{display:flex;align-items:center;justify-content:space-between;min-height:58px;width:100%;text-align:left;padding:18px 20px;border:1px solid #a68b5538;border-radius:12px;background:#20221e;color:#e8e4db;font-size:15px;font-weight:600}
+.app-admin .physio-directory>.member-compact{padding:18px 20px;border-radius:12px}
+.app-admin .physio-directory>.member-compact>summary{color:#e8e4db;font-size:15px;font-weight:600}
+.app-admin .physio-directory>.member-compact>summary strong{color:inherit;background:none;-webkit-text-fill-color:currentColor}
+.app-admin .physio-directory>.physio-create{align-self:flex-start;margin-top:4px}
+.app-admin .health-workspace>.health-person-heading{margin-top:20px;margin-bottom:20px;gap:16px}
+.app-admin .health-person-heading .actions{display:flex;gap:12px}
+.app-admin .health-person-heading .actions button{min-height:44px;padding:11px 16px}
+.app-admin .health-workspace .clinical-record>button{margin:12px 12px 0 0}
+.app-admin .health-person-picker .text-button{display:inline-block;margin-left:8px}
+.app-admin .admin-sidebar-layout>.workspace-sidebar{scrollbar-width:thin;scrollbar-color:#5f6458 #171a16;scrollbar-gutter:stable;padding-right:18px}
+.app-admin .admin-sidebar-layout>.workspace-main{padding-bottom:24px}
+@media(min-width:751px){
+  .app-admin .admin-sidebar-layout:not(:has(.member-record-view)){padding-left:224px}
+  .app-admin:has(.admin-sidebar-layout:not(:has(.member-record-view))) .account-details{margin-left:224px}
+}
+@media(max-width:700px){
+  .app-admin .physio-directory>.physio-create{width:100%}
+  .app-admin .health-person-heading .actions{width:100%;flex-wrap:wrap}
+  .app-admin .health-person-heading .actions button{flex:1 1 160px}
+}
+
+.app-admin .admin-sidebar-layout .plan-notifications:not([open]){background:transparent;align-self:flex-start}

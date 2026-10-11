@@ -53,12 +53,12 @@ export default function PhysioDirectory({ client, onDirtyChange, onNewPerson }: 
           <span className="badge">{entry.payload.status || 'Evaluación inicial'}</span><span aria-hidden="true">→</span>
         </button> })}</div>
       </details>
-      <button type="button" className="card workspace-nav" aria-expanded={showFiles} onClick={() => setShowFiles(value => !value)}>Fichas registradas ({files.length}) {showFiles ? '▾' : '→'}</button>
+      <button type="button" className="card physio-files-toggle" aria-expanded={showFiles} onClick={() => setShowFiles(value => !value)}>Fichas registradas ({files.length}) {showFiles ? '▾' : '→'}</button>
       {showFiles && <section className="card" aria-label="Fichas registradas"><h3>Fichas de kinesiología</h3>
         {!files.length && <p>No hay fichas que coincidan con la búsqueda.</p>}
         <div className="list">{files.map(person => <button className="list-item" type="button" key={person.id} onClick={() => setSelected(person.id)}><strong>{person.first_name} {person.last_name}</strong><span>Ver ficha →</span></button>)}</div>
       </section>}
-      <button type="button" onClick={() => setSelected('')}>Nueva ficha de kinesiología</button>
+      <button type="button" className="secondary physio-create" onClick={() => setSelected('')}>Nueva ficha de kinesiología</button>
     </>}
   </section>
 }

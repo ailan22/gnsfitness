@@ -181,6 +181,22 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
 
   if (registrationRequested && !user && !loading && client && !recovering) return <section className="card cloud-account cloud-portal"><BotanicalCorners/>{publicRegistrationEnabled ? <CreateAccount client={client}/> : <><a className="back" href="/">← Volver al ingreso</a><h1>Crear cuenta</h1><p>El registro en línea estará disponible próximamente. Por ahora, contactá a GNS para solicitar tu acceso.</p></>}</section>
 
+  const accountControls = user ? (<div className={role === 'student' ? 'student-account-bottom' : undefined}>
+        {phoneAccessEnabled && client && <PhoneAccess key={user.id} client={client}/>}
+        {nativePlatform && <details className="biometric-settings"><summary>Acceso con Face ID o biometría</summary>
+          <h3>Acceso rápido en este celular</h3>
+          <p className="muted">{biometricEnabled
+            ? 'Al volver a iniciar la app, podés ingresar con biometría. Cerrar sesión elimina este acceso guardado.'
+            : 'Activá el acceso biométrico después de ingresar con tu contraseña. Es opcional y solo se guarda en este celular.'}</p>
+          {(biometry.available || biometricEnabled) ? <button type="button" className="secondary" disabled={pending} onClick={() => void toggleBiometrics()}>
+            {biometricEnabled ? 'Desactivar acceso biométrico' : `Activar ${biometry.label}`}
+          </button> : <p className="muted">No hay biometría compatible configurada en este dispositivo. Podés seguir ingresando con contraseña.</p>}
+          {biometricMessage && <p role="status">{biometricMessage}</p>}
+        </details>}
+        {role !== 'student' && <footer className="account-details"><p><strong>Cuenta:</strong> {user.email}</p><p><strong>Rol:</strong> {roleLabel}</p></footer>}
+        <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()} aria-label="Cerrar sesión" title="Cerrar sesión">{role === 'student' ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M9 4H4v16h5M14 8l4 4-4 4M8 12h11"/></svg> : 'Cerrar sesión'}</button>
+        </div>) : null
+
   return <section className={role === 'student' || !user ? 'card cloud-account cloud-portal' : role === 'admin' ? 'cloud-account cloud-admin-account' : 'card cloud-account'} aria-label="Acceso a GNS Fitness">
     {role !== 'admin' && <BotanicalCorners/>}
     {role === 'student' || role === 'admin' ? null : !user ? <><img className="signin-logo" src="/gns-logo-transparent.png" alt="GNS Fitness" width="128" height="128"/><h1>Entrá a tu espacio.</h1><p className="muted">Iniciá sesión con tu correo y contraseña para ver tu espacio personal.</p></> : <h2>Cuenta conectada</h2>}
@@ -196,27 +212,13 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         <a href="/reset-password?request=1">Olvidé mi contraseña</a>
       </form> : <div className={role === 'student' ? 'student-account-layout' : undefined}>
         <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>
-        {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudAdmin client={client}/>
-          {hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</StaffMfa> : !role && client ? <PendingRegistration key={user.id} client={client} user={user}/> : null}
+        {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudAdmin client={client} accountTools={<>{accountControls}{hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</>}/>
+</StaffMfa> : !role && client ? <PendingRegistration key={user.id} client={client} user={user}/> : null}
         {role === 'student' && client && <CloudStudent client={client} user={user}/>}
         </Suspense>
-        <div className={role === 'student' ? 'student-account-bottom' : undefined}>
-        {phoneAccessEnabled && client && <PhoneAccess key={user.id} client={client}/>}
-        {nativePlatform && <details className="biometric-settings"><summary>Acceso con Face ID o biometría</summary>
-          <h3>Acceso rápido en este celular</h3>
-          <p className="muted">{biometricEnabled
-            ? 'Al volver a iniciar la app, podés ingresar con biometría. Cerrar sesión elimina este acceso guardado.'
-            : 'Activá el acceso biométrico después de ingresar con tu contraseña. Es opcional y solo se guarda en este celular.'}</p>
-          {(biometry.available || biometricEnabled) ? <button type="button" className="secondary" disabled={pending} onClick={() => void toggleBiometrics()}>
-            {biometricEnabled ? 'Desactivar acceso biométrico' : `Activar ${biometry.label}`}
-          </button> : <p className="muted">No hay biometría compatible configurada en este dispositivo. Podés seguir ingresando con contraseña.</p>}
-          {biometricMessage && <p role="status">{biometricMessage}</p>}
-        </details>}
-        {role !== 'student' && <footer className="account-details"><p><strong>Cuenta:</strong> {user.email}</p><p><strong>Rol:</strong> {roleLabel}</p></footer>}
-        <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()} aria-label="Cerrar sesión" title="Cerrar sesión">{role === 'student' ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M9 4H4v16h5M14 8l4 4-4 4M8 12h11"/></svg> : 'Cerrar sesión'}</button>
-        </div>
+        {(role !== 'admin' || !staffVerified) && accountControls}
       </div>}
     {error && <p className="error" role="alert">{error}</p>}
-    <nav className="account-legal" aria-label="Privacidad y ayuda"><a href="/privacidad.html">Privacidad</a><a href="/soporte.html">Ayuda y soporte</a></nav>
+    {(role !== 'admin' || !staffVerified) && <nav className="account-legal" aria-label="Privacidad y ayuda"><a href="/privacidad.html">Privacidad</a><a href="/soporte.html">Ayuda y soporte</a></nav>}
   </section>
 }

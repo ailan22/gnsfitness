@@ -2,14 +2,14 @@ import GymExpenses from './GymExpenses'
 import './AdminSidebar.css'
 import './AdminConsistency.css'
 import './AdminTopLayout.css'
+import './AdminManagement.css'
 import HolisticSchedule from './HolisticSchedule'
-import BotanicalCorners from './BotanicalCorners'
 import PlanNotifications from './PlanNotifications'
 import BackupPanel from './BackupPanel'
 import PhysioDirectory from './PhysioDirectory'
 import NutritionWorkspace from './NutritionWorkspace'
 import RegistrationRequests from './RegistrationRequests'
-import { Suspense, useCallback, useState } from 'react'
+import { Suspense, useCallback, useState, type ReactNode } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import CloudDashboard from './CloudDashboard'
 import CloudMembers from './CloudMembers'
@@ -23,7 +23,7 @@ const sections: { id: Section; title: string; description: string; path: string 
   { id: 'expenses', title: 'Gastos', description: 'Gastos fijos y variables', path: 'M5 3h14v18l-3-2-4 2-4-2-3 2z M8 8h8 M8 12h8 M8 16h4' },
   { id: 'holistic', title: 'Terapias holísticas', description: 'Reiki y Registros Akáshicos', path: 'M12 3v18 M3 12h18 M5 5l14 14 M5 19L19 5' },
 ]
-export default function CloudAdmin({ client }: { client: SupabaseClient }) {
+export default function CloudAdmin({ client, accountTools }: { client: SupabaseClient; accountTools?: ReactNode }) {
   const [section, setSection] = useState<Section>('overview')
   const [revision, setRevision] = useState(0)
   const [dirty, setDirty] = useState(false)
@@ -36,11 +36,12 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
     setDirty(false); setMemberFilter(filter); setMemberId(person); setNewPerson(create); setSection(next)
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
-  return <div className="admin-workspace admin-sidebar-layout admin-top-layout" data-section={section}>
-    <BotanicalCorners/>
-    <PlanNotifications client={client} revision={revision} onOpen={id => navigate('people', id)}/><aside className="workspace-sidebar"><div className="sidebar-brand"><img className="admin-brand-logo" src="/gns-logo-transparent.png" alt=""/><strong>GNS</strong><span>FITNESS</span><small>ENERGÍA · SALUD · BIENESTAR · VITALIDAD</small></div><nav aria-label="Secciones de gestión">{sections.map(item => <button key={item.id} type="button" className={section === item.id ? 'workspace-nav active' : 'workspace-nav'} aria-current={section === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}>
+  return <div className="admin-workspace admin-sidebar-layout admin-top-layout admin-management" data-section={section}>
+    <div className="management-background-leaves" aria-hidden="true"><span/><span/><span/><span/></div>
+    <div className="management-breadcrumb">Administración <span>/ {sections.find(item => item.id === section)?.title}</span></div>
+    <PlanNotifications appearance="bell" client={client} revision={revision} onOpen={id => navigate('people', id)}/><aside className="workspace-sidebar"><div className="sidebar-brand"><img className="admin-brand-logo" src="/gns-logo-transparent.png" alt=""/><strong>GNS</strong><span>FITNESS</span><small>ENERGÍA · SALUD · BIENESTAR · VITALIDAD</small></div><nav aria-label="Secciones de gestión">{sections.map(item => <button key={item.id} type="button" className={section === item.id ? 'workspace-nav active' : 'workspace-nav'} aria-current={section === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.path}/></svg><span><strong>{item.title}</strong></span>
-    </button>)}</nav><p className="sidebar-signature">GYM NATURE SOUL</p></aside>
+    </button>)}</nav><details className="management-account"><summary aria-label="Cuenta y ayuda" title="Cuenta y ayuda"><span className="account-chevron" aria-hidden="true">⌃</span></summary><div className="management-account-popover"><h2 className="management-account-title">Cuenta y ayuda</h2>{accountTools}<a href="/soporte.html">Ayuda y soporte</a><a href="/privacidad.html">Privacidad</a></div></details></aside>
     <div className="workspace-main" onInputCapture={event => { if ((event.target as HTMLElement).closest('form')) setDirty(true) }}><Suspense fallback={<p role="status">Cargando sección…</p>}>
       {section === 'overview' && <><CloudDashboard client={client} revision={revision} onOpenMembers={id => navigate('people', id)} onFilterMembers={filter => navigate('people', '', false, filter)}/></>}
       {section === 'people' && <CloudMembers key={`${memberId}-${memberFilter}-${newPerson}`} initialFilter={memberFilter} client={client} onCountChange={countChanged} initialNew={newPerson} initialMemberId={memberId || null} onDirtyChange={setDirty}/>}
@@ -48,9 +49,10 @@ export default function CloudAdmin({ client }: { client: SupabaseClient }) {
       {section === 'holistic' && <HolisticSchedule client={client} onOpen={id=>navigate('people',id)}/>}
       {section === 'expenses' && <GymExpenses client={client} onDirtyChange={setDirty}/>}
       {section === 'nutrition' && <NutritionWorkspace client={client} onDirtyChange={setDirty}/>}
-      {section === 'overview' && <><RegistrationRequests client={client} onChanged={countChanged}/><BackupPanel client={client}/></>}
+      {section === 'overview' && <div className="management-utilities"><RegistrationRequests client={client} onChanged={countChanged}/><BackupPanel client={client}/></div>}
     </Suspense></div>
   </div>
 }
+
 
 

@@ -16,7 +16,8 @@ test('program evaluation enforces MFA, ownership, revisions, privacy and backup 
  assert.equal((await save()).rows[0].revision,1);await assert.rejects(save(),/cambió/)
  assert.equal((await save(1)).rows[0].revision,2)
  const backup=(await db.query('select export_application_backup() as payload')).rows[0].payload
- assert.equal(backup.schemaVersion,18);assert.equal(backup.tables.program_results.length,1)
+ // All migrations are loaded above, including the business-settings backup schema.
+ assert.equal(backup.schemaVersion,27);assert.equal(backup.tables.program_results.length,1)
  await as(2);assert.equal((await db.query('select * from program_results')).rows.length,1)
  await assert.rejects(db.exec("update program_results set observations='alterado'"),/permission denied/)
  await assert.rejects(db.exec('truncate program_results'),/permission denied/)

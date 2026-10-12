@@ -4,7 +4,7 @@ import { readAllPages } from './readAllPages'
 import { planReminders, uruguayToday, type ReminderPlan } from './planReminders'
 
 type Person = { id: string; first_name: string; last_name: string; status: string }
-export default function PlanNotifications({ client, memberId, revision = 0, onOpen }: { client: SupabaseClient; memberId?: string; revision?: number; onOpen?: (id: string) => void }) {
+export default function PlanNotifications({ client, memberId, revision = 0, onOpen, appearance = 'label' }: { client: SupabaseClient; memberId?: string; revision?: number; onOpen?: (id: string) => void; appearance?: 'label' | 'bell' }) {
   const [snapshot, setSnapshot] = useState<{ plans: ReminderPlan[]; people: Person[]; date: string } | null>(null)
   const [failed, setFailed] = useState(false)
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function PlanNotifications({ client, memberId, revision = 0, onOp
   const people = new Map(snapshot?.people.filter(p => p.status === 'Activo').map(p => [p.id, p]))
   const notices = snapshot ? planReminders(snapshot.plans, snapshot.date).filter(n => people.has(n.memberId)) : []
   return <div className="plan-notification-corner"><details className="plan-notifications">
-    <summary aria-label="Avisos" title="Abrir avisos"><span className="plan-notification-label">Avisos</span> <span className="badge" role="status">{failed ? '!' : snapshot ? notices.length : '…'}</span></summary>
+    <summary aria-label="Avisos" title="Abrir avisos">{appearance === 'bell' ? <svg className="plan-notification-bell" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> : <span className="plan-notification-label">Avisos</span>} <span className="badge" role="status">{failed ? '!' : snapshot ? notices.length : '…'}</span></summary>
     <div className="plan-notification-list">
       {failed ? <p role="alert">No se pudieron actualizar los avisos. Revisá tu conexión.</p> : !snapshot ? <p>Cargando avisos…</p> : !notices.length ? <p>No hay avisos próximos.</p> : notices.map(n => <article key={n.key}>
         {!memberId && <strong>{people.get(n.memberId)?.first_name} {people.get(n.memberId)?.last_name}</strong>}

@@ -84,3 +84,12 @@
 .app .cloud-student.student-cards-design .exercise-inline-fields label{width:76px}
 .app .cloud-student.student-cards-design .exercise-history{font-size:12px;margin-top:4px}
 .app .cloud-student.student-cards-design .exercise-history summary{font-size:12px}
+
+/* Approved training cover: equipment and plants only, no people. */
+.app .cloud-student.student-cards-design .training-visual-header{
+ background-image:linear-gradient(90deg,#0b100dd9,#0b100d12),url('./assets/student-training-gym.png');
+ background-position:center,center;background-size:cover,cover;min-height:155px;
+}
+.app .cloud-student.student-cards-design .student-section-heading{padding:10px 0 14px;background:transparent;border:0;text-align:center}
+.app .cloud-student.student-cards-design .student-section-heading h1{font-size:17px;letter-spacing:.16em}
+.app .cloud-student.student-cards-design .student-section-heading::after{content:'';display:block;width:32px;height:1px;background:#d9b66b;margin:12px auto 0}

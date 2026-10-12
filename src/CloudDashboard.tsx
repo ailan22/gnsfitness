@@ -42,9 +42,9 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
     return () => { active = false; clearTimeout(timer); clearInterval(reminderTimer); window.removeEventListener('focus', whenReturning) }
   }, [client, revision, refreshCount, page])
   return <section className="cloud-dashboard dashboard-agenda-layout" aria-label="Indicadores del gimnasio">
-    <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Vista general</h1></div>
-      <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar indicadores</button></div>
-    <p className="muted">Bienvenido al centro GNS FITNESS</p>
+    <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Panel de gestión</h1></div>
+      <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar</button></div>
+    <p className="muted">Lo importante de tu gimnasio, en un solo lugar.</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
     {snapshot && <><div className="stats dashboard-primary">
@@ -58,22 +58,22 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
       <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
     </div></details>
     <div className="dashboard-details">
-      <section className="card dashboard-pending" aria-labelledby="dashboard-pending-title"><h2 id="dashboard-pending-title">Pagos pendientes</h2>
-        <p className="muted">Saldos de todos los períodos. {snapshot.debtors} socios · {money(snapshot.pending)}.</p>
+      <section className="card dashboard-pending" aria-labelledby="dashboard-pending-title"><div className="management-card-heading"><h2 id="dashboard-pending-title">Pagos pendientes</h2><span className="badge">{snapshot.debtors} {snapshot.debtors === 1 ? 'socio' : 'socios'}</span></div>
+        <div className="pending-columns" aria-hidden="true"><span>Socio</span><span>Plan</span><span>Saldo</span><span/></div>
         {snapshot.debtors === 0 ? <p>Sin saldos pendientes.</p> : <><ul className="dashboard-breakdown dashboard-pending-list">
           {snapshot.pendingMembers.map(member => <li key={member.id}>
-            <span><button type="button" className="text-button" onClick={() => onOpenMembers?.(member.id)}>{member.first_name} {member.last_name}</button><small>{member.plan_name}</small></span>
+            <button type="button" className="text-button pending-member-name" onClick={() => onOpenMembers?.(member.id)}>{member.first_name} {member.last_name}</button><span className="pending-plan">{member.plan_name}</span>
             <strong>{money(member.balance)}</strong><button className="text-button pending-open" type="button" aria-label={`Abrir ficha de ${member.first_name} ${member.last_name}`} onClick={()=>onOpenMembers?.(member.id)}>›</button></li>)}
-        </ul><div className="actions" aria-label="Páginas de pagos pendientes">
+        </ul><div className="pending-total"><span>Total</span><strong>{money(snapshot.pending)} pendientes</strong></div>{snapshot.debtors > snapshot.pageSize && <div className="actions" aria-label="Páginas de pagos pendientes">
           <button type="button" className="secondary" disabled={loading || page === 0} onClick={() => setPage(value => value - 1)}>Anterior</button>
           <span>Página {page + 1} de {Math.max(1, Math.ceil(snapshot.debtors / snapshot.pageSize))}</span>
           <button type="button" className="secondary" disabled={loading || (page + 1) * snapshot.pageSize >= snapshot.debtors} onClick={() => setPage(value => value + 1)}>Siguiente</button>
-        </div></>}
+        </div>}</>}
       </section>
       <DashboardAgenda client={client} revision={revision+refreshCount} onOpen={onOpenMembers}/>
     </div>      <section className="card dashboard-plan-summary" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>
         <p className="muted">Plan más reciente de cada socio.</p>
-        <div className="dashboard-plan-bar" aria-hidden="true">{snapshot.plans.map((item,index)=><span key={item.name} style={{flex:item.count,background:['#c6b078','#a89965','#788363'][index%3]}}/>)}{snapshot.withoutPlan>0&&<span style={{flex:snapshot.withoutPlan,background:'#565f55'}}/>}</div><ul className="dashboard-breakdown">
+        <ul className="dashboard-breakdown">
           {snapshot.plans.map(item => <li key={item.name}><span>{item.name}</span><strong>{item.count}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={item.count} aria-label={`${item.name}: ${item.count} socios`}/></li>)}
           {snapshot.withoutPlan>0&&<li><span>Sin plan</span><strong>{snapshot.withoutPlan}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={snapshot.withoutPlan} aria-label="Socios sin plan"/></li>}
         </ul>

@@ -46,6 +46,17 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
 }
 const record = day => ({id:`session-${day}`, routine_id:'routine', routine_name:'Plan personal', day, performed_at:'2026-01-01', created_at:`2026-01-01T0${day}:00:00Z`, notes:'Registro conservado', results:[]})
 
+test('progress reflects persisted training, not opening a card or entering loads', () => {
+ const empty=harness()
+ const bar=()=>empty.nodes().find(n=>n.type==='progress')
+ assert.equal(bar().props.max,6)
+ assert.equal(bar().props.value,0)
+ empty.begin(); empty.field('Kilos utilizados','20')
+ assert.equal(bar().props.value,0)
+ const saved=harness({sessions:[record(1)]})
+ assert.equal(saved.nodes().find(n=>n.type==='progress').props.value,1)
+})
+
 test('assigned test is labelled and appears only on its exact planned day',()=>{
  const ui=harness({sessionTests:{1:{2:[{id:'test',title:'Movilidad',details:'Evaluación supervisada'}]}}})
  assert.doesNotMatch(JSON.stringify(ui.cards()[0]),/Evaluación supervisada/)

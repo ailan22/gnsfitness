@@ -194,7 +194,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           {progress.finished ? <p>Consultá con tu entrenador antes de iniciar un programa nuevo.</p> : <>
             {exercises.length ? <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={`${globalWeek}-${progress.nextDay}-${item.id}`}>
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}
-              <PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/>
+              <details className="exercise-history"><summary>Último registro</summary><PreviousResult sessions={history.sessions} routineId={routine.id} exercise={item}/></details>
               <div className="exercise-inline-row">
 
                 <details className="exercise-inline-entry" onToggle={event => { if(event.currentTarget.open) begin() }}>

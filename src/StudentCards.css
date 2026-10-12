@@ -78,3 +78,9 @@
 .app .cloud-student.student-cards-design .exercise-inline-fields{gap:10px}
 .app .cloud-student.student-cards-design .exercise-inline-fields input{width:76px;min-height:36px;font-size:16px;background:#101710}
 .app .cloud-student.student-cards-design .student-inline-save>p{font-size:12px}
+.app .cloud-student.student-cards-design .exercise-inline-row{min-height:62px}
+.app .cloud-student.student-cards-design .exercise-inline-entry{width:218px;flex-basis:218px;height:62px}
+.app .cloud-student.student-cards-design .exercise-inline-fields{width:162px;right:48px}
+.app .cloud-student.student-cards-design .exercise-inline-fields label{width:76px}
+.app .cloud-student.student-cards-design .exercise-history{font-size:12px;margin-top:4px}
+.app .cloud-student.student-cards-design .exercise-history summary{font-size:12px}

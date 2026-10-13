@@ -37,3 +37,9 @@ test('permission errors are returned without any data', async () => {
  const result = await readAllPages(async()=>({data:null,count:null,error:{code:'42501'}}))
  assert.equal(result.data,null); assert.equal(result.error.code,'42501')
 })
+
+test('same-size concurrent changes cannot silently duplicate records or payment totals', async () => {
+ const rows = Array.from({length:501},(_,id)=>({id,amount:100}))
+ const result = await readAllPages(async from => ({data:from ? [rows[499]] : rows.slice(0,500),count:501,error:null}))
+ assert.equal(result.data,null); assert.ok(result.error)
+})

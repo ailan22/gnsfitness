@@ -87,7 +87,7 @@ export default function CloudMembers({ client, onCountChange, initialNew = false
       readAllPages((from, to) => client.from('members').select('id,first_name,last_name,phone,email,birth_date,joined_at,status,welcome_form,emergency_contact_name,emergency_contact_phone,health_provider,goal,limitations,trainer_name', { count: 'exact' }).order('joined_at', { ascending: false }).order('id', { ascending: true }).range(from, to)),
       readAllPages((from, to) => client.from('member_admin_notes').select('member_id,notes', { count: 'exact' }).order('member_id', { ascending: true }).range(from, to)),
       readAllPages((from, to) => client.from('memberships').select('id,member_id,starts_at,ends_at,price,plan_name', { count: 'exact' }).order('starts_at', { ascending: false }).order('id', { ascending: false }).range(from, to)),
-      readAllPages((from, to) => client.from('payments').select('membership_id,amount', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
+      readAllPages((from, to) => client.from('payments').select('id,membership_id,amount', { count: 'exact' }).order('id', { ascending: true }).range(from, to)),
     ])
     setLoading(false)
     if (memberResult.error || notesResult.error || plansResult.error || paymentsResult.error) {

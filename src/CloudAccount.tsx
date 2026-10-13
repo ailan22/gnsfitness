@@ -3,6 +3,7 @@ import { createClient, type User } from '@supabase/supabase-js'
 import { observeAccount } from './observeAccount'
 import { loginIdentifier } from './loginIdentifier'
 import PhoneAccess from './PhoneAccess'
+import SignInForm from './SignInForm'
 import { CreateAccount, PendingRegistration } from './Registration'
 import PasswordRecovery from './PasswordRecovery'
 import StaffMfa from './StaffMfa'
@@ -183,7 +184,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
 
   const accountControls = user ? (<div className={role === 'student' ? 'student-account-bottom' : undefined}>
         {phoneAccessEnabled && client && <PhoneAccess key={user.id} client={client}/>}
-        {nativePlatform && <details className="biometric-settings"><summary>Acceso con Face ID o biometría</summary>
+        {nativePlatform && <details className="biometric-settings"><summary><svg className="account-face-icon" width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M3 10V5a2 2 0 0 1 2-2h5m12 0h5a2 2 0 0 1 2 2v5M3 22v5a2 2 0 0 0 2 2h5m12 0h5a2 2 0 0 0 2-2v-5M11 11v4m10-4v4m-5-4v8h-2m-4 3q6 5 12 0"/></svg><span>Acceso con {biometry.available ? biometry.label : 'Face ID o biometría'}</span></summary>
           <h3>Acceso rápido en este celular</h3>
           <p className="muted">{biometricEnabled
             ? 'Al volver a iniciar la app, podés ingresar con biometría. Cerrar sesión elimina este acceso guardado.'
@@ -197,20 +198,11 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
         <button type="button" className="secondary cloud-signout" disabled={pending} onClick={() => void signOut()} aria-label="Cerrar sesión" title="Cerrar sesión">{role === 'student' ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M9 4H4v16h5M14 8l4 4-4 4M8 12h11"/></svg> : 'Cerrar sesión'}</button>
         </div>) : null
 
-  return <section className={role === 'student' || !user ? 'card cloud-account cloud-portal' : role === 'admin' ? 'cloud-account cloud-admin-account' : 'card cloud-account'} aria-label="Acceso a GNS Fitness">
+  return <section className={!user ? 'card cloud-account cloud-portal gns-signin-screen' : role === 'student' ? 'card cloud-account cloud-portal' : role === 'admin' ? 'cloud-account cloud-admin-account' : 'card cloud-account'} aria-label="Acceso a GNS Fitness">
     {role !== 'admin' && <BotanicalCorners/>}
-    {role === 'student' || role === 'admin' ? null : !user ? <><img className="signin-logo" src="/gns-logo-transparent.png" alt="GNS Fitness" width="128" height="128"/><h1>Entrá a tu espacio.</h1><p className="muted">Iniciá sesión con tu correo y contraseña para ver tu espacio personal.</p></> : <h2>Cuenta conectada</h2>}
+    {role === 'student' || role === 'admin' ? null : !user ? <header className="signin-brand"><strong>GNS <span>FITNESS</span></strong><small>ENERGÍA · SALUD · BIENESTAR · VITALIDAD</small></header> : <h2>Cuenta conectada</h2>}
     {!configured ? <p className="notice">Para activar la conexión, configurá la URL del proyecto y su clave publicable en <code>.env.local</code>, siguiendo <code>cloud/README.md</code>.</p> : loading ? <p>Comprobando cuenta…</p> : !user ?
-      <form className="cloud-signin" onSubmit={signIn}>
-        {new URLSearchParams(window.location.search).get('local-signout') === '1' && <p role="status">El acceso se cerró en este dispositivo. Sin conexión no se pudo confirmar la revocación en el servidor.</p>}
-        {biometricSaved && <button type="button" disabled={pending} onClick={() => void unlockBiometrics()}>Ingresar con {biometry.label}</button>}
-        <label>{phoneAccessEnabled ? 'Correo o celular' : 'Correo electrónico'}<input type={phoneAccessEnabled ? 'text' : 'email'} autoCapitalize="none" autoCorrect="off" spellCheck={false} autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)}/></label>
-        {phoneAccessEnabled && <small>Para celular, incluí el código de país. Primero vinculalo desde tu cuenta.</small>}
-        <label>Contraseña<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)}/></label>
-        <button type="submit" disabled={pending}>{pending ? 'Ingresando…' : 'Iniciar sesión'}</button>
-        {publicRegistrationEnabled && <a className="secondary registration-link" href="/?registro=1">Crear cuenta</a>}
-        <a href="/reset-password?request=1">Olvidé mi contraseña</a>
-      </form> : <div className={role === 'student' ? 'student-account-layout' : undefined}>
+      <SignInForm email={email} password={password} setEmail={setEmail} setPassword={setPassword} pending={pending} phoneAccess={phoneAccessEnabled} registration={publicRegistrationEnabled} localSignout={new URLSearchParams(window.location.search).get('local-signout') === '1'} biometricSaved={biometricSaved} biometricLabel={biometry.label} onUnlock={() => void unlockBiometrics()} onSubmit={signIn}/> : <div className={role === 'student' ? 'student-account-layout' : undefined}>
         <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>
         {role === 'admin' && client ? <StaffMfa key={user.id} client={client} onVerified={setStaffVerified}><CloudAdmin client={client} accountTools={<>{accountControls}{hasLocalData && onExportLocal && <details className="local-archive"><summary>Respaldo de la demostración anterior</summary><p className="muted">La copia del navegador es independiente de los socios de Supabase. Descargala antes de borrar datos del navegador.</p><button type="button" className="secondary" onClick={onExportLocal}>Descargar respaldo anterior</button></details>}</>}/>
 </StaffMfa> : !role && client ? <PendingRegistration key={user.id} client={client} user={user}/> : null}

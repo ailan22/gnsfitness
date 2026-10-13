@@ -1,0 +1,34 @@
+/* Approved login: moss-black, charcoal and restrained metallic gold. */
+.app:has(.gns-signin-screen){background:#080f0a;color:#e5e4dc;min-height:100svh;isolation:isolate}
+.app:has(.gns-signin-screen)>.topbar{display:none}
+.app:has(.gns-signin-screen)>.content{width:100%;max-width:none;padding:0 20px;min-width:0}
+.app:has(.gns-signin-screen) .cloud-entry{min-height:calc(100svh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));align-items:center}
+.app .cloud-entry .gns-signin-screen{width:min(100%,430px);padding:32px 0 18px;margin:0;background:transparent;border:0;box-shadow:none;min-width:0}
+.app .gns-signin-screen .signin-brand{text-align:center;margin:20px 0 32px}
+.app .gns-signin-screen .signin-brand strong{font-size:clamp(28px,7.6vw,36px);letter-spacing:.01em;font-weight:700;color:#dab46b;background:linear-gradient(170deg,#e9ca8c,#bd934b 48%,#ead094 60%,#c39e58);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.app .gns-signin-screen .signin-brand strong span{color:#efeee7;-webkit-text-fill-color:#efeee7;font-weight:600}
+.app .gns-signin-screen .signin-brand small{display:block;font-size:8px;letter-spacing:.15em;margin-top:10px;color:#e2e1da}
+.app .gns-signin-screen .gns-signin-form{max-width:none;margin:0;padding:26px 22px;gap:18px;background:linear-gradient(135deg,#1d221de8,#101510f5);border:1px solid #b89a5e;border-radius:22px;box-shadow:0 14px 40px #0002}
+.app .gns-signin-screen .gns-signin-form h1{text-align:center;margin:0 0 6px;font-size:20px;letter-spacing:.14em;color:#d8b875}
+.app .gns-signin-screen .gns-signin-form label{font-size:14px;color:#e5e3da;letter-spacing:.015em;display:grid;gap:8px}
+.app .gns-signin-screen .gns-signin-form input{display:block;box-sizing:border-box;width:100%;min-width:0;min-height:46px;padding:12px;border:1px solid #5b6156;border-radius:9px;background:#0b100d;color:#eeede7;font-size:16px;box-shadow:none}
+.app .gns-signin-screen .gns-signin-form input:focus{outline:2px solid #d2ae68;outline-offset:2px}
+.app .gns-signin-screen .signin-password>div{position:relative;margin-top:8px}
+.app .gns-signin-screen .signin-password input{padding-right:48px}
+.app .gns-signin-screen .gns-signin-form .signin-eye{position:absolute;right:0;top:0;margin:0;width:44px;height:46px;min-height:44px;padding:11px;border:0;background:transparent;color:#d7c8a7;box-shadow:none}
+.signin-eye svg{width:22px;height:22px}
+.app .gns-signin-screen .gns-signin-form a{color:#d8b875;text-underline-offset:4px}
+.app .gns-signin-screen .signin-recovery{justify-self:end;font-size:12px;margin-top:-4px}
+.app .gns-signin-screen .gns-signin-form .signin-submit{min-height:46px;margin-top:6px;padding:12px 16px;border:1px solid #dbb976;border-radius:10px;background:linear-gradient(172deg,#eed59b,#c29a51 48%,#ddbb78);color:#141a13;font-size:15px;font-weight:700;letter-spacing:.07em;box-shadow:none}
+.signin-submit span{margin-left:16px}
+.app .gns-signin-screen .signin-create{font-size:12px;text-align:center;margin:4px 0 0;line-height:1.8;color:#e3e1d7}
+.signin-create a{white-space:nowrap;margin-left:4px}
+.app .gns-signin-screen .signin-biometric{display:flex;flex-direction:column;align-items:center;gap:8px;margin:22px auto 0;padding:8px 16px;background:none;border:0;color:#dedbd0;font-size:12px;box-shadow:none}
+.signin-biometric svg{width:34px;height:34px;color:#d8b875}
+.app .gns-signin-screen .signin-signature{text-align:center;font-size:12px;letter-spacing:.28em;color:#d8b875;margin:34px 0 24px}
+.app .gns-signin-screen .account-legal{display:flex;justify-content:center;gap:22px;font-size:11px;margin:0;padding:8px 0 max(8px,env(safe-area-inset-bottom));border:0}
+.app .gns-signin-screen .account-legal a{color:#c3c6bb}
+.app:has(.gns-signin-screen) .botanical-branch{content:url('./assets/gns-botanical-natural.png');width:155px;opacity:.46;filter:brightness(.72) saturate(.9)}
+.app:has(.gns-signin-screen) .botanical-left{left:-18px;top:0;bottom:auto;transform:rotate(180deg)}
+.app:has(.gns-signin-screen) .botanical-right{right:-20px;bottom:0;top:auto;transform:none}
+@media(max-height:740px){.app .cloud-entry .gns-signin-screen{padding-top:16px}.app .gns-signin-screen .signin-brand{margin:10px 0 22px}.app .gns-signin-screen .gns-signin-form{padding:22px 18px;gap:14px}.app .gns-signin-screen .signin-signature{margin:22px 0 16px}}

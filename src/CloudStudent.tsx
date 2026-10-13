@@ -164,11 +164,11 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
     <header className="student-cards-brand"><img src="/gns-logo-transparent.png" alt="GNS"/><div><strong>GNS <span>FITNESS</span></strong><small>ENERGÍA · SALUD · BIENESTAR · VITALIDAD</small></div></header>
     <div className="student-toolbar">
       {section === 'home' && <div className="student-space-label"><img src="/gns-logo-transparent.png" alt="" width="30" height="30"/><span>TU ESPACIO</span></div>}
-      <div className="student-top-actions">{section !== 'home' && <button type="button" className="student-back" aria-label="Volver al inicio" onClick={() => selectSection('home')}>←</button>}{history && <PlanNotifications client={client} memberId={history.member.id}/>}</div>
+      <div className="student-top-actions">{section !== 'home' && <button type="button" className="student-back" aria-label="Volver al inicio" onClick={() => selectSection('home')}>←</button>}{history && <PlanNotifications client={client} memberId={history.member.id} appearance="bell"/>}</div>
     </div>
     {section === 'home' && <div className="student-home-menu"><nav aria-label="Elegí una sección">
       {(['training','nutrition','method','results'] as const).map((key,index)=><button key={key} type="button" className={'student-menu-card student-menu-'+key} onClick={()=>selectSection(key)}>
-        <span className="student-menu-photo" aria-hidden="true"/>
+        <span className="student-menu-photo" aria-hidden="true"><img src="/student-approved-gold-home.png" alt=""/></span>
         <svg className="student-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">{key==='training'?<path d="M3 7v10M7 4v16M17 4v16M21 7v10M3 9h4m0 3h10m0-3h4M3 15h4m10 0h4"/>:key==='nutrition'?<path d="M12 8c-8-6-13 3-7 11 2 3 4 2 7 1 3 1 5 2 7-1 6-8 1-17-7-11Zm0 0c0-5 2-7 5-6 0 3-2 5-5 6Z"/>:key==='method'?<path d="M12 5v15M12 5C8 3 5 3 2 4v15c4-1 7-1 10 1 3-2 6-2 10-1V4c-3-1-6-1-10 1Z"/>:<path d="M3 21V12h4v9m3 0V7h4v14m3 0V2h4v19"/>}</svg>
         <span className="student-menu-title">{['MI ENTRENAMIENTO','ALIMENTACIÓN SALUDABLE','MÉTODO GNS','RESULTADOS DEL PROGRAMA'][index]}</span><span className="student-menu-arrow" aria-hidden="true">›</span>
       </button>)}

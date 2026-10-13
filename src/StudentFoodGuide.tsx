@@ -1,7 +1,13 @@
 import { useRef, useState } from 'react'
 import guide from './admin-alimentacion.json'
 
-const labels = ['Armar el plato','Nutrientes','Condimentos','Menú de 5 días','Desayunos','Almuerzos','Meriendas','Cenas','Infusiones','Aguas naturales','Salud hormonal']
+const guideGroups = [
+ { title:'Bases de alimentación', links:[['plato','Cómo armar el plato'],['nutrientes','Nutrientes'],['combinaciones','Cómo combinar alimentos']] },
+ { title:'Comidas del día', links:[['cinco-dias','Menú de ejemplo'],['desayunos','Desayunos'],['almuerzos','Almuerzos'],['meriendas','Meriendas'],['cenas','Cenas']] },
+ { title:'Alimentación y entrenamiento', links:[['before','Antes de entrenar'],['after','Después de entrenar']] },
+ { title:'Infusiones y bebidas', links:[['infusiones','Infusiones y tés'],['aguas','Aguas naturales']] },
+ { title:'Más sobre alimentación', links:[['salud-hormonal','Alimentación y salud hormonal']] },
+]
 const timings = [
   { title:'3 horas antes', intro:'Una comida con carbohidratos y una fuente de proteína, sin exceso de grasa. Ajustá la cantidad a tu hambre, al entrenamiento y a tu digestión.', meals:[['Arroz con pollo','Cociná arroz y acompañalo con pollo a la plancha y verduras cocidas. Podés cambiar el pollo por pescado, carne magra o tofu.'],['Pasta con atún','Combiná pasta con atún al natural y una salsa suave de tomate. Evitá una porción muy grande o salsas pesadas.'],['Papa con huevo','Papa cocida con huevo y una porción de verduras que toleres bien.']], drink:'Agua durante las horas previas. Tomala de a poco, sin forzarte a beber mucho justo antes.' },
   { title:'1 hora y media antes', intro:'Elegí una colación más pequeña y conocida. Incluí una porción moderada de proteína si te resulta cómoda.', meals:[['Yogur con banana','Yogur natural, bajo en grasa si lo preferís, con banana madura. Usá yogur sin lactosa si lo necesitás.'],['Tostada con ricota','Una tostada con ricota magra o queso fresco y fruta. Ajustá la cantidad a tu tolerancia.'],['Licuado sencillo','Leche o bebida de soja con proteína y banana. Una porción pequeña, sin sumar muchas semillas ni mantecas de frutos secos.']], drink:'Agua. El licuado también aporta líquido; no hace falta agregar una bebida deportiva para una sesión habitual.' },
@@ -27,8 +33,7 @@ export default function StudentFoodGuide() {
   {screen&&<button type="button" className="guide-back" onClick={()=>go(item?screen:timing?'before':null)} aria-label="Volver a las secciones de alimentación">← Volver</button>}
   {!screen?<>
    <img className="student-editorial-photo" src="/student-food-hero.png" alt="Plato con pollo, cereales y vegetales variados"/>
-   <nav className="student-guide-grid" aria-label="Secciones de la guía">{guide.sections.map((s,i)=><button type="button" key={s.id} onClick={()=>go(s.id)}>{labels[i]??s.title}<span aria-hidden="true">›</span></button>)}</nav>
-   <div className="student-food-training-links"><button type="button" onClick={()=>go('before')}>ANTES DE ENTRENAR <span>›</span></button><button type="button" onClick={()=>go('after')}>DESPUÉS DE ENTRENAR <span>›</span></button></div>
+   <nav className="student-guide-sections" aria-label="Secciones de la guía">{guideGroups.map(group=><section key={group.title}><h2>{group.title}</h2><div className="student-guide-grid">{group.links.map(([id,label])=><button type="button" key={id} onClick={()=>go(id)}>{label}<span aria-hidden="true">›</span></button>)}</div></section>)}</nav>
   </>:<><h2>{title}</h2>
    {section&&!item&&<div className="student-guide-grid">{section.items.map((entry,i)=><button type="button" key={entry.page} onClick={()=>go(section.id,i)}>{entry.title}<span>›</span></button>)}</div>}
    {item&&<article className="student-guide-reading">{item.images.map(src=><img key={src} src={src} alt={item.title} loading="lazy"/>)}{item.blocks.map((b,i)=>b.heading?<h3 key={i}>{b.text}</h3>:<p key={i}>{b.text}</p>)}</article>}

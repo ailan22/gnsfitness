@@ -34,5 +34,11 @@ export default function ProgramResults({client,memberId,admin=false,onDirtyChang
     </fieldset></form>}
     {rows.length===0?<p>Todavía no hay evaluaciones publicadas.</p>:rows.map(r=><details className="card program-result" key={r.routine_id}><summary>{r.program_name} <small>Evaluación · {r.evaluated_on.split('-').reverse().join('/')}</small></summary><h3>Cambios observados</h3><p>{r.observations}</p>{r.comparison&&<><h3>Punto de partida y resultado</h3><p>{r.comparison}</p></>}{r.next_steps&&<><h3>Próximos pasos</h3><p>{r.next_steps}</p></>}</details>)}</>}
   </>
+  if (!admin) return <section className="student-content student-result-cards" aria-label="Resultados del programa">
+    {loading?<p role="status">Cargando evaluaciones…</p>:error?<p role="alert">{error}</p>:<>
+    <details className="card"><summary>PUNTO DE PARTIDA Y RESULTADOS</summary>{rows.length===0?<p>Tu entrenador todavía no publicó una evaluación.</p>:rows.map(r=><article key={r.routine_id}><h3>{r.program_name}</h3><small>{r.evaluated_on.split('-').reverse().join('/')}</small><p>{r.comparison||'La comparación inicial y final todavía no está registrada.'}</p></article>)}</details>
+    <details className="card"><summary>CAMBIOS OBSERVADOS</summary>{rows.length===0?<p>Acá verás los cambios registrados por tu entrenador.</p>:rows.map(r=><article key={r.routine_id}><h3>{r.program_name}</h3><p>{r.observations}</p></article>)}</details>
+    </>}<p className="gns-signature">GYM NATURE SOUL</p>
+  </section>
   return admin?<details className="card"><summary><MemberSectionTitle kind="results">Resultados del programa</MemberSectionTitle></summary>{content}</details>:<section className="student-content" aria-label="Resultados del programa"><header className="card"><p className="eyebrow">TU EVOLUCIÓN</p><h2>Resultados del programa</h2></header>{content}</section>
 }

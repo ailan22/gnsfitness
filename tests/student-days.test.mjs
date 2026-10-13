@@ -36,7 +36,7 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
   function nodes(node = tree) { if (!node || typeof node !== 'object') return []; if (Array.isArray(node)) return node.flatMap(child => nodes(child ?? null)); return [node, ...nodes(node.props?.children ?? null)] }
   const text = node => JSON.stringify(node)
   render()
-  return { calls, nodes, text: () => text(tree),
+  return { calls, nodes, render, text: () => text(tree),
     cards: () => nodes().filter(n => n.type === 'section' && /card student-day/.test(n.props.className ?? '')),
     begin() { const button = nodes().find(n => n.type === 'button' && !n.props.disabled && text(n.props.children).includes('Completar Día')); assert.ok(button); button.props.onClick(); render() },
     history() { nodes().find(n => n.type === 'details' && n.props.className === 'student-history-panel card').props.onToggle({currentTarget:{open:true}}); render() },
@@ -141,4 +141,19 @@ test('successful save clears exercise inputs so the next day cannot inherit old 
  const inputs=ui.nodes().filter(n=>n.type==='input' && n.props['aria-label']?.includes(' · Sentadilla'))
  assert.equal(inputs.length,2)
  assert.ok(inputs.every(n=>n.props.value===''))
+})
+
+test('completion action is available below current exercises before opening any load field', async () => {
+ const ui=harness()
+ const form=ui.nodes().find(n=>n.type==='form')
+ const action=ui.nodes(form).find(n=>n.type==='button'&&JSON.stringify(n.props.children).includes('Completar entrenamiento'))
+ assert.ok(action,'Visible completion action must be inside the current workout')
+ assert.equal(action.props.disabled,false)
+ assert.ok(ui.nodes(ui.cards()[1]).find(n=>n.type==='button').props.disabled)
+ action.props.onClick()
+ ui.render()
+ await ui.save()
+ assert.equal(ui.calls.length,1)
+ assert.equal(ui.calls[0].name,'student_register_next_day_checked')
+ assert.equal(ui.calls[0].args.p_expected_day,1)
 })

@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { readAllPages } from './readAllPages'
 
-const FoodGuide = lazy(() => import('./AdminFoodGuide'))
+const StudentFoodGuide = lazy(() => import('./StudentFoodGuide'))
 const RecipeLibrary = lazy(() => import('./AdminRecipeLibrary'))
 const guides = [{ id: 'food', title: 'GNS · Alimentación saludable' }, { id: 'recipes', title: 'Recetario GNS' }]
 type Person = { id: string; first_name: string; last_name: string; user_id: string | null }
@@ -11,9 +11,7 @@ type Access = { member_id: string; status: string; nutrition_guides: string[] }
 export function StudentNutritionMaterials({ assigned = [] }: { assigned?: string[] }) {
   if (!assigned.some(id => guides.some(guide => guide.id === id))) return null
   return <section className="nutrition-materials" aria-label="Guías de alimentación habilitadas">
-    <h2>Mis guías de alimentación</h2>
-    <p>Estas son las guías que el administrador habilitó para vos.</p>
-    <Suspense fallback={<p role="status">Cargando guías…</p>}>{assigned.includes('food') && <FoodGuide/>}{assigned.includes('recipes') && <RecipeLibrary/>}</Suspense>
+    <Suspense fallback={<p role="status">Cargando guías…</p>}>{assigned.includes('food') && <StudentFoodGuide/>}{assigned.includes('recipes') && <RecipeLibrary/>}</Suspense>
   </section>
 }
 

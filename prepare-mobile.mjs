@@ -10,7 +10,7 @@ if (path.dirname(target) !== root || path.basename(target) !== 'dist-mobile') th
 if (fs.existsSync(target) && fs.lstatSync(target).isSymbolicLink()) throw Error('Output must not be a link')
 fs.rmSync(target, { recursive: true, force: true })
 fs.mkdirSync(path.join(target, 'assets'), { recursive: true })
-for (const file of ['index.html', 'favicon.png', 'gns-logo-transparent.png', 'icons.svg', 'privacidad.html', 'soporte.html', 'legal.css']) {
+for (const file of ['index.html', 'favicon.png', 'gns-logo-transparent.png', 'icons.svg', 'privacidad.html', 'soporte.html', 'legal.css', 'student-method-window.png', 'student-food-hero.png', 'student-food-yogurt.png', 'student-food-banana.png']) {
   fs.copyFileSync(path.join(source, file), path.join(target, file))
 }
 // The install manifest belongs to the hosted Windows/web app, not Capacitor.

@@ -175,7 +175,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
     </nav><p className="student-brand-signature"><span>GYM NATURE SOUL</span></p></div>}
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
       {section !== 'home' && <header className={'student-section-heading student-section-'+section}><h1>{section === 'training' ? 'MI ENTRENAMIENTO' : section === 'nutrition' ? 'ALIMENTACIÓN SALUDABLE' : section === 'method' ? 'MÉTODO GNS' : 'RESULTADOS DEL PROGRAMA'}</h1></header>}
-      <p hidden={section === 'home'} className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : section === 'training' ? 'Tu entrenamiento, paso a paso.' : section === 'method' ? 'Movimiento, constancia y acompañamiento.' : 'Los cambios observados en tu proceso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
+      <p hidden={section === 'home' || section === 'nutrition' || section === 'method' || section === 'results'} className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : section === 'training' ? 'Tu entrenamiento, paso a paso.' : section === 'method' ? 'Movimiento, constancia y acompañamiento.' : 'Los cambios observados en tu proceso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}
       {nutritionOpen && <section className="student-nutrition-panel" aria-label="Nutrición">
@@ -210,6 +210,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
             {!canRecord && <p className="muted">Para habilitar este día, tu entrenador debe cargar sus ejercicios. Tu avance anterior queda guardado.</p>}
             {history.member.status !== 'Activo' && <p className="notice">Tu ficha no está activa. Contactá al administrador para registrar entrenamientos.</p>}
           </>}
+          {!progress.finished && !recording && <div className="student-complete-visible"><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => begin()}>Completar entrenamiento · Día {progress.nextDay}</button></div>}
           {!progress.finished && <fieldset disabled={saving || !recording} aria-hidden={!recording} style={{visibility: recording ? 'visible' : 'hidden'}} className="student-inline-save">
             <p className="muted" role="status">Resultados pendientes de guardar</p>
             <details><summary>Fecha del entrenamiento</summary><label>Fecha<input type="date" required max={today()} value={performedAt} onChange={event => setPerformedAt(event.target.value)}/></label></details>

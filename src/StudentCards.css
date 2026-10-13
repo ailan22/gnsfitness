@@ -224,3 +224,26 @@
 .app .cloud-student.student-cards-design[data-section=nutrition] :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#18191a}
 .app .cloud-student.student-cards-design[data-section=nutrition] :is(.card,.student-guide-grid button,.student-food-training-links button){background:#202122}
 
+/* Approved left-aligned home, preserving the reference photographs. */
+.app:has(.student-cards-design[data-section=home])::before{transform:scaleX(-1)}
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand{align-items:flex-start;text-align:left;padding:24px 12px 14px;min-height:106px}
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand img{display:none}
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand strong{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:32px;letter-spacing:-.025em;background:linear-gradient(150deg,#ecd397,#c39b55);background-clip:text;-webkit-background-clip:text}
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand strong span{font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:27px;letter-spacing:.005em}
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand small{font-size:6.7px;letter-spacing:.12em}
+.app .cloud-student.student-cards-design[data-section=home] .student-toolbar{top:25px;right:0}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu{padding-top:18px}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav{gap:10px}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-card:nth-child(n){height:clamp(104px,13svh,126px);min-height:104px;padding:10px 12px 10px 49%;border:1px solid #bfa05f;border-radius:17px;background:#1b1d1c}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-title{font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:500;letter-spacing:.07em;line-height:1.5}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-approved-photo{inset:auto auto auto 5px;top:50%;transform:translateY(-50%);width:44%;aspect-ratio:340/230;z-index:0;mask-image:none;-webkit-mask-image:none;border-radius:11px;background:#1b1d1c}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-approved-photo img{position:absolute;width:250.88%;max-width:none;height:auto;left:0;top:0;transform:translate(-7.62%,-21.25%)}
+.app .cloud-student.student-cards-design .student-menu-nutrition .student-approved-photo img{transform:translate(-7.62%,-36.01%)}
+.app .cloud-student.student-cards-design .student-menu-method .student-approved-photo img{transform:translate(-7.62%,-50.65%)}
+.app .cloud-student.student-cards-design .student-menu-results .student-approved-photo img{transform:translate(-7.62%,-65.40%)}
+.app .cloud-student.student-cards-design[data-section=home] .student-brand-signature{margin:30px 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:400;letter-spacing:.25em}
+.app .cloud-student.student-cards-design[data-section=home] .student-brand-signature span{font-weight:400;letter-spacing:.25em}
+@media(max-width:360px){.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand strong{font-size:28px}.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand strong span{font-size:24px}.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-title{font-size:11px}}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-nutrition .student-approved-photo img{transform:translate(-7.62%,-36.01%)}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-method .student-approved-photo img{transform:translate(-7.62%,-50.65%)}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-results .student-approved-photo img{transform:translate(-7.62%,-65.40%)}

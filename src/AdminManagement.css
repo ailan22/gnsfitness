@@ -475,3 +475,18 @@
  .app-admin .admin-top-layout.admin-management .management-background-leaves::before{left:0;transform:translateY(-50%)}
  .app-admin .admin-top-layout.admin-management .management-background-leaves::after{right:0;transform:translateY(-50%) scaleX(-1)}
 }
+
+/* Desktop: flush left workspace, reserved botanical margin on the right. */
+@media(min-width:901px){
+ .app-admin .admin-top-layout.admin-management{padding-left:0!important}
+ .app-admin .admin-top-layout.admin-management>.workspace-sidebar,
+ .app-admin .admin-top-layout.admin-management>.workspace-main{border-top-left-radius:0;border-bottom-left-radius:0}
+ .app-admin .admin-top-layout.admin-management .management-background-leaves>span,
+ .app-admin .admin-top-layout.admin-management .management-background-leaves::before,
+ .app-admin .admin-top-layout.admin-management .management-background-leaves::after{
+  filter:saturate(1.14) brightness(.74) contrast(1.1);
+ }
+ .app-admin .admin-top-layout.admin-management .management-background-leaves>span:nth-child(2){right:-78px;transform:rotate(180deg)}
+ .app-admin .admin-top-layout.admin-management .management-background-leaves>span:nth-child(3){right:-78px;transform:none}
+ .app-admin .admin-top-layout.admin-management .management-background-leaves::after{right:-78px;transform:translateY(-50%)}
+}

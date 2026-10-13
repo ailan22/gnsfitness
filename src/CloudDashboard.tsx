@@ -2,7 +2,7 @@ import './DashboardAgenda.css'
 import DashboardAgenda from './DashboardAgenda'
 import DashboardIcon from './DashboardIcon'
 import ExpiredMembers from './ExpiredMembers'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 type Snapshot = {
@@ -14,7 +14,7 @@ type Snapshot = {
 }
 const money = (value: number) => new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU' }).format(value)
 
-export default function CloudDashboard({ client, revision, onOpenMembers }: { client: SupabaseClient; revision: number; onOpenMembers?: (memberId?: string) => void; onFilterMembers?: (filter: 'expired' | 'pending') => void }) {
+export default function CloudDashboard({ client, revision, onOpenMembers, registration }: { client: SupabaseClient; revision: number; registration?: ReactNode; onOpenMembers?: (memberId?: string) => void; onFilterMembers?: (filter: 'expired' | 'pending') => void }) {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
@@ -43,7 +43,7 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
   }, [client, revision, refreshCount, page])
   return <section className="cloud-dashboard dashboard-agenda-layout" aria-label="Indicadores del gimnasio">
     <div className="heading"><div><p className="eyebrow">GNS FITNESS · VISIÓN GENERAL</p><h1>Panel de gestión</h1></div>
-      <button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar</button></div>
+      <div className="dashboard-header-tools"><time className="dashboard-date">{new Intl.DateTimeFormat('es-UY',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'America/Montevideo'}).format(new Date())}</time><button type="button" className="secondary" onClick={() => setRefreshCount(value => value + 1)} disabled={loading}>Actualizar</button></div></div>
     <p className="muted">Lo importante de tu gimnasio, en un solo lugar.</p>
     {loading && !snapshot ? <p>Cargando indicadores…</p> : null}
     {error && <p role="alert" className="error">{error}</p>}
@@ -52,11 +52,6 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
       <div className="card"><DashboardIcon kind="income"/><span>Ingresos del mes</span><strong className="amount">{money(snapshot.monthlyIncome)}</strong><small>Pagos registrados este mes</small></div>
       <details className="card expired-card" onToggle={e=>setExpiredOpen(e.currentTarget.open)}><summary><DashboardIcon kind="expired"/><span>Planes vencidos</span><strong className="red">{snapshot.expired}</strong></summary>{expiredOpen&&<ExpiredMembers key={`${revision}-${refreshCount}`} client={client} date={snapshot.date} onSelect={id=>onOpenMembers?.(id)}/>}</details>
     </div>
-    <details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
-      <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
-      <div className="card"><span>Bajas registradas</span><strong>{snapshot.inactive}</strong></div>
-      <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
-    </div></details>
     <div className="dashboard-details">
       <section className="card dashboard-pending" aria-labelledby="dashboard-pending-title"><div className="management-card-heading"><h2 id="dashboard-pending-title">Pagos pendientes</h2><span className="badge">{snapshot.debtors} {snapshot.debtors === 1 ? 'socio' : 'socios'}</span></div>
         <div className="pending-columns" aria-hidden="true"><span>Socio</span><span>Plan</span><span>Saldo</span><span/></div>
@@ -71,7 +66,12 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
         </div>}</>}
       </section>
       <DashboardAgenda client={client} revision={revision+refreshCount} onOpen={onOpenMembers}/>
-    </div>      <section className="card dashboard-plan-summary" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>
+    </div>          <div className="dashboard-bottom-row">{registration}<details className="additional-metrics"><summary>Más indicadores de actividad</summary><div className="stats">
+      <div className="card"><span>Altas del mes</span><strong>{snapshot.joined}</strong></div>
+      <div className="card"><span>Bajas registradas</span><strong>{snapshot.inactive}</strong></div>
+      <div className="card"><span>Ingresos acumulados</span><strong className="amount">{money(snapshot.income)}</strong></div>
+    </div>
+<section className="card dashboard-plan-summary" aria-labelledby="dashboard-plans-title"><h2 id="dashboard-plans-title">Socios por plan</h2>
         <p className="muted">Plan más reciente de cada socio.</p>
         <ul className="dashboard-breakdown">
           {snapshot.plans.map(item => <li key={item.name}><span>{item.name}</span><strong>{item.count}</strong><meter min={0} max={Math.max(1,snapshot.members)} value={item.count} aria-label={`${item.name}: ${item.count} socios`}/></li>)}
@@ -79,6 +79,6 @@ export default function CloudDashboard({ client, revision, onOpenMembers }: { cl
         </ul>
       </section>
 
-</>}
+</details></div></>}
   </section>
 }

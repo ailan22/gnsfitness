@@ -201,3 +201,18 @@
 .app .cloud-student.student-cards-design .student-home-menu{padding-top:22px}
 .app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card:nth-child(n){height:clamp(76px,10svh,96px);min-height:76px}
 
+/* Approved second preview: sparse leaves, charcoal cards and complete photos. */
+.app:has(.cloud-student.student-cards-design){background:#050c07;isolation:isolate}
+.app:has(.cloud-student.student-cards-design)::before{content:'';position:fixed;inset:0;width:100%;height:100%;background:url('./assets/student-botanical-sparse.png') center/100% 100% no-repeat;opacity:1;filter:none;transform:none;pointer-events:none;z-index:-1;mask-image:none}
+.app:has(.cloud-student.student-cards-design)::after{display:none}
+.app:has(.cloud-student.student-cards-design) .botanical-branch{display:none}
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand{display:flex;flex-direction:column;align-items:center;padding:20px 20px 8px}
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand img{display:block;width:90px;height:90px;object-fit:contain;margin-bottom:10px}
+.app .cloud-student.student-cards-design .student-home-menu{padding-top:30px}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card:nth-child(n){height:80px;min-height:80px;padding:8px 12px 8px 42%;background:#202122;border:1px solid #55564d;border-radius:16px}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-photo-contained{inset:6px auto 6px 6px;width:35%;z-index:0;mask-image:none;-webkit-mask-image:none;background:#202122;border-radius:10px}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-photo-contained img{position:static;width:100%;height:100%;max-width:100%;object-fit:contain;transform:none;border-radius:10px}
+.app .cloud-student.student-cards-design:not([data-section=home]){background:#202122}
+.app .cloud-student.student-cards-design:not([data-section=home]) :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#202122}
+@media(max-height:740px){.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand img{width:60px;height:60px}.app .cloud-student.student-cards-design .student-home-menu{padding-top:18px}.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card:nth-child(n){height:72px;min-height:72px}}
+

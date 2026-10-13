@@ -65,3 +65,11 @@
 .app .gns-signin-screen .gns-signin-form{background:#202122;padding:28px 24px;border-radius:22px}
 .app .gns-signin-screen .gns-signin-form input{background:#141516}
 .app .gns-signin-screen .signin-biometric{min-height:68px}
+
+/* Approved sparse botanical identity: shared with the student portal. */
+.app:has(.gns-signin-screen){background:#050c07}
+.app:has(.gns-signin-screen)::before{background-image:url('./assets/student-botanical-sparse.png');background-size:100% 100%;filter:none;opacity:1}
+.app .gns-signin-screen .signin-logo{display:block;width:100px;height:100px;object-fit:contain;margin:0 auto 10px}
+.app .cloud-entry .gns-signin-screen{padding-top:20px}
+.app .gns-signin-screen .signin-brand{margin:12px 0 24px}
+.app .gns-signin-screen .gns-signin-form{background:#202122;border-color:#55564d}

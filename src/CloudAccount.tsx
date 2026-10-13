@@ -200,7 +200,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
 
   return <section className={!user ? 'card cloud-account cloud-portal gns-signin-screen' : role === 'student' ? 'card cloud-account cloud-portal' : role === 'admin' ? 'cloud-account cloud-admin-account' : 'card cloud-account'} aria-label="Acceso a GNS Fitness">
     {role !== 'admin' && <BotanicalCorners/>}
-    {role === 'student' || role === 'admin' ? null : !user ? <header className="signin-brand"><strong>GNS <span>FITNESS</span></strong><small>ENERGÍA · SALUD · BIENESTAR · VITALIDAD</small></header> : <h2>Cuenta conectada</h2>}
+    {role === 'student' || role === 'admin' ? null : !user ? <header className="signin-brand"><img className="signin-logo" src="/gns-logo-transparent.png" alt="Logo GNS"/><strong>GNS <span>FITNESS</span></strong><small>ENERGÍA · SALUD · BIENESTAR · VITALIDAD</small></header> : <h2>Cuenta conectada</h2>}
     {!configured ? <p className="notice">Para activar la conexión, configurá la URL del proyecto y su clave publicable en <code>.env.local</code>, siguiendo <code>cloud/README.md</code>.</p> : loading ? <p>Comprobando cuenta…</p> : !user ?
       <SignInForm email={email} password={password} setEmail={setEmail} setPassword={setPassword} pending={pending} phoneAccess={phoneAccessEnabled} registration={publicRegistrationEnabled} localSignout={new URLSearchParams(window.location.search).get('local-signout') === '1'} biometricSaved={biometricSaved} biometricLabel={biometry.label} onUnlock={() => void unlockBiometrics()} onSubmit={signIn}/> : <div className={role === 'student' ? 'student-account-layout' : undefined}>
         <Suspense fallback={<p role="status">Cargando tu espacio…</p>}>

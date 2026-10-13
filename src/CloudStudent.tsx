@@ -1,6 +1,5 @@
 import ProtectedNutrition from './ProtectedNutrition'
 import './StudentCards.css'
-import trainingPhoto from './assets/student-training-gym.png'
 import approvedHome from './assets/student-home-approved-oct13.png'
 import GnsMethod from './GnsMethod'
 import ProgramResults from './ProgramResults'

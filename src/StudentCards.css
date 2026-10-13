@@ -216,3 +216,11 @@
 .app .cloud-student.student-cards-design:not([data-section=home]) :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#202122}
 @media(max-height:740px){.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand img{width:60px;height:60px}.app .cloud-student.student-cards-design .student-home-menu{padding-top:18px}.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card:nth-child(n){height:72px;min-height:72px}}
 
+/* One persistent back action: the guide owns navigation while a chapter is open. */
+.app .cloud-student.student-cards-design[data-section=nutrition]:has(.guide-back) .student-back{display:none}
+.app .cloud-student.student-cards-design[data-section=nutrition] :is(.student-back,.guide-back){position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:max(24px,calc((100vw - 640px)/2 + 24px));z-index:100;margin:0;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;display:grid;place-items:center;background:#18191a;border:1px solid #b99b5b88;border-radius:12px;box-shadow:0 3px 12px #0005;color:#d9b66b;font-size:24px}
+.app .cloud-student.student-cards-design[data-section=nutrition]:has(.guide-back) .student-back{display:none}
+.app .cloud-student.student-cards-design[data-section=nutrition]{background:#18191a;padding-top:54px}
+.app .cloud-student.student-cards-design[data-section=nutrition] :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#18191a}
+.app .cloud-student.student-cards-design[data-section=nutrition] :is(.card,.student-guide-grid button,.student-food-training-links button){background:#202122}
+

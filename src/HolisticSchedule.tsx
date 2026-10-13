@@ -16,6 +16,7 @@ export default function HolisticSchedule({client,onOpen}:{client:SupabaseClient;
  const [date,setDate]=useState(uruguayToday)
  const [person,setPerson]=useState('')
  const [kind,setKind]=useState('reiki')
+ const therapyLabel=kind==='reiki'?'Reiki':'Registros Akáshicos'
  const [time,setTime]=useState('')
  const [people,setPeople]=useState<Person[]>([])
  const [plans,setPlans]=useState<Plan[]>([])
@@ -44,7 +45,7 @@ export default function HolisticSchedule({client,onOpen}:{client:SupabaseClient;
  const days=serviceDates(month,[0,1,2,3,4,5,6],`${month}-01`,`${month}-31`.replace(/31$/,String(new Date(Number(month.slice(0,4)),Number(month.slice(5)),0).getDate())))
  const name=(id:string)=>{const p=people.find(p=>p.id===id);return p?`${p.first_name} ${p.last_name}`:'Persona registrada'}
  async function save(event:FormEvent){
-  event.preventDefault();if(busy.current||!loaded||room.loading||room.error||pending.length||!times.includes(time))return
+  event.preventDefault();if(busy.current||!loaded||room.loading||room.error||pending.length||!person||!times.includes(time))return
   busy.current=true;setSaving(true);setError('');setMessage('')
   try{
    const result=await client.rpc('book_holistic_session',{p_id:request.current,p_member:person,p_kind:kind,p_date:date,p_time:time})
@@ -65,8 +66,8 @@ export default function HolisticSchedule({client,onOpen}:{client:SupabaseClient;
   <div className="heading"><div><h2 className="holistic-title">Terapias holísticas</h2><p className="therapy-duration">35 minutos por sesión</p></div><button className="secondary" type="button" disabled={saving} onClick={()=>{setError('');setRevision(v=>v+1)}}>Actualizar agenda</button></div>
   {(error||room.error)&&<p className="error" role="alert">{error||room.error}</p>}{message&&<p className="holistic-confirmation" role="status">{message}</p>}
   <div className="holistic-columns">
-   <form className="holistic-booking-panel" onSubmit={e=>void save(e)}><h3>Nueva reserva</h3><fieldset disabled={saving||!loaded||room.loading||Boolean(room.error)} className="plain-fieldset">
-    <div className="therapy-choices" aria-label="Elegir terapia">{[['reiki','Reiki'],['akashic','Registros Akáshicos']].map(([value,label])=><button type="button" key={value} aria-pressed={kind===value} className={kind===value?'therapy-choice active':'therapy-choice'} onClick={()=>setKind(value)}><TherapyIcon book={value==='akashic'}/><span>{label}</span></button>)}</div>
+   <form className="holistic-booking-panel" onSubmit={e=>void save(e)}><h3>Nueva reserva · {therapyLabel}</h3><fieldset disabled={saving||!loaded||room.loading||Boolean(room.error)} className="plain-fieldset">
+    <div className="therapy-choices" aria-label="Elegir terapia">{[['reiki','Reiki'],['akashic','Registros Akáshicos']].map(([value,label])=><button type="button" key={value} aria-pressed={kind===value} className={kind===value?'therapy-choice active':'therapy-choice'} onClick={()=>{setKind(value);setMessage('')}}><TherapyIcon book={value==='akashic'}/><span>{label}</span><small>{kind===value?'✓ Seleccionado':'Seleccionar'}</small></button>)}</div>
     <label>Persona<select required value={person} onChange={e=>setPerson(e.target.value)}><option value="">Elegir persona</option>{people.map(p=><option key={p.id} value={p.id}>{name(p.id)}</option>)}</select></label>
     <label>Mes<input type="month" required value={month} min={uruguayToday().slice(0,7)} onChange={e=>{setMonth(e.target.value);setDate(e.target.value===uruguayToday().slice(0,7)?uruguayToday():`${e.target.value}-01`);setTime('')}}/></label>
     <div className="holistic-weekdays" aria-hidden="true">{['L','M','M','J','V','S','D'].map((d,i)=><span key={i}>{d}</span>)}</div>
@@ -80,7 +81,7 @@ export default function HolisticSchedule({client,onOpen}:{client:SupabaseClient;
       return <button type="button" key={t} className={time===t?'active':'secondary'} disabled={!available} aria-pressed={time===t} aria-label={`${t}${past?' · Horario pasado':!available?' · No disponible':''}`} title={past?'Horario pasado':!available?'No disponible':'Seleccionar horario'} onClick={()=>setTime(t)}>{t}</button>
      })}</div>{slots.every(t=>Date.parse(`${date}T${t}:00-03:00`)<=now)&&<small>Estos horarios ya pasaron. Elegí otro día para reservar.</small>}</div>
     })}<small>Los horarios atenuados no están disponibles.</small></div>}
-    <button className="holistic-submit" type="submit" disabled={saving||pending.length>0||!times.includes(time)||!person}>{saving?'Guardando…':'Agendar sesión'}</button>
+    <button className="holistic-submit" type="submit" disabled={saving||pending.length>0||!times.includes(time)||!person}>{saving?'Guardando…':`Agendar ${therapyLabel}`}</button>
    </fieldset></form>
    <aside className="holistic-reservations" aria-label="Reservas de terapias"><div className="heading"><h3>{showMonth?'Reservas del mes':'Reservas del día'} <span className="holistic-count">{reservations.length}</span></h3><button className="text-button" type="button" aria-pressed={showMonth} onClick={()=>setShowMonth(v=>!v)}>{showMonth?'Ver el día':'Ver todo el mes'}</button></div><p className="holistic-selected-date">{showMonth?month.split('-').reverse().join('/'):dayLabel}</p>
     {room.loading?<p role="status">Cargando reservas…</p>:room.error?<p>No se pudo comprobar la agenda.</p>:!reservations.length?<p className="holistic-empty">No hay sesiones agendadas para {showMonth?'este mes':'este día'}.</p>:reservations.map(a=><article className="holistic-reservation" key={a.id}><div className="holistic-reservation-heading"><span className="holistic-therapy-icon"><TherapyIcon book={a.kind==='akashic'}/></span><div><h4>{name(a.member_id)}</h4><p>{a.kind==='reiki'?'Reiki':'Registros Akáshicos'}</p></div></div><p className="holistic-reservation-time">{a.session_date.split('-').reverse().join('/')} · <strong>{roomTime(a.starts_at)}–{roomTime(a.ends_at)}</strong></p><div className="holistic-reservation-actions"><button className="secondary" type="button" onClick={()=>onOpen(a.member_id)}>Ver ficha</button><button className="text-button" type="button" disabled={saving} onClick={()=>void cancel(a.id)}>Cancelar sesión</button></div></article>)}

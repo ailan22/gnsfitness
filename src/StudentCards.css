@@ -188,3 +188,16 @@
 .app .cloud-student.student-cards-design:not([data-section=home]) :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading){background:#111a14;opacity:1}
 .app .cloud-student.student-cards-design:not([data-section=home]) :is(.card,.student-exercise,.block-note,.method-services,.student-result-cards>details){background:#192019;opacity:1}
 @media(max-width:360px){.app .cloud-student.student-cards-design .student-cards-brand strong{font-size:27px}.app .cloud-student.student-cards-design .student-cards-brand{padding-left:20px;padding-right:20px}.app .cloud-student.student-cards-design .student-brand-signature{font-size:16px}}
+
+/* Opaque charcoal interiors; green belongs only to the app backdrop. */
+.app .cloud-student.student-cards-design:not([data-section=home]){background:#1b1c1d}
+.app .cloud-student.student-cards-design:not([data-section=home]) :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#1b1c1d;opacity:1}
+.app .cloud-student.student-cards-design:not([data-section=home]) :is(.card,.student-exercise,.block-note,.method-services,.student-result-cards>details,.student-guide-grid button,.student-food-training-links button,.guide-back){background:#252627;opacity:1}
+.app .cloud-student.student-cards-design .exercise-inline-fields input{background:#151617}
+.nutrition-watermarks{position:static;display:block;margin-top:20px;padding:12px 0;border-top:1px solid #b99b5b33;pointer-events:none}
+.app .nutrition-watermarks span{transform:none;font-size:10px;letter-spacing:.035em;opacity:.6;overflow-wrap:anywhere}
+
+/* Smaller home cards, with more space below the brand. */
+.app .cloud-student.student-cards-design .student-home-menu{padding-top:22px}
+.app .cloud-student.student-cards-design .student-home-menu nav .student-menu-card:nth-child(n){height:clamp(76px,10svh,96px);min-height:76px}
+

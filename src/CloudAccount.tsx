@@ -184,7 +184,7 @@ export default function CloudAccount({ onAccessChange, onExportLocal, hasLocalDa
 
   const accountControls = user ? (<div className={role === 'student' ? 'student-account-bottom' : undefined}>
         {phoneAccessEnabled && client && <PhoneAccess key={user.id} client={client}/>}
-        {nativePlatform && <details className="biometric-settings"><summary><svg className="account-face-icon" width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M3 10V5a2 2 0 0 1 2-2h5m12 0h5a2 2 0 0 1 2 2v5M3 22v5a2 2 0 0 0 2 2h5m12 0h5a2 2 0 0 0 2-2v-5M11 11v4m10-4v4m-5-4v8h-2m-4 3q6 5 12 0"/></svg><span>Acceso con {biometry.available ? biometry.label : 'Face ID o biometría'}</span></summary>
+        {nativePlatform && <details className="biometric-settings"><summary><svg className="account-face-icon" width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M5 14a11 11 0 0 1 22 0M3 20v-4m26 0v5M8 24c2-3 1-6 1-9a7 7 0 0 1 14 0c0 6 1 10 3 13M12 28c2-5 1-9 1-13a3 3 0 0 1 6 0c0 6 0 10 3 15M16 15c0 6 0 11 2 15M5 17c0 4-1 7-2 9M9 6a13 13 0 0 1 14 0"/></svg><span>Acceso con {biometry.available ? biometry.label : 'Face ID o biometría'}</span></summary>
           <h3>Acceso rápido en este celular</h3>
           <p className="muted">{biometricEnabled
             ? 'Al volver a iniciar la app, podés ingresar con biometría. Cerrar sesión elimina este acceso guardado.'

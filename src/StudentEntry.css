@@ -56,3 +56,12 @@
 @media(max-height:740px){.app .cloud-entry .gns-signin-screen{padding-top:22px}.app .gns-signin-screen .signin-brand{margin:14px 0 22px}.app .gns-signin-screen .gns-signin-form{gap:14px;padding:20px}.app .gns-signin-screen .signin-signature{margin:22px 0 16px}}
 
 .app:has(.gns-signin-screen)::after{mask-image:linear-gradient(90deg,transparent,#000 32%),linear-gradient(transparent,#000 24%);mask-composite:intersect;-webkit-mask-image:linear-gradient(90deg,transparent,#000 32%),linear-gradient(transparent,#000 24%);-webkit-mask-composite:source-in}
+
+/* Continuous botanical background: no rectangular corner crops. */
+.app:has(.gns-signin-screen)::before{inset:0;width:100%;height:100%;background-size:cover;background-position:center;mask-image:none;-webkit-mask-image:none;filter:hue-rotate(22deg) saturate(1.18) brightness(.78)}
+.app:has(.gns-signin-screen)::after{display:none}
+.app:has(.gns-signin-screen)>.content{padding-inline:14px}
+.app .cloud-entry .gns-signin-screen{width:min(100%,460px)}
+.app .gns-signin-screen .gns-signin-form{background:#202122;padding:28px 24px;border-radius:22px}
+.app .gns-signin-screen .gns-signin-form input{background:#141516}
+.app .gns-signin-screen .signin-biometric{min-height:68px}

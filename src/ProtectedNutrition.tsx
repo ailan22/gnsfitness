@@ -27,8 +27,8 @@ export default function ProtectedNutrition({ children, owner }: { children: Reac
   }, [])
   return <div className="protected-nutrition" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()}>
     {notice && <p className="notice" role="status">Este material es para tu uso personal. Evitá compartir capturas o copias.</p>}
-    <div className="nutrition-watermarks" aria-hidden="true">{Array.from({ length: 12 }, (_, i) => <span key={i}>GNS FITNESS · {owner}</span>)}</div>
     <div className="nutrition-protected-body" style={{ visibility: hidden || !ready ? 'hidden' : 'visible' }}>{children}</div>
+    <div className="nutrition-watermarks" aria-hidden="true"><span>Uso personal · GNS FITNESS · {owner}</span></div>
     {!ready && <p role="status">Preparando lectura protegida…</p>}
   </div>
 }

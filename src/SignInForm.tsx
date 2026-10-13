@@ -18,7 +18,7 @@ export default function SignInForm({ email, password, setEmail, setPassword, pen
       <button className="signin-submit" type="submit" disabled={pending}>{pending ? 'Ingresando…' : <>INGRESAR <span aria-hidden="true">→</span></>}</button>
       {registration && <p className="signin-create">¿Primera vez? <a href="/?registro=1">Crear cuenta</a></p>}
     </form>
-    {biometricSaved && <button className="signin-biometric" type="button" disabled={pending} onClick={onUnlock}><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M3 10V5a2 2 0 0 1 2-2h5m12 0h5a2 2 0 0 1 2 2v5M3 22v5a2 2 0 0 0 2 2h5m12 0h5a2 2 0 0 0 2-2v-5M11 11v4m10-4v4m-5-4v8h-2m-4 3q6 5 12 0"/></svg>Ingresar con {biometricLabel}</button>}
+    {biometricSaved && <button className="signin-biometric" type="button" disabled={pending} onClick={onUnlock}><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M5 14a11 11 0 0 1 22 0M3 20v-4m26 0v5M8 24c2-3 1-6 1-9a7 7 0 0 1 14 0c0 6 1 10 3 13M12 28c2-5 1-9 1-13a3 3 0 0 1 6 0c0 6 0 10 3 15M16 15c0 6 0 11 2 15M5 17c0 4-1 7-2 9M9 6a13 13 0 0 1 14 0"/></svg>Ingresar con {biometricLabel}</button>}
     <p className="signin-signature">GYM NATURE SOUL</p>
   </>
 }

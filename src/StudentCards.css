@@ -286,3 +286,18 @@
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-back,.guide-back){position:fixed;top:calc(104px + env(safe-area-inset-top,0px));left:max(24px,calc((100vw - 608px)/2 + 8px));z-index:112;width:44px;height:44px;min-width:44px;min-height:44px;margin:0;padding:0;display:grid;place-items:center;background:#18191a;border:1px solid #b99b5b88;border-radius:12px;color:#dfb56d;font-size:24px}
 .app .cloud-student.student-cards-design[data-section=nutrition]:has(.guide-back) .student-back{display:none}
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]){padding-top:158px}
+
+/* Approved inset interior panel with compact persistent brand and back control. */
+.app:has(.student-cards-design[data-section]:not([data-section=home])){background:#0b1911}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]){width:100%;max-width:608px;margin:14px auto 22px;padding:90px 14px 22px;background:#17191a;border:1px solid #ad914c88;border-radius:20px;box-sizing:border-box;min-height:calc(100dvh - 48px)}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand{top:calc(14px + env(safe-area-inset-top,0px));height:64px;min-height:64px;width:calc(100% - 32px);max-width:608px;padding:15px 48px 12px;align-items:center;justify-content:center;text-align:center;background:#17191a;border:1px solid #ad914c88;border-bottom:1px solid #ad914c;border-radius:20px 20px 0 0;z-index:110}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand>div{text-align:center}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand small{display:none}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong{font-size:29px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong span{font-size:22px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-back,.guide-back){top:calc(24px + env(safe-area-inset-top,0px));left:max(20px,calc((100vw - 608px)/2 + 4px));width:44px;height:44px;background:transparent;border:0;box-shadow:none;border-radius:8px;color:#dfb56d;z-index:112}
+.app .cloud-student.student-cards-design[data-section=nutrition]:has(.guide-back) .student-back{display:none}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-toolbar{position:relative;top:auto;right:auto;min-height:0;margin:0;display:flex;justify-content:flex-end}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-section-heading{margin:12px 0 20px;padding:0;text-align:center}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#17191a}
+@media(max-width:360px){.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong{font-size:26px}.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong span{font-size:19px}}

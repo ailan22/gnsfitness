@@ -353,3 +353,6 @@
 .app .cloud-student.student-cards-design .student-warmup summary{color:#eeeae1;cursor:pointer}
 .app .cloud-student.student-cards-design .exercise-inline-fields input{background:#181a18;border:1px solid #77786d77;border-radius:8px;color:#eeeae1}
 .app .cloud-student.student-cards-design .student-complete-visible>button{width:100%;min-height:48px;border-radius:12px;background:linear-gradient(115deg,#9b7b42,#c4a165 48%,#94753d);border:1px solid #d4b77a;color:#161712;-webkit-text-fill-color:#161712;font-weight:600}
+
+/* Keep the home corner foliage continuous, matching the lower corner. */
+.app .cloud-student.student-cards-design[data-section=home] .student-cards-brand{background:transparent;border:0;box-shadow:none;overflow:visible}

@@ -176,6 +176,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
     </nav><p className="student-brand-signature"><span>GYM NATURE SOUL</span></p></div>}
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
       {section !== 'home' && <header className={'student-section-heading student-section-'+section}>
+        {section === 'training' && <p className="student-interior-label">MI ENTRENAMIENTO</p>}
         {section === 'training' && <p className="student-personal-welcome">{history.member.welcome_form || 'Te damos la bienvenida'}, {history.member.first_name}</p>}
         <h1>{section === 'training' ? 'Tu entrenamiento de hoy' : section === 'nutrition' ? 'ALIMENTACIÓN SALUDABLE' : section === 'method' ? 'MÉTODO GNS' : 'RESULTADOS DEL PROGRAMA'}</h1>
       </header>}
@@ -194,7 +195,7 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
           <div className="training-completion"><div><span>Tu avance</span><strong>{Math.round((progress.finished ? 1 : (progress.completed * routine.days_per_week + progress.nextDay - 1) / (routine.program_rounds * routine.days_per_week)) * 100)}%</strong></div><progress aria-label="Avance de entrenamientos registrados" max={routine.program_rounds * routine.days_per_week} value={progress.finished ? routine.program_rounds * routine.days_per_week : progress.completed * routine.days_per_week + progress.nextDay - 1}/><small>Según los entrenamientos guardados.</small></div>
           <details className="training-program-info"><summary>Detalles del programa</summary><p>{routine.level} · {routine.days_per_week} días por semana · {routine.program_rounds} semanas</p><p>Bloque {progress.block}{detail?.name ? ` · ${detail.name}` : ''}</p>{progress.last && <p>Último registro: Día {progress.last.day} · {progress.last.performed_at}</p>}</details>
           {!progress.finished && isTestDay && <div className="actions student-start"><button type="button" disabled={!canRecord || history.member.status !== 'Activo'} onClick={() => begin()}>{recording ? isTestDay ? 'Continuar mi prueba' : 'Continuar mi entrenamiento' : isTestDay ? 'Empezar prueba' : 'Empezar entrenamiento'}</button><span className="muted">{isTestDay && !exercises.length ? 'Evaluación programada' : `${exercises.length} ${exercises.length === 1 ? 'ejercicio' : 'ejercicios'}`}{recording ? ' · En curso' : ''}</span></div>}
-          {detail?.warmup && <div className="block-note student-warmup"><strong>Calentamiento del bloque</strong><p>{detail.warmup}</p></div>}
+          {detail?.warmup && <details className="block-note student-warmup"><summary>Calentamiento</summary><p>{detail.warmup}</p></details>}
           {progress.finished ? <p>Consultá con tu entrenador antes de iniciar un programa nuevo.</p> : <>
             {exercises.length ? <div className="student-exercises">{exercises.map((item, index) => <div className="student-exercise" key={`${globalWeek}-${progress.nextDay}-${item.id}`}>
               <strong>{index + 1}. {item.name}</strong><span>{item.sets || '—'} series · {item.reps || '—'} repeticiones · RIR {item.rir || '—'} · Descanso {item.rest || '—'}{item.load ? ` · Carga ${item.load}` : ''}</span>{item.notes && <span>{item.notes}</span>}

@@ -325,3 +325,31 @@
 .app .cloud-student.student-cards-design[data-section] .student-cards-brand strong{font-family:Georgia,'Times New Roman',serif;font-weight:500;letter-spacing:.005em;background-image:linear-gradient(115deg,#b88430 0%,#e7b953 25%,#f5dda0 44%,#c89437 57%,#edc974 78%,#bd8b35 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand small{display:block;margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:7px;line-height:1.5;letter-spacing:.11em;color:#dedbd2;-webkit-text-fill-color:#dedbd2;white-space:nowrap}
 .app .cloud-student.student-cards-design .student-personal-welcome{margin:0 0 8px;color:#e4dfd5;-webkit-text-fill-color:#e4dfd5;font-size:15px;line-height:1.4;font-weight:400;letter-spacing:0}
+
+/* Approved simple interior: compact persistent identity, charcoal reading surface. */
+.app:has(.student-cards-design[data-section]:not([data-section=home])){background:#131615}
+.app:has(.student-cards-design[data-section]:not([data-section=home]))::before{opacity:.12}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]){margin:calc(84px + env(safe-area-inset-top,0px)) auto 0;padding:16px 6px 28px;height:calc(100dvh - 84px - env(safe-area-inset-top,0px));background:#171918;border:0;border-radius:0;box-shadow:none;scrollbar-width:thin}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand{height:calc(84px + env(safe-area-inset-top,0px));padding:calc(12px + env(safe-area-inset-top,0px)) 56px 10px;align-items:center;justify-content:center;background:#171918;border-bottom:1px solid #b79b632d;max-width:640px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand>div{text-align:center}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong{font-size:32px;line-height:1}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong span{display:block;font-size:10px;letter-spacing:.28em;margin-top:5px;line-height:1.2}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand small{display:none}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-back,.guide-back){top:calc(20px + env(safe-area-inset-top,0px));left:max(18px,calc((100vw - 608px)/2));background:transparent;border:0;color:#eeeae1;font-size:26px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .plan-notification-corner{top:calc(20px + env(safe-area-inset-top,0px));right:max(18px,calc((100vw - 608px)/2))}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-section-heading{margin:0 0 16px;text-align:left}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-section-heading::after{display:none}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-section-heading h1{font-size:17px;letter-spacing:.02em;font-weight:400;line-height:1.4}
+.app .cloud-student.student-cards-design .student-personal-welcome{font-family:Georgia,'Times New Roman',serif;font-size:25px;margin:12px 0 4px;line-height:1.3}
+.app .cloud-student.student-cards-design .student-interior-label{text-align:center;font-family:Georgia,'Times New Roman',serif;letter-spacing:.12em;font-size:13px;color:#d0cec7;margin:0 0 18px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#171918}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-exercise,.block-note,.student-guide-grid button,.student-food-training-links button){background:#1c1e1c;border:1px solid #77786d55;border-radius:14px;box-shadow:none}
+.app .cloud-student.student-cards-design .student-exercise{padding:14px;margin:10px 0}
+.app .cloud-student.student-cards-design .student-exercise>strong{font-size:16px;font-weight:500}
+.app .cloud-student.student-cards-design .training-visual-header{border:1px solid #77786d55;border-radius:14px;min-height:145px;padding:16px}
+.app .cloud-student.student-cards-design .training-visual-header h2{font-size:18px}
+.app .cloud-student.student-cards-design .training-completion{margin:12px 0}
+.app .cloud-student.student-cards-design .student-warmup{padding:14px;margin:10px 0;color:#eeeae1}
+.app .cloud-student.student-cards-design .student-warmup summary{color:#eeeae1;cursor:pointer}
+.app .cloud-student.student-cards-design .exercise-inline-fields input{background:#181a18;border:1px solid #77786d77;border-radius:8px;color:#eeeae1}
+.app .cloud-student.student-cards-design .student-complete-visible>button{width:100%;min-height:48px;border-radius:12px;background:linear-gradient(115deg,#9b7b42,#c4a165 48%,#94753d);border:1px solid #d4b77a;color:#161712;-webkit-text-fill-color:#161712;font-weight:600}

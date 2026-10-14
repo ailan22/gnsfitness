@@ -175,7 +175,10 @@ export default function CloudStudent({ client, user }: { client: SupabaseClient;
       </button>)}
     </nav><p className="student-brand-signature"><span>GYM NATURE SOUL</span></p></div>}
     {loading ? <p>Cargando tu programa…</p> : !history ? <p className="notice">{error || 'Tu ficha no está disponible.'}</p> : <>
-      {section !== 'home' && <header className={'student-section-heading student-section-'+section}><h1>{section === 'training' ? 'MI ENTRENAMIENTO' : section === 'nutrition' ? 'ALIMENTACIÓN SALUDABLE' : section === 'method' ? 'MÉTODO GNS' : 'RESULTADOS DEL PROGRAMA'}</h1></header>}
+      {section !== 'home' && <header className={'student-section-heading student-section-'+section}>
+        {section === 'training' && <p className="student-personal-welcome">{history.member.welcome_form || 'Te damos la bienvenida'}, {history.member.first_name}</p>}
+        <h1>{section === 'training' ? 'Tu entrenamiento de hoy' : section === 'nutrition' ? 'ALIMENTACIÓN SALUDABLE' : section === 'method' ? 'MÉTODO GNS' : 'RESULTADOS DEL PROGRAMA'}</h1>
+      </header>}
       <p hidden={section === 'home' || section === 'nutrition' || section === 'method' || section === 'results'} className="muted">{nutritionOpen ? 'Tu alimentación, con acompañamiento profesional.' : section === 'training' ? 'Tu entrenamiento, paso a paso.' : section === 'method' ? 'Movimiento, constancia y acompañamiento.' : 'Los cambios observados en tu proceso.'} {history.member.trainer_name && `Tu entrenador: ${history.member.trainer_name}.`}</p>
       {message && <p role="status" className="notice">{message}</p>}
       {error && <p role="alert" className="error">{error}</p>}

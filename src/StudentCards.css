@@ -321,3 +321,7 @@
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand{background:transparent;border:0;border-bottom:0;box-shadow:none;overflow:visible;isolation:auto}
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand::before{content:none;display:none}
 .app:has(.student-cards-design[data-section]:not([data-section=home]))::before{transform:scaleX(-1)}
+/* Shared gold brand and personal training welcome. */
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand strong{font-family:Georgia,'Times New Roman',serif;font-weight:500;letter-spacing:.005em;background-image:linear-gradient(115deg,#b88430 0%,#e7b953 25%,#f5dda0 44%,#c89437 57%,#edc974 78%,#bd8b35 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand small{display:block;margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:7px;line-height:1.5;letter-spacing:.11em;color:#dedbd2;-webkit-text-fill-color:#dedbd2;white-space:nowrap}
+.app .cloud-student.student-cards-design .student-personal-welcome{margin:0 0 8px;color:#e4dfd5;-webkit-text-fill-color:#e4dfd5;font-size:15px;line-height:1.4;font-weight:400;letter-spacing:0}

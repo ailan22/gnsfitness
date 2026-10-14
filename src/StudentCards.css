@@ -316,3 +316,8 @@
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand{background:#0b1911;isolation:isolate;overflow:hidden}
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand::before{content:'';position:absolute;inset:0;background:url('./assets/student-botanical-sparse.png') left top/100% auto no-repeat;transform:scaleX(-1);z-index:-1;pointer-events:none}
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]){scrollbar-width:thin;scrollbar-color:#74623e #17191a}
+
+/* Brand floats on the existing botanical background, without a separate band. */
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand{background:transparent;border:0;border-bottom:0;box-shadow:none;overflow:visible;isolation:auto}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand::before{content:none;display:none}
+.app:has(.student-cards-design[data-section]:not([data-section=home]))::before{transform:scaleX(-1)}

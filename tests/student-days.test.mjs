@@ -17,7 +17,7 @@ function harness({ empty = false, sessions = [], failure = null, status = 'Activ
     require(name) {
       if (name === './ProtectedNutrition') return { default: ({children}) => children }
       if (name === './StudentCards.css') return {}
-      if (name === './assets/student-home-approved-oct13.png') return { default: '/test-training.png' }
+      if (name === './assets/student-home-full-photo-oct13.png') return { default: '/test-training.png' }
       if (['./GnsMethod','./ProgramResults'].includes(name)) return { default: () => null }
       if (name === './PlanNotifications') return { default: () => null }
       if (name === './StudentWellbeing') return { StudentWellbeing: () => null }

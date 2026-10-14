@@ -301,3 +301,15 @@
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-section-heading{margin:12px 0 20px;padding:0;text-align:center}
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-content,.student-wellbeing,.student-guide-browser,.student-guide-reading,.nutrition-protected-body){background:#17191a}
 @media(max-width:360px){.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong{font-size:26px}.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong span{font-size:19px}}
+
+/* Interior reference: botanical brand area separate from scrolling information. */
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]){margin:calc(142px + env(safe-area-inset-top,0px)) auto 18px;padding:18px 14px 24px;height:calc(100dvh - 166px - env(safe-area-inset-top,0px));min-height:0;overflow-y:auto;overscroll-behavior:contain;scroll-padding-top:16px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand{top:0;width:100%;max-width:640px;height:calc(140px + env(safe-area-inset-top,0px));min-height:0;padding:calc(28px + env(safe-area-inset-top,0px)) 28px 12px;align-items:flex-start;justify-content:flex-start;text-align:left;border:0;border-radius:0;background:#0b1911 url('./assets/student-botanical-sparse.png') right top/100% auto no-repeat;z-index:110}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand>div{text-align:left}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong{font-size:32px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong span{font-size:27px}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-back,.guide-back){top:calc(88px + env(safe-area-inset-top,0px));left:max(24px,calc((100vw - 608px)/2 + 8px));border:1px solid #ad914c66;background:#101a14;border-radius:10px}
+.app .cloud-student.student-cards-design[data-section=nutrition]:has(.guide-back) .student-back{display:none}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-toolbar{height:0;margin:0}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .plan-notification-corner{position:fixed;top:calc(88px + env(safe-area-inset-top,0px));right:max(24px,calc((100vw - 608px)/2 + 8px));z-index:112}
+@media(max-width:360px){.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong{font-size:28px}.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong span{font-size:24px}}

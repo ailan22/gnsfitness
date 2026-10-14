@@ -247,3 +247,17 @@
 .app .cloud-student.student-cards-design .student-home-menu nav .student-menu-nutrition .student-approved-photo img{transform:translate(-7.62%,-36.01%)}
 .app .cloud-student.student-cards-design .student-home-menu nav .student-menu-method .student-approved-photo img{transform:translate(-7.62%,-50.65%)}
 .app .cloud-student.student-cards-design .student-home-menu nav .student-menu-results .student-approved-photo img{transform:translate(-7.62%,-65.40%)}
+
+/* Full photographic cards approved on October 13. */
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-card:nth-child(n){height:auto;aspect-ratio:740/290;min-height:112px;padding:0 13px 12px;align-items:end;grid-template-columns:minmax(0,1fr) 14px;border:1px solid #bca065;border-radius:14px;background:#0b100c}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-approved-photo{inset:0;width:100%;height:100%;aspect-ratio:auto;transform:none;border-radius:0;background:#0b100c;z-index:0}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-approved-photo img{width:115.27%;max-width:none;height:auto;left:0;top:0;transform:translate(-6.56%,-16.70%)}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-nutrition .student-approved-photo img{transform:translate(-6.56%,-33.30%)}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-method .student-approved-photo img{transform:translate(-6.56%,-50.05%)}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-results .student-approved-photo img{transform:translate(-6.56%,-66.81%)}
+.app .cloud-student.student-cards-design[data-section=home] .student-menu-card::after{content:'';position:absolute;inset:auto 0 0;height:33%;background:linear-gradient(0deg,#0b100c 80%,transparent);z-index:1;pointer-events:none}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-title{position:relative;z-index:2;font-family:Arial,Helvetica,sans-serif;font-size:clamp(12px,3.7vw,16px);font-weight:500;line-height:1.15;letter-spacing:.07em;color:#dfb56d;-webkit-text-fill-color:transparent;background:linear-gradient(110deg,#c69952,#edcb88 35%,#f6e5bd 48%,#dfb56d 64%,#c69952);background-clip:text;-webkit-background-clip:text;text-shadow:none}
+.app .cloud-student.student-cards-design[data-section=home] .student-menu-arrow{position:relative;z-index:2;line-height:.8}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-results .student-menu-title{max-width:200px}
+.app .cloud-student.student-cards-design[data-section=home] .student-brand-signature{margin:18px 0 10px}
+.app .cloud-student.student-cards-design[data-section=home] .student-menu-results::after{height:45%;background:linear-gradient(0deg,#0b100c 88%,transparent)}

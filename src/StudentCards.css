@@ -313,3 +313,6 @@
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-toolbar{height:0;margin:0}
 .app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .plan-notification-corner{position:fixed;top:calc(88px + env(safe-area-inset-top,0px));right:max(24px,calc((100vw - 608px)/2 + 8px));z-index:112}
 @media(max-width:360px){.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong{font-size:28px}.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand strong span{font-size:24px}}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand{background:#0b1911;isolation:isolate;overflow:hidden}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) .student-cards-brand::before{content:'';position:absolute;inset:0;background:url('./assets/student-botanical-sparse.png') left top/100% auto no-repeat;transform:scaleX(-1);z-index:-1;pointer-events:none}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]){scrollbar-width:thin;scrollbar-color:#74623e #17191a}

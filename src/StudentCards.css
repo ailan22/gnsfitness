@@ -261,3 +261,28 @@
 .app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-results .student-menu-title{max-width:200px}
 .app .cloud-student.student-cards-design[data-section=home] .student-brand-signature{margin:18px 0 10px}
 .app .cloud-student.student-cards-design[data-section=home] .student-menu-results::after{height:45%;background:linear-gradient(0deg,#0b100c 88%,transparent)}
+
+/* Full photos remain visible beneath the live titles; no solid caption strip. */
+.app .cloud-student.student-cards-design[data-section=home] .student-menu-card::after,
+.app .cloud-student.student-cards-design[data-section=home] .student-menu-results::after{height:65%;background:linear-gradient(0deg,#0009,transparent)}
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-title{filter:drop-shadow(0 1px 2px #000);background-image:linear-gradient(110deg,#c99a45,#e9bd65 35%,#f6df9e 48%,#deb05c 64%,#c99a45)}
+.app .cloud-student.student-cards-design[data-section]{padding-top:116px}
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand{position:fixed;top:0;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:608px;z-index:110;height:100px;min-height:100px;padding:calc(16px + env(safe-area-inset-top,0px)) 12px 12px;display:flex;align-items:flex-start;text-align:left;background:#0d1711;border-bottom:1px solid #b99b5b33;box-sizing:border-box}
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand img{display:none}
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand strong{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:32px;letter-spacing:-.025em;background:linear-gradient(110deg,#c99a45,#e9bd65 35%,#f6df9e 48%,#deb05c 64%,#c99a45);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand strong span{font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:27px;letter-spacing:.005em;color:#efeee7;-webkit-text-fill-color:#efeee7}
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand small{font-size:6.7px;letter-spacing:.12em}
+.app .cloud-student.student-cards-design[data-section=home] .student-toolbar{position:fixed;top:30px;right:max(20px,calc((100vw - 608px)/2));z-index:111}
+.app .cloud-student.student-cards-design[data-section=nutrition] :is(.student-back,.guide-back){top:calc(104px + env(safe-area-inset-top,0px))}
+.app .cloud-student.student-cards-design[data-section=nutrition]{padding-top:158px}
+.app .cloud-student.student-cards-design .student-section-heading h1{color:#dfb56d;background:linear-gradient(110deg,#c99a45,#e9bd65 35%,#f6df9e 48%,#deb05c 64%,#c99a45);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+@media(max-width:360px){.app .cloud-student.student-cards-design[data-section] .student-cards-brand strong{font-size:28px}.app .cloud-student.student-cards-design[data-section] .student-cards-brand strong span{font-size:24px}}
+/* One brand treatment and persistent back control throughout the student portal. */
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand{flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left}
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand>div{width:auto;text-align:left}
+.app .cloud-student.student-cards-design[data-section] .student-cards-brand strong,
+.app .cloud-student.student-cards-design[data-section=home] .student-home-menu nav .student-menu-title,
+.app .cloud-student.student-cards-design .student-section-heading h1{background-image:linear-gradient(110deg,#bc8834 0%,#e7b74f 28%,#f3d584 47%,#dba43d 65%,#efc76b 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#e7b74f}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]) :is(.student-back,.guide-back){position:fixed;top:calc(104px + env(safe-area-inset-top,0px));left:max(24px,calc((100vw - 608px)/2 + 8px));z-index:112;width:44px;height:44px;min-width:44px;min-height:44px;margin:0;padding:0;display:grid;place-items:center;background:#18191a;border:1px solid #b99b5b88;border-radius:12px;color:#dfb56d;font-size:24px}
+.app .cloud-student.student-cards-design[data-section=nutrition]:has(.guide-back) .student-back{display:none}
+.app .cloud-student.student-cards-design[data-section]:not([data-section=home]){padding-top:158px}

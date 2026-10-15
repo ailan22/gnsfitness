@@ -26,14 +26,14 @@ export default function StudentFoodGuide() {
  const [itemIndex,setItemIndex]=useState<number|null>(null)
  const top=useRef<HTMLDivElement>(null)
  const [navigationHost,setNavigationHost]=useState<HTMLElement|null>(null)
- const attachGuide=useCallback((element:HTMLDivElement|null)=>{top.current=element;setNavigationHost(element?.closest('.cloud-student')?.querySelector<HTMLElement>('.student-top-actions')??null)},[])
+ const attachGuide=useCallback((element:HTMLDivElement|null)=>{top.current=element;setNavigationHost(element?.closest('.cloud-student')?.querySelector<HTMLElement>('.student-cards-brand')??null)},[])
  const go=(next:string|null,index:number|null=null)=>{setScreen(next);setItemIndex(index);requestAnimationFrame(()=>top.current?.scrollIntoView({block:'start',behavior:'instant'}))}
  const section=guide.sections.find(s=>s.id===screen)
  const item=itemIndex===null?null:section?.items[itemIndex]
  const timing=screen?.startsWith('pre-')?timings[Number(screen.slice(4))]:null
  const title=item?.title??section?.title??timing?.title??(screen==='before'?'Antes de entrenar':screen==='after'?'Después de entrenar':'Alimentación saludable')
  return <div className="student-guide-browser" ref={attachGuide}>
-  {screen&&navigationHost&&createPortal(<button type="button" className="guide-back" onClick={()=>go(item?screen:timing?'before':null)} aria-label="Volver al apartado anterior de alimentación">←</button>,navigationHost)}
+  {screen&&navigationHost&&createPortal(<button type="button" className="guide-back" onClick={()=>go(item?screen:timing?'before':null)} aria-label="Volver al apartado anterior de alimentación"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12"/></svg></button>,navigationHost)}
   {!screen?<>
    <img className="student-editorial-photo" src="/student-food-hero.png" alt="Plato con pollo, cereales y vegetales variados"/>
    <nav className="student-guide-sections" aria-label="Secciones de la guía">{guideGroups.map(group=><section key={group.title}><h2>{group.title}</h2><div className="student-guide-grid">{group.links.map(([id,label])=><button type="button" key={id} onClick={()=>go(id)}>{label}<span aria-hidden="true">›</span></button>)}</div></section>)}</nav>

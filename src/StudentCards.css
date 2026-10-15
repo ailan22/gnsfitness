@@ -356,3 +356,14 @@
 
 /* Keep the home corner foliage continuous, matching the lower corner. */
 .app .cloud-student.student-cards-design[data-section=home] .student-cards-brand{background:transparent;border:0;box-shadow:none;overflow:visible}
+/* Keep nested navigation inside the fixed header, outside WebKit scrolling layers. */
+.app .cloud-student.student-cards-design[data-section=nutrition] .student-cards-brand > .guide-back {
+ position:absolute; inset:auto; top:calc(20px + env(safe-area-inset-top,0px)); left:18px;
+ display:flex; align-items:center; justify-content:center; width:44px; height:44px;
+ padding:0; margin:0; z-index:2; visibility:visible; opacity:1;
+ background:#171918; border:1px solid #b99b5b88; border-radius:10px;
+ color:#dfb56d; -webkit-text-fill-color:#dfb56d; pointer-events:auto;
+}
+.app .cloud-student.student-cards-design[data-section=nutrition] .student-cards-brand > .guide-back svg {
+ display:block; width:26px; height:26px; flex:none; stroke:#dfb56d;
+}

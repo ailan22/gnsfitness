@@ -8,7 +8,8 @@ const source=ts.transpileModule(readFileSync(new URL('../src/StudentFoodGuide.ts
 function harness(){
  const states=[],refs=[],host={id:'persistent-toolbar'},exports={};let cursor=0,rc=0,tree
  vm.runInNewContext(source,{exports,requestAnimationFrame:fn=>fn(),require(name){
-  if(name==='react')return {useState(v){const i=cursor++;if(!(i in states))states[i]=v;return [states[i],v=>states[i]=v]},useRef(v){return refs[rc++]??=( {current:v})},useCallback:fn=>fn}
+  if(name==='react')return {useState(v){const i=cursor++;if(!(i in states))states[i]=v;return [states[i],v=>states[i]=v]},useRef(v){return refs[rc++]??=( {current:v})},useCallback:fn=>fn,useLayoutEffect:()=>{}}
+  if(name==='./studentGuideScroll')return {showGuideStart:()=>{}}
   if(name==='react-dom')return {createPortal:(child,target)=>({type:'portal',props:{children:child,target}})}
   if(name==='react/jsx-runtime')return {Fragment:'fragment',jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})}
   if(name==='./admin-alimentacion.json')return {__esModule:true,default:guide}

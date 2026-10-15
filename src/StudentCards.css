@@ -367,3 +367,11 @@
 .app .cloud-student.student-cards-design[data-section=nutrition] .student-cards-brand > .guide-back svg {
  display:block; width:26px; height:26px; flex:none; stroke:#dfb56d;
 }
+/* Recipe navigation must not preserve an old scroll position or anchor below its title. */
+.app .cloud-student.student-cards-design[data-section=nutrition],
+.app .cloud-student.student-cards-design[data-section=nutrition] .student-guide-browser {
+ overflow-anchor:none; scroll-behavior:auto;
+}
+.app .cloud-student.student-cards-design[data-section=nutrition] .student-guide-browser > h2 {
+ margin-top:0; padding-top:4px; line-height:1.35;
+}

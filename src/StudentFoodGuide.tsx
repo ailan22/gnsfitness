@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { showGuideStart } from './studentGuideScroll'
 import { createPortal } from 'react-dom'
 import guide from './admin-alimentacion.json'
 
@@ -27,7 +28,8 @@ export default function StudentFoodGuide() {
  const top=useRef<HTMLDivElement>(null)
  const [navigationHost,setNavigationHost]=useState<HTMLElement|null>(null)
  const attachGuide=useCallback((element:HTMLDivElement|null)=>{top.current=element;setNavigationHost(element?.closest('.cloud-student')?.querySelector<HTMLElement>('.student-cards-brand')??null)},[])
- const go=(next:string|null,index:number|null=null)=>{setScreen(next);setItemIndex(index);requestAnimationFrame(()=>top.current?.scrollIntoView({block:'start',behavior:'instant'}))}
+ const go=(next:string|null,index:number|null=null)=>{setScreen(next);setItemIndex(index)}
+ useLayoutEffect(()=>{showGuideStart(top.current)},[screen,itemIndex])
  const section=guide.sections.find(s=>s.id===screen)
  const item=itemIndex===null?null:section?.items[itemIndex]
  const timing=screen?.startsWith('pre-')?timings[Number(screen.slice(4))]:null

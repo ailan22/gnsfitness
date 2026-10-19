@@ -21,7 +21,7 @@
     "@capacitor/core": "8.4.3",
     "@capacitor/ios": "8.4.3",
     "@capgo/capacitor-native-biometric": "8.7.0",
-    "@supabase/supabase-js": "^2.117.2",
+    "@supabase/supabase-js": "^2.118.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

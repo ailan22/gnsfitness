@@ -17,7 +17,7 @@
     "mobile:ios": "cap open ios"
   },
   "dependencies": {
-    "@capacitor/android": "8.4.3",
+    "@capacitor/android": "8.5.3",
     "@capacitor/core": "8.4.3",
     "@capacitor/ios": "8.4.3",
     "@capgo/capacitor-native-biometric": "8.7.0",
